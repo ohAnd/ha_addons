@@ -1,6 +1,6 @@
 name: "Batcontrol - Dev@ohAnd"
 description: "Controls the charging of the battery"
-version: "0.3.4"
+version: "0.3.5"
 slug: "batcontrol"
 init: false
 arch:
@@ -30,6 +30,7 @@ options:
     password: YOUR-PASSWORD #
     max_pv_charge_rate: 3000 # Watt
     max_grid_charge_rate: 5000 # Watt
+    max_bat_discharge_rate: 5000 # Watt - set to 0 to disable
   utility:
     type: tibber
     apikey: Zz-YOURAPIKEYYOURAPIKEYXXXXX # only required for tibber
