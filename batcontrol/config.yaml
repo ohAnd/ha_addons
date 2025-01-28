@@ -1,6 +1,6 @@
 name: "Batcontrol - Dev@ohAnd"
 description: "Controls the charging of the battery"
-version: "0.3.5"
+version: "0.3.5-fix1"
 slug: "batcontrol"
 init: false
 arch:
@@ -90,6 +90,7 @@ schema:
     password: password
     max_pv_charge_rate: float(0,)?
     max_grid_charge_rate: float(0,)?
+    max_bat_discharge_rate: float(0,)?
   utility:
     type: list(tibber|awattar_at|awattar_de)
     apikey: password? # only required for tibber

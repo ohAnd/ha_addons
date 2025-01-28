@@ -40,6 +40,7 @@ Restart the addon
 `password`: YOUR-PASSWORD # password for your inverter
 `max_pv_charge_rate`. Limits the rate at which your PV System charges your battery
 `max grid charge rate`. Limits the maximum charging rate of your battery when charging from the grid. 
+`max_bat_discharge_rate`. Limit the maximum discharge power during discharge allowed. 
 
 ### `utility`:
 

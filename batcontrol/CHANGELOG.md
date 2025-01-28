@@ -1,6 +1,11 @@
+**Version 0.3.5-fix1** published on 28.01.2024
+- fixing pushing multi schedule to fronius
+- CHARGE_MAX behaviour remains as before and is dependet by ``max_pv_charge_rate``
+- DISCHARGE_MAX added and is newly dpendend by ``max_bat_discharge_rate``
+
 **Version 0.3.5** published on 28.01.2024
 - new config parameter for max discharge rate in mode 10
-  - changing the target schedule on fronius side from CHARGE_MAX to DISCHARGE_MAX when triggering "Discharge allowed"
+  - ~~changing the target schedule on fronius side from CHARGE_MAX to DISCHARGE_MAX when triggering "Discharge allowed"~~
   - value will be expected in Watts
 
 **Version 0.3.4** published on 28.01.2024
