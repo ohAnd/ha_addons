@@ -1,3 +1,8 @@
+**Version 0.3.6** published on 01.02.2024
+- see: https://github.com/muexxl/batcontrol/issues/78
+- adding homeassistant mqtt autodiscovery config messages at startup
+- all mqtt values setter/ getter will be autoconfigured for direct usage in homeassistant and others (e.g. easier integration in e.g. openhab with addon mqtt)
+
 **Version 0.3.5-fix1** published on 28.01.2024
 - fixing pushing multi schedule to fronius
 - CHARGE_MAX behaviour remains as before and is dependet by ``max_pv_charge_rate``
