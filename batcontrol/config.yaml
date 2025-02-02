@@ -1,6 +1,6 @@
-name: "Batcontrol - Dev@ohAnd"
+name: "Batcontrol - local Dev@ohAnd"
 description: "Controls the charging of the battery"
-version: "0.3.6"
+version: "0.3.63"
 slug: "batcontrol"
 init: false
 arch:
@@ -19,10 +19,16 @@ options:
   timezone: Europe/Berlin #your time zone. not optional.
   loglevel: debug
   max_logfile_size: 100 #kB
-  battery_control:
+  battery_control: # min_price_difference is the absolute minimum price difference in Euro to justify charging your battery if min_price_difference_rel results in a higher price difference, that will be used
     min_price_difference: 0.05 # minimum price difference in Euro to justify charging your battery
+    min_price_difference_rel: 0.10 # Percentage (in decimal) of the current price to justify charging your battery # _rel helps to avoid charging at high prices with less efficiency
     always_allow_discharge_limit: 0.90 # 0.00 to 1.00 above this SOC limit using energy from the battery is always allowed
     max_charging_from_grid_limit: 0.90 # 0.00 to 1.00 charging from the grid is only allowed until this SOC limit
+  a1_tuning:
+    charge_rate_multiplier: 1.1 # Increase (>1) calculated charge rate to compensate charge inefficencies.
+    soften_price_difference_on_charging: false # enable earlier charging based on a more relaxed calculation # future_price <= current_price-min_price_difference/soften_price_difference_on_charging_factor
+    soften_price_difference_on_charging_factor: 5
+    round_price_digits: 4 # round price to n digits after the comma
   inverter:
     type: fronius_gen24 #currently only fronius_gen24 supported
     address: 192.168.0.XX # the local IP of your inverter. needs to be reachable from the machine that runs batcontrol
@@ -60,6 +66,8 @@ options:
     certfile: /ssl/certs/client.crt
     keyfile: /ssl/certs/client.key
     tls_version: tlsv1.2
+    auto_discover_enable: true # enables mqtt auto discover => https://www.home-assistant.io/integrations/mqtt/#mqtt-discovery
+    auto_discover_topic: homeassistant # base topic path for auto discover config messages - default 'homeassistant' -> https://www.home-assistant.io/integrations/mqtt/#discovery-options
   evcc:
     enabled: false
     broker: core-mosquitto
@@ -81,8 +89,14 @@ schema:
   max_logfile_size: int
   battery_control:
     min_price_difference: float(0,) # minimum price difference in Euro to justify charging your battery
+    min_price_difference_rel: float(0,)
     always_allow_discharge_limit: float(0,1) # 0.00 to 1.00 above this SOC limit using energy from the battery is always allowed
     max_charging_from_grid_limit: float(0,1) # 0.00 to 1.00 charging from the grid is only allowed until this SOC limit
+  a1_tuning:
+    charge_rate_multiplier: float(1,) # Increase (>1) calculated charge rate to compensate charge inefficencies.
+    soften_price_difference_on_charging: bool
+    soften_price_difference_on_charging_factor: int(1,)
+    round_price_digits: int(0,) # round price to n digits after the comma
   inverter:
     type: list(fronius_gen24) #currently only fronius_gen24 supported
     address: str # the local IP of your inverter. needs to be reachable from the machine that runs batcontrol
@@ -121,6 +135,8 @@ schema:
     certfile: str?
     keyfile: str?
     tls_version: list(tlsv1.2|tlsv1.3)?
+    auto_discover_enable: bool
+    auto_discover_topic: str
   evcc:
     enabled: bool
     broker: str

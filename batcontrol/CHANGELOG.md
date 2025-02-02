@@ -1,3 +1,11 @@
+**Version 0.3.63** published on 02.02.2024
+- making mqtt auto discover configurable see in mqtt config section
+
+**Version 0.3.62** published on 02.02.2024
+- bump to last batcontrol:
+- add dynamic price limit ([#117](https://github.com/muexxl/batcontrol/pull/117))
+- Add options to tweak batcontrol behavior ([#116](https://github.com/muexxl/batcontrol/pull/116))
+
 **Version 0.3.6** published on 01.02.2024
 - see: https://github.com/muexxl/batcontrol/issues/78
 - adding homeassistant mqtt autodiscovery config messages at startup
