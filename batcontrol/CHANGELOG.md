@@ -1,3 +1,6 @@
+**Version 0.3.65** published on 03.02.2024
+- including max_bat_discharge_rate for auto discover
+
 **Version 0.3.64** published on 03.02.2024
 - updates to last batcontrol main dev incl. the recent local changes of ohand
 
