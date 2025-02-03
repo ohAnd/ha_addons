@@ -1,7 +1,8 @@
 name: "Batcontrol - local Dev@ohAnd"
 description: "Controls the charging of the battery"
-version: "0.3.63"
+version: "0.3.64"
 slug: "batcontrol"
+url: "https://github.com/muexxl/batcontrol"
 init: false
 arch:
   - aarch64

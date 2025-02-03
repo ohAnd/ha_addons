@@ -1,3 +1,6 @@
+**Version 0.3.64** published on 03.02.2024
+- updates to last batcontrol main dev incl. the recent local changes of ohand
+
 **Version 0.3.63** published on 02.02.2024
 - making mqtt auto discover configurable see in mqtt config section
 
