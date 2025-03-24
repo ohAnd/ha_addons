@@ -1,3 +1,7 @@
+**Version 0.0.4** published on 24.03.2025
+- rework with detailed config 
+- improved error handling
+  
 **Version 0.0.3** published on 22.03.2025
 - changed power, current data from phase 1 to phase 2
 

@@ -14,13 +14,14 @@ https://www.photovoltaikforum.com/thread/185108-fronius-smart-meter-tcp-protokol
 # Import Libs
 ###############################################################
 import os
+import logging
 import signal
 import sys
 import threading
 import struct
 import time
-import logging
 import requests
+import yaml
 
 from pymodbus.device import ModbusDeviceIdentification
 from pymodbus.datastore import ModbusSequentialDataBlock
@@ -48,31 +49,69 @@ from pymodbus.transaction import (
 # Configuration
 ###############################################################
 
-OPENHAB_URL = "http://192.168.1.30"
 OPENHAB_PORT = "8080"
-
-OH_ITEM_INVERTER_ENERGY_TOTAL_OUT = "inverter2_PV_E_total"
-
-OH_ITEM_INVERTER_POWER = "inverter2_Grid_P"
-OH_ITEM_INVERTER_U = "inverter2_Grid_U"
-OH_ITEM_INVERTER_I = "inverter2_Grid_I"
-
 MODBUS_PORT = 502
-
 CORR_FACTOR = 1 # or 1000
 
 ###############################################################
 # Add a global variable to store the timer instance
 rt = None
 
-LOGLEVEL = logging.INFO
+###############################################################
+class ConfigManager:
+    '''
+    Manages the configuration settings for the application.
+
+    This class handles loading, updating, and saving configuration settings from a 'config.yaml'
+    file. If the configuration file does not exist, it creates one with default values and
+    prompts the user to restart the server.
+    '''
+    def __init__(self):
+        self.config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config.yaml')
+        self.default_config = {
+            'openhab_host': '192.168.1.99',
+            'time_zone': 'UTC',  # Add default time zone
+            'connected_phase': 1,
+            'energy_counter_out': 'inverter_energy',
+            'current_voltage': 'inverter_voltage',
+            'current_current': 'inverter_current',
+            'current_power': 'inverter_power',
+            'current_frequency': 'inverter_frequency',
+            'loglevel': 'debug'
+        }
+        self.config = self.default_config.copy()
+        self.load_config()
+
+    def load_config(self):
+        """
+        Reads the configuration from 'config.yaml' file located in the current directory.
+        If the file exists, it loads the configuration values.
+        If the file does not exist, it creates a new 'config.yaml' file with default values and
+        prompts the user to restart the server after configuring the settings.
+        """
+        if os.path.exists(self.config_file):
+            with open(self.config_file, 'r', encoding='utf-8') as f:
+                self.config.update(yaml.safe_load(f))
+        else:
+            logger.error("Config file not found.")
+
+config_manager = ConfigManager()
+###############################################################
+
+LOGLEVEL = config_manager.config["loglevel"].upper()
+
+# Clear existing handlers from the root logger
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+
 logger = logging.getLogger(__name__)
-formatter = logging.Formatter(
-    "%(asctime)s %(levelname)s %(message)s", "%Y-%m-%d %H:%M:%S"
-)
-streamhandler = logging.StreamHandler(sys.stdout)
-streamhandler.setFormatter(formatter)
-logger.addHandler(streamhandler)
+if not logger.hasHandlers():
+    formatter = logging.Formatter(
+        "%(asctime)s %(levelname)s %(message)s", "%Y-%m-%d %H:%M:%S"
+    )
+    streamhandler = logging.StreamHandler(sys.stdout)
+    streamhandler.setFormatter(formatter)
+    logger.addHandler(streamhandler)
 logger.setLevel(LOGLEVEL)
 logger.info('[Main] Starting modbus_tcp_smartmeter')
 
@@ -108,35 +147,6 @@ class RepeatedTimer(object):
 
 lock = threading.Lock()
 
-# inverter_power = "0"
-# inverter_energy_total_out = "0"
-# inverter_energy_total_in = "0"
-# rtime = 0
-# l1 = "0"
-# l2 = "0"
-# l3 = "0"
-
-# v1 = "0"
-# v2 = "0"
-# v3 = "0"
-
-# i1 = "0"
-# i2 = "0"
-# i3 = "0"
-
-# ti_int1 = "0"
-# ti_int2 = "0"
-# exp_int1 = "0"
-# exp_int2 = "0"
-# ep_int1 = "0"
-# ep_int2 = "0"
-# l1_int1 = "0"
-# l1_int2 = "0"
-# l2_int1 = "0"
-# l2_int2 = "0"
-# l3_int1 = "0"
-# l3_int2 = "0"
-
 def isfloat(num):
     """
     Checks if the given input can be converted to a float.
@@ -151,14 +161,19 @@ def get_data_from_openhab_item(item):
     """
     Fetches the state of a specified item from the OpenHAB REST API.
     """
-    url = OPENHAB_URL + ":" + OPENHAB_PORT + "/rest/items/" + item
+    url = "http://" + config_manager.config["openhab_host"] + ":" + OPENHAB_PORT + "/rest/items/" + item
     response = requests.get(url, timeout=10)  # Set a timeout of 10 seconds
     data = response.json()
-    # logger.debug("[OPENHAB_IF] Data from OpenHAB for item: %s - %s", item, data["state"])
-    if isfloat(data["state"]):
-        return data["state"]
-    else:
+    if "error" in data:
+        logger.error(
+            "[OPENHAB_IF] Error: Could not fetch data from OpenHAB for item: %s - error: %s",
+            item, data["error"]["message"]
+        )
         return 0
+    # logger.debug("[OPENHAB_IF] Data from OpenHAB for item: %s - %s", item, data["state"])
+    if "state" in data and isfloat(data["state"]):
+        return data["state"]
+    return 0
 
 
 ###############################################################
@@ -200,67 +215,72 @@ def updating_writer(a_context):
         - The function sleeps for 1 second before releasing the lock to allow for consistent
           updates.
     """
-    # global inverter_power
-    # global inverter_energy_total_out
-    # global inverter_energy_total_in
-    # global l1
-    # global l2
-    # global l3
-    # global v1
-    # global v2
-    # global v3
-    # global i1
-    # global i2
-    # global i3
-    # global rtime
-
-    # global ep_int1
-    # global ep_int2
-    # global exp_int1
-    # global exp_int2
-    # global ti_int1
-    # global ti_int2
-    # global l1_int1
-    # global l1_int2
-    # global l2_int1
-    # global l2_int2
-    # global l3_int1
-    # global l3_int2
-
-    logger.debug("[MODBUS] Updating Modbus Registers...")
 
     inverter_energy_total_out = float(
-        get_data_from_openhab_item(OH_ITEM_INVERTER_ENERGY_TOTAL_OUT)
+        get_data_from_openhab_item(config_manager.config["energy_counter_out"])
     ) * 1000
 
     # inverter_energy_total_out = 0
     # avoid wrong data serving
     if inverter_energy_total_out == 0:
         logger.error(
-            "[MODBUS] Error: inverter_energy_total_out is 0"
+            "[MODBUS] Error: inverter_energy_total_out is 0 "
             "- emergency shutdown to prevent wrong counter values"
             )
         os._exit(1)  # Forcefully exit the whole application
 
     inverter_energy_total_in = 0
 
-    inverter_power = float(get_data_from_openhab_item(OH_ITEM_INVERTER_POWER)) * -1
-    l2 = inverter_power
-    # print(
-    #     "inverter_energy_total_out: " + str(inverter_energy_total_out)
-    #     + " Wh - inverter_power: " + str(inverter_power)
-    #     + " W + L1 " + str(l1)
-    #     + " W + L2 " + str(l2)
-    #     + " W + L3 " + str(l3) + " W"
-    # )
+    input_power = float(get_data_from_openhab_item(config_manager.config["current_power"])) * -1
+    input_voltage = float(get_data_from_openhab_item(config_manager.config["current_voltage"]))
+    input_current = float(get_data_from_openhab_item(config_manager.config["current_current"]))
 
-    v2 = float(get_data_from_openhab_item(OH_ITEM_INVERTER_U))
-    i2 = float(get_data_from_openhab_item(OH_ITEM_INVERTER_I))
+    if config_manager.config["connected_phase"] == 1:
+        l1 = input_power
+        v1 = input_voltage
+        i1 = input_current
+        l2, v2, i2 = 0, v1, 0
+        l3, v3, i3 = 0, v1, 0
+    elif config_manager.config["connected_phase"] == 2:
+        l2 = input_power
+        v2 = input_voltage
+        i2 = input_current
+        l1, v1, i1 = 0, v2, 0
+        l3, v3, i3 = 0, v2, 0
+    elif config_manager.config["connected_phase"] == 3:
+        l3 = input_power
+        v3 = input_voltage
+        i3 = input_current
+        l1, v1, i1 = 0, v3, 0
+        l2, v2, i2 = 0, v3, 0
+    else:
+        logger.error(
+            "[MODBUS] Error: connected_phase is not set correctly - emergency shutdown"
+            )
+        os._exit(1)  # Forcefully exit the whole application
 
     logger.debug(
-        ("[MODBUS] received data: inverter_power: %s,"
-         " inverter_energy_total_out: %s, l2: %s, v2: %s, i2: %s"),
-        inverter_power, inverter_energy_total_out, l2, v2, i2
+        ("[MODBUS] Updating Modbus Registers with data from OpenHAB for phase %s -"
+         " energy: %d, l2: %s, v2: %s, i2: %s"),
+        config_manager.config["connected_phase"],
+        int(inverter_energy_total_out),
+        input_power,
+        input_voltage,
+        input_current
+    )
+
+    # Check if the current time is at the start of a full minute
+    current_time = time.localtime()
+    if current_time.tm_sec == 0:
+        logger.info(
+            ("[MODBUS] heartbeat - rectent update for Modbus Registers with data"
+             " from OpenHAB for phase %s -"
+             " energy: %d, l2: %s, v2: %s, i2: %s"),
+            config_manager.config["connected_phase"],
+            int(inverter_energy_total_out),
+            input_power,
+            input_voltage,
+            input_current
         )
 
     lock.acquire()
@@ -276,22 +296,22 @@ def updating_writer(a_context):
 
     #Converting values of MQTT payload to Modbus register
 
-    ep_int1, ep_int2 = calculate_register(float(inverter_power))
+    ep_int1, ep_int2 = calculate_register(float(l2))
     ti_int1, ti_int2 = calculate_register(inverter_energy_total_in_corr)
     exp_int1, exp_int2 = calculate_register(inverter_energy_total_out_corr)
 
 
-    l1_int1, l1_int2 = calculate_register(float(0))
+    l1_int1, l1_int2 = calculate_register(float(l1))
     l2_int1, l2_int2 = calculate_register(float(l2))
-    l3_int1, l3_int2 = calculate_register(float(0))
+    l3_int1, l3_int2 = calculate_register(float(l3))
 
-    v1_int1, v1_int2 = calculate_register(float(v2))
+    v1_int1, v1_int2 = calculate_register(float(v1))
     v2_int1, v2_int2 = calculate_register(float(v2))
-    v3_int1, v3_int2 = calculate_register(float(v2))
+    v3_int1, v3_int2 = calculate_register(float(v3))
 
-    i1_int1, i1_int2 = calculate_register(float(0))
+    i1_int1, i1_int2 = calculate_register(float(i1))
     i2_int1, i2_int2 = calculate_register(float(i2))
-    i3_int1, i3_int2 = calculate_register(float(0))
+    i3_int1, i3_int2 = calculate_register(float(i3))
 
 
     #updating the context
@@ -424,7 +444,7 @@ def run_updating_server():
     repetition_time = 2  # 2 seconds delay
     rt = RepeatedTimer(repetition_time, updating_writer, a_context)
 
-    print("### start server, listening on " + str(MODBUS_PORT))
+    logger.info("### start server, listening on %s", MODBUS_PORT)
     address = ("", MODBUS_PORT)
     try:
         StartTcpServer(
@@ -442,13 +462,13 @@ def run_updating_server():
     except KeyboardInterrupt:
         # Handle Ctrl+C gracefully
         signal_handler(None, None)
-  
+
 def signal_handler(sig, frame):
     """
     Handles the termination signal (e.g., Ctrl+C) to clean up resources.
     """
     global rt
-    print("\nStopping server...")
+    logger.info("Stopping server...")
     if rt:
         rt.stop()  # Stop the RepeatedTimer
     sys.exit(0)

@@ -1,0 +1,28 @@
+configuration:
+  loglevel:
+    name: Log Level
+    description:
+  openhab_host:
+    name: your OpenHAB host
+    description: Host IP/ internal DNS of your OpenHAB where the current inverter data are available
+  connected_phase:
+    name: Connected Phase of Single Phase inverter
+    description: 1, 2 or 3 represents the phases L1, L2 or L3
+  energy_counter_out:
+    name: OpenHAB item name of inverter energy counter
+    description: inverter energy or smartmeter_energy
+  current_voltage:
+    name: OpenHAB item name of inverter current grid voltage
+    description: inverter voltage or smartmeter_voltage
+  current_current:
+    name: OpenHAB item name of inverter current grid current
+    description: inverter current or smartmeter_current
+  current_power:
+    name: OpenHAB item name of inverter current grid output power
+    description: inverter power or smartmeter_power
+  current_frequency:
+    name: OpenHAB item name of inverter current grid frequency
+    description: inverter frequency or smartmeter frequency
+  time_zone:
+    name: Time Zone
+    description: your local time zone to get the right timestamp in the logging

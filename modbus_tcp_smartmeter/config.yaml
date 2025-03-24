@@ -1,8 +1,8 @@
 name: "modbus tcp smartmeter"
-description: "modbus tcp smartmeter"
-version: "0.0.3"
+description: "emulates a modbus tcp client to pretend to be an energy metering device"
+version: "0.0.4"
 slug: "modbus_tcp_smartmeter"
-url: "https://github.com/ohAnd/trmnlServer"
+url: "https://github.com/ohAnd/ha_addons"
 init: false
 arch:
   - aarch64
@@ -21,5 +21,22 @@ host_network: true
 
 options:
   loglevel: debug
+  openhab_host: 192.168.1.30
+  connected_phase: 1 # 1, 2 or 3 for L1, L2 or L3
+  energy_counter_out: inverter_energy # inverter_energy or smartmeter_energy
+  current_voltage: inverter_voltage # inverter_voltage or smartmeter_voltage
+  current_current: inverter_current # inverter_current or smartmeter_current
+  current_power: inverter_power # inverter_power or smartmeter_power
+  current_frequency: inverter_frequency # inverter_frequency or smartmeter_frequency
+  time_zone: UTC
+
 schema:
   loglevel: list(debug|info|warning|error)
+  openhab_host: str
+  connected_phase: int(1,3)
+  energy_counter_out: str
+  current_voltage: str
+  current_current: str
+  current_power: str
+  current_frequency: str
+  time_zone: str
