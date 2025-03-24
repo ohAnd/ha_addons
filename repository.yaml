@@ -1,4 +1,4 @@
 # https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
-name: Batcontrol add-on repository for home assistant
-url: 'https://https://github.com/muexxl/ha_addons'
-maintainer: Stephan Mükusch <muexxl@gmx.net>
+name: ohand's add-on repository for home assistant
+url: 'https://github.com/ohAnd/ha_addons'
+maintainer: ohand <15704728+ohAnd@users.noreply.github.com>

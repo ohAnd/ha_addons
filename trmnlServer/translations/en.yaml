@@ -1,0 +1,19 @@
+configuration:
+  time_zone: #your time zone. not optional.
+    name: Timezone
+    description: Location from to tzdata e.g. Europe/Berlin
+  image_path:
+    name: Path or URL to Image
+    description: local path or URL to the BMP image to show
+  image_modification:
+    name: Image Modification
+    description: Switch the image footer on or off
+  refresh_time:
+    name: trmnl refresh time
+    description: refresh time of trmnl in seconds - how often it pulls new image
+  battery_max_voltage:
+    name: max battery voltage
+    description: max battery voltage for calculating state of charge
+  battery_min_voltage:
+    name: min battery voltage
+    description: min battery voltage for calculating state of charge

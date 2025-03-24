@@ -1,0 +1,38 @@
+name: "trmnl_server"
+description: "TRMNL local server to serve own BMP's directly"
+version: "0.0.5_fix1"
+slug: "trmnl_server"
+url: "https://github.com/ohAnd/trmnlServer"
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+ingress: true
+ingress_port: 83
+init: false
+map:
+  - type: ssl
+  - type: addon_config
+    read_only: false
+    path: /app/addon_config
+host_network: true
+ports:
+  83/tcp: 83
+ports_description:
+  83/tcp: "trmnlServer webpage"
+options:
+  time_zone: Europe/Berlin #your time zone. not optional.
+  image_path: /addon_config/trmnlServer/screen.bmp
+  image_modification: true
+  refresh_time: 120
+  battery_max_voltage: 4.7
+  battery_min_voltage: 2.2
+schema:
+  time_zone: str #your time zone. not optional.
+  image_path: str
+  image_modification: bool
+  refresh_time: int
+  battery_max_voltage: float(2,5)
+  battery_min_voltage: float(0.5,4)

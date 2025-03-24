@@ -1,21 +1,45 @@
-# My Home Assistant add-on repository
+# ohand's Home Assistant add-on repository
 
 
 [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fmuexxl%2Fha_addons)
 
 ## Add-ons
 
-This repository contains only one add-on
-To use this addon you need a Fronius Inverter with a battery AND a dynamic priced electricity contract from Tibber
-(If you use this link, both of us get 50€ bonus https://invite.tibber.com/x8ci52nj. )
+This repository contains different addons.
+
 
 ### [Batcontrol add-on](./batcontrol)
+
+To use this addon you need a Fronius Inverter with a battery AND a dynamic priced electricity contract from Tibber.
+
+Futher details can be found here https://github.com/ohAnd/batcontrol (forked from here https://github.com/muexxl/batcontrol)
 
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
 ![Supports armhf Architecture][armhf-shield]
 ![Supports armv7 Architecture][armv7-shield]
 ![Supports i386 Architecture][i386-shield]
+
+### [modbus_tcp_smartmeter add-on](./modbus_tcp_smartmeter)
+
+Small self running modbus tcp client to serve energy, power, voltage and current data for an central energy system or main hybrid inverter.
+
+![Supports aarch64 Architecture][aarch64-shield]
+
+### [trmnlServer add-on](./trmnlServer)
+
+To use this addon you need a openhab or homeassistant with persisted energy data and an [EOS](https://github.com/Akkudoktor-EOS/EOS)
+
+This addons wrapping the trmnl server application to be a runnable docker in Home Assistant as an add-on.
+
+Futher details can be found here https://github.com/ohAnd/trmnlServer
+
+![Supports aarch64 Architecture][aarch64-shield]
+<!-- ![Supports amd64 Architecture][amd64-shield]
+![Supports armhf Architecture][armhf-shield]
+![Supports armv7 Architecture][armv7-shield]
+![Supports i386 Architecture][i386-shield] -->
+
 
 
 <!--

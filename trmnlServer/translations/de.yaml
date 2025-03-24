@@ -1,0 +1,19 @@
+configuration:
+  time_zone: #your time zone. not optional.
+    name: Zeitzone
+    description: Zeitzone von tzdata . z.B. Europe/Berlin
+  image_path:
+    name: Pfad oder URL zum BMP Image
+    description: lokaler Pfad oder URL zum anzuzeigenden Bild
+  image_modification:
+    name: Bild Manipulation Fusszeile
+    description: Schaltet die Fusszeile mit Batterie und Wifi Status ein oder aus
+  refresh_time:
+    name: trmnl Aktualisierungszeit
+    description: Aktualisierungszeit von trmnl in Sekunden - wie oft wird das Bild erneuet geladen
+  battery_max_voltage:
+    name: Max Batteriespannung
+    description: Maximale Batteriespannung zur Berechnung des State of Charge
+  battery_min_voltage:
+    name: Min Batteriespannung
+    description: Minimale Batteriespannung zur Berechnung des State of Charge

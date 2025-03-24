@@ -1,0 +1,25 @@
+name: "modbus tcp smartmeter"
+description: "modbus tcp smartmeter"
+version: "0.0.3"
+slug: "modbus_tcp_smartmeter"
+url: "https://github.com/ohAnd/trmnlServer"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+ports:
+  502/tcp: 502
+network: host
+map:
+  - type: addon_config
+    read_only: false
+    path: /app/addon_config
+host_network: true
+
+options:
+  loglevel: debug
+schema:
+  loglevel: list(debug|info|warning|error)
