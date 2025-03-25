@@ -1,10 +1,6 @@
 configuration:
-  loglevel:
-    name: Log Level
-    description:
-  openhab_host:
-    name: your OpenHAB host
-    description: Host IP/ internal DNS of your OpenHAB where the current inverter data are available
+  
+
   connected_phase:
     name: Connected Phase of Single Phase inverter
     description: 1, 2 or 3 represents the phases L1, L2 or L3
@@ -20,9 +16,15 @@ configuration:
   current_power:
     name: OpenHAB item name of inverter current grid output power
     description: inverter power or smartmeter_power
-  current_frequency:
-    name: OpenHAB item name of inverter current grid frequency
-    description: inverter frequency or smartmeter frequency
+  openhab_host:
+    name: your OpenHAB host
+    description: Host IP/ internal DNS of your OpenHAB where the current inverter data are available
+  modbus_tcp_address:
+    name: Modbus TCP Address
+    description: Modbus TCP address of this smartmeter emulation
+  loglevel:
+    name: Log Level
+    description: debug, info, warning or error
   time_zone:
     name: Time Zone
     description: your local time zone to get the right timestamp in the logging

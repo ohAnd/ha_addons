@@ -11,6 +11,8 @@ Table of content
 
 # modbus tcp smartmeter
 
+![Modbus TCP Smartmeter Icon](icon.png) 
+
 Simulates a Fronius Smart Meter for providing necessary information to inverters (e.g. Gen24).
 
 ## features
@@ -31,77 +33,52 @@ Simulates a Fronius Smart Meter for providing necessary information to inverters
 
 ### Configuration Parameters
 
-Below are the configuration parameters available for the Home Assistant Add-on:
-
-- **loglevel**  
-  - **Name**: Log Level  
-  - **Description**: Defines the logging level for the add-on (e.g., debug, info, warning, error).
-
-- **openhab_host**  
-  - **Name**: Your OpenHAB Host  
-  - **Description**: Host IP or internal DNS of your OpenHAB instance where the current inverter data is available.
-
-- **connected_phase**  
-  - **Name**: Connected Phase of Single Phase Inverter  
-  - **Description**: Specifies the phase the inverter is connected to. Use `1`, `2`, or `3` to represent phases L1, L2, or L3.
-
-- **energy_counter_out**  
-  - **Name**: OpenHAB Item Name of Inverter Energy Counter  
-  - **Description**: Name of the OpenHAB item representing the inverter energy counter (e.g., `inverter_energy` or `smartmeter_energy`).
-
-- **current_voltage**  
-  - **Name**: OpenHAB Item Name of Inverter Current Grid Voltage  
-  - **Description**: Name of the OpenHAB item representing the current grid voltage (e.g., `inverter_voltage` or `smartmeter_voltage`).
-
-- **current_current**  
-  - **Name**: OpenHAB Item Name of Inverter Current Grid Current  
-  - **Description**: Name of the OpenHAB item representing the current grid current (e.g., `inverter_current` or `smartmeter_current`).
-
-- **current_power**  
-  - **Name**: OpenHAB Item Name of Inverter Current Grid Output Power  
-  - **Description**: Name of the OpenHAB item representing the current grid output power (e.g., `inverter_power` or `smartmeter_power`).
-
-- **current_frequency**  
-  - **Name**: OpenHAB Item Name of Inverter Current Grid Frequency  
-  - **Description**: Name of the OpenHAB item representing the current grid frequency (e.g., `inverter_frequency` or `smartmeter_frequency`).
-
-- **time_zone**  
-  - **Name**: Time Zone  
-  - **Description**: Your local time zone to ensure the correct timestamp is used in logging.
+- **connected_phase** : Connected Phase of Single Phase Inverter - Specifies the phase the inverter is connected to. Use `1`, `2`, or `3` to represent phases L1, L2, or L3.
+- **energy_counter_out** : OpenHAB Item Name of Inverter Energy Counter - Name of the OpenHAB item representing the inverter energy counter (e.g., `inverter_energy` or `smartmeter_energy`).
+- **current_voltage** : OpenHAB Item Name of Inverter Current Grid Voltage - Name of the OpenHAB item representing the current grid voltage (e.g., `inverter_voltage` or `smartmeter_voltage`).
+- **current_current** : OpenHAB Item Name of Inverter Current Grid Current - Name of the OpenHAB item representing the current grid current (e.g., `inverter_current` or `smartmeter_current`).
+- **current_power** : OpenHAB Item Name of Inverter Current Grid Output Power - Name of the OpenHAB item representing the current grid output power (e.g., `inverter_power` or `smartmeter_power`).
+- **openhab_host** : Your OpenHAB Host - Host IP or internal DNS of your OpenHAB instance where the current inverter data is available.
+- **modbus_tcp_address** : Log Level - Defines the logging level for the add-on (e.g., debug, info, warning, error).
+- **loglevel** : Log Level - Defines the logging level for the add-on (e.g., debug, info, warning, error).
+- **time_zone** : Time Zone - Your local time zone to ensure the correct timestamp is used in logging.
 
 ### Home Assistant Add-on Configuration
 
 The add-on can be configured directly through the Home Assistant Add-on configuration interface.
 
-
 ### Local Usage
 
 Create a config.yaml in folder /src - and configure your settings
 
-example file 
+example config file 
 
 ```yaml
-loglevel: debug
-openhab_host: 192.168.1.30
-connected_phase: 1
+connected_phase: 2
 energy_counter_out: inverter2_PV_E_total
 current_voltage: inverter2_Grid_U
 current_current: inverter2_Grid_I
 current_power: inverter2_Grid_P
-current_frequency: inverter_frequency
+openhab_host: 192.168.1.31
+modbus_tcp_address: 2
+loglevel: debug
 time_zone: Europe/Berlin
 ```
 
 ## installing locally as system service
 
+Install required Python dependencies
+```bash
+pip install -r requirements.txt
+```
+
 installing as system service:
 
 ```bash
-sudo cp /home/pi/ModbusTCP_SmartMeter.py /usr/local/bin/
-sudo chmod +x /usr/local/bin/ModbusTCP_SmartMeter.py
+sudo chmod +x /your/path/to/modbus_tcp_smartmeter/src/modbus_tcp_smartmeter.py
 ```
 
-create service file /home/pi/ModbusTCP_SmartMeter.service
+create service file e.g. /home/pi/ModbusTCP_SmartMeter.service
 
 ```ini
 [Unit]
@@ -109,7 +86,7 @@ Description=Modbus TCP Smart Meter Service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /path/to/your/modbus_tcp_smartmeter.py
+ExecStart=/usr/bin/python3 /your/path/to/modbus_tcp_smartmeter/src/modbus_tcp_smartmeter.py
 WorkingDirectory=/path/to/your/
 StandardOutput=inherit
 StandardError=inherit

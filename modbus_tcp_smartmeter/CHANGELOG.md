@@ -1,3 +1,7 @@
+**Version 0.0.7** published on 25.03.2025
+- add exception handling for openHAB host not reachable
+- updating doc
+  
 **Version 0.0.6** published on 25.03.2025
 - new config param for modbus address
   

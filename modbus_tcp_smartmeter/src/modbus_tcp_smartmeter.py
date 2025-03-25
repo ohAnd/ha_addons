@@ -172,9 +172,32 @@ def get_data_from_openhab_item(item):
     """
     Fetches the state of a specified item from the OpenHAB REST API.
     """
-    url = "http://" + config_manager.config["openhab_host"] + ":" + OPENHAB_PORT + "/rest/items/" + item
-    response = requests.get(url, timeout=10)  # Set a timeout of 10 seconds
-    data = response.json()
+    url = ("http://" + config_manager.config["openhab_host"] +
+            ":" + OPENHAB_PORT + "/rest/items/" + item)
+    try:
+        response = requests.get(url, timeout=5)  # Set a timeout of 5 seconds
+        response.raise_for_status()  # Raise an HTTPError for bad responses (4xx and 5xx)
+        data = response.json()
+    except requests.exceptions.Timeout:
+        logger.error(
+            "[OPENHAB_IF] Timeout error: Could not fetch data from OpenHAB for item: %s", item)
+        return 0
+    except requests.exceptions.ConnectionError:
+        logger.error(
+            "[OPENHAB_IF] Connection error: Could not connect to OpenHAB for item: %s", item)
+        return 0
+    except requests.exceptions.HTTPError as http_err:
+        logger.error(
+            "[OPENHAB_IF] HTTP error: %s while fetching data for item: %s", http_err, item)
+        return 0
+    except requests.exceptions.RequestException as req_err:
+        logger.error(
+            "[OPENHAB_IF] Request error: %s while fetching data for item: %s", req_err, item)
+        return 0
+    except ValueError:
+        logger.error(
+            "[OPENHAB_IF] JSON decoding error: Could not parse response for item: %s", item)
+        return 0
     if "error" in data:
         logger.error(
             "[OPENHAB_IF] Error: Could not fetch data from OpenHAB for item: %s - error: %s",
