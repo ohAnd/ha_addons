@@ -93,7 +93,18 @@ class ConfigManager:
             with open(self.config_file, 'r', encoding='utf-8') as f:
                 self.config.update(yaml.safe_load(f))
         else:
-            logger.error("Config file not found.")
+            print("ERROR - Config file not found. [config.yaml]")
+            print("Creating a new config file with default values...")
+            self.save_config()
+            print("Please configure the settings in the 'config.yaml' file and restart the server.")
+            sys.exit(0)
+    
+    def save_config(self):
+        """
+        Saves the configuration settings to the 'config.yaml' file.
+        """
+        with open(self.config_file, 'w', encoding='utf-8') as f:
+            yaml.dump(self.config, f, default_flow_style=False)
 
 config_manager = ConfigManager()
 ###############################################################
