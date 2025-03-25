@@ -468,7 +468,7 @@ def signal_handler(sig, frame):
     Handles the termination signal (e.g., Ctrl+C) to clean up resources.
     """
     global rt
-    logger.info("Stopping server...")
+    logger.info("[MAIN] Stopping server...")
     if rt:
         rt.stop()  # Stop the RepeatedTimer
     sys.exit(0)
@@ -478,4 +478,14 @@ signal.signal(signal.SIGINT, signal_handler)
 
 # Main function
 if __name__ == "__main__":
+    try:
+        tz = os.environ['TZ']
+        logger.info("[MAIN] host system time zone is %s", tz)
+    except KeyError:
+        logger.info(
+            "[MAIN] host system time zone was not set. Setting to %s",
+            config_manager.config['time_zone']
+        )
+        os.environ['TZ'] = config_manager.config['time_zone']
+
     run_updating_server()
