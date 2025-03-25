@@ -1,7 +1,6 @@
 **Version 0.0.5** published on 25.03.2025
-- rework with detailed config 
-- improved error handling
-- 
+- implement timezone handling for logger output
+ 
 **Version 0.0.4** published on 24.03.2025
 - rework with detailed config 
 - improved error handling
