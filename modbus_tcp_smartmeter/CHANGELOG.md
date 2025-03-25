@@ -1,3 +1,6 @@
+**Version 0.0.6** published on 25.03.2025
+- new config param for modbus address
+  
 **Version 0.0.5** published on 25.03.2025
 - implement timezone handling for logger output
  

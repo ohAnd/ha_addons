@@ -69,14 +69,14 @@ class ConfigManager:
     def __init__(self):
         self.config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config.yaml')
         self.default_config = {
-            'openhab_host': '192.168.1.99',
-            'time_zone': 'UTC',  # Add default time zone
             'connected_phase': 1,
             'energy_counter_out': 'inverter_energy',
             'current_voltage': 'inverter_voltage',
             'current_current': 'inverter_current',
             'current_power': 'inverter_power',
-            'current_frequency': 'inverter_frequency',
+            'openhab_host': '192.168.1.99',
+            'modbus_tcp_address': 0,
+            'time_zone': 'UTC',  # Add default time zone
             'loglevel': 'debug'
         }
         self.config = self.default_config.copy()
@@ -124,7 +124,7 @@ if not logger.hasHandlers():
     streamhandler.setFormatter(formatter)
     logger.addHandler(streamhandler)
 logger.setLevel(LOGLEVEL)
-logger.info('[Main] Starting modbus_tcp_smartmeter')
+logger.info('[MAIN] Starting modbus_tcp_smartmeter')
 
 ###############################################################
 # Timer Class
@@ -272,7 +272,7 @@ def updating_writer(a_context):
 
     logger.debug(
         ("[MODBUS] Updating Modbus Registers with data from OpenHAB for phase %s -"
-         " energy: %d, l2: %s, v2: %s, i2: %s"),
+         " energy: %d, P: %s, U: %s, I: %s"),
         config_manager.config["connected_phase"],
         int(inverter_energy_total_out),
         input_power,
@@ -286,7 +286,7 @@ def updating_writer(a_context):
         logger.info(
             ("[MODBUS] heartbeat - rectent update for Modbus Registers with data"
              " from OpenHAB for phase %s -"
-             " energy: %d, l2: %s, v2: %s, i2: %s"),
+             " energy: %d, P: %s, U: %s, I: %s"),
             config_manager.config["connected_phase"],
             int(inverter_energy_total_out),
             input_power,
@@ -305,11 +305,29 @@ def updating_writer(a_context):
     inverter_energy_total_out_corr = float_inverter_energy_total_out * int(CORR_FACTOR)
     #print (inverter_energy_total_out_corr)
 
-    #Converting values of MQTT payload to Modbus register
-
-    ep_int1, ep_int2 = calculate_register(float(l2))
+    #Converting values of payload to Modbus register
+    power_total_int1, power_total_int2 = calculate_register(float(input_power))
+    current_total_int1, current_total_int2  = calculate_register(float(input_current))
     ti_int1, ti_int2 = calculate_register(inverter_energy_total_in_corr)
+
     exp_int1, exp_int2 = calculate_register(inverter_energy_total_out_corr)
+
+    exp1_int1, exp1_int2 = (0,0)
+    exp2_int1, exp2_int2 = (0,0)
+    exp3_int1, exp3_int2 = (0,0)
+
+    if config_manager.config["connected_phase"] == 1:
+        exp1_int1, exp1_int2 = calculate_register(inverter_energy_total_out_corr)
+        exp2_int1, exp2_int2 = (0,0)
+        exp3_int1, exp3_int2 = (0,0)
+    if config_manager.config["connected_phase"] == 2:
+        exp1_int1, exp1_int2 = (0,0)
+        exp2_int1, exp2_int2 = calculate_register(inverter_energy_total_out_corr)
+        exp3_int1, exp3_int2 = (0,0)
+    if config_manager.config["connected_phase"] == 3:
+        exp1_int1, exp1_int2 = (0,0)
+        exp2_int1, exp2_int2 = (0,0)
+        exp3_int1, exp3_int2 = calculate_register(inverter_energy_total_out_corr)
 
 
     l1_int1, l1_int2 = calculate_register(float(l1))
@@ -330,51 +348,51 @@ def updating_writer(a_context):
     register = 3
     # slave_id = 0x01
     address = 0x9C87
-    values = [i2_int1, 0,         #Ampere - AC Total Current Value [A]
-              i1_int1, 0,         #Ampere - AC Current Value L1 [A]
-              i2_int1, 0,         #Ampere - AC Current Value L2 [A]
-              i3_int1, 0,         #Ampere - AC Current Value L3 [A]
-              v1_int1, 0,         #Voltage - Average Phase to Neutral [V]
-              v1_int1, 0,         #Voltage - Phase L1 to Neutral [V]
-              v2_int1, 0,         #Voltage - Phase L2 to Neutral [V]
-              v3_int1, 0,         #Voltage - Phase L3 to Neutral [V]
-              0, 0,               #Voltage - Average Phase to Phase [V]
-              0, 0,               #Voltage - Phase L1 to L2 [V]
-              0, 0,               #Voltage - Phase L2 to L3 [V]
-              0, 0,               #Voltage - Phase L1 to L3 [V]
-              0, 0,               #AC Frequency [Hz]
-              ep_int1, 0,         #AC Power value (Total) [W] ==> Second hex word not needed
-              l1_int1, 0,         #AC Power Value L1 [W]
-              l2_int1, 0,         #AC Power Value L2 [W]
-              l3_int1, 0,         #AC Power Value L3 [W]
-              0, 0,               #AC Apparent Power [VA]
-              0, 0,               #AC Apparent Power L1 [VA]
-              0, 0,               #AC Apparent Power L2 [VA]
-              0, 0,               #AC Apparent Power L3 [VA]
-              0, 0,               #AC Reactive Power [VAr]
-              0, 0,               #AC Reactive Power L1 [VAr]
-              0, 0,               #AC Reactive Power L2 [VAr]
-              0, 0,               #AC Reactive Power L3 [VAr]
-              0, 0,               #AC power factor total [cosphi]
-              0, 0,               #AC power factor L1 [cosphi]
-              0, 0,               #AC power factor L2 [cosphi]
-              0, 0,               #AC power factor L3 [cosphi]
-              exp_int1, exp_int2, #Total Watt Hours Exportet [Wh]
-              0, 0,               #Watt Hours Exported L1 [Wh]
-              exp_int1, exp_int2, #Watt Hours Exported L2 [Wh]
-              0, 0,               #Watt Hours Exported L3 [Wh]
-              ti_int1, ti_int2,   #Total Watt Hours Imported [Wh]
-              0, 0,               #Watt Hours Imported L1 [Wh]
-              0, 0,               #Watt Hours Imported L2 [Wh]
-              0, 0,               #Watt Hours Imported L3 [Wh]
-              0, 0,               #Total VA hours Exported [VA]
-              0, 0,               #VA hours Exported L1 [VA]
-              0, 0,               #VA hours Exported L2 [VA]
-              0, 0,               #VA hours Exported L3 [VA]
-              0, 0,               #Total VAr hours imported [VAr]
-              0, 0,               #VA hours imported L1 [VAr]
-              0, 0,               #VA hours imported L2 [VAr]
-              0, 0                #VA hours imported L3 [VAr]
+    values = [current_total_int1, 0,    #Ampere - AC Total Current Value [A]
+              i1_int1, 0,               #Ampere - AC Current Value L1 [A]
+              i2_int1, 0,               #Ampere - AC Current Value L2 [A]
+              i3_int1, 0,               #Ampere - AC Current Value L3 [A]
+              v1_int1, 0,               #Voltage - Average Phase to Neutral [V]
+              v1_int1, 0,               #Voltage - Phase L1 to Neutral [V]
+              v2_int1, 0,               #Voltage - Phase L2 to Neutral [V]
+              v3_int1, 0,               #Voltage - Phase L3 to Neutral [V]
+              0, 0,                     #Voltage - Average Phase to Phase [V]
+              0, 0,                     #Voltage - Phase L1 to L2 [V]
+              0, 0,                     #Voltage - Phase L2 to L3 [V]
+              0, 0,                     #Voltage - Phase L1 to L3 [V]
+              0, 0,                     #AC Frequency [Hz]
+              power_total_int1, 0,      #AC Power value (Total) [W] ==> Second hex word not needed
+              l1_int1, 0,               #AC Power Value L1 [W]
+              l2_int1, 0,               #AC Power Value L2 [W]
+              l3_int1, 0,               #AC Power Value L3 [W]
+              0, 0,                     #AC Apparent Power [VA]
+              0, 0,                     #AC Apparent Power L1 [VA]
+              0, 0,                     #AC Apparent Power L2 [VA]
+              0, 0,                     #AC Apparent Power L3 [VA]
+              0, 0,                     #AC Reactive Power [VAr]
+              0, 0,                     #AC Reactive Power L1 [VAr]
+              0, 0,                     #AC Reactive Power L2 [VAr]
+              0, 0,                     #AC Reactive Power L3 [VAr]
+              0, 0,                     #AC power factor total [cosphi]
+              0, 0,                     #AC power factor L1 [cosphi]
+              0, 0,                     #AC power factor L2 [cosphi]
+              0, 0,                     #AC power factor L3 [cosphi]
+              exp_int1, exp_int2,       #Total Watt Hours Exportet [Wh]
+              exp1_int1, exp1_int2,     #Watt Hours Exported L1 [Wh]
+              exp2_int1, exp2_int2,     #Watt Hours Exported L2 [Wh]
+              exp3_int1, exp3_int2,     #Watt Hours Exported L3 [Wh]
+              ti_int1, ti_int2,         #Total Watt Hours Imported [Wh]
+              0, 0,                     #Watt Hours Imported L1 [Wh]
+              0, 0,                     #Watt Hours Imported L2 [Wh]
+              0, 0,                     #Watt Hours Imported L3 [Wh]
+              0, 0,                     #Total VA hours Exported [VA]
+              0, 0,                     #VA hours Exported L1 [VA]
+              0, 0,                     #VA hours Exported L2 [VA]
+              0, 0,                     #VA hours Exported L3 [VA]
+              0, 0,                     #Total VAr hours imported [VAr]
+              0, 0,                     #VA hours imported L1 [VAr]
+              0, 0,                     #VA hours imported L2 [VAr]
+              0, 0                      #VA hours imported L3 [VAr]
     ]
     #print(values)
     context.setValues(register, address, values)
@@ -408,6 +426,14 @@ def run_updating_server():
     """
     global rt
     lock.acquire()
+    modbus_tcp_address = int(240 + config_manager.config["modbus_tcp_address"])
+    serial_number_increment = int(50 + config_manager.config["modbus_tcp_address"])
+    logger.info("[MAIN] Modbus TCP Address: %s and serial number fragment: %s",
+                modbus_tcp_address, serial_number_increment
+            )
+    if modbus_tcp_address > 254:
+        logger.error("[MAIN] Error: Modbus TCP Address is out of range. Too much Smart Meters")
+        os._exit(1)  # Forcefully exit the whole application
     datablock = ModbusSparseDataBlock({
 
         40001:  [21365, 28243],
@@ -417,8 +443,9 @@ def run_updating_server():
                 83,109,97,114,116,32,77,101,116,101,114,32,54,51,65,0, #Device Model "Smart Meter
                 0,0,0,0,0,0,0,0,                                       #Options N/A
                 0,0,0,0,0,0,0,0,                                       #Software Version  N/A
-                48,48,48,48,48,48,48,51,0,0,0,0,0,0,0,0,               #Serial Number: 00000 (should be different if there are more Smart Meters)
-                241],                                                  #Modbus TCP Address:
+                #Serial Number: 00000 (should be different if there are more Smart Meters)
+                48,48,48,48,48,48,48,serial_number_increment,0,0,0,0,0,0,0,0,
+                modbus_tcp_address],                                   #Modbus TCP Address:
         40070: [213],
         40071: [124],
         40072: [0,0,0,0,0,0,0,0,0,0,
@@ -455,7 +482,7 @@ def run_updating_server():
     repetition_time = 2  # 2 seconds delay
     rt = RepeatedTimer(repetition_time, updating_writer, a_context)
 
-    logger.info("### start server, listening on %s", MODBUS_PORT)
+    logger.info("[MAIN] start server, listening on %s", MODBUS_PORT)
     address = ("", MODBUS_PORT)
     try:
         StartTcpServer(
