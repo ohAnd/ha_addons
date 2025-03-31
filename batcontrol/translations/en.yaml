@@ -32,9 +32,6 @@ configuration:
     round_price_digits:
       name: Round Price Digits
       description: Number of digits to round the price to.
-  a1_tuning:
-    name: A1 tuning
-    description: calculating charge rate to compensate charge inefficencies
   inverter:
     name: Inverter
     description: Access data and type of your inverter. Currently only fronius_gen24 is supported.
@@ -65,6 +62,8 @@ configuration:
   #   # annual_consumption: 4500 # total consumption in kWh p.a. the load profile
   #   # load_profile: load_profile.csv #name of the load profile file within the config folder
   mqtt:
+    name: MQTT Settings
+    description: Configuration for MQTT integration.
     enabled:
       name: MQTT Enabled
       description: Enable or disable MQTT integration.
@@ -115,8 +114,10 @@ configuration:
       description: Base topic for MQTT auto-discovery messages.
   solar_forecast_provider:
     name: Solar Forecast Provider
-    description: Provider for solar forecast data.
+    description: Configuration for the solar forecast provider.
   evcc:
+    name: EVCC Settings
+    description: Configuration for EVCC integration.
     enabled:
       name: EVCC Enabled
       description: Enable or disable EVCC integration.
