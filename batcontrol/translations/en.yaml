@@ -8,12 +8,28 @@ configuration:
   max_logfile_size:
     name: Logfile size limit
     description: The size limit in kB. When the logfile exceeds the limit first entries will be deleted. If limit is 0 the logfile won't be pruned.
+  logfile_enabled:
+    name: Logfile Enabled
+    description: Enable or disable logging to a file.
+  logfile_path:
+    name: Logfile Path
+    description: Path to the log file.
   battery_control:
     name: Battery control settings
     description: Define the behaviour of the main algorithm.
     # min_price_difference: 0.05 # minimum price difference in Euro to justify charging your battery
     # always_allow_discharge_limit: 0.90 # 0.00 to 1.00 above this SOC limit using energy from the battery is always allowed
     # max_charging_from_grid_limit: 0.90 # 0.00 to 1.00 charging from the grid is only allowed until this SOC limit
+  battery_control_expert:
+    soften_price_difference_on_charging:
+      name: Soften Price Difference on Charging
+      description: Enable earlier charging based on a more relaxed calculation.
+    soften_price_difference_on_charging_factor:
+      name: Soften Price Difference Factor
+      description: Factor to soften the price difference for charging.
+    round_price_digits:
+      name: Round Price Digits
+      description: Number of digits to round the price to.
   a1_tuning:
     name: A1 tuning
     description: calculating charge rate to compensate charge inefficencies
@@ -46,3 +62,95 @@ configuration:
     description: Settings related to forecasting your consumption. "annual_consumption" is the total consumption in kwH. "load_profile" is the filename of the provided load profile.
   #   # annual_consumption: 4500 # total consumption in kWh p.a. the load profile
   #   # load_profile: load_profile.csv #name of the load profile file within the config folder
+  mqtt:
+    enabled:
+      name: MQTT Enabled
+      description: Enable or disable MQTT integration.
+    logger:
+      name: MQTT Logger
+      description: Enable or disable MQTT logging.
+    broker:
+      name: MQTT Broker
+      description: Address of the MQTT broker.
+    port:
+      name: MQTT Port
+      description: Port of the MQTT broker.
+    topic:
+      name: MQTT Topic
+      description: Base topic for MQTT messages.
+    username:
+      name: MQTT Username
+      description: Username for MQTT authentication.
+    password:
+      name: MQTT Password
+      description: Password for MQTT authentication.
+    retry_attempts:
+      name: MQTT Retry Attempts
+      description: Number of retry attempts for MQTT connection.
+    retry_delay:
+      name: MQTT Retry Delay
+      description: Delay between MQTT connection retries.
+    tls:
+      name: MQTT TLS
+      description: Enable or disable TLS for MQTT.
+    cafile:
+      name: MQTT CA File
+      description: Path to the CA file for MQTT TLS.
+    certfile:
+      name: MQTT Certificate File
+      description: Path to the certificate file for MQTT TLS.
+    keyfile:
+      name: MQTT Key File
+      description: Path to the key file for MQTT TLS.
+    tls_version:
+      name: MQTT TLS Version
+      description: TLS version for MQTT (e.g., tlsv1.2 or tlsv1.3).
+    auto_discover_enable:
+      name: MQTT Auto Discover Enable
+      description: Enable or disable MQTT auto-discovery.
+    auto_discover_topic:
+      name: MQTT Auto Discover Topic
+      description: Base topic for MQTT auto-discovery messages.
+  solar_forecast_provider:
+    name: Solar Forecast Provider
+    description: Provider for solar forecast data.
+  evcc:
+    enabled:
+      name: EVCC Enabled
+      description: Enable or disable EVCC integration.
+    broker:
+      name: EVCC Broker
+      description: Address of the EVCC broker.
+    port:
+      name: EVCC Port
+      description: Port of the EVCC broker.
+    status_topic:
+      name: EVCC Status Topic
+      description: MQTT topic for EVCC status messages.
+    loadpoint_topic:
+      name: EVCC Loadpoint Topic
+      description: MQTT topic for EVCC loadpoint messages.
+    username:
+      name: EVCC Username
+      description: Username for EVCC authentication.
+    password:
+      name: EVCC Password
+      description: Password for EVCC authentication.
+    tls:
+      name: EVCC TLS
+      description: Enable or disable TLS for EVCC.
+    cafile:
+      name: EVCC CA File
+      description: Path to the CA file for EVCC TLS.
+    certfile:
+      name: EVCC Certificate File
+      description: Path to the certificate file for EVCC TLS.
+    keyfile:
+      name: EVCC Key File
+      description: Path to the key file for EVCC TLS.
+    tls_version:
+      name: EVCC TLS Version
+      description: TLS version for EVCC (e.g., tlsv1.2 or tlsv1.3).
+    battery_halt_topic:
+      name: EVCC Battery Halt Topic
+      description: MQTT topic to manage battery halt thresholds.

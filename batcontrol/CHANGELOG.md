@@ -1,3 +1,7 @@
+# Version 0.4.1-1 published on 31.03.2024
+- bump to latest batcontrol https://github.com/muexxl/batcontrol/commit/128729e811a9cb2080257ea465b1b7a47d81c8cc
+- changes in config - ATTENTION: no migration! Has to be done manually.
+
 # Version 0.3.3-2 published on 15.02.2024
 - bumo to last head of batcontrol
 - including max_bat_discharge_rate for auto discover
