@@ -74,11 +74,6 @@ options:
       kWp: 15.695 # power in kWp
       #horizon: # leave empty for default PVGIS horizon, only modify if solar array is shaded by trees or houses
       #api: #fcsolarapi
-  consumption_forecast:
-    type: csv
-    csv:
-      annual_consumption: 4500 # total consumption in kWh p.a. the load profile
-      load_profile: load_profile.csv #name of the load profile file within the config folder
   evcc:
     enabled: false
     broker: localhost
@@ -102,6 +97,11 @@ options:
     # Active if following message appears:
     #                  'Enabling battery threshold management.
     battery_halt_topic: evcc/site/bufferSoc
+  consumption_forecast:
+    type: csv
+    csv:
+      annual_consumption: 4500 # total consumption in kWh p.a. the load profile
+      load_profile: load_profile.csv #name of the load profile file within the config folder
 schema:
   timezone: str # your time zone. not optional.
   loglevel: list(debug|info|warning|error)
@@ -158,15 +158,6 @@ schema:
       azimuth: float(,180) # -90:East, 0:South, 90:West -180..180
       kWp: float(0,) # power in kWp
       apikey: str? # forecastsolarapi
-consumption_forecast:
-  type: map
-  map:
-    type: match(csv) # Ensures the 'type' key must be 'csv'
-    csv:
-      type: map
-      map:
-        annual_consumption: float(0,) # total consumption in kWh p.a. the load profile
-        load_profile: str # name of the load profile file within the config folder
   evcc:
     enabled: bool
     broker: str
@@ -182,3 +173,12 @@ consumption_forecast:
     keyfile: str?
     tls_version: list(tlsv1.2|tlsv1.3)?
     battery_halt_topic: str?
+  consumption_forecast:
+    type: map
+    map:
+      type: match(csv) # Ensures the 'type' key must be 'csv'
+      csv:
+        type: map
+        map:
+          annual_consumption: float(0,) # total consumption in kWh p.a. the load profile
+          load_profile: str # name of the load profile file within the config folder
