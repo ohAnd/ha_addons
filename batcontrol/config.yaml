@@ -158,14 +158,15 @@ schema:
       azimuth: float(,180) # -90:East, 0:South, 90:West -180..180
       kWp: float(0,) # power in kWp
       apikey: str? # forecastsolarapi
-  consumption_forecast:
-    type: list(csv)
-    map:
-      csv:
-        type: map
-        map:
-          annual_consumption: float(0,)
-          load_profile: str
+consumption_forecast:
+  type: map
+  map:
+    type: match(csv) # Ensures the 'type' key must be 'csv'
+    csv:
+      type: map
+      map:
+        annual_consumption: float(0,) # total consumption in kWh p.a. the load profile
+        load_profile: str # name of the load profile file within the config folder
   evcc:
     enabled: bool
     broker: str
