@@ -159,12 +159,13 @@ schema:
       kWp: float(0,) # power in kWp
       apikey: str? # forecastsolarapi
   consumption_forecast:
-    type: map
+    type: list(csv)
     map:
-      type: list(csv)
       csv:
-        annual_consumption: float(0,)? # total consumption in kWh p.a. the load profile
-        load_profile: str # name of the load profile file within the config folder
+        type: map
+        map:
+          annual_consumption: float(0,)
+          load_profile: str
   evcc:
     enabled: bool
     broker: str
