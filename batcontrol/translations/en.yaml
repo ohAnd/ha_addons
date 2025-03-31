@@ -21,6 +21,8 @@ configuration:
     # always_allow_discharge_limit: 0.90 # 0.00 to 1.00 above this SOC limit using energy from the battery is always allowed
     # max_charging_from_grid_limit: 0.90 # 0.00 to 1.00 charging from the grid is only allowed until this SOC limit
   battery_control_expert:
+    name: Battery Control Expert Settings
+    description: Advanced settings to fine-tune battery control behavior.
     soften_price_difference_on_charging:
       name: Soften Price Difference on Charging
       description: Enable earlier charging based on a more relaxed calculation.
