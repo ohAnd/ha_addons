@@ -20,6 +20,18 @@ Futher details can be found here https://github.com/ohAnd/batcontrol (forked fro
 ![Supports armv7 Architecture][armv7-shield]
 ![Supports i386 Architecture][i386-shield]
 
+### [Batcontrol add-on](./eos_connect)
+
+EOS Connect is a tool designed to easily collect the needed data for optimize energy usage by interacting with the EOS system. It displays the results dynamically on a webpage. And will be used as controller for a PV / Battery System.
+
+Futher details can be found here https://github.com/ohAnd/EOS_connect
+
+![Supports aarch64 Architecture][aarch64-shield]
+![Supports amd64 Architecture][amd64-shield]
+![Supports armhf Architecture][armhf-shield]
+![Supports armv7 Architecture][armv7-shield]
+![Supports i386 Architecture][i386-shield]
+
 ### [modbus_tcp_smartmeter add-on](./modbus_tcp_smartmeter)
 
 Small self running modbus tcp client to serve energy, power, voltage and current data for an central energy system or main hybrid inverter.

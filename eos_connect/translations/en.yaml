@@ -1,0 +1,111 @@
+configuration:
+  load:
+    source:
+      name: Load Source
+      description: "Data source for load power. Possible values: openhab, homeassistant, default (static data)."
+    url:
+      name: Load URL
+      description: URL for openhab (e.g., ip:8080) or homeassistant (e.g., ip:8123).
+    load_sensor:
+      name: Load Sensor
+      description: Item/entity name for load power data (openhab item/homeassistant sensor).
+    car_charge_load_sensor:
+      name: Car Charge Load Sensor
+      description: Item/entity for wallbox power data.
+    access_token:
+      name: Access Token
+      description: Access token for homeassistant (optional).
+
+  eos:
+    server:
+      name: EOS Server
+      description: EOS server address.
+    port:
+      name: EOS Port
+      description: Port for EOS server.
+    timeout:
+      name: Timeout
+      description: Timeout for EOS optimize request in seconds.
+
+  price:
+    source:
+      name: Price Source
+      description: "Data source for electricity price. Possible values: tibber, akkudoktor."
+    token:
+      name: Price Token
+      description: Token for electricity price.
+
+  battery:
+    source:
+      name: Battery Source
+      description: "Data source for battery SOC. Possible values: openhab, homeassistant, default (static data)."
+    url:
+      name: Battery URL
+      description: URL for openhab (e.g., ip:8080) or homeassistant (e.g., ip:8123).
+    soc_sensor:
+      name: SOC Sensor
+      description: Item/entity name for SOC sensor (openhab item/homeassistant sensor).
+    access_token:
+      name: Access Token
+      description: Access token for homeassistant (optional).
+    capacity_wh:
+      name: Battery Capacity (Wh)
+      description: Battery capacity in Wh.
+    charge_efficiency:
+      name: Charge Efficiency
+      description: Efficiency for charging the battery.
+    discharge_efficiency:
+      name: Discharge Efficiency
+      description: Efficiency for discharging the battery.
+    max_charge_power_w:
+      name: Max Charge Power (W)
+      description: Maximum charging power in W.
+    min_soc_percentage:
+      name: Min SOC Percentage
+      description: Minimum state of charge percentage.
+    max_soc_percentage:
+      name: Max SOC Percentage
+      description: Maximum state of charge percentage.
+
+  pv_forecast:
+    default:
+      lat:
+        name: Latitude
+        description: Latitude for PV forecast @ Akkudoktor API.
+      lon:
+        name: Longitude
+        description: Longitude for PV forecast @ Akkudoktor API.
+      azimuth:
+        name: Azimuth
+        description: Azimuth for PV forecast @ Akkudoktor API.
+      tilt:
+        name: Tilt
+        description: Tilt for PV forecast @ Akkudoktor API.
+      power:
+        name: Power
+        description: Power for PV forecast @ Akkudoktor API.
+      powerInverter:
+        name: Power Inverter
+        description: Power Inverter for PV forecast @ Akkudoktor API.
+      inverterEfficiency:
+        name: Inverter Efficiency
+        description: Inverter Efficiency for PV forecast @ Akkudoktor API.
+      horizont:
+        name: Horizont
+        description: Optional - Horizont to calculate shading up to 360 values to describe shading situation for your PV.
+
+  refresh_time:
+    name: Refresh Time
+    description: Default refresh time in minutes.
+
+  time_zone:
+    name: Time Zone
+    description: Default time zone.
+
+  eos_connect_web_port:
+    name: EOS Connect Web Port
+    description: Default port for EOS connect server.
+
+  log_level:
+    name: Log Level
+    description: "Log level: debug, info, warning, error."

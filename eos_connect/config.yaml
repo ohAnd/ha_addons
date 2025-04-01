@@ -1,0 +1,121 @@
+name: "EOS connect"
+description: "Tool to optimize energy usage with EOS system data."
+version: "0.0.1"
+slug: "eos_connect"
+url: "https://github.com/ohAnd/EOS_connect"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+ports:
+  8081/tcp: 8081
+network: host
+map:
+  - type: addon_config
+    read_only: false
+    path: /app/addon_config
+host_network: true
+
+options:
+  load:
+    source: default  # Data source for load power - openhab, homeassistant, default (static data)
+    url: http://<ip>:8080  # URL for openhab (e.g. ip:8080) or homeassistant (e.g. ip:8123)
+    load_sensor: sensor.load_power # item / entity name for load power data (openhab item/ homeassistant sensor)
+    car_charge_load_sensor: sensor.car_charge_load_sensor # item / entity for wallbox power data
+    access_token: 123456abcd # access token for homeassistant (optional)
+
+  eos:
+    server: 192.168.1.94  # EOS server address
+    port: 8503  # port for EOS server
+    timeout: 180 # timeout for EOS optimize request in seconds
+
+  price:
+    source: tibber  # Data source for electricity price
+    token: tibberBearerToken  # Token for electricity price
+
+  battery:
+    source: default  # Data source for battery SOC - openhab, homeassistant, default (static data)
+    url: http://<ip>:8080  # URL for openhab (e.g. ip:8080) or homeassistant (e.g. ip:8123)
+    soc_sensor: sensor.battery_soc
+    access_token: 123456abcd # access token for homeassistant (optional)
+    capacity_wh: 11059  # Battery capacity in Wh
+    charge_efficiency: 0.88  # Efficiency for charging the battery
+    discharge_efficiency: 0.88  # Efficiency for discharging the battery
+    max_charge_power_w: 5000  # Maximum charging power in W
+    min_soc_percentage: 5  # Minimum state of charge percentage
+    max_soc_percentage: 100  # Maximum state of charge percentage
+
+  pv_forecast:
+    roof_west:
+      lat: 47.5  # Latitude for PV forecast @ Akkudoktor API
+      lon: 8.5  # Longitude for PV forecast @ Akkudoktor API
+      azimuth: 90.0  # Azimuth for PV forecast @ Akkudoktor API
+      tilt: 30.0  # Tilt for PV forecast @ Akkudoktor API
+      power: 4600  # Power for PV forecast @ Akkudoktor API
+      powerInverter: 5000  # Power Inverter for PV forecast @ Akkudoktor API
+      inverterEfficiency: 0.9  # Inverter Efficiency for PV forecast @ Akkudoktor API
+      horizont: "10,20,10,15"  # Horizont to calculate shading up to 360 values to describe shading situation for your PV
+    garden_south:
+      lat: 47.5  # Latitude for PV forecast @ Akkudoktor API
+      lon: 8.5  # Longitude for PV forecast @ Akkudoktor API
+      azimuth: 0.0  # Azimuth for PV forecast @ Akkudoktor API
+      tilt: 45.0  # Tilt for PV forecast @ Akkudoktor API
+      power: 860  # Power for PV forecast @ Akkudoktor API
+      powerInverter: 800  # Power Inverter for PV forecast @ Akkudoktor API
+      inverterEfficiency: 0.9  # Inverter Efficiency for PV forecast @ Akkudoktor API
+      horizont: ""  # Horizont to calculate shading up to 360 values to describe shading situation for your PV
+
+  refresh_time: 3  # Default refresh time in minutes
+  time_zone: Europe/Berlin  # Default time zone
+  eos_connect_web_port: 8081  # Default port for EOS connect server
+  log_level: info # loglevel: debug, info, warning, error
+
+schema:
+  load:
+    source: list(openhab|homeassistant|default) # Data source for load power
+    url: url # URL for openhab or homeassistant
+    load_sensor: str # item / entity name for load power data
+    car_charge_load_sensor: str # item / entity for wallbox power data
+    access_token: password? # access token for homeassistant (optional)
+
+  eos:
+    server: str # EOS server address
+    port: port # port for EOS server
+    timeout: int(1,) # timeout for EOS optimize request in seconds
+
+  price:
+    source: list(tibber|akkudoktor) # Data source for electricity price
+    token: password # Token for electricity price
+
+  battery:
+    source: list(openhab|homeassistant|default) # Data source for battery SOC
+    url: url # URL for openhab or homeassistant
+    soc_sensor: str # item / entity name for soc_sensor
+    access_token: password? # access token for homeassistant (optional)
+    capacity_wh: int(1,) # Battery capacity in Wh
+    charge_efficiency: float(0,1) # Efficiency for charging the battery
+    discharge_efficiency: float(0,1) # Efficiency for discharging the battery
+    max_charge_power_w: int(1,) # Maximum charging power in W
+    min_soc_percentage: int(0,100) # Minimum state of charge percentage
+    max_soc_percentage: int(0,100) # Maximum state of charge percentage
+
+  pv_forecast:
+    type: map
+    map:
+      lat: float(-90,90) # Latitude for PV forecast
+      lon: float(-180,180) # Longitude for PV forecast
+      azimuth: float(-180,180) # Azimuth for PV forecast
+      tilt: float(0,90) # Tilt for PV forecast
+      power: int(1,) # Power for PV forecast
+      powerInverter: int(1,) # Power Inverter for PV forecast
+      inverterEfficiency: float(0,1) # Inverter Efficiency for PV forecast
+      horizont: str? # Optional - Horizont to calculate shading
+
+  refresh_time: int(1,) # Default refresh time in minutes
+  time_zone: str # Default time zone
+  eos_connect_web_port: port # Default port for EOS connect server
+  log_level: list(debug|info|warning|error) # loglevel options
+
