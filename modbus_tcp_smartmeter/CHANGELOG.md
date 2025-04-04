@@ -1,3 +1,6 @@
+**Version 0.0.7-fix1** published on 04.04.2025
+- adapt config.yaml for unneeded entry
+ 
 **Version 0.0.7** published on 25.03.2025
 - add exception handling for openHAB host not reachable
 - updating doc
