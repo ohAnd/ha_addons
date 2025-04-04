@@ -20,9 +20,11 @@ Futher details can be found here https://github.com/ohAnd/batcontrol (forked fro
 ![Supports armv7 Architecture][armv7-shield]
 ![Supports i386 Architecture][i386-shield]
 
-### [Batcontrol add-on](./eos_connect)
+### [EOS connect add-on](./eos_connect)
 
 EOS Connect is a tool designed to easily collect the needed data for optimize energy usage by interacting with the EOS system. It displays the results dynamically on a webpage. And will be used as controller for a PV / Battery System.
+
+To use this addon you need a openhab or homeassistant with persisted energy data and an [EOS](https://github.com/Akkudoktor-EOS/EOS)
 
 Futher details can be found here https://github.com/ohAnd/EOS_connect
 
@@ -40,17 +42,15 @@ Small self running modbus tcp client to serve energy, power, voltage and current
 
 ### [trmnlServer add-on](./trmnlServer)
 
-To use this addon you need a openhab or homeassistant with persisted energy data and an [EOS](https://github.com/Akkudoktor-EOS/EOS)
-
 This addons wrapping the trmnl server application to be a runnable docker in Home Assistant as an add-on.
 
 Futher details can be found here https://github.com/ohAnd/trmnlServer
 
 ![Supports aarch64 Architecture][aarch64-shield]
-<!-- ![Supports amd64 Architecture][amd64-shield]
+![Supports amd64 Architecture][amd64-shield]
 ![Supports armhf Architecture][armhf-shield]
 ![Supports armv7 Architecture][armv7-shield]
-![Supports i386 Architecture][i386-shield] -->
+![Supports i386 Architecture][i386-shield]
 
 
 
