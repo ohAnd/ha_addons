@@ -1,3 +1,6 @@
+**Version 0.0.6** published on 04.04.2025
+- move add on to ohAnd's addon collection
+  
 **Version 0.0.5** published on 26.02.2025
 - extend HA addon settings
   
