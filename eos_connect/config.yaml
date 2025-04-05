@@ -1,6 +1,6 @@
 name: "EOS connect"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.0.1-fix1"
+version: "0.0.2-fix2"
 slug: "eos_connect"
 url: "https://github.com/ohAnd/EOS_connect"
 init: false
@@ -21,56 +21,56 @@ host_network: true
 
 options:
   load:
-    source: default  # Data source for load power - openhab, homeassistant, default (static data)
-    url: http://<ip>:8080  # URL for openhab (e.g. ip:8080) or homeassistant (e.g. ip:8123)
+    source: default # Data source for load power - openhab, homeassistant, default (static data)
+    url: http://<ip>:8080 # URL for openhab (e.g. ip:8080) or homeassistant (e.g. ip:8123)
     load_sensor: sensor.load_power # item / entity name for load power data (openhab item/ homeassistant sensor)
     car_charge_load_sensor: sensor.car_charge_load_sensor # item / entity for wallbox power data
     access_token: 123456abcd # access token for homeassistant (optional)
 
   eos:
-    server: 192.168.1.94  # EOS server address
-    port: 8503  # port for EOS server
+    server: 192.168.1.94 # EOS server address
+    port: 8503 # port for EOS server
     timeout: 180 # timeout for EOS optimize request in seconds
 
   price:
-    source: tibber  # Data source for electricity price
-    token: tibberBearerToken  # Token for electricity price
+    source: default # Data source for electricity price
+    token: tibberBearerToken # Token for electricity price
 
   battery:
-    source: default  # Data source for battery SOC - openhab, homeassistant, default (static data)
-    url: http://<ip>:8080  # URL for openhab (e.g. ip:8080) or homeassistant (e.g. ip:8123)
+    source: default # Data source for battery SOC - openhab, homeassistant, default (static data)
+    url: http://<ip>:8080 # URL for openhab (e.g. ip:8080) or homeassistant (e.g. ip:8123)
     soc_sensor: sensor.battery_soc
     access_token: 123456abcd # access token for homeassistant (optional)
-    capacity_wh: 11059  # Battery capacity in Wh
-    charge_efficiency: 0.88  # Efficiency for charging the battery
-    discharge_efficiency: 0.88  # Efficiency for discharging the battery
-    max_charge_power_w: 5000  # Maximum charging power in W
-    min_soc_percentage: 5  # Minimum state of charge percentage
-    max_soc_percentage: 100  # Maximum state of charge percentage
+    capacity_wh: 11059 # Battery capacity in Wh
+    charge_efficiency: 0.88 # Efficiency for charging the battery
+    discharge_efficiency: 0.88 # Efficiency for discharging the battery
+    max_charge_power_w: 5000 # Maximum charging power in W
+    min_soc_percentage: 5 # Minimum state of charge percentage
+    max_soc_percentage: 100 # Maximum state of charge percentage
 
   pv_forecast:
     - name: roof_west #name
-      lat: 47.5  # Latitude for PV forecast @ Akkudoktor API
-      lon: 8.5  # Longitude for PV forecast @ Akkudoktor API
-      azimuth: 90.0  # Azimuth for PV forecast @ Akkudoktor API
-      tilt: 30.0  # Tilt for PV forecast @ Akkudoktor API
-      power: 4600  # Power for PV forecast @ Akkudoktor API
-      powerInverter: 5000  # Power Inverter for PV forecast @ Akkudoktor API
-      inverterEfficiency: 0.9  # Inverter Efficiency for PV forecast @ Akkudoktor API
-      horizont: "10,20,10,15"  # Horizont to calculate shading up to 360 values to describe shading situation for your PV
+      lat: 47.5 # Latitude for PV forecast @ Akkudoktor API
+      lon: 8.5 # Longitude for PV forecast @ Akkudoktor API
+      azimuth: 90.0 # Azimuth for PV forecast @ Akkudoktor API
+      tilt: 30.0 # Tilt for PV forecast @ Akkudoktor API
+      power: 4600 # Power for PV forecast @ Akkudoktor API
+      powerInverter: 5000 # Power Inverter for PV forecast @ Akkudoktor API
+      inverterEfficiency: 0.9 # Inverter Efficiency for PV forecast @ Akkudoktor API
+      horizont: "10,20,10,15" # Horizont to calculate shading up to 360 values to describe shading situation for your PV
     - name: garden_south #name
-      lat: 47.5  # Latitude for PV forecast @ Akkudoktor API
-      lon: 8.5  # Longitude for PV forecast @ Akkudoktor API
-      azimuth: 0.0  # Azimuth for PV forecast @ Akkudoktor API
-      tilt: 45.0  # Tilt for PV forecast @ Akkudoktor API
-      power: 860  # Power for PV forecast @ Akkudoktor API
-      powerInverter: 800  # Power Inverter for PV forecast @ Akkudoktor API
-      inverterEfficiency: 0.9  # Inverter Efficiency for PV forecast @ Akkudoktor API
-      horizont: ""  # Horizont to calculate shading up to 360 values to describe shading situation for your PV
+      lat: 47.5 # Latitude for PV forecast @ Akkudoktor API
+      lon: 8.5 # Longitude for PV forecast @ Akkudoktor API
+      azimuth: 0.1 # Azimuth for PV forecast @ Akkudoktor API
+      tilt: 45.0 # Tilt for PV forecast @ Akkudoktor API
+      power: 860 # Power for PV forecast @ Akkudoktor API
+      powerInverter: 800 # Power Inverter for PV forecast @ Akkudoktor API
+      inverterEfficiency: 0.9 # Inverter Efficiency for PV forecast @ Akkudoktor API
+      horizont: "" # Horizont to calculate shading up to 360 values to describe shading situation for your PV
 
-  refresh_time: 3  # Default refresh time in minutes
-  time_zone: Europe/Berlin  # Default time zone
-  eos_connect_web_port: 8081  # Default port for EOS connect server
+  refresh_time: 3 # Default refresh time in minutes
+  time_zone: Europe/Berlin # Default time zone
+  eos_connect_web_port: 8081 # Default port for EOS connect server
   log_level: info # loglevel: debug, info, warning, error
 
 schema:
@@ -87,7 +87,7 @@ schema:
     timeout: int(1,) # timeout for EOS optimize request in seconds
 
   price:
-    source: list(tibber|akkudoktor) # Data source for electricity price
+    source: list(default|tibber) # Data source for electricity price
     token: password # Token for electricity price
 
   battery:
@@ -107,7 +107,7 @@ schema:
       lat: float(,90) # Latitude for PV forecast
       lon: float(,180) # Longitude for PV forecast
       azimuth: float(,180) # Azimuth for PV forecast
-      tilt: float(0,90) # Tilt for PV forecast
+      tilt: int(0,90) # Tilt for PV forecast
       power: int(1,) # Power for PV forecast
       powerInverter: int(1,) # Power Inverter for PV forecast
       inverterEfficiency: float(0.0,1.0) # Inverter Efficiency for PV forecast
@@ -117,3 +117,4 @@ schema:
   time_zone: str # Default time zone
   eos_connect_web_port: int(1,65535) # Port for EOS server
   log_level: list(debug|info|warning|error) # loglevel options
+image: "ghcr.io/ohand/ha-addon-eos_connect_{arch}"

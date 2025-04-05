@@ -36,10 +36,10 @@ configuration:
     description: Configuration for electricity price data source and settings.
     source:
       name: Price Source
-      description: "Data source for electricity price. Possible values: tibber, akkudoktor."
+      description: "Data source for electricity price. Possible values: tibber, default (=akkudoktor)."
     token:
       name: Price Token
-      description: Token for electricity price.
+      description: Token for electricity price from tibber.
 
   battery:
     name: Battery Settings

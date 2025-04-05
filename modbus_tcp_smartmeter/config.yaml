@@ -19,7 +19,7 @@ map:
     path: /app/addon_config
 host_network: true
 
-options: 
+options:
   connected_phase: 1 # 1, 2 or 3 for L1, L2 or L3
   energy_counter_out: inverter_energy # inverter_energy or smartmeter_energy
   current_voltage: inverter_voltage # inverter_voltage or smartmeter_voltage
@@ -40,4 +40,4 @@ schema:
   modbus_tcp_address: int(0,15)
   loglevel: list(debug|info|warning|error)
   time_zone: str
-#image: "ghcr.io/ohand/ha-addon-modbus_tcp_smartmeter_{arch}"
+image: "ghcr.io/ohand/ha-addon-modbus_tcp_smartmeter_{arch}"

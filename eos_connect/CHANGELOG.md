@@ -1,3 +1,13 @@
+**Version 0.0.3** published on 05.04.2025
+- cleanup config and translations
+
+**Version 0.0.2-fix2** published on 05.04.2025
+- fixes default config
+
+**Version 0.0.2** published on 04.04.2025
+- bump to latest eos_connect
+- breakable change in config - see pv_forecast
+
 **Version 0.0.1-fix1** published on 04.04.2025
 - adapt config.yaml for unneeded entry
 
