@@ -39,6 +39,10 @@ Futher details can be found here https://github.com/ohAnd/EOS_connect
 Small self running modbus tcp client to serve energy, power, voltage and current data for an central energy system or main hybrid inverter.
 
 ![Supports aarch64 Architecture][aarch64-shield]
+![Supports amd64 Architecture][amd64-shield]
+![Supports armhf Architecture][armhf-shield]
+![Supports armv7 Architecture][armv7-shield]
+![Supports i386 Architecture][i386-shield]
 
 ### [trmnlServer add-on](./trmnlServer)
 
