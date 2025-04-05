@@ -104,10 +104,10 @@ schema:
 
   pv_forecast:
     - name: str # name
-      lat: float(-90.0,90.0) # Latitude for PV forecast
-      lon: float(-180.0,180.0) # Longitude for PV forecast
-      azimuth: float(-180.0,180.0) # Azimuth for PV forecast
-      tilt: float(0.0,90.0) # Tilt for PV forecast
+      lat: float(,90) # Latitude for PV forecast
+      lon: float(,180) # Longitude for PV forecast
+      azimuth: float(,180) # Azimuth for PV forecast
+      tilt: float(0,90) # Tilt for PV forecast
       power: int(1,) # Power for PV forecast
       powerInverter: int(1,) # Power Inverter for PV forecast
       inverterEfficiency: float(0.0,1.0) # Inverter Efficiency for PV forecast
