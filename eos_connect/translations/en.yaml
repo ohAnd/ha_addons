@@ -1,5 +1,7 @@
 configuration:
   load:
+    name: Load Settings
+    description: Configuration for load power data source and settings.
     source:
       name: Load Source
       description: "Data source for load power. Possible values: openhab, homeassistant, default (static data)."
@@ -17,6 +19,8 @@ configuration:
       description: Access token for homeassistant (optional).
 
   eos:
+    name: EOS Settings
+    description: Configuration for EOS server connection.
     server:
       name: EOS Server
       description: EOS server address.
@@ -28,6 +32,8 @@ configuration:
       description: Timeout for EOS optimize request in seconds.
 
   price:
+    name: Price Settings
+    description: Configuration for electricity price data source and settings.
     source:
       name: Price Source
       description: "Data source for electricity price. Possible values: tibber, akkudoktor."
@@ -36,6 +42,8 @@ configuration:
       description: Token for electricity price.
 
   battery:
+    name: Battery Settings
+    description: Configuration for battery SOC data source and settings.
     source:
       name: Battery Source
       description: "Data source for battery SOC. Possible values: openhab, homeassistant, default (static data)."
@@ -68,6 +76,8 @@ configuration:
       description: Maximum state of charge percentage.
 
   pv_forecast:
+    name: PV Forecast Settings
+    description: Configuration for PV forecast settings.
     default:
       lat:
         name: Latitude
