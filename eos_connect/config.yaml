@@ -76,7 +76,7 @@ options:
 schema:
   load:
     source: list(openhab|homeassistant|default) # Data source for load power
-    url: url # URL for openhab or homeassistant
+    url: str # URL for openhab or homeassistant
     load_sensor: str # item / entity name for load power data
     car_charge_load_sensor: str # item / entity for wallbox power data
     access_token: password? # access token for homeassistant (optional)
@@ -92,7 +92,7 @@ schema:
 
   battery:
     source: list(openhab|homeassistant|default) # Data source for battery SOC
-    url: url # URL for openhab or homeassistant
+    url: str # URL for openhab or homeassistant
     soc_sensor: str # item / entity name for soc_sensor
     access_token: password? # access token for homeassistant (optional)
     capacity_wh: int(1,) # Battery capacity in Wh
@@ -104,16 +104,16 @@ schema:
 
   pv_forecast:
     - name: str # name
-      lat: float(-90,90) # Latitude for PV forecast
-      lon: float(-180,180) # Longitude for PV forecast
-      azimuth: float(-180,180) # Azimuth for PV forecast
-      tilt: float(0,90) # Tilt for PV forecast
+      lat: float(-90.0,90.0) # Latitude for PV forecast
+      lon: float(-180.0,180.0) # Longitude for PV forecast
+      azimuth: float(-180.0,180.0) # Azimuth for PV forecast
+      tilt: float(0.0,90.0) # Tilt for PV forecast
       power: int(1,) # Power for PV forecast
       powerInverter: int(1,) # Power Inverter for PV forecast
-      inverterEfficiency: float(0,1) # Inverter Efficiency for PV forecast
-      horizont: str? # Optional - Horizont to calculate shading up to 360 values to describe shading situation for your PV
+      inverterEfficiency: float(0.0,1.0) # Inverter Efficiency for PV forecast
+      horizont: str? # Optional - Horizont to calculate shading
 
   refresh_time: int(1,) # Default refresh time in minutes
   time_zone: str # Default time zone
-  eos_connect_web_port: port # Default port for EOS connect server
+  eos_connect_web_port: int(1,65535) # Port for EOS server
   log_level: list(debug|info|warning|error) # loglevel options
