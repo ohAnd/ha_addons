@@ -104,17 +104,15 @@ schema:
 
   pv_forecast:
     type: list
-    list:
-      type: map
-      map:
-        lat: float(-90,90) # Latitude for PV forecast
-        lon: float(-180,180) # Longitude for PV forecast
-        azimuth: float(-180,180) # Azimuth for PV forecast
-        tilt: float(0,90) # Tilt for PV forecast
-        power: int(1,) # Power for PV forecast
-        powerInverter: int(1,) # Power Inverter for PV forecast
-        inverterEfficiency: float(0,1) # Inverter Efficiency for PV forecast
-        horizont: str? # Optional - Horizont to calculate shading
+    map:
+      lat: float(-90,90) # Latitude for PV forecast
+      lon: float(-180,180) # Longitude for PV forecast
+      azimuth: float(-180,180) # Azimuth for PV forecast
+      tilt: float(0,90) # Tilt for PV forecast
+      power: int(1,) # Power for PV forecast
+      powerInverter: int(1,) # Power Inverter for PV forecast
+      inverterEfficiency: float(0,1) # Inverter Efficiency for PV forecast
+      horizont: str? # Optional - Horizont to calculate shading
 
   refresh_time: int(1,) # Default refresh time in minutes
   time_zone: str # Default time zone
