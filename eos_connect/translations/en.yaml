@@ -103,7 +103,36 @@ configuration:
       horizont:
         name: Horizont
         description: Optional - Horizont to calculate shading up to 360 values to describe shading situation for your PV.
-
+  inverter:
+    name: Inverter Settings
+    description: Configuration for inverter settings.
+    type:
+      name: Inverter Type
+      description: Type of inverter - fronius_gen24 or default (display only mode).
+    address:
+      name: Inverter Address
+      description: Address of the inverter.
+    user:
+      name: Inverter User
+      description: User for the inverter. e.g. customer
+    password:
+      name: Inverter Password
+      description: Password for the inverter.
+    max_grid_charge_rate:
+      name: Max Grid Charge Rate
+      description: Maximum grid charge rate in W.
+    max_pv_charge_rate:
+      name: Max PV Charge Rate
+      description: Maximum PV charge rate in W.
+    max_bat_discharge_rate:
+      name: Max Battery Discharge Rate
+      description: Maximum battery discharge rate in W.
+  evcc:
+    name: EVCC Settings
+    description: Configuration for EVCC settings.
+    url:
+      name: EVCC Url
+      description: url of the EVCC. e.g. http://192.168.1.3:7070
   refresh_time:
     name: Refresh Time
     description: Default refresh time in minutes.

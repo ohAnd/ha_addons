@@ -1,6 +1,6 @@
 name: "EOS connect"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.0.4-fix5"
+version: "0.0.5"
 slug: "eos_connect"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -83,6 +83,8 @@ options:
     max_pv_charge_rate: 5000
     max_bat_discharge_rate: 5000
 
+  evcc:
+    url: "http://<ip>:7070" # URL to your evcc installation
   refresh_time: 3 # Default refresh time in minutes
   time_zone: Europe/Berlin # Default time zone
   eos_connect_web_port: 8081 # Default port for EOS connect server
@@ -129,14 +131,15 @@ schema:
       horizont: str? # Optional - Horizont to calculate shading
 
   inverter:
-    type: list(fronius_gen24)
+    type: list(fronius_gen24|default)
     address: str
     user: str
     password: password
     max_grid_charge_rate: int(0,10000)
     max_pv_charge_rate: int(0,10000)
     max_bat_discharge_rate: int(0,10000)
-
+  evcc:
+    url: str # URL to your evcc installation
   refresh_time: int(1,) # Default refresh time in minutes
   time_zone: str # Default time zone
   eos_connect_web_port: int(1,65535) # Port for EOS server

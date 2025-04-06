@@ -1,3 +1,6 @@
+**Version 0.0.5** published on 06.04.2025
+- extend with EVCC connection to avoid discharge when car is charging
+
 **Version 0.0.4-fix5** published on 06.04.2025
 - change icon
 
