@@ -1,3 +1,12 @@
+**Version 0.0.4-fix4** published on 06.04.2025
+- minor change regarding HA addon config
+
+**Version 0.0.4-fix2** published on 06.04.2025
+- fixes unnecessary logins and writing of battery settings to fronius inverter
+
+**Version 0.0.4** published on 06.04.2025
+- extend config and feature to control fronius inverter
+
 **Version 0.0.3** published on 05.04.2025
 - cleanup config and translations
 

@@ -4,6 +4,7 @@ FROM $BUILD_FROM
 RUN apk add --no-cache python3 py3-pip git
 
 COPY ./src /app
+COPY ./src/requirements.txt /app/requirements.txt
 
 RUN python3 -m venv /opt/venv && \
     . /opt/venv/bin/activate && \
