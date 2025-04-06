@@ -1,8 +1,8 @@
 [submodule "batcontrol/src"]
 	path = batcontrol/src
 	url = https://github.com/ohAnd/batcontrol.git
-[submodule "trmnlServer/src"]
-	path = trmnlServer/src
+[submodule "trmnl_server/src"]
+	path = trmnl_server/src
 	url = https://github.com/ohAnd/trmnlServer.git
 [submodule "eos_connect/src"]
 	path = eos_connect/src
