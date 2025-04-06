@@ -44,7 +44,7 @@ Small self running modbus tcp client to serve energy, power, voltage and current
 ![Supports armv7 Architecture][armv7-shield]
 ![Supports i386 Architecture][i386-shield]
 
-### [trmnlServer add-on](./trmnlServer)
+### [trmnlServer add-on](./trmnl_server)
 
 This addons wrapping the trmnl server application to be a runnable docker in Home Assistant as an add-on.
 
