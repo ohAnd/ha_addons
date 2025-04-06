@@ -9,15 +9,14 @@ arch:
   - armhf
   - armv7
   - i386
-startup: application
+
 panel_icon: mdi:home-battery
 panel_admin: false
-boot: auto
 
 ingress: true
 ingress_port: 8081
 init: false
-watchdog: http://[HOST]:[PORT:8081]/
+
 image: "ghcr.io/ohand/ha-addon-eos_connect_{arch}"
 
 map:
@@ -25,7 +24,7 @@ map:
     read_only: false
     path: /app/addon_config
 host_network: true
-webui: http://[HOST]:[PORT:8081]/
+
 options:
   load:
     source: default # Data source for load power - openhab, homeassistant, default (static data)

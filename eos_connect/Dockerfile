@@ -13,6 +13,10 @@ RUN python3 -m venv /opt/venv && \
 WORKDIR /app
 RUN ln -sf /data/options.json /app/src/config.yaml
 
+# Add HEALTHCHECK directive
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:8081/ || exit 1
+
 # Expose port 502 for Modbus TCP
 EXPOSE 8081
 
