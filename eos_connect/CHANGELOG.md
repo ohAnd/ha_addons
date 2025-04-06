@@ -1,3 +1,6 @@
+**Version 0.0.4-fix5** published on 06.04.2025
+- change icon
+
 **Version 0.0.4-fix4** published on 06.04.2025
 - minor change regarding HA addon config
 
