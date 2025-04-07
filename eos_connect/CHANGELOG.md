@@ -1,3 +1,6 @@
+**Version 0.0.6** published on 07.04.2025
+- fixing wrongly shifted load request and refactoring
+
 **Version 0.0.5** published on 06.04.2025
 - extend with EVCC connection to avoid discharge when car is charging
 
