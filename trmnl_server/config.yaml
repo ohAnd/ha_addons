@@ -17,7 +17,7 @@ ingress: true
 ingress_port: 83
 init: false
 
-#image: "ghcr.io/ohand/ha-addon-trmnl_server_{arch}"
+image: "ghcr.io/ohand/ha-addon-trmnl_server_{arch}"
 
 map:
   - type: ssl
