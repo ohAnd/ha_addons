@@ -16,12 +16,17 @@ RUN apk add --no-cache \
             ttf-dejavu
 
 COPY ./src /app
-COPY entrypoint.sh /app
 
 WORKDIR /app
-RUN ln -sf /data/options.json /app/config.yaml
+# Link the configuration file
+RUN mkdir -p /data/db /data/logs /data/ssl && \
+    ln -sf /data/options.json /app/config.yaml && \
+    ln -sf /data/db /app/db && \
+    ln -sf /data/logs /app/logs && \
+    ln -sf /data/ssl /app/ssl
 
 # Expose port 83 for the website
 EXPOSE 83
 
-CMD [ "/bin/sh", "/app/entrypoint.sh" ]
+# Set the command to start the container
+CMD ["/usr/bin/python3", "trmnl_server.py"]

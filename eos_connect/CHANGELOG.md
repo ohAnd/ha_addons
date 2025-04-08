@@ -1,3 +1,6 @@
+**Version 0.0.7** published on 07.04.2025
+- feat: Update control state logging and enhance data structure for current demands + extend webview
+
 **Version 0.0.6** published on 07.04.2025
 - fixing wrongly shifted load request and refactoring
 

@@ -1,3 +1,6 @@
+**Version 0.0.7** published on 07.04.2025
+- fixing addon config to use the HA config for trmnl server
+
 **Version 0.0.6** published on 04.04.2025
 - move add on to ohAnd's addon collection
   
