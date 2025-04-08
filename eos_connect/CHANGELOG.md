@@ -1,3 +1,9 @@
+**Version 0.0.14** published on 07.04.2025
+- changing versioning of HA addon accprding to snapshot release
+- feat: changing HA load interface to use data according to the current workday instead of last 2 days - closes [#4 Unterscheidung Arbeits- / Wochentage beim Erstellen des Lastprofils](https://github.com/ohAnd/EOS_connect/issues/4)
+- adapting error feedback on webpage
+- enhancing readme regarding historic data
+
 **Version 0.0.7** published on 07.04.2025
 - feat: Update control state logging and enhance data structure for current demands + extend webview
 
