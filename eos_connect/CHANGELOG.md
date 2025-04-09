@@ -1,3 +1,8 @@
+**Version 0.0.15** published on 07.04.2025
+- feat: Enhance README with detailed functionality and usage instructions
+- requesting with last startup_solution
+- update logging messages in LoadInterface for clarity
+
 **Version 0.0.14** published on 07.04.2025
 - changing versioning of HA addon accprding to snapshot release
 - feat: changing HA load interface to use data according to the current workday instead of last 2 days - closes [#4 Unterscheidung Arbeits- / Wochentage beim Erstellen des Lastprofils](https://github.com/ohAnd/EOS_connect/issues/4)
