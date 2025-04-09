@@ -7,3 +7,6 @@
 [submodule "eos_connect/src"]
 	path = eos_connect/src
 	url = https://github.com/ohAnd/EOS_connect.git
+[submodule "eos/eos"]
+	path = eos/eos
+	url = https://github.com/Akkudoktor-EOS/EOS.git

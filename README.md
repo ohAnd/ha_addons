@@ -34,6 +34,16 @@ Futher details can be found here https://github.com/ohAnd/EOS_connect
 ![Supports armv7 Architecture][armv7-shield]
 ![Supports i386 Architecture][i386-shield]
 
+### [EOS add-on](./eos)
+
+_EOS add-on.__
+This is just a home assistant add-on wrapper for the great work here: <https://github.com/Akkudoktor-EOS/EOS>
+
+===> fork from https://github.com/Duetting/ha_eos_addon to get the most recent version of EOS running in HA
+
+![Supports aarch64 Architecture][aarch64-shield]
+![Supports amd64 Architecture][amd64-shield]
+
 ### [modbus_tcp_smartmeter add-on](./modbus_tcp_smartmeter)
 
 Small self running modbus tcp client to serve energy, power, voltage and current data for an central energy system or main hybrid inverter.
