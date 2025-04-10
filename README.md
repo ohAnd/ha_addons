@@ -36,6 +36,8 @@ Futher details can be found here https://github.com/ohAnd/EOS_connect
 
 ### [EOS add-on](./eos)
 
+----> **currently broken**
+
 _EOS add-on.__
 This is just a home assistant add-on wrapper for the great work here: <https://github.com/Akkudoktor-EOS/EOS>
 

@@ -1,3 +1,7 @@
+**Version 0.0.18** published on 10.04.2025
+- new EOS version released - adapting EOS connect to run with both
+- see https://github.com/ohAnd/EOS_connect?tab=readme-ov-file#current-status
+
 **Version 0.0.15** published on 07.04.2025
 - feat: Enhance README with detailed functionality and usage instructions
 - requesting with last startup_solution

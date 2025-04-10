@@ -22,5 +22,5 @@ ports_description:
 # schema:
 backup_exclude:
   - /data/eos/cache
-image: "ghcr.io/ohand/{arch}-addon-eos"
+#image: "ghcr.io/ohand/{arch}-addon-eos"
 startup: services
