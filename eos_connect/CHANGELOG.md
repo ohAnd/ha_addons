@@ -1,3 +1,15 @@
+**Version 0.0.22** published on 13.04.2025
+- feat: Add support for Tibber price integration
+- fix: Resolve issue with incorrect PV forecast data parsing
+- feat: Add health check endpoint for monitoring
+- refactor: Simplify configuration schema validation logic
+- fix: Address issue with EVCC integration causing unnecessary API calls
+- chore: Update dependencies to latest versions
+- feat: Enhance web interface with additional diagnostic information
+- fix: Correct handling of time zones in load interface
+- refactor: Optimize logging for better debugging and performance
+- feat: Add support for multiple PV forecast sources in configuration
+
 **Version 0.0.18** published on 10.04.2025
 - new EOS version released - adapting EOS connect to run with both
 - see https://github.com/ohAnd/EOS_connect?tab=readme-ov-file#current-status
