@@ -40,6 +40,12 @@ configuration:
     token:
       name: Price Token
       description: Token for electricity price from tibber.
+    feed_in_price:
+      name: Feed-in Price
+      description: Feed-in price for electricity in EUR/kWh (optional).
+    negative_price_switch:
+      name: Negative Price Switch
+      description: Switch for negative stock price handling (True/False, optional).
 
   battery:
     name: Battery Settings

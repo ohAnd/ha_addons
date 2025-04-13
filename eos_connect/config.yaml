@@ -1,6 +1,6 @@
 name: "EOS connect"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.0.22"
+version: "0.0.22-fix1"
 slug: "eos_connect"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -41,6 +41,8 @@ options:
   price:
     source: default # Data source for electricity price
     token: tibberBearerToken # Token for electricity price
+    feed_in_price: 0 # Feed-in price for electricity in EUR/kWh (optional)
+    negative_price_switch: False # Switch for negative stock price handling True/ False (optional)
 
   battery:
     source: default # Data source for battery SOC - openhab, homeassistant, default (static data)
@@ -106,6 +108,8 @@ schema:
   price:
     source: list(default|tibber) # Data source for electricity price
     token: password # Token for electricity price
+    feed_in_price: float # Feed-in price for electricity in EUR/kWh (optional)
+    negative_price_switch: bool # Switch for negative stock price handling True/ False (optional)
 
   battery:
     source: list(openhab|homeassistant|default) # Data source for battery SOC

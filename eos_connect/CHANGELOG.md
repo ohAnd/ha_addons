@@ -1,3 +1,6 @@
+**Version 0.0.22-fix1** published on 13.04.2025
+- fixing ha addon config for new entries
+  
 **Version 0.0.22** published on 13.04.2025
 - feat: Add support for Tibber price integration
 - fix: Resolve issue with incorrect PV forecast data parsing
