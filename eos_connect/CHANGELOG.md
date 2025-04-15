@@ -1,3 +1,13 @@
+**Version 0.0.24** published on 15.04.2025
+- Fixes:
+    - Resolved inconsistencies between request and response states on the dashboard.
+    - Fixed a bug where the EVCC state change did not revert to the former EOS target state correctly.
+- Features:
+    - Improved the response messages for the optimization scheduler and added timing details for the current and next run.
+    - Enhanced the optimization scheduler's state management for better functionality.
+- Documentation:
+    - Updated the README to include additional details about configuring the feed-in price.
+
 **Version 0.0.22-fix1** published on 13.04.2025
 - fixing ha addon config for new entries
   
