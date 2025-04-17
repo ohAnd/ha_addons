@@ -1,3 +1,12 @@
+**Version 0.0.26** published on 17.04.2025
+- Fixes:
+    - [Resolved inconsistencies between request and response states on the dashboard.](https://github.com/ohAnd/EOS_connect/issues/14)
+- Features:
+    - improving dashbaord especially for mobile view and usual screen sizes
+    - Enhance EVCC integration by adding charging mode handling and updating UI to reflect current charging state and mode
+- Documentation:
+    - ...
+
 **Version 0.0.24** published on 15.04.2025
 - Fixes:
     - Resolved inconsistencies between request and response states on the dashboard.
