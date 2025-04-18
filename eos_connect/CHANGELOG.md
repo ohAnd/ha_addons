@@ -1,3 +1,11 @@
+**Version 0.1.4** published on 2025-04-18
+- Features
+
+- Fixes
+
+- Other Changes
+
+
 **Version 0.0.26** published on 17.04.2025
 - Fixes:
     - [Resolved inconsistencies between request and response states on the dashboard.](https://github.com/ohAnd/EOS_connect/issues/14)
