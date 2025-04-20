@@ -1,18 +1,27 @@
 **Version 0.1.6** published on 2025-04-20
 - Features
-
+  - Add new mode for discharge allowed during e-car charging in min+pv mode and enhance battery charging data display
 - Fixes
-
+  - initialization / startup phase to avoid inverter changes at restart
+  - Comment out inverter_mode_num assignment for testing purposes
+  - state messages in log and clearer error messages
 - Other Changes
-
+  - refactor: Simplify overall state checks and enhance EVCC state handling if charging in PV mode
 
 **Version 0.1.4** published on 2025-04-18
 - Features
-
+  - Add versioning to Docker workflows and implement cleanup for old develop versions
+  - Add step to pull latest changes before setting version string in Docker workflow
+  - Update cleanup process for old Docker images using GitHub CLI
+  - Enhance Docker workflows and add version display in web interface
 - Fixes
+  - Update commit message format for version file changes in Docker workflow
+  - Force push changes to version file during Docker image build
+  - Enhance cleanup process for old Docker versions by adding VERSION_PREFIX environment variable
+  - Update upload artifact action to v4 and rename artifact for clarity
 
 - Other Changes
-
+  - Consolidate Docker workflows by removing nightly and snapshot workflows, and enhancing the main workflow for versioning and cleanup
 
 **Version 0.0.26** published on 17.04.2025
 - Fixes:
