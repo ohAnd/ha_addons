@@ -1,3 +1,11 @@
+**Version 0.1.6** published on 2025-04-20
+- Features
+
+- Fixes
+
+- Other Changes
+
+
 **Version 0.1.4** published on 2025-04-18
 - Features
 
