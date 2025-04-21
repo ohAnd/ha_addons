@@ -60,6 +60,13 @@ jobs:
           
           rm -f ../changes.diff
 
+      - name: Update Submodule
+        run: |
+          git submodule update --init --recursive
+          git submodule update --remote eos_connect/src
+          cd eos_connect/src
+          git fetch --all
+
       - name: Debug Submodule State
         run: |
           cd eos_connect/src
