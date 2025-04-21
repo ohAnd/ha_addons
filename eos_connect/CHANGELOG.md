@@ -1,3 +1,12 @@
+**Version 0.1.8** published on 2025-04-21
+ - Features
+     - feat: Update chart data to include income fixes #15 Showing revenue on generated website  and change label for expenses
+ - Fixes
+     - fix: refine overlay menu styles + incl. links to repo, changelog, issues and improve mobile responsiveness
+     - fix: update terminology and color coding for charge modes in index.html
+     - fix: enhance error handling in EOS Connect interface - fixes startup behavior with default config
+ - Other Changes
+     - docs: Update README and CONFIG_README for clarity and configuration details - fix #20
 **Version 0.1.6** published on 2025-04-20
 - Features
   - Add new mode for discharge allowed during e-car charging in min+pv mode and enhance battery charging data display
