@@ -59,24 +59,21 @@ jobs:
           fi
           
           rm -f ../changes.diff
-
-      - name: Stop workflow if config changed
-        if: steps.check_changes.outputs.changed == 'true'
-        run: |
-          echo "EOS connect config changed - has to be released manually"
-          exit 1
       
       - name: Collect all commit messages of submodule eos_connect/src between commits
         id: get_commit_messages
-        if: steps.check_changes.outputs.changed == 'false'
         run: |
           cd eos_connect/src
           git log --pretty=format:"%s" ${{ steps.get_current_commit_hash.outputs.commit_hash }}..${{ steps.get_new_commit_hash.outputs.commit_hash }} > ../commit_messages.txt
-          
+          echo "\n>> Commit messages of eos_connect between commits:"
+          echo "----------------------------------------"
+          cat ../commit_messages.txt
+          echo "\n----------------------------------------"
+          echo ">> End of commit messages"
           if [ -s ../commit_messages.txt ]; then
-            commit_messages=$(cat ../commit_messages.txt | tr '\n' ';')
-            commit_count=$(echo "$commit_messages" | tr -cd ';' | wc -c)
-            echo ">> Number of commits of this release: $commit_count"
+            commit_messages=$(cat ../commit_messages.txt | tr '\n' '|||')
+            commit_count=$(echo "$commit_messages" | tr -cd '|||' | wc -c)
+            echo ">> Number of commits of this release: $commit_count\n"
             echo "commit_messages=$commit_messages" >> $GITHUB_OUTPUT
           else
             echo "No commit messages found. Skipping."
@@ -89,35 +86,39 @@ jobs:
         run: |
             # Extracts the first commit message that starts with "[AUTO] Update version to ",
             # removes the prefix, and assigns the version to the variable 'first_auto_update'.
-            first_auto_update=$(echo "${{ steps.get_commit_messages.outputs.commit_messages }}" | tr ';' '\n' | grep "^\[AUTO\] Update version to snapshot-v" | head -n 1 | sed 's/^\[AUTO\] Update version to snapshot-v//')
+            echo ">> Getting current version... from:"
+            echo "----------------------------------------"
+            printf "%s\n" "${{ steps.get_commit_messages.outputs.commit_messages }}"
+            echo "----------------------------------------" 
+            first_auto_update=$(echo "${{ steps.get_commit_messages.outputs.commit_messages }}" | tr '|||' '\n' | grep "^\[AUTO\] Update version to snapshot-v" | head -n 1 | sed 's/^\[AUTO\] Update version to snapshot-v//')
             echo "current_version=$first_auto_update" >> $GITHUB_OUTPUT
             echo ">> Current Version = $first_auto_update"
 
       - name: get cleaned commit messages
         id: get_cleaned_commit_messages
         run: |
-            filtered_messages=$(echo "${{ steps.get_commit_messages.outputs.commit_messages }}" | tr ';' '\n' | grep -v "^\[AUTO\]" | grep -v "^Merge pull" | grep -v "^Merge branch" | tr '\n' ';')
+            filtered_messages=$(echo "${{ steps.get_commit_messages.outputs.commit_messages }}" | tr '|||' '\n' | grep -v "^\[AUTO\]" | grep -v "^Merge pull" | grep -v "^Merge branch" | tr '\n' '|||')
             echo "filtered_commit_messages=$filtered_messages" >> $GITHUB_OUTPUT
       
       - name: get all features
         id: get_all_features
         run: |
             # Extracts all commit messages that start with "feat:" and assigns them to the variable 'features'.
-            features=$(echo "${{ steps.get_cleaned_commit_messages.outputs.filtered_commit_messages }}" | tr ';' '\n' | grep "^feat:" | tr '\n' ';')
+            features=$(echo "${{ steps.get_cleaned_commit_messages.outputs.filtered_commit_messages }}" | tr '|||' '\n' | grep "^feat:" | tr '\n' '|||')
             echo "features=$features" >> $GITHUB_OUTPUT
       
       - name: get all fixes
         id: get_all_fixes
         run: |
             # Extracts all commit messages that start with "fix:" and assigns them to the variable 'fixes'.
-            fixes=$(echo "${{ steps.get_cleaned_commit_messages.outputs.filtered_commit_messages }}" | tr ';' '\n' | grep "^fix:" | tr '\n' ';')
+            fixes=$(echo "${{ steps.get_cleaned_commit_messages.outputs.filtered_commit_messages }}" | tr '|||' '\n' | grep "^fix:" | tr '\n' '|||')
             echo "fixes=$fixes" >> $GITHUB_OUTPUT
       
       - name: get all other messages
         id: get_all_other_messages
         run: |
             # Extracts all commit messages that do not start with "feat:" or "fix:" and assigns them to the variable 'other_messages'.
-            other_messages=$(echo "${{ steps.get_cleaned_commit_messages.outputs.filtered_commit_messages }}" | tr ';' '\n' | grep -v "^feat:" | grep -v "^fix:" | tr '\n' ';')
+            other_messages=$(echo "${{ steps.get_cleaned_commit_messages.outputs.filtered_commit_messages }}" | tr '|||' '\n' | grep -v "^feat:" | grep -v "^fix:" | tr '\n' '|||')
             echo "other_messages=$other_messages" >> $GITHUB_OUTPUT
 
       - name: writing eos_connect/CHANGELOG.md
@@ -128,13 +129,24 @@ jobs:
             # **Version 0.0.26** published on 17.04.2025
             changelog="**Version ${{ steps.get_current_version.outputs.current_version }}** published on $(date +'%Y-%m-%d')\n"
             changelog+="- Features\n"
-            changelog+=$(echo "${{ steps.get_all_features.outputs.features }}" | tr ';' '\n' | sed '/^$/d' | sed 's/^/    - /')"\n"
+            changelog+=$(echo "${{ steps.get_all_features.outputs.features }}" | tr '|||' '\n' | sed '/^$/d' | sed 's/^/    - /')"\n"
             changelog+="- Fixes\n"
-            changelog+=$(echo "${{ steps.get_all_fixes.outputs.fixes }}" | tr ';' '\n' | sed '/^$/d' | sed 's/^/    - /')"\n"
+            changelog+=$(echo "${{ steps.get_all_fixes.outputs.fixes }}" | tr '|||' '\n' | sed '/^$/d' | sed 's/^/    - /')"\n"
             changelog+="- Other Changes\n"
-            changelog+=$(echo "${{ steps.get_all_other_messages.outputs.other_messages }}" | tr ';' '\n' | sed '/^$/d' | sed 's/^/    - /')"\n"
+            changelog+=$(echo "${{ steps.get_all_other_messages.outputs.other_messages }}" | tr '|||' '\n' | sed '/^$/d' | sed 's/^/    - /')"\n"
+
+            echo ">> changelog for recent version:"
+            echo "----------------------------------------"
+            echo -e "$changelog"
+            echo "----------------------------------------"
 
             echo -e "$changelog\n$(cat eos_connect/CHANGELOG.md)" > eos_connect/CHANGELOG.md
+
+      - name: Stop workflow if config changed
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          echo "EOS connect config changed - has to be released manually"
+          exit 1
 
       - name: replace version in eos_connect/config.yaml
         id: replace_version
