@@ -59,16 +59,24 @@ jobs:
           fi
           
           rm -f ../changes.diff
-      
+
+      - name: Debug Submodule State
+        run: |
+          cd eos_connect/src
+          git status
+          git log --oneline -n 10
+
       - name: Collect all commit messages of submodule eos_connect/src between commits
         id: get_commit_messages
         run: |
           cd eos_connect/src
           git log --pretty=format:"%s" ${{ steps.get_current_commit_hash.outputs.commit_hash }}..${{ steps.get_new_commit_hash.outputs.commit_hash }} > ../commit_messages.txt
-          echo "\n>> Commit messages of eos_connect between commits:"
+          echo ""
+          echo ">> Commit messages of eos_connect between commits:"
           echo "----------------------------------------"
           cat ../commit_messages.txt
-          echo "\n----------------------------------------"
+          echo ""
+          echo "----------------------------------------"
           echo ">> End of commit messages"
           if [ -s ../commit_messages.txt ]; then
             commit_messages=$(cat ../commit_messages.txt | tr '\n' '|||')
