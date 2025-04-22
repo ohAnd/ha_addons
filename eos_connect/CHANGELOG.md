@@ -1,3 +1,11 @@
+**Version 0.1.9** published on 2025-04-22
+- Features
+    - no specific
+- Fixes
+    - no specific
+- Other Changes
+
+
 **Version 0.1.8** published on 2025-04-21
  - Features
      - feat: Update chart data to include income fixes #15 Showing revenue on generated website  and change label for expenses
