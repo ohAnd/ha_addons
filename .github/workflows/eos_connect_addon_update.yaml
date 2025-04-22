@@ -119,7 +119,10 @@ jobs:
         id: get_all_features
         run: |
             # Extracts all commit messages that start with "feat:" and assigns them to the variable 'features'.
-            features=$(echo "${{ steps.get_cleaned_commit_messages.outputs.filtered_commit_messages }}" | tr '|||' '\n' | grep "^feat:" | tr '\n' '|||')
+            features=$(echo "${{ steps.get_cleaned_commit_messages.outputs.filtered_commit_messages }}" | tr '|||' '\n' | grep "^feat" | tr '\n' '|||')
+            if [ -z "$features" ]; then
+              features="no specific"
+            fi
             echo "features=$features" >> $GITHUB_OUTPUT
       
       - name: get all fixes
@@ -127,13 +130,19 @@ jobs:
         run: |
             # Extracts all commit messages that start with "fix:" and assigns them to the variable 'fixes'.
             fixes=$(echo "${{ steps.get_cleaned_commit_messages.outputs.filtered_commit_messages }}" | tr '|||' '\n' | grep "^fix:" | tr '\n' '|||')
+            if [ -z "$fixes" ]; then
+              fixes="no specific"
+            fi
             echo "fixes=$fixes" >> $GITHUB_OUTPUT
       
       - name: get all other messages
         id: get_all_other_messages
         run: |
             # Extracts all commit messages that do not start with "feat:" or "fix:" and assigns them to the variable 'other_messages'.
-            other_messages=$(echo "${{ steps.get_cleaned_commit_messages.outputs.filtered_commit_messages }}" | tr '|||' '\n' | grep -v "^feat:" | grep -v "^fix:" | tr '\n' '|||')
+            other_messages=$(echo "${{ steps.get_cleaned_commit_messages.outputs.filtered_commit_messages }}" | tr '|||' '\n' | grep -v "^feat" | grep -v "^fix:" | tr '\n' '|||')
+            if [ -z "$other_messages" ]; then
+              other_messages="no specific"
+            fi
             echo "other_messages=$other_messages" >> $GITHUB_OUTPUT
 
       - name: writing eos_connect/CHANGELOG.md
@@ -158,7 +167,7 @@ jobs:
             echo -e "$changelog\n$(cat eos_connect/CHANGELOG.md)" > eos_connect/CHANGELOG.md
 
       - name: Stop workflow if config changed
-        if: steps.check_changes.outputs.changed == 'true'
+        # if: steps.check_changes.outputs.changed == 'true'
         run: |
           echo "EOS connect config changed - has to be released manually"
           exit 1
