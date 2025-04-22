@@ -105,7 +105,7 @@ jobs:
             echo "----------------------------------------"
             printf "%s\n" "${{ steps.get_commit_messages.outputs.commit_messages }}"
             echo "----------------------------------------" 
-            first_auto_update=$(echo "${{ steps.get_commit_messages.outputs.commit_messages }}" | tr '|||' '\n' | grep "^\[AUTO\] Update version to snapshot-v" | head -n 1 | sed 's/^\[AUTO\] Update version to snapshot-v//')
+            first_auto_update=$(echo "${{ steps.get_commit_messages.outputs.commit_messages }}" | tr '|||' '\n' | grep "^\[AUTO\] Update version to " | head -n 1 | sed 's/^\[AUTO\] Update version to //')
             echo "current_version=$first_auto_update" >> $GITHUB_OUTPUT
             echo ">> Current Version = $first_auto_update"
 
@@ -170,7 +170,7 @@ jobs:
         # if: steps.check_changes.outputs.changed == 'true'
         run: |
           echo "EOS connect config changed - has to be released manually"
-          exit 1
+          exit 0
 
       - name: replace version in eos_connect/config.yaml
         id: replace_version
