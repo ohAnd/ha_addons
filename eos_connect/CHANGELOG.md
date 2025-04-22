@@ -1,9 +1,10 @@
 **Version 0.1.9** published on 2025-04-22
 - Features
-    - no specific
+    - feature: add several detail data for direct visibility + update layout and font sizes for better readability in dashbaord
 - Fixes
-    - no specific
+    - feature: refactor battery interface initialization and add calculating of remaining usable energy
 - Other Changes
+  - org: update versioning scheme in workflows and version.py for consistency
 
 
 **Version 0.1.8** published on 2025-04-21

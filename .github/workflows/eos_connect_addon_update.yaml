@@ -170,7 +170,7 @@ jobs:
         # if: steps.check_changes.outputs.changed == 'true'
         run: |
           echo "EOS connect config changed - has to be released manually"
-          exit 0
+          exit 1
 
       - name: replace version in eos_connect/config.yaml
         id: replace_version
