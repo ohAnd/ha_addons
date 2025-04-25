@@ -1,3 +1,11 @@
+**Version 0.1.11** published on 2025-04-25
+- Features
+    - no specific
+- Fixes
+    - fix: Add paho-mqtt dependency to requirements
+- Other Changes
+    - no specific
+
 **Version 0.1.10** published on 2025-04-25
 - Features
     - feature: Add MQTT configuration support and interface for Home Assistant integration - close #11 Extract Current Controls values to Homeassistant entities
