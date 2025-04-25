@@ -97,8 +97,8 @@ options:
     tls: false # Use TLS for MQTT server - default: false
     ha_mqtt_auto_discovery: true # Enable Home Assistant MQTT auto discovery - default: true
     ha_mqtt_auto_discovery_prefix: homeassistant # Prefix for Home Assistant MQTT auto discovery - default: homeassistant
-    refresh_time: 3 # Default refresh time in minutes
   
+  refresh_time: 3 # Default refresh time in minutes
   time_zone: Europe/Berlin # Default time zone
   eos_connect_web_port: 8081 # Default port for EOS connect server
   log_level: info # loglevel: debug, info, warning, error
@@ -163,7 +163,6 @@ schema:
     tls: bool # Use TLS for MQTT server - default: false
     ha_mqtt_auto_discovery: bool # Enable Home Assistant MQTT auto discovery - default: true
     ha_mqtt_auto_discovery_prefix: str # Prefix for Home Assistant MQTT auto discovery - default: homeassistant
-    refresh_time: int(1,) # Default refresh time in minutes
   refresh_time: int(1,) # Default refresh time in minutes
   time_zone: str # Default time zone
   eos_connect_web_port: int(1,65535) # Port for EOS server
