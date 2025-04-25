@@ -87,11 +87,19 @@ options:
 
   evcc:
     url: "http://<ip>:7070" # URL to your evcc installation
-  refresh_time: 3 # Default refresh time in minutes
+  mqtt:
+    enabled: false # Enable MQTT - default: false
+    broker: localhost # URL for MQTT server - default: mqtt://yourMQTTserver
+    port: 1883 # Port for MQTT server - default: 1883
+    user: mqtt_user # Username for MQTT server - default: mqtt
+    password: mqtt_password # Password for MQTT server - default: mqtt
+    tls: false # Use TLS for MQTT server - default: false
+    ha_mqtt_auto_discovery: true # Enable Home Assistant MQTT auto discovery - default: true
+    ha_mqtt_auto_discovery_prefix: homeassistant # Prefix for Home Assistant MQTT auto discovery - default: homeassistant
+    refresh_time: 3 # Default refresh time in minutes
   time_zone: Europe/Berlin # Default time zone
   eos_connect_web_port: 8081 # Default port for EOS connect server
   log_level: info # loglevel: debug, info, warning, error
-
 schema:
   load:
     source: list(openhab|homeassistant|default) # Data source for load power
@@ -144,6 +152,16 @@ schema:
     max_bat_discharge_rate: int(0,10000)
   evcc:
     url: str # URL to your evcc installation
+    mqtt:
+    enabled: bool # Enable MQTT - default: false
+    broker: str # URL for MQTT server - default: mqtt://yourMQTTserver
+    port: int(1,65535) # Port for MQTT server - default: 1883
+    user: str # Username for MQTT server - default: mqtt
+    password: password # Password for MQTT server - default: mqtt
+    tls: bool # Use TLS for MQTT server - default: false
+    ha_mqtt_auto_discovery: bool # Enable Home Assistant MQTT auto discovery - default: true
+    ha_mqtt_auto_discovery_prefix: str # Prefix for Home Assistant MQTT auto discovery - default: homeassistant
+    refresh_time: int(1,) # Default refresh time in minutes
   refresh_time: int(1,) # Default refresh time in minutes
   time_zone: str # Default time zone
   eos_connect_web_port: int(1,65535) # Port for EOS server
