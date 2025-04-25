@@ -1,3 +1,14 @@
+**Version 0.1.10** published on 2025-04-25
+- Features
+    - feature: Add MQTT configuration support and interface for Home Assistant integration - close #11 Extract Current Controls values to Homeassistant entities
+    - feat: (inverter) refactor version handling and add Docker workflow for image build and push
+    - feature: Enhance EVCC interface and UI: - Added detailed vehicle data fetching to the EVCC interface. - Updated HTML to display vehicle charging details and status. - Improved CSS for smoother transitions on value changes.
+- Fixes
+    - fix: (inverter) update API path handling in login and logout methods
+    - fix: (inverter) add version handling for Fronius GEN24 API endpoints
+- Other Changes
+    - nothing ;-)
+
 **Version 0.1.9** published on 2025-04-22
 - Features
     - feature: add several detail data for direct visibility + update layout and font sizes for better readability in dashbaord
