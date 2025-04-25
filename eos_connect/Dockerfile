@@ -21,7 +21,8 @@ RUN python3 -m venv /opt/venv && \
         gevent>=24.2.1 \
         pyyaml>=6.0 \
         pytz>=2025.1 \
-        ruamel.yaml>=0.18.10
+        ruamel.yaml>=0.18.10 \
+        paho-mqtt>=2.1.0
 
 # Link the configuration file
 RUN ln -sf /data/options.json /app/src/config.yaml
