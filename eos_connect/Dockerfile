@@ -5,7 +5,7 @@ FROM $BUILD_FROM
 RUN apk add --no-cache g++ gcc libffi-dev musl-dev make python3 py3-pip python3-dev git
 
 # Copy the application code
-COPY ./src /app
+COPY ./src/src /app
 
 # Set the working directory
 WORKDIR /app
