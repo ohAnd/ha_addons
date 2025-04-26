@@ -1,4 +1,7 @@
-**Version 0.0.7-fix1** published on 25.04.2025
+**Version 0.0.7-fix2** published on 26.04.2025
+- colored logo for better visibility in HA addon overview active (colored)/ not active (b/w)
+
+**Version 0.0.7-fix1** published on 26.04.2025
 - fixing image build - submodule fetching
 
 **Version 0.0.7** published on 07.04.2025
