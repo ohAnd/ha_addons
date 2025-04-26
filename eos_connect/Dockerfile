@@ -25,7 +25,8 @@ RUN python3 -m venv /opt/venv && \
         paho-mqtt>=2.1.0
 
 # Link the configuration file
-RUN ln -sf /data/options.json /app/src/config.yaml
+# RUN ln -sf /data/options.json /app/src/config.yaml
+RUN ln -sf /data/options.json /app/config.yaml
 
 # Add HEALTHCHECK directive
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
