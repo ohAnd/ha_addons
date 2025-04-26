@@ -7,6 +7,10 @@ RUN apk add --no-cache g++ gcc libffi-dev musl-dev make python3 py3-pip python3-
 # Copy the application code
 COPY ./src /app
 
+# Debug: List the contents of /app and /app/src to verify the copy
+RUN ls -l /app
+RUN ls -l /app/src
+
 # Set the working directory
 WORKDIR /app/src
 
@@ -25,8 +29,7 @@ RUN python3 -m venv /opt/venv && \
         paho-mqtt>=2.1.0
 
 # Link the configuration file
-RUN ln -sf /data/options.json /app/src/config.yaml # local build
-# RUN ln -sf /data/options.json /app/config.yaml
+RUN ln -sf /data/options.json /app/src/config.yaml
 
 # Add HEALTHCHECK directive
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
@@ -36,5 +39,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 EXPOSE 8081
 
 # Set the command to start the container
-CMD ["/opt/venv/bin/python", "/app/src/eos_connect.py"] # local build
-# CMD ["/opt/venv/bin/python", "/app/eos_connect.py"]
+CMD ["/opt/venv/bin/python", "/app/src/eos_connect.py"]

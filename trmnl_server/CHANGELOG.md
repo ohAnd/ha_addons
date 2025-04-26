@@ -1,3 +1,6 @@
+**Version 0.0.7-fix1** published on 25.04.2025
+- fixing image build - submodule fetching
+
 **Version 0.0.7** published on 07.04.2025
 - fixing addon config to use the HA config for trmnl server
 

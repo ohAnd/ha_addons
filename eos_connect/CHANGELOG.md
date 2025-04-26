@@ -1,6 +1,9 @@
+**Version 0.1.11-fix5** published on 2025-04-25
+- fixing image build - submodule fetching
+
 **Version 0.1.11-fix4** published on 2025-04-25
 - Other Changes
-    -  HA addon: pre build images - fixing copy path
+    -  HA addon: pre build images - fixing copy path/ submodule
 
 **Version 0.1.11-fix2** published on 2025-04-25
 - Other Changes
