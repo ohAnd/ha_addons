@@ -10,41 +10,35 @@ This repository contains different addons.
 
 ### [Batcontrol add-on](./batcontrol)
 
+*Fork from https://github.com/muexxl/batcontrol.*
+
 To use this addon you need a Fronius Inverter with a battery AND a dynamic priced electricity contract from Tibber.
 
 Futher details can be found here https://github.com/ohAnd/batcontrol (forked from here https://github.com/muexxl/batcontrol)
 
-![Supports aarch64 Architecture][aarch64-shield]
+The batcontrol addon builds locally during the install at Homeassistant.
+
+<!-- ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
 ![Supports armhf Architecture][armhf-shield]
 ![Supports armv7 Architecture][armv7-shield]
-![Supports i386 Architecture][i386-shield]
+![Supports i386 Architecture][i386-shield] -->
 
 ### [EOS connect add-on](./eos_connect)
 
-EOS Connect is a tool designed to easily collect the needed data for optimize energy usage by interacting with the EOS system. It displays the results dynamically on a webpage. And will be used as controller for a PV / Battery System.
+EOS Connect is a tool designed to easily collect the needed data for optimize energy usage by interacting with the EOS system. It displays the results dynamically on a webpage. And is controlling your PV / Battery System. Futher details can be found here https://github.com/ohAnd/EOS_connect.
 
-To use this addon you need a openhab or homeassistant with persisted energy data and an [EOS](https://github.com/Akkudoktor-EOS/EOS)
+To use this addon you need an openhab or homeassistant with persisted energy data and a running [EOS - Energy Optimization System](https://github.com/Akkudoktor-EOS/EOS) instance. Optional [EVCC](https://github.com/evcc-io/hassio-addon) is also connectable to cover some specific use cases during e-car charging.
 
-Futher details can be found here https://github.com/ohAnd/EOS_connect
+*Note: Recommendation for a HA addon for EOS at https://github.com/Duetting/ha_eos_addon. (or https://github.com/thecem/ha_eos_addon)*
 
-![Supports aarch64 Architecture][aarch64-shield]
+Currently eos_connect builds directly on Homeassistant - it takes some time ;-) (pre builds are in dev)
+
+<!-- ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
 ![Supports armhf Architecture][armhf-shield]
 ![Supports armv7 Architecture][armv7-shield]
-![Supports i386 Architecture][i386-shield]
-
-### [EOS add-on](./eos)
-
-----> **currently broken**
-
-_EOS add-on.__
-This is just a home assistant add-on wrapper for the great work here: <https://github.com/Akkudoktor-EOS/EOS>
-
-===> fork from https://github.com/Duetting/ha_eos_addon to get the most recent version of EOS running in HA
-
-![Supports aarch64 Architecture][aarch64-shield]
-![Supports amd64 Architecture][amd64-shield]
+![Supports i386 Architecture][i386-shield] -->
 
 ### [modbus_tcp_smartmeter add-on](./modbus_tcp_smartmeter)
 

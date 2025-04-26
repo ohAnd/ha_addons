@@ -1,3 +1,0 @@
-network:
-  8503/TCP: EOS fastapi server (Not used for Ingress)
-# configuration:
