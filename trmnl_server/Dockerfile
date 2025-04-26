@@ -16,6 +16,8 @@ RUN apk add --no-cache \
             ttf-dejavu
 
 COPY ./src /app
+# Debug: List the contents of /app and /app/src to verify the copy
+RUN ls -l /app
 
 WORKDIR /app
 # Link the configuration file
