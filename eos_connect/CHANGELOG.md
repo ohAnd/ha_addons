@@ -1,8 +1,8 @@
+**Version 0.1.11-fix2** published on 2025-04-25
+- Other Changes
+    -  HA addon: pre build images - fixing executable path
+  
 **Version 0.1.11-fix1** published on 2025-04-25
-- Features
-    - no specific
-- Fixes
-    - no specific
 - Other Changes
     -  HA addon: switching to pre build images
 
