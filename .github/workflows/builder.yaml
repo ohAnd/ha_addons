@@ -21,6 +21,13 @@ jobs:
         uses: actions/checkout@v4.2.2
         with:
           submodules: recursive  # Ensure submodules are cloned
+          fetch-depth: 0         # Fetch the full history to ensure submodules work correctly
+
+      - name: Verify submodules
+        run: git submodule update --init --recursive
+
+      - name: List submodule contents
+        run: ls -l ./src
 
       - name: Get changed files
         id: changed_files
