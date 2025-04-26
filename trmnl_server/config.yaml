@@ -1,6 +1,6 @@
 name: "TRMNL Server"
 description: "TRMNL local server to serve own BMP's directly"
-version: "0.0.7_test4"
+version: "0.0.7_test5"
 slug: "trmnl_server"
 url: "https://github.com/ohAnd/trmnlServer"
 arch:

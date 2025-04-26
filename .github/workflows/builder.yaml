@@ -20,13 +20,7 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4.2.2
-        with:
-          submodules: recursive  # Ensure submodules are cloned
-          fetch-depth: 0         # Fetch the full history to ensure submodules work correctly
-
-      - name: Verify submodules
-        run: git submodule update --init --recursive
-
+        
       - name: Get changed files
         id: changed_files
         uses: jitterbit/get-changed-files@v1
@@ -76,6 +70,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4.2.2
+        with:
+          submodules: recursive  # Ensure submodules are cloned
+          fetch-depth: 0         # Fetch the full history to ensure submodules work correctly
 
       - name: Get information
         id: info
