@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - test_builder
+  workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
   init:
@@ -25,9 +26,6 @@ jobs:
 
       - name: Verify submodules
         run: git submodule update --init --recursive
-
-      - name: List submodule contents
-        run: ls -l ./src
 
       - name: Get changed files
         id: changed_files
