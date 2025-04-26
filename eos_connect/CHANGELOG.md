@@ -1,3 +1,11 @@
+**Version 0.1.11-fix1** published on 2025-04-25
+- Features
+    - no specific
+- Fixes
+    - no specific
+- Other Changes
+    -  HA addon: switching to pre build images
+
 **Version 0.1.11** published on 2025-04-25
 - Features
     - no specific
