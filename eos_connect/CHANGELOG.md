@@ -1,3 +1,6 @@
+**Version 0.1.11-fix6** published on 2025-04-25
+- adding builds for armhf / armv7 - after verifiying run for aarch64
+
 **Version 0.1.11-fix5** published on 2025-04-25
 - fixing image build - submodule fetching
 
