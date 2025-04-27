@@ -1,3 +1,13 @@
+**Version 0.1.12** published on 2025-04-27
+- Features
+    - feature: Enhance EVCC charging mode handling and update UI for smart cost scenarios
+- Fixes
+    - fix: Update version prefix in docker_develop.yml to include minor version
+    - fix: Update max charge power display from watts to kilowatts in index.html
+    - fix: Correct calculation of remaining charging duration in index.html
+- Other Changes
+  - no specific
+
 **Version 0.1.11-fix6** published on 2025-04-25
 - adding builds for armhf / armv7 - after verifiying run for aarch64
 

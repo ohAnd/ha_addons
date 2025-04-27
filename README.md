@@ -32,16 +32,11 @@ To use this addon you need an openhab or homeassistant with persisted energy dat
 
 *Note: Recommendation for a HA addon for EOS at https://github.com/Duetting/ha_eos_addon. (or https://github.com/thecem/ha_eos_addon)*
 
-<!-- Currently eos_connect builds directly on Homeassistant - it takes some time ;-) (pre builds are in dev) -->
-[test][https://img.shields.io/github/check-runs/ohand/ha_addons/master]
-
-
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
+![Supports armhf Architecture][armhf-shield]
+![Supports armv7 Architecture][armv7-shield]
 ![Supports i386 Architecture][i386-shield]
-
-<!-- ![Supports armhf Architecture][armhf-shield] -->
-<!-- ![Supports armv7 Architecture][armv7-shield] -->
 
 ### [modbus_tcp_smartmeter add-on](./modbus_tcp_smartmeter)
 
