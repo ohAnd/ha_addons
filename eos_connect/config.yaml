@@ -1,6 +1,6 @@
 name: "EOS connect"
 description: "Tool to optimize energy usage with EOS system data."
-version: "Version 0.1.12"
+version: "0.1.12"
 slug: "eos_connect"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
