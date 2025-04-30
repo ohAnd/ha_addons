@@ -38,6 +38,16 @@ To use this addon you need an openhab or homeassistant with persisted energy dat
 ![Supports armv7 Architecture][armv7-shield]
 ![Supports i386 Architecture][i386-shield]
 
+### [EOS connect develop add-on](./eos_connect_develop)
+
+Contentwise same as above. Last develop version -> https://github.com/ohAnd/EOS_connect/tree/develop
+
+![Supports aarch64 Architecture][aarch64-shield]
+![Supports amd64 Architecture][amd64-shield]
+![Supports armhf Architecture][armhf-shield]
+![Supports armv7 Architecture][armv7-shield]
+![Supports i386 Architecture][i386-shield]
+
 ### [modbus_tcp_smartmeter add-on](./modbus_tcp_smartmeter)
 
 Small self running modbus tcp client to serve energy, power, voltage and current data for an central energy system or main hybrid inverter.

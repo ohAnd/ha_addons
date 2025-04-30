@@ -7,3 +7,7 @@
 [submodule "eos_connect/src"]
 	path = eos_connect/src
 	url = https://github.com/ohAnd/EOS_connect.git
+[submodule "eos_connect_develop/src"]
+	path = eos_connect_develop/src
+	url = https://github.com/ohAnd/EOS_connect.git
+	branch = develop

@@ -1,0 +1,183 @@
+configuration:
+  load:
+    name: Load Settings
+    description: Configuration for load power data source and settings.
+    source:
+      name: Load Source
+      description: "Data source for load power. Possible values: openhab, homeassistant, default (static data)."
+    url:
+      name: Load URL
+      description: URL for openhab (e.g., ip:8080) or homeassistant (e.g., ip:8123).
+    load_sensor:
+      name: Load Sensor
+      description: Item/entity name for load power data (openhab item/homeassistant sensor).
+    car_charge_load_sensor:
+      name: Car Charge Load Sensor
+      description: Item/entity for wallbox power data.
+    access_token:
+      name: Access Token
+      description: Access token for homeassistant (optional).
+
+  eos:
+    name: EOS Settings
+    description: Configuration for EOS server connection.
+    server:
+      name: EOS Server
+      description: EOS server address.
+    port:
+      name: EOS Port
+      description: Port for EOS server.
+    timeout:
+      name: Timeout
+      description: Timeout for EOS optimize request in seconds.
+
+  price:
+    name: Price Settings
+    description: Configuration for electricity price data source and settings.
+    source:
+      name: Price Source
+      description: "Data source for electricity price. Possible values: tibber, default (=akkudoktor)."
+    token:
+      name: Price Token
+      description: Token for electricity price from tibber.
+    feed_in_price:
+      name: Feed-in Price
+      description: Feed-in price for electricity in EUR/kWh (optional).
+    negative_price_switch:
+      name: Negative Price Switch
+      description: Switch for negative stock price handling (True/False, optional).
+
+  battery:
+    name: Battery Settings
+    description: Configuration for battery SOC data source and settings.
+    source:
+      name: Battery Source
+      description: "Data source for battery SOC. Possible values: openhab, homeassistant, default (static data)."
+    url:
+      name: Battery URL
+      description: URL for openhab (e.g., ip:8080) or homeassistant (e.g., ip:8123).
+    soc_sensor:
+      name: SOC Sensor
+      description: Item/entity name for SOC sensor (openhab item/homeassistant sensor).
+    access_token:
+      name: Access Token
+      description: Access token for homeassistant (optional).
+    capacity_wh:
+      name: Battery Capacity (Wh)
+      description: Battery capacity in Wh.
+    charge_efficiency:
+      name: Charge Efficiency
+      description: Efficiency for charging the battery.
+    discharge_efficiency:
+      name: Discharge Efficiency
+      description: Efficiency for discharging the battery.
+    max_charge_power_w:
+      name: Max Charge Power (W)
+      description: Maximum charging power in W.
+    min_soc_percentage:
+      name: Min SOC Percentage
+      description: Minimum state of charge percentage.
+    max_soc_percentage:
+      name: Max SOC Percentage
+      description: Maximum state of charge percentage.
+
+  pv_forecast:
+    name: PV Forecast Settings
+    description: Configuration for PV forecast settings.
+    default:
+      lat:
+        name: Latitude
+        description: Latitude for PV forecast @ Akkudoktor API.
+      lon:
+        name: Longitude
+        description: Longitude for PV forecast @ Akkudoktor API.
+      azimuth:
+        name: Azimuth
+        description: Azimuth for PV forecast @ Akkudoktor API.
+      tilt:
+        name: Tilt
+        description: Tilt for PV forecast @ Akkudoktor API.
+      power:
+        name: Power
+        description: Power for PV forecast @ Akkudoktor API.
+      powerInverter:
+        name: Power Inverter
+        description: Power Inverter for PV forecast @ Akkudoktor API.
+      inverterEfficiency:
+        name: Inverter Efficiency
+        description: Inverter Efficiency for PV forecast @ Akkudoktor API.
+      horizont:
+        name: Horizont
+        description: Optional - Horizont to calculate shading up to 360 values to describe shading situation for your PV.
+  inverter:
+    name: Inverter Settings
+    description: Configuration for inverter settings.
+    type:
+      name: Inverter Type
+      description: Type of inverter - fronius_gen24 or default (display only mode).
+    address:
+      name: Inverter Address
+      description: Address of the inverter.
+    user:
+      name: Inverter User
+      description: User for the inverter. e.g. customer
+    password:
+      name: Inverter Password
+      description: Password for the inverter.
+    max_grid_charge_rate:
+      name: Max Grid Charge Rate
+      description: Maximum grid charge rate in W.
+    max_pv_charge_rate:
+      name: Max PV Charge Rate
+      description: Maximum PV charge rate in W.
+    max_bat_discharge_rate:
+      name: Max Battery Discharge Rate
+      description: Maximum battery discharge rate in W.
+  evcc:
+    name: EVCC Settings
+    description: Configuration for EVCC settings.
+    url:
+      name: EVCC Url
+      description: url of the EVCC. e.g. http://192.168.1.3:7070
+  mqtt:
+    name: MQTT Settings
+    description: Configuration for MQTT settings.
+    enabled:
+      name: Enable MQTT
+      description: "Enable or disable MQTT integration. Default: false."
+    broker:
+      name: MQTT Broker
+      description: "URL for the MQTT server. Default: mqtt://yourMQTTserver."
+    port:
+      name: MQTT Port
+      description: "Port for the MQTT server. Default: 1883."
+    user:
+      name: MQTT User
+      description: "Username for the MQTT server. Default: mqtt."
+    password:
+      name: MQTT Password
+      description: "Password for the MQTT server. Default: mqtt."
+    tls:
+      name: Use TLS
+      description: "Enable or disable TLS for the MQTT server. Default: false."
+    ha_mqtt_auto_discovery:
+      name: Home Assistant MQTT Auto Discovery
+      description: "Enable or disable Home Assistant MQTT auto discovery. Default: true."
+    ha_mqtt_auto_discovery_prefix:
+      name: Home Assistant MQTT Auto Discovery Prefix
+      description: "Prefix for Home Assistant MQTT auto discovery. Default: homeassistant."
+  refresh_time:
+    name: Refresh Time
+    description: Default refresh time in minutes.
+
+  time_zone:
+    name: Time Zone
+    description: Default time zone.
+
+  eos_connect_web_port:
+    name: EOS Connect Web Port
+    description: Default port for EOS connect server.
+
+  log_level:
+    name: Log Level
+    description: "Log level: debug, info, warning, error."
