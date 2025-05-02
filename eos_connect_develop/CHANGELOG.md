@@ -1,10 +1,19 @@
+**Version 0.1.0.51** published on 2025-05-02
+- Features
+  - feat: dyn max charge popwer also for DC; enhance BaseControl for DC charge demand tracking; modify UI label for charge power
+  - feat: enhance dynamic charge power calculation with minimum threshold and decay function incl. c-rate
+- Fixes
+  - no specific
+- Other Changes
+  - docs: Update README and CONFIG_README for clarity and feature enhancements
+
 **Version 0.1.13** published on 2025-04-30
 - Features
- - feat: Implement mode override functionality and enhance UI for control management (-> current controls - click icon on the right)
+  - feat: Implement mode override functionality and enhance UI for control management (-> current controls - click icon on the right)
 - Fixes
- - fix: correction of unplausible car load vs. main load
+  - fix: correction of unplausible car load vs. main load
 - Other Changes
- - no specific
+  - no specific
 
 **Version 0.1.12** published on 2025-04-27
 - Features
