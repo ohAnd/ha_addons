@@ -1,3 +1,12 @@
+**Version 0.1.0.52** published on 2025-05-03
+- Features
+  - feat: refine C-rate calculation for dynamic maximum charge power with improved thresholds and rounding
+  - feat: add dynamic maximum charge power to MQTT integration and reduce dyn max charge to 10 watts steps
+- Fixes
+  - fix: update dynamic maximum charge power display to show two decimal places
+- Other Changes
+  - no specific
+  
 **Version 0.1.0.51** published on 2025-05-02
 - Features
   - feat: dyn max charge popwer also for DC; enhance BaseControl for DC charge demand tracking; modify UI label for charge power
