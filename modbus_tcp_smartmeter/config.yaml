@@ -1,6 +1,6 @@
 name: "Modbus TCP Smart Meter"
 description: "emulates a modbus tcp client to pretend to be an energy metering device"
-version: "0.0.7-fix1"
+version: "0.0.8"
 slug: "modbus_tcp_smartmeter"
 url: "https://github.com/ohAnd/ha_addons"
 init: false
@@ -21,10 +21,11 @@ host_network: true
 
 options:
   connected_phase: 1 # 1, 2 or 3 for L1, L2 or L3
-  energy_counter_out: inverter_energy # inverter_energy or smartmeter_energy
-  current_voltage: inverter_voltage # inverter_voltage or smartmeter_voltage
-  current_current: inverter_current # inverter_current or smartmeter_current
-  current_power: inverter_power # inverter_power or smartmeter_power
+  energy_counter_out: inverter_energy # energy_counter_out or smartmeter_energy
+  current_voltage: inverter_voltage # current_voltage or smartmeter_voltage
+  current_current: inverter_current # current_current or smartmeter_current
+  current_power: inverter_power # current_power or smartmeter_power
+  current_frequency: # current_frequency or smartmeterfrequency - leave empty to disable
   openhab_host: 192.168.1.30
   modbus_tcp_address: 0
   loglevel: debug
@@ -36,6 +37,7 @@ schema:
   current_voltage: str
   current_current: str
   current_power: str
+  current_frequency: str
   openhab_host: str
   modbus_tcp_address: int(0,15)
   loglevel: list(debug|info|warning|error)

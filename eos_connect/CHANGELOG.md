@@ -1,10 +1,10 @@
 **Version 0.1.13** published on 2025-04-30
 - Features
- - feat: Implement mode override functionality and enhance UI for control management (-> current controls - click icon on the right)
+  - feat: Implement mode override functionality and enhance UI for control management (-> current controls - click icon on the right)
 - Fixes
- - fix: correction of unplausible car load vs. main load
+  - fix: correction of unplausible car load vs. main load
 - Other Changes
- - no specific
+  - no specific
 
 **Version 0.1.12** published on 2025-04-27
 - Features

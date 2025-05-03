@@ -1,3 +1,6 @@
+**Version 0.0.8** published on 02.05.2025
+- rework for a more abstracted data receiving to be more stable if incoming data are not available for a certain time
+
 **Version 0.0.7-fix1** published on 04.04.2025
 - adapt config.yaml for unneeded entry
  

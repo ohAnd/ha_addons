@@ -16,6 +16,9 @@ configuration:
   current_power:
     name: OpenHAB item name of inverter current grid output power
     description: inverter power or smartmeter_power
+  current_frequency:
+    name: OpenHAB item name of inverter current grid frequency
+    description: inverter frequency or smartmeter_frequency - leave empty to disable
   openhab_host:
     name: your OpenHAB host
     description: Host IP/ internal DNS of your OpenHAB where the current inverter data are available
