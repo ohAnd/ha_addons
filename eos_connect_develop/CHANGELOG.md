@@ -1,3 +1,11 @@
+**Version 0.1.0.54** published on 2025-05-04
+- Features
+  - feat: implement MQTT control command handling and update base control modes
+- Fixes
+  - no specific
+- Other Changes
+  - no specific
+
 **Version 0.1.0.53** published on 2025-05-04
 - Features
   - no specific
