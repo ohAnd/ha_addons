@@ -1,3 +1,11 @@
+**Version 0.1.0.53** published on 2025-05-04
+- Features
+  - no specific
+- Fixes
+  - fix: update fetch URL for mode override control to use relative path - fixes HA ingress integration
+- Other Changes
+  - no specific
+
 **Version 0.1.0.52** published on 2025-05-03
 - Features
   - feat: refine C-rate calculation for dynamic maximum charge power with improved thresholds and rounding
