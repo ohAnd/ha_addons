@@ -1,3 +1,11 @@
+**Version 0.1.0.55** published on 2025-05-04
+- Features
+  - no specific
+- Fixes
+  - fix: removed max car load detection - car load has to be in watts
+- Other Changes
+  - no specific
+
 **Version 0.1.0.54** published on 2025-05-04
 - Features
   - feat: implement MQTT control command handling and update base control modes
