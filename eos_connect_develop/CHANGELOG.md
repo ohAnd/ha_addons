@@ -1,3 +1,7 @@
+**Version 0.1.0.56** published on 2025-05-06
+- Features
+  - feat: update max charge power handling to event based by soc changes
+
 **Version 0.1.0.55** published on 2025-05-04
 - Features
   - no specific
