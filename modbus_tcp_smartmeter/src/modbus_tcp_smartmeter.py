@@ -326,10 +326,18 @@ class EnergyData:
         try:
             item_value = self.__get_data_from_openhab_item(self.config[itemname])
             if isfloat(item_value):
-                self.energy_data[itemname]["value"] = round(item_value, 3)
-                # logger.debug(
-                #     "[ENERGY-DATA] Updated item: %s - %s", itemname, item_value
-                # )
+                if itemname == "energy_counter_out" and item_value == 0:
+                    logger.error(
+                        "[ENERGY-DATA] Error: Invalid energy value: %s - " +
+                        "using last known value: %s",
+                        item_value,
+                        self.energy_data_last[itemname]["value"],
+                    )
+                else:
+                    self.energy_data[itemname]["value"] = round(item_value, 3)
+                    # logger.debug(
+                    #     "[ENERGY-DATA] Updated item: %s - %s", itemname, item_value
+                    # )
             else:
                 logger.error(
                     "[ENERGY-DATA] Error: Invalid data type for item: %s - "

@@ -1,3 +1,6 @@
+**Version 0.0.9** published on 05.05.2025
+- fix: handle invalid energy values - using the last known
+
 **Version 0.0.8** published on 02.05.2025
 - rework for a more abstracted data receiving to be more stable if incoming data are not available for a certain time
 
