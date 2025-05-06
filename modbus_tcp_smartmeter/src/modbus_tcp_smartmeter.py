@@ -328,8 +328,8 @@ class EnergyData:
             if isfloat(item_value):
                 if itemname == "energy_counter_out" and item_value == 0:
                     logger.error(
-                        "[ENERGY-DATA] Error: Invalid energy value: %s - " +
-                        "using last known value: %s",
+                        "[ENERGY-DATA] Error: Invalid energy value: %s - "
+                        + "using last known value: %s",
                         item_value,
                         self.energy_data_last[itemname]["value"],
                     )
@@ -338,6 +338,8 @@ class EnergyData:
                     # logger.debug(
                     #     "[ENERGY-DATA] Updated item: %s - %s", itemname, item_value
                     # )
+                    # store 
+                    self.energy_data_last[itemname]["value"] = self.energy_data[itemname]["value"]
             else:
                 logger.error(
                     "[ENERGY-DATA] Error: Invalid data type for item: %s - "
@@ -345,9 +347,7 @@ class EnergyData:
                     itemname,
                     self.energy_data_last[itemname],
                 )
-                self.energy_data[itemname]["value"] = self.energy_data_last[itemname][
-                    "value"
-                ]
+                self.energy_data[itemname]["value"] = self.energy_data_last[itemname]["value"]
         except (requests.exceptions.RequestException, ValueError, KeyError) as e:
             logger.error("[ENERGY-DATA] Error: %s", e)
             logger.error(
@@ -453,6 +453,7 @@ def isfloat(num):
         return True
     except ValueError:
         return False
+
 
 ###############################################################
 # Update Modbus Registers
@@ -615,7 +616,7 @@ def updating_writer(a_context):
     i1_int1, i1_int2 = calculate_register(float(i1))
     i2_int1, i2_int2 = calculate_register(float(i2))
     i3_int1, i3_int2 = calculate_register(float(i3))
-    
+
     f1_int1, f1_int2 = calculate_register(float(input_frequency))
 
     # updating the context
