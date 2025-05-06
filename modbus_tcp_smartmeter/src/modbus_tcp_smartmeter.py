@@ -454,10 +454,6 @@ def isfloat(num):
     except ValueError:
         return False
 
-
-energy_data = EnergyData(config_manager.config)
-
-
 ###############################################################
 # Update Modbus Registers
 ###############################################################
@@ -849,6 +845,22 @@ signal.signal(signal.SIGINT, signal_handler)
 
 # Main function
 if __name__ == "__main__":
+    energy_data = EnergyData(config_manager.config)
+    # Wait for a maximum of 5 seconds to retrieve the first energy value
+    start_time = time.time()
+    while energy_data.get_energy_value() == -1:
+        if time.time() - start_time > 5:
+            logger.error(
+                "[MAIN] Error: No energy data available within 5 seconds. "+
+                "Please check your configuration."
+            )
+            os._exit(1)  # Forcefully exit the whole application
+        time.sleep(0.5)  # Check every 0.5 seconds
+    logger.info(
+        "[MAIN] Energy data available (%s kWh). Starting Modbus TCP server...",
+        energy_data.get_energy_value(),  # Convert to kWh
+    )
+
     try:
         tz = os.environ["TZ"]
         logger.info("[MAIN] host system time zone is %s", tz)

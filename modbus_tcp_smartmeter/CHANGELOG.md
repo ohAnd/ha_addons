@@ -1,3 +1,6 @@
+**Version 0.0.10** published on 05.05.2025
+- fix: move energy_data initialization to main function with timeout check for energy value retrieval
+
 **Version 0.0.9** published on 05.05.2025
 - fix: handle invalid energy values - using the last known
 
