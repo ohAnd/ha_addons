@@ -1,10 +1,17 @@
-**Version 0.1.13** published on 2025-04-30
+**Version 0.1.14** published on 2025-05-09
 - Features
-  - feat: Implement mode override functionality and enhance UI for control management (-> current controls - click icon on the right)
+  - feat: update max charge power handling to event based by soc changes
+  - feat: implement MQTT control command handling and update base control modes
+  - feat: refine C-rate calculation for dynamic maximum charge power with improved thresholds and rounding
+  - feat: add dynamic maximum charge power to MQTT integration and reduce dyn max charge to 10 watts steps
+  - feat: enhance dynamic charge power calculation with minimum threshold and decay function incl. c-rate
+  - feat: dyn max charge popwer also for DC; enhance BaseControl for DC charge demand tracking; modify UI label for charge power
 - Fixes
-  - fix: correction of unplausible car load vs. main load
+  - fix: removed max car load detection - car load has to be in watts
+  - fix: update fetch URL for mode override control to use relative path - fixes HA ingress integration
+  - fix: update dynamic maximum charge power display to show two decimal places
 - Other Changes
-  - no specific
+  - docs: Update README and CONFIG_README for clarity and feature enhancements
 
 **Version 0.1.12** published on 2025-04-27
 - Features
