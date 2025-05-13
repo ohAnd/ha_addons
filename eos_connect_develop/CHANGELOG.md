@@ -1,3 +1,7 @@
+**Version 0.1.0.60-fix1** published on 2025-05-13
+- Fixes
+  - fix: config schema for price_euro_per_wh_accu
+
 **Version 0.1.0.60** published on 2025-05-13
 - Features
   - Enhance Fronius Inverter Interface and MQTT Integration new method fetch_inverter_data to retrieve real-time inverter data, including various temperature readings and fan control percentages.
