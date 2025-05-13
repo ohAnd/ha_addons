@@ -1,3 +1,7 @@
+**Version 0.1.0.59** published on 2025-05-13
+- Fixes
+  - fix: adjust energy comparison logic to allow equal values for car and load energy - fixes #39 Error Load smaller then car load, if both values are 0.0 Wh
+
 **Version 0.1.0.58-fix1** published on 2025-05-13
 - Fixes
   - fix: config also for HA addon
