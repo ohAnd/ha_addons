@@ -1,3 +1,7 @@
+**Version 0.1.0.58** published on 2025-05-13
+- Features
+  - feat: add price configuration for battery in €/Wh and update related logic
+
 **Version 0.1.0.56** published on 2025-05-06
 - Features
   - feat: update max charge power handling to event based by soc changes
