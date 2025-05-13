@@ -80,6 +80,9 @@ configuration:
     max_soc_percentage:
       name: Max SOC Percentage
       description: Maximum state of charge percentage.
+    price_euro_per_wh_accu: 
+      name: Price Euro per Wh Accu
+      description: Price for battery in €/Wh.
 
   pv_forecast:
     name: PV Forecast Settings

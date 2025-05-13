@@ -1,3 +1,7 @@
+**Version 0.1.0.58-fix1** published on 2025-05-13
+- Fixes
+  - fix: config also for HA addon
+
 **Version 0.1.0.58** published on 2025-05-13
 - Features
   - feat: add price configuration for battery in €/Wh and update related logic
