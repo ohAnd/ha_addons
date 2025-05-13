@@ -1,3 +1,11 @@
+**Version 0.1.0.60** published on 2025-05-13
+- Features
+  - Enhance Fronius Inverter Interface and MQTT Integration new method fetch_inverter_data to retrieve real-time inverter data, including various temperature readings and fan control percentages.
+  - Updated the MQTT interface to include new sensors for inverter temperature, AC module temperature, DC module temperature, battery module temperature, and fan control metrics.
+  - Improved logging messages for better debugging and tracking of inverter operations.
+- Fixes
+  - fix: config schema for price_euro_per_wh_accu
+
 **Version 0.1.0.59** published on 2025-05-13
 - Fixes
   - fix: adjust energy comparison logic to allow equal values for car and load energy - fixes #39 Error Load smaller then car load, if both values are 0.0 Wh
