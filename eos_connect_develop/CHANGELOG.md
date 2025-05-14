@@ -1,3 +1,12 @@
+**Version 0.1.0.66** published on 2025-05-14
+- Features:
+  - feature: - closes #38 openHAB: Extension of the load data range to a configurable value between 2 days and 2 weeks - refactoring of load interface to have same result for openhab and homeassistant source
+  - Enhance logging for zero energy readings in LoadInterface
+
+- Fixes
+  - Remove commented-out logic for skipping zero energy readings in LoadInterface - homeassistant
+  - Remove commented-out logic for skipping zero energy readings in LoadInterface - openhab
+
 **Version 0.1.0.60-fix1** published on 2025-05-13
 - Fixes
   - fix: config schema for price_euro_per_wh_accu
