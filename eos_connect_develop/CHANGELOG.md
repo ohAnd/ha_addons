@@ -1,3 +1,7 @@
+**Version 0.1.0.67** published on 2025-05-16
+- Fixes
+  - Refactor change_control_state function and remove commented-out code in EosInterface
+
 **Version 0.1.0.66** published on 2025-05-14
 - Features:
   - feature: - closes #38 openHAB: Extension of the load data range to a configurable value between 2 days and 2 weeks - refactoring of load interface to have same result for openhab and homeassistant source
