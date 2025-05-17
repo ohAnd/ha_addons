@@ -1,3 +1,18 @@
+**Version 0.1.16** published on 2025-05-17
+- Features
+    - feature: - closes [#38 openHAB: Extension of the load data range to a configurable value between 2 days and 2 weeks](https://github.com/ohAnd/EOS_connect/issues/38) - refactoring of load interface to have same result for openhab and homeassistant source
+    - feat: add price configuration for battery in €/Wh and update related logic
+    - Enhance Fronius Inverter Interface and MQTT Integration
+      - new method to retrieve real-time inverter data, including various temperature readings and fan control percentages.
+      - Updated the MQTT interface to include new sensors for inverter temperature, AC module temperature, DC module temperature, battery module temperature, and fan control metrics.
+- Fixes
+    - fix: adjust energy comparison logic to allow equal values for car and load energy - fixes [#39 Error Load smaller then car load, if both values are 0.0 Wh](https://github.com/ohAnd/EOS_connect/issues/39)
+- Other Changes
+    - Refactor change_control_state function and remove commented-out code in EosInterface
+    - Enhance logging for zero energy readings in LoadInterface
+    - Remove commented-out logic for skipping zero energy readings in LoadInterface - homeassistant
+    - Improved logging messages for better debugging and tracking of inverter operations
+
 **Version 0.1.14** published on 2025-05-09
 - Features
   - feat: update max charge power handling to event based by soc changes

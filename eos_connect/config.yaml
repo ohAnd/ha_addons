@@ -1,6 +1,6 @@
 name: "EOS connect"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.1.14"
+version: "0.1.16"
 slug: "eos_connect"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -55,6 +55,7 @@ options:
     max_charge_power_w: 5000 # Maximum charging power in W
     min_soc_percentage: 5 # Minimum state of charge percentage
     max_soc_percentage: 100 # Maximum state of charge percentage
+    price_euro_per_wh_accu: 0.0000 # price for battery in €/Wh
 
   pv_forecast:
     - name: roof_west #name
@@ -132,6 +133,7 @@ schema:
     max_charge_power_w: int(1,) # Maximum charging power in W
     min_soc_percentage: int(0,100) # Minimum state of charge percentage
     max_soc_percentage: int(0,100) # Maximum state of charge percentage
+    price_euro_per_wh_accu: float # price for battery in €/Wh
 
   pv_forecast:
     - name: str # name
