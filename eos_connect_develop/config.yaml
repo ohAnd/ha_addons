@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.1.0.67"
+version: "0.1.0.70"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -78,13 +78,12 @@ options:
       horizont: "" # Horizont to calculate shading up to 360 values to describe shading situation for your PV
 
   inverter:
-    type: "fronius_gen24"
+    type: "default"
     address: "192.168.1.12"
     user: "customer"
     password: "abc123"
     max_grid_charge_rate: 5000
     max_pv_charge_rate: 5000
-    max_bat_discharge_rate: 5000
 
   evcc:
     url: "http://<ip>:7070" # URL to your evcc installation
@@ -147,13 +146,12 @@ schema:
       horizont: str? # Optional - Horizont to calculate shading
 
   inverter:
-    type: list(fronius_gen24|default)
+    type: list(fronius_gen24|evcc|default)
     address: str
     user: str
     password: password
     max_grid_charge_rate: int(0,10000)
     max_pv_charge_rate: int(0,10000)
-    max_bat_discharge_rate: int(0,10000)
   evcc:
     url: str # URL to your evcc installation
   mqtt:

@@ -78,7 +78,7 @@ options:
       horizont: "" # Horizont to calculate shading up to 360 values to describe shading situation for your PV
 
   inverter:
-    type: "fronius_gen24"
+    type: "default"
     address: "192.168.1.12"
     user: "customer"
     password: "abc123"

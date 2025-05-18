@@ -1,3 +1,7 @@
+**Version 0.1.0.70** published on 2025-05-18
+- Features:
+  - implements the evcc external battery control to integrate the control of all evcc known inverter/ battery systems
+
 **Version 0.1.0.67** published on 2025-05-16
 - Fixes
   - Refactor change_control_state function and remove commented-out code in EosInterface

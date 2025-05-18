@@ -117,7 +117,7 @@ configuration:
     description: Configuration for inverter settings.
     type:
       name: Inverter Type
-      description: Type of inverter - fronius_gen24 or default (display only mode).
+      description: Type of inverter - fronius_gen24, evcc or default (display only mode).
     address:
       name: Inverter Address
       description: Address of the inverter.
@@ -133,9 +133,6 @@ configuration:
     max_pv_charge_rate:
       name: Max PV Charge Rate
       description: Maximum PV charge rate in W.
-    max_bat_discharge_rate:
-      name: Max Battery Discharge Rate
-      description: Maximum battery discharge rate in W.
   evcc:
     name: EVCC Settings
     description: Configuration for EVCC settings.
