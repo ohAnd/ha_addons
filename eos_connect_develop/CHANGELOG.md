@@ -1,3 +1,6 @@
+**Version 0.1.0.71** published on 2025-05-19
+- Fix: refactor: update callback assignments for interfaces to improve clarity and avoid concurrent calls at startup
+
 **Version 0.1.0.70** published on 2025-05-18
 - Features:
   - implements the evcc external battery control to integrate the control of all evcc known inverter/ battery systems
