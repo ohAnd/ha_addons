@@ -1,3 +1,9 @@
+**Version 0.1.0.72** published on 2025-05-21
+- Features:
+  - feat: add support for smartenergy.at as a price source and implement price retrieval logic - closes #47
+- Other Changes
+  - refactor: update callback assignments for interfaces to improve clarity and avoid concurrent calls at startup
+
 **Version 0.1.0.71** published on 2025-05-19
 - Fix: refactor: update callback assignments for interfaces to improve clarity and avoid concurrent calls at startup
 

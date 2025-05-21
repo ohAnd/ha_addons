@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.1.0.71"
+version: "0.1.0.72"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -116,7 +116,7 @@ schema:
     timeout: int(1,) # timeout for EOS optimize request in seconds
 
   price:
-    source: list(default|tibber) # Data source for electricity price
+    source: list(default|smartenergy_at|tibber) # Data source for electricity price
     token: password # Token for electricity price
     feed_in_price: float # Feed-in price for electricity in EUR/kWh (optional)
     negative_price_switch: bool # Switch for negative stock price handling True/ False (optional)
