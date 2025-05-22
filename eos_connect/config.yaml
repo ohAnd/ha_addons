@@ -117,7 +117,7 @@ schema:
     timeout: int(1,) # timeout for EOS optimize request in seconds
 
   price:
-    source: list(default|tibber) # Data source for electricity price
+    source: list(default|smartenergy_at|tibber) # Data source for electricity price
     token: password # Token for electricity price
     feed_in_price: float # Feed-in price for electricity in EUR/kWh (optional)
     negative_price_switch: bool # Switch for negative stock price handling True/ False (optional)
@@ -147,7 +147,7 @@ schema:
       horizont: str? # Optional - Horizont to calculate shading
 
   inverter:
-    type: list(fronius_gen24|default)
+    type: list(fronius_gen24|evcc|default)
     address: str
     user: str
     password: password

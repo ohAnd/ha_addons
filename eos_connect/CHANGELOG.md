@@ -1,3 +1,13 @@
+**Version 0.1.17** published on 2025-05-22
+- Features
+    - feature: add support for smartenergy.at as a price source and implement price retrieval logic - closes [#47](https://github.com/ohAnd/EOS_connect/issues/47)
+    - feature: implements the evcc external battery control to integrate the control of all evcc known inverter/ battery systems ([Support newly developed evcc battery API #12](https://github.com/ohAnd/EOS_connect/issues/12))
+- Fixes
+    - no specific
+- Other Changes
+    - refactor: update callback assignments for interfaces to improve clarity and avoid concurrent calls at startup
+    - doc cleanup to close #12 Support newly developed evcc battery API
+
 **Version 0.1.16** published on 2025-05-17
 - Features
     - feature: - closes [#38 openHAB: Extension of the load data range to a configurable value between 2 days and 2 weeks](https://github.com/ohAnd/EOS_connect/issues/38) - refactoring of load interface to have same result for openhab and homeassistant source
