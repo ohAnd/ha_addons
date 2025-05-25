@@ -1,3 +1,8 @@
+**Version 0.1.0.74** published on 2025-05-25
+- Features:
+  - feat: enhance load management with additional load configurations and UI updates - touches #34 (Add other Loads (Heat pumps, Dishwasher, Washing machine))
+  - feat: small points approaching #52 (regarding Allow in the parsing of the yaml that optional properties can left empty or not mentioned)
+
 **Version 0.1.0.72** published on 2025-05-21
 - Features:
   - feat: add support for smartenergy.at as a price source and implement price retrieval logic - closes #47
