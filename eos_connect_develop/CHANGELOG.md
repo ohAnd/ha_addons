@@ -1,3 +1,7 @@
+**Version 0.1.0.75** published on 2025-05-25
+- Features:
+  - feat: add fixed 24-hour price configuration and update price interface handling - step 1 of [#51 Modul 3 Prices - TOU - static/ dynamic prices - grid fees](https://github.com/ohAnd/EOS_connect/issues/51)
+  
 **Version 0.1.0.74** published on 2025-05-25
 - Features:
   - feat: enhance load management with additional load configurations and UI updates - touches #34 (Add other Loads (Heat pumps, Dishwasher, Washing machine))
