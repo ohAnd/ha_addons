@@ -1,3 +1,6 @@
+**Version 0.1.0.76** published on 2025-05-26
+- Fix: HA addon config for fixed_24h_array - input as string (fixed_24h_array: 10.25, 15.2, ... without brackets) - direct array not supported
+
 **Version 0.1.0.75** published on 2025-05-25
 - Features:
   - feat: add fixed 24-hour price configuration and update price interface handling - step 1 of [#51 Modul 3 Prices - TOU - static/ dynamic prices - grid fees](https://github.com/ohAnd/EOS_connect/issues/51)
