@@ -1,3 +1,8 @@
+**Version 0.1.0.78** published on 2025-06-01
+- fix: use get method for additional load configuration to provide default values - part of [#52](https://github.com/ohAnd/EOS_connect/issues/52)
+- fix: update configuration key for feed-in tariff price to improve clarity - fix [#53](https://github.com/ohAnd/EOS_connect/issues/53)
+- fix: update fixed_24h_array format in configuration to remove brackets and improve clarity
+
 **Version 0.1.0.76** published on 2025-05-26
 - Fix: HA addon config for fixed_24h_array - input as string (fixed_24h_array: 10.25, 15.2, ... without brackets) - direct array not supported
 
