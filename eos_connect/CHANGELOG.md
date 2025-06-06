@@ -1,3 +1,16 @@
+**Version 0.1.18** published on 2025-06-06
+- Features
+    - feat: enhance PriceInterface to support string input for fixed 24-hour price array and extend default prices to 48 hours - needed for HA addon config
+    - feat: add fixed 24-hour price configuration and update price interface handling - step 1 of #51 Modul 3 Prices - TOU - static/ dynamic prices - grid fees
+    - feat: enhance load management with additional load configurations and UI updates - touches #34 (Add other Loads (Heat pumps, Dishwasher, Washing machine)) - and also small points approaching #52 (regarding Allow in the parsing of the yaml that optional properties can left empty or not mentioned)
+- Fixes
+    - fix: use get method for additional load configuration to provide default values - part of #52
+    - fix: update configuration key for feed-in tariff price to improve clarity - fix #53
+    - fix: update fixed_24h_array format in configuration to remove brackets and improve clarity
+    - fix: round temperature values in inverter data
+- Other Changes
+    - docs: update README to enhance clarity and detail on EOS Connect features and functionality
+
 **Version 0.1.17** published on 2025-05-22
 - Features
     - feature: add support for smartenergy.at as a price source and implement price retrieval logic - closes [#47](https://github.com/ohAnd/EOS_connect/issues/47)

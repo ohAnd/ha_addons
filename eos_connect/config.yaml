@@ -1,6 +1,6 @@
 name: "EOS connect"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.1.17"
+version: "0.1.18"
 slug: "eos_connect"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -29,9 +29,12 @@ options:
   load:
     source: default # Data source for load power - openhab, homeassistant, default (static data)
     url: http://<ip>:8080 # URL for openhab (e.g. ip:8080) or homeassistant (e.g. ip:8123)
+    access_token: # access token for homeassistant (optional)
     load_sensor: sensor.load_power # item / entity name for load power data (openhab item/ homeassistant sensor)
-    car_charge_load_sensor: sensor.car_charge_load_sensor # item / entity for wallbox power data
-    access_token: 123456abcd # access token for homeassistant (optional)
+    car_charge_load_sensor:  # item / entity for wallbox power data
+    additional_load_1_sensor:  # item / entity for additional load power data in watts sensor.shelly_poolheatpump_measure_power
+    additional_load_1_runtime: 0 # runtime of additional load 1 in hours
+    additional_load_1_consumption: 0 # overall consumption of additional load 1 in Wh for the given hours
 
   eos:
     server: 192.168.1.94 # EOS server address
@@ -40,7 +43,8 @@ options:
 
   price:
     source: default # Data source for electricity price
-    token: tibberBearerToken # Token for electricity price
+    token: # Token for electricity price
+    fixed_24h_array:  # 24 hours array with fixed prices over the day
     feed_in_price: 0 # Feed-in price for electricity in EUR/kWh (optional)
     negative_price_switch: False # Switch for negative stock price handling True/ False (optional)
 
@@ -84,7 +88,6 @@ options:
     password: "abc123"
     max_grid_charge_rate: 5000
     max_pv_charge_rate: 5000
-    max_bat_discharge_rate: 5000
 
   evcc:
     url: "http://<ip>:7070" # URL to your evcc installation
@@ -107,9 +110,12 @@ schema:
   load:
     source: list(openhab|homeassistant|default) # Data source for load power
     url: str # URL for openhab or homeassistant
-    load_sensor: str # item / entity name for load power data
-    car_charge_load_sensor: str # item / entity for wallbox power data
     access_token: password? # access token for homeassistant (optional)
+    load_sensor: str # item / entity name for load power data
+    car_charge_load_sensor: str? # item / entity for wallbox power data
+    additional_load_1_sensor: str? # item / entity for additional load power data in watts
+    additional_load_1_runtime: int(0,)? # runtime of additional load 1 in hours
+    additional_load_1_consumption: int(0,)? # overall consumption of additional load 1 in Wh for the given hours
 
   eos:
     server: str # EOS server address
@@ -117,8 +123,9 @@ schema:
     timeout: int(1,) # timeout for EOS optimize request in seconds
 
   price:
-    source: list(default|smartenergy_at|tibber) # Data source for electricity price
-    token: password # Token for electricity price
+    source: list(smartenergy_at|tibber|fixed_24h|default) # Data source for electricity price
+    token: password? # Token for electricity price
+    fixed_24h_array: str? # 24 hours array with fixed prices over the day
     feed_in_price: float # Feed-in price for electricity in EUR/kWh (optional)
     negative_price_switch: bool # Switch for negative stock price handling True/ False (optional)
 
