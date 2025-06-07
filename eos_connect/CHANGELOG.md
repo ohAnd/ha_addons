@@ -1,3 +1,6 @@
+**Version 0.1.18-fix1** published on 2025-06-07
+- Fixes: workwround for HA addon config bug for optional parameters - default is now set to "" (empty string) to avoid to fill up with 'null'
+
 **Version 0.1.18** published on 2025-06-06
 - Features
     - feat: enhance PriceInterface to support string input for fixed 24-hour price array and extend default prices to 48 hours - needed for HA addon config
