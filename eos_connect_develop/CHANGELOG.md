@@ -1,3 +1,14 @@
+**Version 0.1.0.80** published on 2025-06-08
+- Fixes: 
+  - fix: update CONFIG_README with hint on configuration errors and comment out debug logs in PriceInterface - fix Allow in the parsing of the yaml that optional properties can left empty or not mentioned [#52](https://github.com/ohAnd/EOS_connect/issues/52)
+  - fix: enhance MQTT connection handling with error logging and status updates - reference Allow in the parsing of the yaml that optional properties can left empty or not mentioned [#52](https://github.com/ohAnd/EOS_connect/issues/52)
+  - fix: add configuration validation in EvccInterface class to ensure valid URL and server reachability
+  - fix: improve code readability and add configuration validation in PriceInterface class - references Allow in the parsing of the yaml that optional properties can left empty or not mentioned [#52](https://github.com/ohAnd/EOS_connect/issues/52)
+  - fix: enhance configuration validation in LoadInterface class - reference Allow in the parsing of the yaml that optional properties can left empty or not mentioned [#52](https://github.com/ohAnd/EOS_connect/issues/52)
+
+**Version 0.1.0.78-fix1** published on 2025-06-07
+- Fixes: workaround for HA addon config bug for optional parameters - default is now set to "" (empty string) to avoid to fill up with 'null'
+
 **Version 0.1.0.78** published on 2025-06-01
 - fix: use get method for additional load configuration to provide default values - part of [#52](https://github.com/ohAnd/EOS_connect/issues/52)
 - fix: update configuration key for feed-in tariff price to improve clarity - fix [#53](https://github.com/ohAnd/EOS_connect/issues/53)

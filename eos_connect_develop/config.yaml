@@ -1,13 +1,13 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.1.0.78"
+version: "0.1.0.80"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
   - aarch64
   - amd64
   - armhf # very long build time on github ~ 32mins
-  - armv7 # very long build time on gtthub ~ 32mins
+  - armv7 # very long build time on github ~ 32mins
   - i386
 
 panel_icon: mdi:home-battery
@@ -29,10 +29,10 @@ options:
   load:
     source: default # Data source for load power - openhab, homeassistant, default (static data)
     url: http://<ip>:8080 # URL for openhab (e.g. ip:8080) or homeassistant (e.g. ip:8123)
-    access_token: # access token for homeassistant (optional)
+    access_token: "" # access token for homeassistant (optional)
     load_sensor: sensor.load_power # item / entity name for load power data (openhab item/ homeassistant sensor)
-    car_charge_load_sensor:  # item / entity for wallbox power data
-    additional_load_1_sensor:  # item / entity for additional load power data in watts sensor.shelly_poolheatpump_measure_power
+    car_charge_load_sensor: "" # item / entity for wallbox power data
+    additional_load_1_sensor: "" # item / entity for additional load power data in watts sensor.shelly_poolheatpump_measure_power
     additional_load_1_runtime: 0 # runtime of additional load 1 in hours
     additional_load_1_consumption: 0 # overall consumption of additional load 1 in Wh for the given hours
 
@@ -43,7 +43,7 @@ options:
 
   price:
     source: default # Data source for electricity price
-    token: # Token for electricity price
+    token: "" # Token for electricity price
     fixed_24h_array:  # 24 hours array with fixed prices over the day
     feed_in_price: 0 # Feed-in price for electricity in EUR/kWh (optional)
     negative_price_switch: False # Switch for negative stock price handling True/ False (optional)
@@ -106,6 +106,7 @@ options:
   time_zone: Europe/Berlin # Default time zone
   eos_connect_web_port: 8081 # Default port for EOS connect server
   log_level: info # loglevel: debug, info, warning, error
+
 schema:
   load:
     source: list(openhab|homeassistant|default) # Data source for load power
@@ -126,8 +127,8 @@ schema:
     source: list(smartenergy_at|tibber|fixed_24h|default) # Data source for electricity price
     token: password? # Token for electricity price
     fixed_24h_array: str? # 24 hours array with fixed prices over the day
-    feed_in_price: float # Feed-in price for electricity in EUR/kWh (optional)
-    negative_price_switch: bool # Switch for negative stock price handling True/ False (optional)
+    feed_in_price: float? # Feed-in price for electricity in EUR/kWh (optional)
+    negative_price_switch: bool? # Switch for negative stock price handling True/ False (optional)
 
   battery:
     source: list(openhab|homeassistant|default) # Data source for battery SOC
@@ -155,11 +156,12 @@ schema:
 
   inverter:
     type: list(fronius_gen24|evcc|default)
-    address: str
-    user: str
-    password: password
-    max_grid_charge_rate: int(0,10000)
-    max_pv_charge_rate: int(0,10000)
+    address: str?
+    user: str?
+    password: password?
+    max_grid_charge_rate: int(0,10000)?
+    max_pv_charge_rate: int(0,10000)?
+    max_bat_discharge_rate: int(0,10000)?
   evcc:
     url: str # URL to your evcc installation
   mqtt:
