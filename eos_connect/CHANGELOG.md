@@ -1,3 +1,16 @@
+**Version 0.1.19** published on 2025-06-09
+- Features
+    - no specific
+- Fixes
+    - fix: update CONFIG_README with enhanced configuration sections and clearer usage hints
+    - fix: enhance EVCC configuration handling with improved URL validation and logging
+    - fix: update CONFIG_README with hint on configuration errors and comment out debug logs in PriceInterface - fix Allow in the parsing of the yaml that optional properties can left empty or not mentioned #52
+    - fix: enhance MQTT connection handling with error logging and status updates - reference Allow in the parsing of the yaml that optional properties can left empty or not mentioned #52
+    - fix: add configuration validation in EvccInterface class to ensure valid URL and server reachability
+    - fix: improve code readability and add configuration validation in PriceInterface class - references Allow in the parsing of the yaml that optional properties can left empty or not mentioned #52
+    - fix: enhance configuration validation in LoadInterface class - reference Allow in the parsing of the yaml that optional properties can left empty or not mentioned #52
+- Other Changes
+
 **Version 0.1.18-fix1** published on 2025-06-07
 - Fixes: workwround for HA addon config bug for optional parameters - default is now set to "" (empty string) to avoid to fill up with 'null'
 
