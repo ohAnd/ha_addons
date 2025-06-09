@@ -1,3 +1,8 @@
+**Version 0.1.0.81** published on 2025-06-09
+- Fixes:
+ - fix: update CONFIG_README with enhanced configuration sections and clearer usage hints
+ - fix: enhance EVCC configuration handling with improved URL validation and logging
+
 **Version 0.1.0.80** published on 2025-06-08
 - Fixes: 
   - fix: update CONFIG_README with hint on configuration errors and comment out debug logs in PriceInterface - fix Allow in the parsing of the yaml that optional properties can left empty or not mentioned [#52](https://github.com/ohAnd/EOS_connect/issues/52)

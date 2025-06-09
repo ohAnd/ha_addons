@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.1.0.80"
+version: "0.1.0.81"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -90,7 +90,7 @@ options:
     max_pv_charge_rate: 5000
 
   evcc:
-    url: "http://<ip>:7070" # URL to your evcc installation
+    url: http://yourEVCCserver:7070 # URL to your evcc installation, if not used set to "" or leave as http://yourEVCCserver:7070
 
   mqtt:
     enabled: false # Enable MQTT - default: false
