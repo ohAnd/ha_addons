@@ -1,3 +1,9 @@
+**Version 0.1.0.83** published on 2025-06-10
+- Features:
+ - feat: enhance EVCC interface and web display for multiple vehicle support - fix  [#57](https://github.com/ohAnd/EOS_connect/issues/57) second load point from evcc
+- Fixes:
+ - fix: remove unnecessary punctuation in CONFIG_README for clarity - fix [#60](https://github.com/ohAnd/EOS_connect/issues/60) CONFIG_README.md: Note and/or corrections
+
 **Version 0.1.0.81** published on 2025-06-09
 - Fixes:
  - fix: update CONFIG_README with enhanced configuration sections and clearer usage hints
@@ -120,7 +126,7 @@
   
 **Version 0.1.0.51** published on 2025-05-02
 - Features
-  - feat: dyn max charge popwer also for DC; enhance BaseControl for DC charge demand tracking; modify UI label for charge power
+  - feat: dyn max charge power also for DC; enhance BaseControl for DC charge demand tracking; modify UI label for charge power
   - feat: enhance dynamic charge power calculation with minimum threshold and decay function incl. c-rate
 - Fixes
   - no specific
@@ -184,7 +190,7 @@
 
 **Version 0.1.9** published on 2025-04-22
 - Features
-    - feature: add several detail data for direct visibility + update layout and font sizes for better readability in dashbaord
+    - feature: add several detail data for direct visibility + update layout and font sizes for better readability in dashboard
 - Fixes
     - feature: refactor battery interface initialization and add calculating of remaining usable energy
 - Other Changes
@@ -230,7 +236,7 @@
 - Fixes:
     - [Resolved inconsistencies between request and response states on the dashboard.](https://github.com/ohAnd/EOS_connect/issues/14)
 - Features:
-    - improving dashbaord especially for mobile view and usual screen sizes
+    - improving dashboard especially for mobile view and usual screen sizes
     - Enhance EVCC integration by adding charging mode handling and updating UI to reflect current charging state and mode
 - Documentation:
     - ...

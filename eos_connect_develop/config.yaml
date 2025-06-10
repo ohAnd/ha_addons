@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.1.0.81"
+version: "0.1.0.83"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -32,7 +32,7 @@ options:
     access_token: "" # access token for homeassistant (optional)
     load_sensor: sensor.load_power # item / entity name for load power data (openhab item/ homeassistant sensor)
     car_charge_load_sensor: "" # item / entity for wallbox power data
-    additional_load_1_sensor: "" # item / entity for additional load power data in watts sensor.shelly_poolheatpump_measure_power
+    additional_load_1_sensor: "" # item / entity for additional load power data in watts
     additional_load_1_runtime: 0 # runtime of additional load 1 in hours
     additional_load_1_consumption: 0 # overall consumption of additional load 1 in Wh for the given hours
 
