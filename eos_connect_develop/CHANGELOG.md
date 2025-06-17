@@ -1,3 +1,7 @@
+**Version 0.1.0.84** published on 2025-06-17
+- Features:
+ - feat: add default PV and temperature forecast to use at request errors and improve error handling in price interface - small workaorund for akkudoktor api outage
+
 **Version 0.1.0.83** published on 2025-06-10
 - Features:
  - feat: enhance EVCC interface and web display for multiple vehicle support - fix  [#57](https://github.com/ohAnd/EOS_connect/issues/57) second load point from evcc
