@@ -1,3 +1,7 @@
+**Version 0.1.0.85** published on 2025-06-18
+- org:
+ - refactoring of pv interface - prep for additional sources of solar forecast
+
 **Version 0.1.0.84** published on 2025-06-17
 - Features:
  - feat: add default PV and temperature forecast to use at request errors and improve error handling in price interface - small workaorund for akkudoktor api outage
