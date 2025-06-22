@@ -84,6 +84,13 @@ configuration:
       name: Price Euro per Wh Accu
       description: Price for battery in €/Wh.
 
+  pv_forecast_source:
+    name: PV Forecast Source
+    description: "section for PV forecast source settings."
+    source:
+      name: PV Forecast Source
+      description: "data source for solar forecast providers akkudoktor, openmeteo, forecast_solar, default (default uses akkudoktor)"
+
   pv_forecast:
     name: PV Forecast Settings
     description: Configuration for PV forecast settings.
@@ -109,9 +116,9 @@ configuration:
       inverterEfficiency:
         name: Inverter Efficiency
         description: Inverter Efficiency for PV forecast @ Akkudoktor API.
-      horizont:
-        name: Horizont
-        description: Optional - Horizont to calculate shading up to 360 values to describe shading situation for your PV.
+      horizon:
+        name: Horizon
+        description: Optional - Horizon to calculate shading up to 360 values to describe shading situation for your PV.
   inverter:
     name: Inverter Settings
     description: Configuration for inverter settings.

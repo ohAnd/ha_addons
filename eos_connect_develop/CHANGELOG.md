@@ -1,3 +1,9 @@
+**Version 0.1.0.87** published on 2025-06-22
+- Features:
+ - feat: enhance PV interface to support multiple forecast sources and improve error handling - step 1 for 'Akkudoktor forecast Server not available, got error 422' #63
+- Fixes:
+ - fix: correct 'horizont' to 'horizon' in configuration (breakabale change!) and updated config description for new solar forecast sources
+
 **Version 0.1.0.85** published on 2025-06-18
 - org:
  - refactoring of pv interface - prep for additional sources of solar forecast
