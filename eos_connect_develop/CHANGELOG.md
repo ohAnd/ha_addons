@@ -1,7 +1,10 @@
+**Version 0.1.0.87-fix2** published on 2025-06-22
+- Fixes:
+ - HA addon: missing dependency for pvlib building for image generation
+
 **Version 0.1.0.87-fix1** published on 2025-06-22
 - Fixes:
  - HA addon: missing dependency for pvlib for image generation
-
 
 **Version 0.1.0.87** published on 2025-06-22
 - Features:
