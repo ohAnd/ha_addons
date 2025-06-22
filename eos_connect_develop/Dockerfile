@@ -2,7 +2,7 @@ ARG BUILD_FROM
 FROM $BUILD_FROM
 
 # Install required build tools
-RUN apk add --no-cache g++ gcc libffi-dev musl-dev make python3 py3-pip python3-dev git
+RUN apk add --no-cache g++ gcc libffi-dev musl-dev make python3 py3-pip python3-dev git hdf5-dev
 
 # Copy the application code
 COPY ./src /app

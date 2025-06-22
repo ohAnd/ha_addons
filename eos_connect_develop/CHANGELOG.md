@@ -1,3 +1,8 @@
+**Version 0.1.0.87-fix1** published on 2025-06-22
+- Fixes:
+ - HA addon: missing dependency for pvlib for image generation
+
+
 **Version 0.1.0.87** published on 2025-06-22
 - Features:
  - feat: enhance PV interface to support multiple forecast sources and improve error handling - step 1 for 'Akkudoktor forecast Server not available, got error 422' #63
