@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.1.0.87-fix2"
+version: "0.1.0.92"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -62,7 +62,7 @@ options:
     price_euro_per_wh_accu: 0.0000 # price for battery in €/Wh
 
   pv_forecast_source:
-    source: akkudoktor # data source for solar forecast providers akkudoktor, openmeteo, forecast_solar, default (default uses akkudoktor)
+    source: akkudoktor # data source for solar forecast providers akkudoktor, openmeteo, openmeteo_local, forecast_solar, default (default uses akkudoktor)
 
   pv_forecast:
     - name: roof_west #name
@@ -147,7 +147,7 @@ schema:
     price_euro_per_wh_accu: float # price for battery in €/Wh
 
   pv_forecast_source:
-    source: list(akkudoktor|openmeteo|forecast_solar|default) # data source for solar forecast providers, default (default uses akkudoktor)
+    source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|default) # data source for solar forecast providers, default (default uses akkudoktor)
 
   pv_forecast:
     - name: str # name

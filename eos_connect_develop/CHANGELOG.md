@@ -1,3 +1,11 @@
+**Version 0.1.0.92** published on 2025-06-23
+- Features:
+ - feat: enhance PV forecast options and configuration, adding Open-Meteo sources and timezone support - fix #63 Akkudoktor forecast Server not available, got error 422
+ - feat: add OpenMeteo Lib forecast integration and refactor forecast retrieval logic for second openmeteo option 'openmeteo'=lib and 'openmeteo_local' with local model calculation
+- Fixes: 
+ - fix: correct 'horizont' to 'horizon' in configuration and update related logging
+ - fix: correct 'horizont' to 'horizon' in configuration (breakabale change!) and updated config description for new solar forecast sources
+
 **Version 0.1.0.87-fix2** published on 2025-06-22
 - Fixes:
  - HA addon: missing dependency for pvlib building for image generation
