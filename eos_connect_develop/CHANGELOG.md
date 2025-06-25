@@ -1,57 +1,57 @@
 **Version 0.1.0.94** published on 2025-06-25
 - org:
- - docs: update configuration hints for load parameters to clarify optional settings - fix  [#60](https://github.com/ohAnd/EOS_connect/issues/60) CONFIG_README.md: Note and/or corrections
- - docs: add hints for access token usage in load and battery configurations - closes [#61](https://github.com/ohAnd/EOS_connect/issues/61) - Request failed while fetching battery SOC: 403 Client Error: Forbidden for url: and others
- - removed building of armhf/ armv7 / i386 - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
+    - docs: update configuration hints for load parameters to clarify optional settings - fix  [#60](https://github.com/ohAnd/EOS_connect/issues/60) CONFIG_README.md: Note and/or corrections
+    - docs: add hints for access token usage in load and battery configurations - closes [#61](https://github.com/ohAnd/EOS_connect/issues/61) - Request failed while fetching battery SOC: 403 Client Error: Forbidden for url: and others
+    - removed building of armhf/ armv7 / i386 - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
 
 **Version 0.1.0.92** published on 2025-06-23
 - Features:
- - feat: enhance PV forecast options and configuration, adding Open-Meteo sources and timezone support - fix [#63](https://github.com/ohAnd/EOS_connect/issues/63) Akkudoktor forecast Server not available, got error 422
- - feat: add OpenMeteo Lib forecast integration and refactor forecast retrieval logic for second openmeteo option 'openmeteo'=lib and 'openmeteo_local' with local model calculation
+    - feat: enhance PV forecast options and configuration, adding Open-Meteo sources and timezone support - fix [#63](https://github.com/ohAnd/EOS_connect/issues/63) Akkudoktor forecast Server not available, got error 422
+    - feat: add OpenMeteo Lib forecast integration and refactor forecast retrieval logic for second openmeteo option 'openmeteo'=lib and 'openmeteo_local' with local model calculation
 - Fixes: 
- - fix: correct 'horizont' to 'horizon' in configuration and update related logging
- - fix: correct 'horizont' to 'horizon' in configuration (breakabale change!) and updated config description for new solar forecast sources
+    - fix: correct 'horizont' to 'horizon' in configuration and update related logging
+    - fix: correct 'horizont' to 'horizon' in configuration (breakabale change!) and updated config description for new solar forecast sources
 
 **Version 0.1.0.87-fix2** published on 2025-06-22
 - Fixes:
- - HA addon: missing dependency for pvlib building for image generation
+    - HA addon: missing dependency for pvlib building for image generation
 
 **Version 0.1.0.87-fix1** published on 2025-06-22
 - Fixes:
- - HA addon: missing dependency for pvlib for image generation
+    - HA addon: missing dependency for pvlib for image generation
 
 **Version 0.1.0.87** published on 2025-06-22
 - Features:
- - feat: enhance PV interface to support multiple forecast sources and improve error handling - step 1 for 'Akkudoktor forecast Server not available, got error 422' #63
+    - feat: enhance PV interface to support multiple forecast sources and improve error handling - step 1 for 'Akkudoktor forecast Server not available, got error 422' #63
 - Fixes:
- - fix: correct 'horizont' to 'horizon' in configuration (breakabale change!) and updated config description for new solar forecast sources
+    - fix: correct 'horizont' to 'horizon' in configuration (breakabale change!) and updated config description for new solar forecast sources
 
 **Version 0.1.0.85** published on 2025-06-18
 - org:
- - refactoring of pv interface - prep for additional sources of solar forecast
+    - refactoring of pv interface - prep for additional sources of solar forecast
 
 **Version 0.1.0.84** published on 2025-06-17
-- Features:
- - feat: add default PV and temperature forecast to use at request errors and improve error handling in price interface - small workaorund for akkudoktor api outage
+  - Features:
+    - feat: add default PV and temperature forecast to use at request errors and improve error handling in price interface - small workaorund for akkudoktor api outage
 
 **Version 0.1.0.83** published on 2025-06-10
 - Features:
- - feat: enhance EVCC interface and web display for multiple vehicle support - fix  [#57](https://github.com/ohAnd/EOS_connect/issues/57) second load point from evcc
+    - feat: enhance EVCC interface and web display for multiple vehicle support - fix  [#57](https://github.com/ohAnd/EOS_connect/issues/57) second load point from evcc
 - Fixes:
- - fix: remove unnecessary punctuation in CONFIG_README for clarity - fix [#60](https://github.com/ohAnd/EOS_connect/issues/60) CONFIG_README.md: Note and/or corrections
+    - fix: remove unnecessary punctuation in CONFIG_README for clarity - fix [#60](https://github.com/ohAnd/EOS_connect/issues/60) CONFIG_README.md: Note and/or corrections
 
 **Version 0.1.0.81** published on 2025-06-09
 - Fixes:
- - fix: update CONFIG_README with enhanced configuration sections and clearer usage hints
- - fix: enhance EVCC configuration handling with improved URL validation and logging
+    - fix: update CONFIG_README with enhanced configuration sections and clearer usage hints
+    - fix: enhance EVCC configuration handling with improved URL validation and logging
 
 **Version 0.1.0.80** published on 2025-06-08
 - Fixes: 
-  - fix: update CONFIG_README with hint on configuration errors and comment out debug logs in PriceInterface - fix Allow in the parsing of the yaml that optional properties can left empty or not mentioned [#52](https://github.com/ohAnd/EOS_connect/issues/52)
-  - fix: enhance MQTT connection handling with error logging and status updates - reference Allow in the parsing of the yaml that optional properties can left empty or not mentioned [#52](https://github.com/ohAnd/EOS_connect/issues/52)
-  - fix: add configuration validation in EvccInterface class to ensure valid URL and server reachability
-  - fix: improve code readability and add configuration validation in PriceInterface class - references Allow in the parsing of the yaml that optional properties can left empty or not mentioned [#52](https://github.com/ohAnd/EOS_connect/issues/52)
-  - fix: enhance configuration validation in LoadInterface class - reference Allow in the parsing of the yaml that optional properties can left empty or not mentioned [#52](https://github.com/ohAnd/EOS_connect/issues/52)
+    - fix: update CONFIG_README with hint on configuration errors and comment out debug logs in PriceInterface - fix Allow in the parsing of the yaml that optional properties can left empty or not mentioned [#52](https://github.com/ohAnd/EOS_connect/issues/52)
+    - fix: enhance MQTT connection handling with error logging and status updates - reference Allow in the parsing of the yaml that optional properties can left empty or not mentioned [#52](https://github.com/ohAnd/EOS_connect/issues/52)
+    - fix: add configuration validation in EvccInterface class to ensure valid URL and server reachability
+    - fix: improve code readability and add configuration validation in PriceInterface class - references Allow in the parsing of the yaml that optional properties can left empty or not mentioned [#52](https://github.com/ohAnd/EOS_connect/issues/52)
+    - fix: enhance configuration validation in LoadInterface class - reference Allow in the parsing of the yaml that optional properties can left empty or not mentioned [#52](https://github.com/ohAnd/EOS_connect/issues/52)
 
 **Version 0.1.0.78-fix1** published on 2025-06-07
 - Fixes: workaround for HA addon config bug for optional parameters - default is now set to "" (empty string) to avoid to fill up with 'null'

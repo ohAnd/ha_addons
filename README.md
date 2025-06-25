@@ -34,9 +34,9 @@ To use this addon you need an openhab or homeassistant with persisted energy dat
 
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
-![Supports armhf Architecture][armhf-shield]
+<!-- ![Supports armhf Architecture][armhf-shield]
 ![Supports armv7 Architecture][armv7-shield]
-![Supports i386 Architecture][i386-shield]
+![Supports i386 Architecture][i386-shield] -->
 
 ### [EOS connect develop add-on](./eos_connect_develop)
 

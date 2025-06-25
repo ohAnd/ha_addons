@@ -2,7 +2,8 @@ ARG BUILD_FROM
 FROM $BUILD_FROM
 
 # Install required build tools
-RUN apk add --no-cache g++ gcc libffi-dev musl-dev make python3 py3-pip python3-dev git
+RUN apk add --no-cache g++ gcc libffi-dev musl-dev make python3 py3-pip python3-dev git hdf5-dev \
+    openblas-dev lapack-dev blas-dev gfortran
 
 # Copy the application code
 COPY ./src /app
@@ -26,7 +27,9 @@ RUN python3 -m venv /opt/venv && \
         pyyaml>=6.0 \
         pytz>=2025.1 \
         ruamel.yaml>=0.18.10 \
-        paho-mqtt>=2.1.0
+        paho-mqtt>=2.1.0 \
+        pvlib>=0.13.0 \
+        open-meteo-solar-forecast>=0.1.22
 
 # Link the configuration file
 RUN ln -sf /data/options.json /app/src/config.yaml

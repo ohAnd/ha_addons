@@ -1,3 +1,21 @@
+**Version 0.1.20** published on 2025-06-25
+- Features
+    - feat: update Python version in Pylint workflow to 3.11
+    - feat: add open-meteo-solar-forecast dependency to requirements
+    - feat: enhance PV forecast options and configuration, adding Open-Meteo sources and timezone support - fix #63 Akkudoktor forecast Server not available, got error 422
+    - feat: add OpenMeteo Lib forecast integration and refactor forecast retrieval logic for second openmeteo option 'openmeteo'=lib and 'openmeteo_local' with local model calculation
+    - feat: enhance PV interface to support multiple forecast sources and improve error handling - step 1 for 'Akkudoktor forecast Server not available, got error 422' #63
+    - feat: add default PV and temperature forecast to use at request errors and improve error handling in price interface - small workaorund for akkudoktor api outage
+    - feat: enhance EVCC interface and web display for multiple vehicle support - fix  #57 second load point from evcc
+- Fixes
+    - fix: correct 'horizont' to 'horizon' in configuration and update related logging
+    - fix: correct 'horizont' to 'horizon' in configuration (breakabale change!) and updated config description for new solar forecast sources
+    - fix: remove unnecessary punctuation in CONFIG_README for clarity - fix #60 CONFIG_README.md: Note and/or corrections
+- Other Changes
+    - docs: update configuration hints for load parameters to clarify optional settings - fix  #60 CONFIG_README.md: Note and/or corrections
+    - docs: add hints for access token usage in load and battery configurations - closes #61 - Request failed while fetching battery SOC: 403 Client Error: Forbidden for url: and others
+    - org: refactoring of pv interface - prep for additional sources of solar forecast
+
 **Version 0.1.19** published on 2025-06-09
 - Features
     - no specific
