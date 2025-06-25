@@ -1,14 +1,14 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.1.0.92"
+version: "0.1.0.94"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
   - aarch64
   - amd64
-  - armhf # very long build time on github ~ 32mins
-  - armv7 # very long build time on github ~ 32mins
-  - i386
+  # - armhf # very long build time on github ~ 32mins - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
+  # - armv7 # very long build time on github ~ 32mins - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
+  # - i386 # https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
 
 panel_icon: mdi:home-battery
 panel_admin: false

@@ -44,9 +44,9 @@ Contentwise same as above. Last develop version -> https://github.com/ohAnd/EOS_
 
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
-![Supports armhf Architecture][armhf-shield]
+<!-- ![Supports armhf Architecture][armhf-shield]
 ![Supports armv7 Architecture][armv7-shield]
-![Supports i386 Architecture][i386-shield]
+![Supports i386 Architecture][i386-shield] -->
 
 ### [modbus_tcp_smartmeter add-on](./modbus_tcp_smartmeter)
 

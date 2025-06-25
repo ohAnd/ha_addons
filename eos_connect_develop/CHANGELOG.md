@@ -1,6 +1,12 @@
+**Version 0.1.0.94** published on 2025-06-25
+- org:
+ - docs: update configuration hints for load parameters to clarify optional settings - fix  [#60](https://github.com/ohAnd/EOS_connect/issues/60) CONFIG_README.md: Note and/or corrections
+ - docs: add hints for access token usage in load and battery configurations - closes [#61](https://github.com/ohAnd/EOS_connect/issues/61) - Request failed while fetching battery SOC: 403 Client Error: Forbidden for url: and others
+ - removed building of armhf/ armv7 / i386 - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
+
 **Version 0.1.0.92** published on 2025-06-23
 - Features:
- - feat: enhance PV forecast options and configuration, adding Open-Meteo sources and timezone support - fix #63 Akkudoktor forecast Server not available, got error 422
+ - feat: enhance PV forecast options and configuration, adding Open-Meteo sources and timezone support - fix [#63](https://github.com/ohAnd/EOS_connect/issues/63) Akkudoktor forecast Server not available, got error 422
  - feat: add OpenMeteo Lib forecast integration and refactor forecast retrieval logic for second openmeteo option 'openmeteo'=lib and 'openmeteo_local' with local model calculation
 - Fixes: 
  - fix: correct 'horizont' to 'horizon' in configuration and update related logging
