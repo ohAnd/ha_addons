@@ -1,3 +1,7 @@
+**Version 0.1.0.99** published on 2025-06-26
+- feat: 
+    - Merge pull request [#62](https://github.com/ohAnd/EOS_connect/issues/62) from paule96/make_errors_with_more_conent. Make errors with more content and make it possible in debug mode to replay request.
+
 **Version 0.1.0.97** published on 2025-06-26
 - org:
     - adjust initialization wait time for interfaces based on pv_forecast entries
