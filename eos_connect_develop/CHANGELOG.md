@@ -1,3 +1,11 @@
+**Version 0.1.0.97** published on 2025-06-26
+- org:
+    - adjust initialization wait time for interfaces based on pv_forecast entries
+- fix:
+    - fix: shift in akkudoktor forecast by 1 hour over the day
+    - fix: extend data for openmeteo lib for the whole current day
+    - fix: extend error recognition for openmeteo lib integration fix [#68](https://github.com/ohAnd/EOS_connect/issues/68) OpenMeteo forecast failing with many forecast entries
+
 **Version 0.1.0.94** published on 2025-06-25
 - org:
     - docs: update configuration hints for load parameters to clarify optional settings - fix  [#60](https://github.com/ohAnd/EOS_connect/issues/60) CONFIG_README.md: Note and/or corrections
