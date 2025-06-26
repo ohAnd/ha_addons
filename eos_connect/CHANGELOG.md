@@ -1,3 +1,7 @@
+**Version 0.1.20-fix1** published on 2025-06-26
+- Fixes
+    - fix: wrong naming of image for release version
+
 **Version 0.1.20** published on 2025-06-25
 - Features
     - feat: update Python version in Pylint workflow to 3.11
