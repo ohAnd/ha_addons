@@ -83,6 +83,13 @@ configuration:
     price_euro_per_wh_accu: 
       name: Price Euro per Wh Accu
       description: Price for battery in €/Wh.
+  
+  pv_forecast_source:
+    name: PV Forecast Source
+    description: Configuration for PV forecast data source.
+    source:
+      name: PV Forecast Source
+      description: "Data source for solar forecast providers. Possible values: akkudoktor, openmeteo, openmeteo_local, forecast_solar, default (default uses akkudoktor)."
 
   pv_forecast_source:
     name: PV Forecast Source
@@ -175,7 +182,7 @@ configuration:
       description: "Prefix for Home Assistant MQTT auto discovery. Default: homeassistant."
   refresh_time:
     name: Refresh Time
-    description: Default refresh time in minutes.
+    description: Refresh time in minutes. (Defualt 3 min) It represents also the timeout for the EOS optimize request.
 
   time_zone:
     name: Time Zone
