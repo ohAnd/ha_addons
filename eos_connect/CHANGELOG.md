@@ -1,3 +1,14 @@
+**Version 0.1.21** published on 2025-06-28
+- Features
+    - enhance error logging for OPTIMIZE requests by including payload and response details
+    - add the payload too to the error, so a user could replay the request
+    - add the text content of a failed response to the output
+- Fixes
+    - refactor: - adjust initialization wait time for interfaces based on pv_forecast entries - fix: shift in akkudoktor forecast by 1 hour over the day - fix: extend data for openmeteo lib for the whole current day - fix: extend error recognition for openmeteo lib integration fix #68 OpenMeteo forecast failing with many forecast entries
+- Other Changes
+    - fixes screenshot filename for readme
+    - Update README.md with enhanced features and quick start guide; add flow diagram and updated screenshot
+
 **Version 0.1.20-fix1** published on 2025-06-26
 - Fixes
     - fix: wrong naming of image for release version
