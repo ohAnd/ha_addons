@@ -1,4 +1,4 @@
-**Version 0.1.0.102-fix1** published on 2025-07-04
+**Version 0.1.0.102-fix2** published on 2025-07-04
 - fix:
     - change max configurable value in HA addon for inverter max_grid_charge_rate and max_pv_charge_rate - [#74](https://github.com/ohAnd/EOS_connect/issues/74)
 - org:
