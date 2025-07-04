@@ -6,9 +6,9 @@ url: "https://github.com/ohAnd/EOS_connect"
 arch:
   - aarch64
   - amd64
-  # - armhf # very long build time on github ~ 32mins - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
-  # - armv7 # very long build time on github ~ 32mins - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
-  # - i386 # https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
+  - armhf # very long build time on github ~ 32mins - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
+  - armv7 # very long build time on github ~ 32mins - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
+  - i386 # deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
 
 panel_icon: mdi:home-battery
 panel_admin: false
@@ -165,9 +165,8 @@ schema:
     address: str?
     user: str?
     password: password?
-    max_grid_charge_rate: int(0,10000)?
-    max_pv_charge_rate: int(0,10000)?
-    max_bat_discharge_rate: int(0,10000)?
+    max_grid_charge_rate: int(0,50000)?
+    max_pv_charge_rate: int(0,50000)?
   evcc:
     url: str # URL to your evcc installation
   mqtt:

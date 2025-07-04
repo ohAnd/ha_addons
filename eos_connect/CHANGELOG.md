@@ -1,3 +1,9 @@
+**Version 0.1.21-fix1** 2025-07-04
+- fix:
+    - change max configurable value in HA addon for inverter max_grid_charge_rate and max_pv_charge_rate - [#74](https://github.com/ohAnd/EOS_connect/issues/74)
+- org:
+    - add building of armhf/ armv7 / i386 - until finally deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
+
 **Version 0.1.21** published on 2025-06-28
 - Features
     - enhance error logging for OPTIMIZE requests by including payload and response details
