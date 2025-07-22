@@ -1,3 +1,7 @@
+**Version 0.1.0.106** published on 2025-07-22
+- feat:
+    - enhance EvccInterface with default state handling and improved error resilience
+
 **Version 0.1.0.105** published on 2025-07-18
 - fix:
     - fix: correct key for ambient temperature in inverter data retrieval
