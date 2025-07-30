@@ -1,3 +1,9 @@
+**Version 0.1.0.108** published on 2025-07-30
+- feat:
+    - add EVCC version handling and improve API response parsing - in advance to https://github.com/evcc-io/evcc/pull/22299
+- doc:
+    - update electricity price configuration with important notes on tax/fee basis - fix [#76](https://github.com/ohAnd/EOS_connect/issues/76)
+
 **Version 0.1.0.106** published on 2025-07-22
 - feat:
     - enhance EvccInterface with default state handling and improved error resilience
