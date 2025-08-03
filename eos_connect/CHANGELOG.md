@@ -1,3 +1,19 @@
+**Version 0.1.22** (2025-08-03)
+- **Features:**
+  - Add new `charging_curve_enabled` configuration option to dynamically adjust battery charging power based on the state of charge (SOC), optimizing battery health and efficiency
+  - Update EVCC interface to handle both old and new API versions with automatic version detection and logging [evcc-io/evcc#22299](evcc-io/evcc#22299)
+  - Add default detail data for EVCC when server is unreachable, providing fallback values for continued operation
+- **Fixes:**
+  - Enhance error handling in EVCC update loop to ensure system continues using last known values when EVCC server is unreachable
+  - Refactor BatteryInterface initialization to use single configuration object instead of multiple parameters, reducing code redundancy
+- **Configuration Updates:**
+  - Clarify configuration options for load sensors, electricity prices, and battery settings
+  - Ensure consistent tax/fee bases for price values and improve descriptions for better user understanding
+  - Update default configuration generation to reflect new `charging_curve_enabled` option and improve formatting
+- **Documentation:**
+  - Update README to better explain the dynamic charging curve and load sensor requirements
+  - Align documentation with new features and configurations for improved clarity
+
 **Version 0.1.21-fix1** 2025-07-04
 - fix:
     - change max configurable value in HA addon for inverter max_grid_charge_rate and max_pv_charge_rate - [#74](https://github.com/ohAnd/EOS_connect/issues/74)
