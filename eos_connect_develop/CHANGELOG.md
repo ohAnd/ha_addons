@@ -1,3 +1,8 @@
+**Version 0.1.0.109** published on 2025-08-03
+- doc:
+    - docs: enhance load sensor requirements and configuration details for improved clarity - touches [#78](https://github.com/ohAnd/EOS_connect/issues/78) Load Sensor Fehlende Daten
+Fixes
+
 **Version 0.1.0.108** published on 2025-07-30
 - feat:
     - add EVCC version handling and improve API response parsing - in advance to https://github.com/evcc-io/evcc/pull/22299
