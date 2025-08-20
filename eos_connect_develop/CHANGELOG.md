@@ -1,7 +1,11 @@
+**Version 0.1.0.111** published on 2025-08-20
+- fix:
+    - feat: add PortInterface for managing port availability and conflicts in EOS Connect web server - fixes [#83](https://github.com/ohAnd/EOS_connect/issues/83) EOS Connect starting and immediatly shuts down again in Home Assistant
+    - fix: enforce Python version requirement to 3.11 or higher
+
 **Version 0.1.0.109** published on 2025-08-03
 - doc:
     - docs: enhance load sensor requirements and configuration details for improved clarity - touches [#78](https://github.com/ohAnd/EOS_connect/issues/78) Load Sensor Fehlende Daten
-Fixes
 
 **Version 0.1.0.108** published on 2025-07-30
 - feat:

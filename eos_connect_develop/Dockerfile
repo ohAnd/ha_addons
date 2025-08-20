@@ -29,7 +29,8 @@ RUN python3 -m venv /opt/venv && \
         ruamel.yaml>=0.18.10 \
         paho-mqtt>=2.1.0 \
         pvlib>=0.13.0 \
-        open-meteo-solar-forecast>=0.1.22
+        open-meteo-solar-forecast>=0.1.22 \
+        psutil>=7.0.0
 
 # Link the configuration file
 RUN ln -sf /data/options.json /app/src/config.yaml
