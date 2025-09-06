@@ -1,3 +1,6 @@
+**Version 0.1.0.113-fix1** published on 2025-09-06
+- fix: update inverter type options to include fronius_gen24_v2 in config.yaml
+
 **Version 0.1.0.113** published on 2025-09-06
 - feat: add Fronius GEN24 V2 interface with enhanced authentication support
   - Implemented FroniusWRV2 class for improved authentication handling
