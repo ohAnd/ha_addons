@@ -1,3 +1,11 @@
+**Version 0.1.0.113** published on 2025-09-06
+- feat: add Fronius GEN24 V2 interface with enhanced authentication support
+  - Implemented FroniusWRV2 class for improved authentication handling
+  - Updated README and CONFIG_README to reflect new inverter type
+  - Modified eos_connect.py to support both fronius_gen24 and fronius_gen24_v2
+  - Enhanced error handling and logging for authentication issues
+  - fixes [#86](https://github.com/ohAnd/EOS_connect/issues/86)
+
 **Version 0.1.0.111** published on 2025-08-20
 - fix:
     - feat: add PortInterface for managing port availability and conflicts in EOS Connect web server - fixes [#83](https://github.com/ohAnd/EOS_connect/issues/83) EOS Connect starting and immediatly shuts down again in Home Assistant
