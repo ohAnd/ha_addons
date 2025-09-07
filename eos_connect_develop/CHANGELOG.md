@@ -1,3 +1,7 @@
+**Version 0.1.0.114** published on 2025-09-07
+- feat: update Fronius GEN24 interfaces for enhanced authentication and backward compatibility - touches [#86](https://github.com/ohAnd/EOS_connect/issues/86)
+- feat: enhance firmware detection and authentication handling in Fronius GEN24 V2 interface
+
 **Version 0.1.0.113-fix1** published on 2025-09-06
 - fix: update inverter type options to include fronius_gen24_v2 in config.yaml
 

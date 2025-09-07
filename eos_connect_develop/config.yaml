@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.1.0.113-fix1"
+version: "0.1.0.114"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -163,7 +163,7 @@ schema:
       horizon: str? # Optional - Horizon to calculate shading
 
   inverter:
-    type: list(fronius_gen24|fronius_gen24_v2|evcc|default)
+    type: list(fronius_gen24|fronius_gen24_legacy|evcc|default)
     address: str?
     user: str?
     password: password?
