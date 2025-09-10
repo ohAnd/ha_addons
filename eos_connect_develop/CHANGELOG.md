@@ -1,3 +1,6 @@
+**Version 0.1.23.115** published on 2025-09-10
+- feat: enhance SOC value handling in BatteryInterface for improved format detection - fix [#87](https://github.com/ohAnd/EOS_connect/issues/87) openHAB items with UoM throw an error
+
 **Version 0.1.0.114** published on 2025-09-07
 - feat: update Fronius GEN24 interfaces for enhanced authentication and backward compatibility - touches [#86](https://github.com/ohAnd/EOS_connect/issues/86)
 - feat: enhance firmware detection and authentication handling in Fronius GEN24 V2 interface
