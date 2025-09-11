@@ -1,3 +1,6 @@
+**Version 0.1.23.116** published on 2025-09-11
+- feat: add EVCC support for PV forecasts and improve configuration documentation - fix [#89](https://github.com/ohAnd/EOS_connect/issues/89)
+
 **Version 0.1.23.115** published on 2025-09-10
 - feat: enhance SOC value handling in BatteryInterface for improved format detection - fix [#87](https://github.com/ohAnd/EOS_connect/issues/87) openHAB items with UoM throw an error
 

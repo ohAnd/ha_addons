@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.1.23.115"
+version: "0.1.23.116"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -149,7 +149,7 @@ schema:
     charging_curve_enabled: bool # Enable charging curve for battery - default: true
 
   pv_forecast_source:
-    source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|default) # data source for solar forecast providers, default (default uses akkudoktor)
+    source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|evcc|default) # data source for solar forecast providers, default (default uses akkudoktor)
 
   pv_forecast:
     - name: str # name
