@@ -1,6 +1,3 @@
-**Version 0.1.23.116** published on 2025-09-13
-- feat: enhance MQTT connection handling with failure tracking and improved logging - touches [#91](https://github.com/ohAnd/EOS_connect/issues/91)
-
 **Version 0.1.23.116** published on 2025-09-11
 - feat: add EVCC support for PV forecasts and improve configuration documentation - fix [#89](https://github.com/ohAnd/EOS_connect/issues/89)
 
