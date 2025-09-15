@@ -34,6 +34,7 @@ WORKDIR /app/src
 # Configuration and health check
 RUN ln -sf /data/options.json /app/src/config.yaml
 
+# Healthcheck
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:8081/ || exit 1
 
