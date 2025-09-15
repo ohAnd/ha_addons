@@ -7,8 +7,6 @@ FROM $BUILD_FROM
 
 # Install Python packages available via Alpine package manager first
 RUN apk add --no-cache \
-    python3 \
-    py3-pip \
     py3-numpy \
     py3-pandas \
     py3-flask \
