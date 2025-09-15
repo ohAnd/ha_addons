@@ -76,6 +76,10 @@ jobs:
           submodules: recursive  # Ensure submodules are cloned
           fetch-depth: 0         # Fetch the full history to ensure submodules work correctly
 
+      # Add Docker Buildx setup for caching
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Get information
         id: info
         uses: home-assistant/actions/helpers/info@master
@@ -117,4 +121,6 @@ jobs:
             --target /data/${{ matrix.addon }} \
             --image "${{ steps.check.outputs.image }}" \
             --docker-hub "ghcr.io/${{ github.repository_owner }}" \
-            --addon
+            --addon \
+            --cache-from "type=gha" \
+            --cache-to "type=gha,mode=max"
