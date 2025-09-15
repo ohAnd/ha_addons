@@ -1,27 +1,9 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-# # Install required build tools
-# RUN apk add --no-cache \
-    # g++ \
-    # gcc \
-    # libffi-dev \
-    # musl-dev \
-    # make \
-    # python3 \
-    # py3-pip \
-    # python3-dev \
-    # git \
-    # hdf5-dev \
-    # openblas-dev \
-    # lapack-dev \
-    # blas-dev \
-    # gfortran
-
-# Install system dependencies only (not Python packages)
-RUN apk add --no-cache \
-    git \
-    curl
+# Install required build tools
+RUN apk add --no-cache g++ gcc libffi-dev musl-dev make python3 py3-pip python3-dev git hdf5-dev \
+    openblas-dev lapack-dev blas-dev gfortran
 
 # Copy the application code
 COPY ./src /app
@@ -33,54 +15,22 @@ RUN ls -l /app/src
 # Set the working directory
 WORKDIR /app/src
 
-# # Create and activate a virtual environment, then install dependencies
-# RUN python3 -m venv /opt/venv && \
-#     . /opt/venv/bin/activate && \
-#     pip install --no-cache-dir \
-#         Flask>=2.2.5 \
-#         requests>=2.26.0 \
-#         pandas>=2.2.3 \
-#         numpy>=2.2.2 \
-#         gevent>=24.2.1 \
-#         pyyaml>=6.0 \
-#         pytz>=2025.1 \
-#         ruamel.yaml>=0.18.10 \
-#         paho-mqtt>=2.1.0 \
-#         pvlib>=0.13.0 \
-#         open-meteo-solar-forecast>=0.1.22 \
-#         psutil>=7.0.0
-
-
-# Create virtual environment and install ALL packages via pip
+# Create and activate a virtual environment, then install dependencies
 RUN python3 -m venv /opt/venv && \
     . /opt/venv/bin/activate && \
-    pip install --upgrade pip && \
-    ARCH=$(uname -m) && \
-    echo "Installing packages for architecture: $ARCH" && \
-    if [ "$ARCH" = "x86_64" ] || [ "$ARCH" = "aarch64" ]; then \
-        pip install --no-cache-dir \
-            Flask>=2.2.5 \
-            requests>=2.26.0 \
-            pandas>=2.2.3 \
-            numpy>=2.2.2 \
-            gevent>=24.2.1 \
-            pyyaml>=6.0 \
-            pytz>=2025.1 \
-            ruamel.yaml>=0.18.10 \
-            paho-mqtt>=2.1.0 \
-            pvlib>=0.13.0 \
-            open-meteo-solar-forecast>=0.1.22 \
-            psutil>=7.0.0; \
-    else \
-        pip install --no-cache-dir \
-            Flask>=2.2.5 \
-            requests>=2.26.0 \
-            pyyaml>=6.0 \
-            pytz>=2025.1 \
-            ruamel.yaml>=0.18.10 \
-            paho-mqtt>=2.1.0 \
-            psutil>=7.0.0; \
-    fi
+    pip install --no-cache-dir \
+        Flask>=2.2.5 \
+        requests>=2.26.0 \
+        pandas>=2.2.3 \
+        numpy>=2.2.2 \
+        gevent>=24.2.1 \
+        pyyaml>=6.0 \
+        pytz>=2025.1 \
+        ruamel.yaml>=0.18.10 \
+        paho-mqtt>=2.1.0 \
+        pvlib>=0.13.0 \
+        open-meteo-solar-forecast>=0.1.22 \
+        psutil>=7.0.0
 
 # Link the configuration file
 RUN ln -sf /data/options.json /app/src/config.yaml
