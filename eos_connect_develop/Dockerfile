@@ -14,6 +14,7 @@ RUN apk add --no-cache \
     py3-yaml \
     py3-tz \
     py3-gevent \
+    py3-psutil \
     git \
     curl
 
@@ -48,16 +49,19 @@ WORKDIR /app/src
 # Create virtual environment and install remaining packages
 RUN python3 -m venv /opt/venv && \
     . /opt/venv/bin/activate && \
-    pip install --no-cache-dir --only-binary=all \
-        paho-mqtt>=2.1.0 \
-        ruamel.yaml>=0.18.10 \
-        pvlib>=0.13.0 \
-        open-meteo-solar-forecast>=0.1.22 \
-        psutil>=7.0.0 || \
-    pip install --no-cache-dir \
-        paho-mqtt>=2.1.0 \
-        ruamel.yaml>=0.18.10 \
-        psutil>=7.0.0
+    pip install --upgrade pip && \
+    ARCH=$(uname -m) && \
+    if [ "$ARCH" = "x86_64" ] || [ "$ARCH" = "aarch64" ]; then \
+        pip install --no-cache-dir \
+            ruamel.yaml>=0.18.10 \
+            paho-mqtt>=2.1.0 \
+            pvlib>=0.13.0 \
+            open-meteo-solar-forecast>=0.1.22; \
+    else \
+        pip install --no-cache-dir \
+            ruamel.yaml>=0.18.10 \
+            paho-mqtt>=2.1.0; \
+    fi
 
 # Link the configuration file
 RUN ln -sf /data/options.json /app/src/config.yaml
