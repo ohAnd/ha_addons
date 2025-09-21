@@ -1,3 +1,11 @@
+**Version 0.1.23.120** published on 2025-09-21
+- feat: update chart and battery data handling to use server timestamp for accurate hour labels
+- feat: add safety check to prevent AC charging when battery SoC exceeds maximum limit (EOS bug workaround)
+- feat: adapt displaying of grid/ ac charge data for wrong given eos values and add test endpoints for optimization request and response JSON files
+- fix: correct comment for battery price unit in configuration
+- fix: disable test mode by setting TEST_MODE to false
+- feat: implement timezone handling for schedule display and update time labels to reflect server time
+
 **Version 0.1.23.117** published on 2025-09-13
 - feat: enhance MQTT connection handling with failure tracking and improved logging - touches [#91](https://github.com/ohAnd/EOS_connect/issues/91)
 
