@@ -6,9 +6,9 @@ url: "https://github.com/ohAnd/EOS_connect"
 arch:
   - aarch64
   - amd64
-  - armhf # very long build time on github ~ 32mins - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
-  - armv7 # very long build time on github ~ 32mins - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
-  - i386 # deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
+  # - armhf # very long build time on github ~ 32mins - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
+  # - armv7 # very long build time on github ~ 32mins - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
+  # - i386 # deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
 
 panel_icon: mdi:home-battery
 panel_admin: false
@@ -60,6 +60,7 @@ options:
     min_soc_percentage: 5 # Minimum state of charge percentage
     max_soc_percentage: 100 # Maximum state of charge percentage
     price_euro_per_wh_accu: 0.0000 # price for battery in €/Wh
+    charging_curve_enabled: true # Enable charging curve for battery - default: true
 
   pv_forecast_source:
     source: akkudoktor # data source for solar forecast providers akkudoktor, openmeteo, openmeteo_local, forecast_solar, default (default uses akkudoktor)
@@ -145,9 +146,10 @@ schema:
     min_soc_percentage: int(0,100) # Minimum state of charge percentage
     max_soc_percentage: int(0,100) # Maximum state of charge percentage
     price_euro_per_wh_accu: float # price for battery in €/Wh
+    charging_curve_enabled: bool # Enable charging curve for battery - default: true
 
   pv_forecast_source:
-    source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|default) # data source for solar forecast providers, default (default uses akkudoktor)
+    source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|evcc|default) # data source for solar forecast providers, default (default uses akkudoktor)
 
   pv_forecast:
     - name: str # name
@@ -161,7 +163,7 @@ schema:
       horizon: str? # Optional - Horizon to calculate shading
 
   inverter:
-    type: list(fronius_gen24|evcc|default)
+    type: list(fronius_gen24|fronius_gen24_legacy|evcc|default)
     address: str?
     user: str?
     password: password?

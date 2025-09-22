@@ -1,3 +1,36 @@
+**Version 0.1.23** (2025-09-22)
+- **Features:**
+  - Add new Fronius GEN24 V2 interface with enhanced authentication support for improved inverter compatibility - [#86](https://github.com/ohAnd/EOS_connect/issues/86)
+  - Implement timezone handling for schedule display and update time labels to reflect server time for better user experience
+  - Add PortInterface for managing port availability and conflicts in EOS Connect web server - [#83](https://github.com/ohAnd/EOS_connect/issues/83)
+  - Add EVCC support for PV forecasts and improve configuration documentation - [#89](https://github.com/ohAnd/EOS_connect/issues/89)
+  - Add safety check to prevent AC charging when battery SoC exceeds maximum limit (EOS bug workaround)
+  - Add test endpoints for optimization request and response JSON files for debugging
+  - Update chart and battery data handling to use server timestamp for accurate hour labels
+  - **Web Interface Enhancements:**
+    - Implement timezone handling strategy: server time for data processing, local time for user display
+    - Add timezone indicator to schedule header showing "Local Time" for better user orientation
+    - Improve chart time labels to display hours in user's local timezone with consistent :00 format
+    - Enhanced grid/AC charge data validation with intelligent redistribution logic for invalid EOS values
+    - Add visual test mode indicator (green background) for debugging purposes
+    - Improved error handling and logging for negative grid calculations with fallback to actual consumption data
+- **Fixes:**
+  - Enhance SOC value handling in BatteryInterface for improved format detection - [#87](https://github.com/ohAnd/EOS_connect/issues/87)
+  - Enhance MQTT connection handling with failure tracking and improved logging - [#91](https://github.com/ohAnd/EOS_connect/issues/91)
+  - Disable test mode by setting TEST_MODE to false for production use
+  - Correct comment for battery price unit in configuration for clarity
+  - Adapt displaying of grid/AC charge data for wrong given EOS values
+  - Enforce Python version requirement to 3.11 or higher for compatibility
+  - Refactor timezone handling in load_interface for improved accuracy
+- **Configuration Updates:**
+  - Add EOS configuration requirements section with prediction settings and troubleshooting guidance - [#93](https://github.com/ohAnd/EOS_connect/issues/93)
+  - Enhance PV forecast documentation with azimuth conventions and examples - [#94](https://github.com/ohAnd/EOS_connect/issues/94)
+  - Update Fronius GEN24 interfaces for enhanced authentication and backward compatibility
+- **Documentation:**
+  - Enhanced firmware detection and authentication handling documentation for Fronius GEN24 V2 interface
+  - Updated README and CONFIG_README to reflect new inverter type support
+  - Improved configuration documentation for EVCC PV forecasts
+
 **Version 0.1.22** (2025-08-03)
 - **Features:**
   - Add new `charging_curve_enabled` configuration option to dynamically adjust battery charging power based on the state of charge (SOC), optimizing battery health and efficiency
