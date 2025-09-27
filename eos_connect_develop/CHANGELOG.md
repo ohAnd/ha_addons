@@ -1,3 +1,13 @@
+**Version 0.1.24.122** published on 2025-09-27
+- fix: improve error handling for missing solar forecast data in EVCC API
+- fix: enhance logging for invalid sensor data processing in LoadInterface
+- fix: improve error handling and logging for EVCC API forecast retrieval
+- fix: enhance error handling and logging in PV forecast_solar retrieval
+- fix: enhance error handling and logging for PV forecast akkudoktor and openmeteo lib retrieval
+- fix: improve error handling and logging for EOS version retrieval and connection issues - close Connection problem Fixes [#72](https://github.com/ohAnd/EOS_connect/issues/72)
+- docs: update installation instructions for EOS Connect and Home Assistant add-ons - touches [#72](https://github.com/ohAnd/EOS_connect/issues/72) Connection problem
+- fix: disable debug logging for loadpoints and EVCC state fetching
+
 **Version 0.1.23.120** published on 2025-09-21
 - feat: update chart and battery data handling to use server timestamp for accurate hour labels
 - feat: add safety check to prevent AC charging when battery SoC exceeds maximum limit (EOS bug workaround)
