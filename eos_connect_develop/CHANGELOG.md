@@ -1,3 +1,10 @@
+**Version 0.1.24.123** published on 2025-09-28
+- fix: implement retry mechanism for price retrieval failures
+- fix: enhance PV forecast retrieval with timezone-aware processing and error handling - fixing evcc change at 0.208.1 - touches [#89](https://github.com/ohAnd/EOS_connect/issues/89)
+- fix: update datetime handling for historical energy data to use timezone-aware processing due to deprecated functions
+- refactor: remove unused load profile creation methods and improve fallback logic for historical data - fix In EOS connect Grafik wird Load nicht angezeigt.
+Fixes [#97](https://github.com/ohAnd/EOS_connect/issues/97)
+
 **Version 0.1.24.122** published on 2025-09-27
 - fix: improve error handling for missing solar forecast data in EVCC API
 - fix: enhance logging for invalid sensor data processing in LoadInterface
