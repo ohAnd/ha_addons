@@ -63,7 +63,8 @@ options:
     charging_curve_enabled: true # Enable charging curve for battery - default: true
 
   pv_forecast_source:
-    source: akkudoktor # data source for solar forecast providers akkudoktor, openmeteo, openmeteo_local, forecast_solar, default (default uses akkudoktor)
+    source: akkudoktor # data source for solar forecast providers akkudoktor, openmeteo, openmeteo_local, forecast_solar, evcc, solcast, default (default uses akkudoktor)
+    api_key: "your_solcast_api_key_here" # Your Solcast API key (required if using solcast as source)
 
   pv_forecast:
     - name: roof_west #name
@@ -75,6 +76,7 @@ options:
       powerInverter: 5000 # Power Inverter for PV forecast @ Akkudoktor API
       inverterEfficiency: 0.9 # Inverter Efficiency for PV forecast @ Akkudoktor API
       horizon: "10,20,10,15" # Horizon to calculate shading up to 360 values to describe shading situation for your PV
+      resource_id: "" # Optional resource id for forecast_solar API
     - name: garden_south #name
       lat: 47.5 # Latitude for PV forecast @ Akkudoktor API
       lon: 8.5 # Longitude for PV forecast @ Akkudoktor API
@@ -84,6 +86,7 @@ options:
       powerInverter: 800 # Power Inverter for PV forecast @ Akkudoktor API
       inverterEfficiency: 0.9 # Inverter Efficiency for PV forecast @ Akkudoktor API
       horizon: "" # Horizon to calculate shading up to 360 values to describe shading situation for your PV
+      resource_id: "" # Optional resource id for forecast_solar API
 
   inverter:
     type: "default"
@@ -149,7 +152,8 @@ schema:
     charging_curve_enabled: bool # Enable charging curve for battery - default: true
 
   pv_forecast_source:
-    source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|evcc|default) # data source for solar forecast providers, default (default uses akkudoktor)
+    source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|evcc|solcast|default) # data source for solar forecast providers, default (default uses akkudoktor)
+    api_key: password? # Your Solcast API key (required if using solcast as source)
 
   pv_forecast:
     - name: str # name
@@ -161,6 +165,7 @@ schema:
       powerInverter: int(1,) # Power Inverter for PV forecast
       inverterEfficiency: float(0.0,1.0) # Inverter Efficiency for PV forecast
       horizon: str? # Optional - Horizon to calculate shading
+      resource_id: str? # Optional resource id for solcast API
 
   inverter:
     type: list(fronius_gen24|fronius_gen24_legacy|evcc|default)

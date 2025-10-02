@@ -1,40 +1,71 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-# Install build tools in separate layer (cached unless Alpine updates)
-RUN apk add --no-cache \
-    g++ gcc libffi-dev musl-dev make \
-    python3 py3-pip python3-dev git \
-    hdf5-dev openblas-dev lapack-dev blas-dev gfortran \
-    curl
+# Timing: Start build with GitHub Actions visibility
+RUN echo "::group::Build Environment Setup" && \
+    echo "=== BUILD STARTED: $(date) ===" && \
+    echo "Architecture: $(uname -m)" && \
+    echo "Memory: $(free -h | grep Mem:)" && \
+    echo "::endgroup::"
 
-# Create virtual environment first (cached)
-RUN python3 -m venv /opt/venv
+# Install runtime dependencies efficiently
+RUN echo "::group::Installing System Dependencies" && \
+    echo "=== INSTALLING SYSTEM PACKAGES ===" && \
+    apk add --no-cache python3 py3-pip curl && \
+    echo "=== SYSTEM PACKAGES INSTALLED ===" && \
+    echo "::endgroup::"
 
-# Install dependencies before copying source code (better caching)
-RUN . /opt/venv/bin/activate && \
+# Create virtual environment
+RUN echo "::group::Creating Python Environment" && \
+    echo "=== CREATING VIRTUAL ENVIRONMENT ===" && \
+    python3 -m venv /opt/venv && \
+    . /opt/venv/bin/activate && \
+    pip install --upgrade pip && \
+    echo "Python version: $(python --version)" && \
+    echo "Pip version: $(pip --version)" && \
+    echo "=== VIRTUAL ENVIRONMENT READY ===" && \
+    echo "::endgroup::"
+
+# Install core scientific packages (heaviest first)
+RUN echo "::group::Installing Scientific Libraries" && \
+    echo "=== INSTALLING NUMPY & PANDAS ===" && \
+    . /opt/venv/bin/activate && \
     pip install --no-cache-dir \
-        Flask>=2.2.5 \
-        requests>=2.26.0 \
-        pandas>=2.2.3 \
-        numpy>=2.2.2 \
-        gevent>=24.2.1 \
-        pyyaml>=6.0 \
-        pytz>=2025.1 \
-        ruamel.yaml>=0.18.10 \
-        paho-mqtt>=2.1.0 \
-        pvlib>=0.13.0 \
-        open-meteo-solar-forecast>=0.1.22 \
-        psutil>=7.0.0
+        numpy>=2.2.2 pandas>=2.2.3 && \
+    echo "=== SCIENTIFIC LIBRARIES INSTALLED ===" && \
+    echo "::endgroup::"
 
-# Copy application code last (most frequently changed)
+# Install web framework packages
+RUN echo "::group::Installing Web Framework" && \
+    echo "=== INSTALLING FLASK & GEVENT ===" && \
+    . /opt/venv/bin/activate && \
+    pip install --no-cache-dir \
+        Flask>=2.2.5 requests>=2.26.0 gevent>=24.2.1 && \
+    echo "=== WEB FRAMEWORK INSTALLED ===" && \
+    echo "::endgroup::"
+
+# Install configuration and utility packages
+RUN echo "::group::Installing Configuration & Utilities" && \
+    echo "=== INSTALLING CONFIG & UTILITY PACKAGES ===" && \
+    . /opt/venv/bin/activate && \
+    pip install --no-cache-dir \
+        pyyaml>=6.0 ruamel.yaml>=0.18.10 \
+        pytz>=2025.1 paho-mqtt>=2.1.0 \
+        open-meteo-solar-forecast>=0.1.22 psutil>=7.0.0 && \
+    echo "=== ALL PACKAGES INSTALLED ===" && \
+    echo "::endgroup::"
+
+# Copy application and finalize
 COPY ./src /app
 WORKDIR /app/src
+RUN echo "::group::Finalizing Application" && \
+    ln -sf /data/options.json /app/src/config.yaml && \
+    echo "=== APPLICATION COPIED ===" && \
+    echo "Virtual environment size: $(du -sh /opt/venv)" && \
+    echo "=== BUILD COMPLETED: $(date) ===" && \
+    echo "::endgroup::"
 
-# Configuration and health check
-RUN ln -sf /data/options.json /app/src/config.yaml
-
-# Healthcheck
+# Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:8081/ || exit 1
 

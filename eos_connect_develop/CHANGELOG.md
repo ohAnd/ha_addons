@@ -1,3 +1,9 @@
+**Version 0.1.24.124** published on 2025-10-03
+- refactor: remove pvlib dependency and implement custom solar position and angle of incidence calculations
+- fix: enhance temperature forecast retrieval with error handling and default fallback
+- feat: add Solcast integration for high-precision solar forecasting and update configuration documentation - fix feature request: solcast data from home assistant Fixes [#100](https://github.com/ohAnd/EOS_connect/issues/100)
+- fix: increase precision of hourly price calculations to 9 decimal places - fix smartenergy_at prices deviate Fixes [#98](https://github.com/ohAnd/EOS_connect/issues/98)
+
 **Version 0.1.24.123** published on 2025-09-28
 - fix: implement retry mechanism for price retrieval failures
 - fix: enhance PV forecast retrieval with timezone-aware processing and error handling - fixing evcc change at 0.208.1 - touches [#89](https://github.com/ohAnd/EOS_connect/issues/89)
