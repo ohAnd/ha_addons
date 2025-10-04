@@ -1,3 +1,17 @@
+**Version 0.2.01.129** published on 2025-10-04
+- fix: improve error messages and refactor variable names for clarity in PvInterface
+- fix: rename timezone parameter to tz_name for consistency and clarity
+- feat: implement in-memory logging handler with API endpoints for log retrieval and management
+- full refactoring of UI backend + integration of ui log viewer
+- fix: update logging prefixes for consistency and clarity across API and control modules
+- feat: introduce web ui system log view with several filters and alert dashboard incl. notification via menu and menu entries
+- fix: update showSchedule function to include data_controls parameter for enhanced schedule management
+- fix: conditions in evcc state overrides
+- fix: adjust font sizes for mobile responsiveness in main and full-screen overlays
+- feat: implement full-screen override controls menu and enhance UI interactions + new info popup
+- feat: add EOS Connect icons for control modes and update ControlsManager and ScheduleManager to utilize them
+- fix: update logging.js for improved functionality and compatibility
+
 **Version 0.1.24.124** published on 2025-10-03
 - refactor: remove pvlib dependency and implement custom solar position and angle of incidence calculations
 - fix: enhance temperature forecast retrieval with error handling and default fallback
