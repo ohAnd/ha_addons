@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.01.129"
+version: "0.2.01.130"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -44,7 +44,7 @@ options:
   price:
     source: default # Data source for electricity price
     token: "" # Token for electricity price
-    fixed_24h_array:  # 24 hours array with fixed prices over the day
+    fixed_24h_array: "" # 24 hours array with fixed prices over the day
     feed_in_price: 0 # Feed-in price for electricity in EUR/kWh (optional)
     negative_price_switch: False # Switch for negative stock price handling True/ False (optional)
 

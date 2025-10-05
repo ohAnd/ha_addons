@@ -1,3 +1,6 @@
+**Version 0.2.01.130** published on 2025-10-05
+- fix: web api pathes for logger to align also with HA addon
+
 **Version 0.2.01.129** published on 2025-10-04
 - fix: improve error messages and refactor variable names for clarity in PvInterface
 - fix: rename timezone parameter to tz_name for consistency and clarity
