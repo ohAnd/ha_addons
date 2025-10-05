@@ -1,3 +1,10 @@
+**Version 0.2.01.131** published on 2025-10-05
+- refactor: improve code formatting and enhance timestamp handling in MemoryLogHandler
+- feat: clickable links and log [Main] with color in web logger
+- feat: web logger adding search filter
+- feat: create generated bug report for github issue
+- fix: correct condition for determining current mode at hour in showSchedule
+
 **Version 0.2.01.130** published on 2025-10-05
 - fix: web api pathes for logger to align also with HA addon
 
