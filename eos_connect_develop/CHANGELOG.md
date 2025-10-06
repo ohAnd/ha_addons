@@ -1,3 +1,8 @@
+**Version 0.2.01.132** published on 2025-10-05
+- refactor: update test mode handling and improve variable naming in data fetching methods
+- fix: correct max charge power retrieval in schedule manager
+- style: comment out console logs in menu notifications
+
 **Version 0.2.01.131** published on 2025-10-05
 - refactor: improve code formatting and enhance timestamp handling in MemoryLogHandler
 - feat: clickable links and log [Main] with color in web logger
