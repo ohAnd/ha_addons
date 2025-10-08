@@ -40,6 +40,12 @@ configuration:
     token:
       name: Price Token
       description: Token for electricity price from tibber.
+    fixed_price_adder_ct:
+      name: Fixed Price Adder (ct/kWh)
+      description: Fixed cost addition in ct per kWh for electricity price from default (Akkudoktor).
+    relative_price_multiplier:
+      name: Relative Price Multiplier
+      description: Relative price multiplier for electricity price from default (Akkudoktor).
     feed_in_price:
       name: Feed-in Price
       description: Feed-in price for electricity in EUR/kWh (optional).

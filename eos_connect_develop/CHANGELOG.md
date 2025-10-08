@@ -1,3 +1,12 @@
+**Version 0.2.01.133** published on 2025-10-08
+- feat: add override modes to test scenarios and update HTML for selection
+- feat: enhance override menu with better order for duration selection and grid charge power controls - touches [#105](https://github.com/ohAnd/EOS_connect/issues/105)
+- feat: add fixed price adder and relative price multiplier to price calculations for akkudoktor/ default price source - fix Excluded taxes and grid fees lead to wrong optimization - Fixes [#88](https://github.com/ohAnd/EOS_connect/issues/88) and Modul 3 Prices - TOU - static/ dynamic prices - grid fees
+touches [#51](https://github.com/ohAnd/EOS_connect/issues/51)
+- feat: add fixed price adder and relative price multiplier to configuration readme for default price source
+- feat: update bug report manager to use EOS_connect repository for bug reports
+- feat: refactor optimization scheduler and control logic for improved state management and runtime calculations -  Real-Time Price Response with EOS Connect: Supporting 15-Minute Intervals (and timed executions) touches [#104](https://github.com/ohAnd/EOS_connect/issues/104)
+
 **Version 0.2.01.132** published on 2025-10-05
 - refactor: update test mode handling and improve variable naming in data fetching methods
 - fix: correct max charge power retrieval in schedule manager

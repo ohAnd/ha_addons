@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.01.132"
+version: "0.2.01.133"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -44,6 +44,8 @@ options:
   price:
     source: default # Data source for electricity price
     token: "" # Token for electricity price
+    fixed_price_adder_ct: 0 # Describes the fixed cost addition in ct per kWh.
+    relative_price_multiplier: 0.00 # Applied to (base energy price + fixed_price_adder_ct). Use a decimal (e.g., 0.05 for 5%).
     fixed_24h_array: "" # 24 hours array with fixed prices over the day
     feed_in_price: 0 # Feed-in price for electricity in EUR/kWh (optional)
     negative_price_switch: False # Switch for negative stock price handling True/ False (optional)
@@ -133,6 +135,8 @@ schema:
   price:
     source: list(smartenergy_at|tibber|fixed_24h|default) # Data source for electricity price
     token: password? # Token for electricity price
+    fixed_price_adder_ct: float(0,1000)? # Describes the fixed cost addition in ct per kWh.
+    relative_price_multiplier: float(0.0,1.0)? # Applied to (base energy price + fixed_price_adder_ct). Use a decimal (e.g., 0.05 for 5%).
     fixed_24h_array: str? # 24 hours array with fixed prices over the day
     feed_in_price: float? # Feed-in price for electricity in EUR/kWh (optional)
     negative_price_switch: bool? # Switch for negative stock price handling True/ False (optional)
