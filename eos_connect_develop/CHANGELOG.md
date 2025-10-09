@@ -1,3 +1,7 @@
+**Version 0.2.01.134** published on 2025-10-09
+- feat: enhance optimization scheduling logic to support first run alignment and improve quarter-hour synchronization
+- feat: implement background price update service in PriceInterface for improved data retrieval - touches [#45](https://github.com/ohAnd/EOS_connect/issues/45)
+
 **Version 0.2.01.133** published on 2025-10-08
 - feat: add override modes to test scenarios and update HTML for selection
 - feat: enhance override menu with better order for duration selection and grid charge power controls - touches [#105](https://github.com/ohAnd/EOS_connect/issues/105)
