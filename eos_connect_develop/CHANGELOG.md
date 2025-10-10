@@ -1,3 +1,7 @@
+**Version 0.2.01.135** published on 2025-10-10
+- feat: update logging.js for improved functionality and performance
+- feat: add SOC failure handling and reset logic in BatteryInterface for improved reliability
+
 **Version 0.2.01.134** published on 2025-10-09
 - feat: enhance optimization scheduling logic to support first run alignment and improve quarter-hour synchronization
 - feat: implement background price update service in PriceInterface for improved data retrieval - touches [#45](https://github.com/ohAnd/EOS_connect/issues/45)
