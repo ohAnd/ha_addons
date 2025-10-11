@@ -1,3 +1,7 @@
+**Version 0.2.01.136** published on 2025-10-11
+- feat: enhance error logging in LoadInterface and improve SOC error handling in BatteryInterface
+- feat: aggregate 15-min intervals to hourly Wh in __get_pv_forecast_evcc_api for improved accuracy - closes [#108](https://github.com/ohAnd/EOS_connect/issues/108) - thanks to @forouher
+
 **Version 0.2.01.135** published on 2025-10-10
 - feat: update logging.js for improved functionality and performance
 - feat: add SOC failure handling and reset logic in BatteryInterface for improved reliability
