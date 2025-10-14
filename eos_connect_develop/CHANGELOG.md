@@ -1,3 +1,9 @@
+**Version 0.2.01.138** published on 2025-10-14
+- feat: refactor API request handling in PvInterface for improved error management and retry logic
+- feat: add testing workflows for Docker builds and implement unit tests for PvInterface error handling and retry logic
+- feat: improve scheduling algorithm in EosInterface and add comprehensive unit tests
+- fix: correct conditional checks for SOC data source selection and ensure proper capacity calculation - fix ERROR [BATTERY-IF] source currently not supported. Using default start SOC = 5%. Fixes [#111](https://github.com/ohAnd/EOS_connect/issues/111)
+
 **Version 0.2.01.136** published on 2025-10-11
 - feat: enhance error logging in LoadInterface and improve SOC error handling in BatteryInterface
 - feat: aggregate 15-min intervals to hourly Wh in __get_pv_forecast_evcc_api for improved accuracy - closes [#108](https://github.com/ohAnd/EOS_connect/issues/108) - thanks to @forouher
