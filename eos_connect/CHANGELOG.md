@@ -1,3 +1,45 @@
+**Version 0.2.24** (2025-10-18)
+
+Highlights
+- Improved scheduling and optimization with 15‑minute interval support and better quarter-hour alignment.
+- Solcast integration for higher-precision solar forecasts and improved PV/temperature forecast handling.
+- UI: full-screen override menu, improved override controls, and a searchable web log viewer.
+- Reliability: fixes for battery SOC handling, EVCC scaling, price/forecast retries, and logging.
+
+### Features
+- Optimization & scheduling
+  - Better scheduler/state management with 15‑minute interval support and timed executions.
+  - Aggregation of 15‑min PV forecasts to hourly Wh for improved accuracy.
+
+- PV & forecasts
+  - Solcast integration and improved timezone-aware PV/temperature forecast handling.
+  - Replaced pvlib with in-repo solar calculations.
+
+- Price handling
+  - Background price update service.
+  - Configurable fixed price adder and relative price multiplier.
+
+- Controls & UI
+  - Full-screen override controls, improved override UI, and a web system log view with filters and clickable links.
+  - In-memory logging API for retrieving/managing logs.
+
+### Bug fixes
+- Battery & SOC
+  - Fixed SOC source selection and capacity calculation; added SOC failure/reset handling.
+
+- Forecasts & price
+  - Fixed PV/forecast timezone and retrieval issues; added retry logic for price retrieval.
+  - Increased precision for hourly price calculations to avoid rounding issues.
+
+- UI & logging
+  - Fixed schedule display, mobile font/overlay issues, and web logger API paths (Home Assistant addon compatibility).
+  - Improved logging messages and timestamp handling.
+
+### Notes
+- If you use external price adjustments, review new price adder/multiplier settings.
+- Solcast requires a Solcast API key to enable that provider.
+- pvlib was removed; typical user configs should continue to work, but custom setups depending on pvlib internals may need review.
+
 **Version 0.1.23** (2025-09-22)
 - **Features:**
   - Add new Fronius GEN24 V2 interface with enhanced authentication support for improved inverter compatibility - [#86](https://github.com/ohAnd/EOS_connect/issues/86)

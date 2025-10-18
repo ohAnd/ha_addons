@@ -1,6 +1,6 @@
 name: "EOS connect"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.1.23"
+version: "0.2.24"
 slug: "eos_connect"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -44,7 +44,9 @@ options:
   price:
     source: default # Data source for electricity price
     token: "" # Token for electricity price
-    fixed_24h_array:  # 24 hours array with fixed prices over the day
+    fixed_price_adder_ct: 0 # Describes the fixed cost addition in ct per kWh.
+    relative_price_multiplier: 0.00 # Applied to (base energy price + fixed_price_adder_ct). Use a decimal (e.g., 0.05 for 5%).
+    fixed_24h_array: "" # 24 hours array with fixed prices over the day
     feed_in_price: 0 # Feed-in price for electricity in EUR/kWh (optional)
     negative_price_switch: False # Switch for negative stock price handling True/ False (optional)
 
@@ -63,7 +65,8 @@ options:
     charging_curve_enabled: true # Enable charging curve for battery - default: true
 
   pv_forecast_source:
-    source: akkudoktor # data source for solar forecast providers akkudoktor, openmeteo, openmeteo_local, forecast_solar, default (default uses akkudoktor)
+    source: akkudoktor # data source for solar forecast providers akkudoktor, openmeteo, openmeteo_local, forecast_solar, evcc, solcast, default (default uses akkudoktor)
+    api_key: "your_solcast_api_key_here" # Your Solcast API key (required if using solcast as source)
 
   pv_forecast:
     - name: roof_west #name
@@ -75,6 +78,7 @@ options:
       powerInverter: 5000 # Power Inverter for PV forecast @ Akkudoktor API
       inverterEfficiency: 0.9 # Inverter Efficiency for PV forecast @ Akkudoktor API
       horizon: "10,20,10,15" # Horizon to calculate shading up to 360 values to describe shading situation for your PV
+      resource_id: "" # Optional resource id for forecast_solar API
     - name: garden_south #name
       lat: 47.5 # Latitude for PV forecast @ Akkudoktor API
       lon: 8.5 # Longitude for PV forecast @ Akkudoktor API
@@ -84,6 +88,7 @@ options:
       powerInverter: 800 # Power Inverter for PV forecast @ Akkudoktor API
       inverterEfficiency: 0.9 # Inverter Efficiency for PV forecast @ Akkudoktor API
       horizon: "" # Horizon to calculate shading up to 360 values to describe shading situation for your PV
+      resource_id: "" # Optional resource id for forecast_solar API
 
   inverter:
     type: "default"
@@ -130,6 +135,8 @@ schema:
   price:
     source: list(smartenergy_at|tibber|fixed_24h|default) # Data source for electricity price
     token: password? # Token for electricity price
+    fixed_price_adder_ct: float(0,1000)? # Describes the fixed cost addition in ct per kWh.
+    relative_price_multiplier: float(0.0,1.0)? # Applied to (base energy price + fixed_price_adder_ct). Use a decimal (e.g., 0.05 for 5%).
     fixed_24h_array: str? # 24 hours array with fixed prices over the day
     feed_in_price: float? # Feed-in price for electricity in EUR/kWh (optional)
     negative_price_switch: bool? # Switch for negative stock price handling True/ False (optional)
@@ -149,7 +156,8 @@ schema:
     charging_curve_enabled: bool # Enable charging curve for battery - default: true
 
   pv_forecast_source:
-    source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|evcc|default) # data source for solar forecast providers, default (default uses akkudoktor)
+    source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|evcc|solcast|default) # data source for solar forecast providers, default (default uses akkudoktor)
+    api_key: password? # Your Solcast API key (required if using solcast as source)
 
   pv_forecast:
     - name: str # name
@@ -161,6 +169,7 @@ schema:
       powerInverter: int(1,) # Power Inverter for PV forecast
       inverterEfficiency: float(0.0,1.0) # Inverter Efficiency for PV forecast
       horizon: str? # Optional - Horizon to calculate shading
+      resource_id: str? # Optional resource id for solcast API
 
   inverter:
     type: list(fronius_gen24|fronius_gen24_legacy|evcc|default)

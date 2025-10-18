@@ -40,6 +40,12 @@ configuration:
     token:
       name: Price Token
       description: Token for electricity price from tibber.
+    fixed_price_adder_ct:
+      name: Fixed Price Adder (ct/kWh)
+      description: Fixed cost addition in ct per kWh for electricity price from default (Akkudoktor).
+    relative_price_multiplier:
+      name: Relative Price Multiplier
+      description: Relative price multiplier for electricity price from default (Akkudoktor).
     feed_in_price:
       name: Feed-in Price
       description: Feed-in price for electricity in EUR/kWh (optional).
@@ -80,13 +86,19 @@ configuration:
     max_soc_percentage:
       name: Max SOC Percentage
       description: Maximum state of charge percentage.
-
+    price_euro_per_wh_accu: 
+      name: Price Euro per Wh Accu
+      description: Price for battery in €/Wh.
+  
   pv_forecast_source:
     name: PV Forecast Source
     description: Configuration for PV forecast data source.
     source:
       name: PV Forecast Source
-      description: "Data source for solar forecast providers. Possible values: akkudoktor, openmeteo, openmeteo_local, forecast_solar, default (default uses akkudoktor)."
+      description: "Data source for solar forecast providers. Possible values: akkudoktor, openmeteo, openmeteo_local, forecast_solar, evcc, solcast, default (default uses akkudoktor)."
+    api_key:
+      name: Solcast API Key
+      description: Your Solcast API key (required if using solcast as source).
 
   pv_forecast:
     name: PV Forecast Settings
@@ -113,15 +125,18 @@ configuration:
       inverterEfficiency:
         name: Inverter Efficiency
         description: Inverter Efficiency for PV forecast @ Akkudoktor API.
-      horizont:
-        name: Horizont
-        description: Optional - Horizont to calculate shading up to 360 values to describe shading situation for your PV.
+      horizon:
+        name: Horizon
+        description: Optional - Horizon to calculate shading up to 360 values to describe shading situation for your PV.
+      resource_id:
+        name: Resource ID
+        description: Optional resource id for solcast API.
   inverter:
     name: Inverter Settings
     description: Configuration for inverter settings.
     type:
       name: Inverter Type
-      description: Type of inverter - fronius_gen24 or default (display only mode).
+      description: Type of inverter - fronius_gen24, evcc or default (display only mode).
     address:
       name: Inverter Address
       description: Address of the inverter.
@@ -137,9 +152,6 @@ configuration:
     max_pv_charge_rate:
       name: Max PV Charge Rate
       description: Maximum PV charge rate in W.
-    max_bat_discharge_rate:
-      name: Max Battery Discharge Rate
-      description: Maximum battery discharge rate in W.
   evcc:
     name: EVCC Settings
     description: Configuration for EVCC settings.
