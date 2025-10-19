@@ -1,4 +1,5 @@
-**Version 0.2.25.144** published on 2025-10-19
+**Version 0.2.25.144-fix1** published on 2025-10-19
+- fix HAaddon - src missing
 - feat: implement retry logic for HTTP requests in LoadInterface and add unit tests
 - style: improve CSS formatting and enhance font size scaling for better responsiveness
 - feat: update schedule display to include SOC and improve expense/income representation
