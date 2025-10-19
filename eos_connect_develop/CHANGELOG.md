@@ -1,3 +1,12 @@
+**Version 0.2.25.144** published on 2025-10-19
+- feat: implement retry logic for HTTP requests in LoadInterface and add unit tests
+- style: improve CSS formatting and enhance font size scaling for better responsiveness
+- feat: update schedule display to include SOC and improve expense/income representation
+- fix: improve logging for charge power limitation in FroniusWRV2 class
+- feat: add planActive state and update charging mode logic in EVCC interface - fix Haus-Batterie wird nicht gesperrt, sofern evcc mode = "PV" und Ladeplan aktiv Fixes [#66](https://github.com/ohAnd/EOS_connect/issues/66)
+- chore: update version prefix in workflow and version file to 0.2.25 - adjust SOC color representation in schedule manager
+- fix: update API version to 0.0.2 and enhance logging for EVCC charging state transitions
+
 **Version 0.2.01.138** published on 2025-10-14
 - feat: refactor API request handling in PvInterface for improved error management and retry logic
 - feat: add testing workflows for Docker builds and implement unit tests for PvInterface error handling and retry logic
