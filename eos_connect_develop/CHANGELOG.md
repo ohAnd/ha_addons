@@ -1,3 +1,10 @@
+**Version 0.2.25.145** published on 2025-10-20
+- fix: update API version to 0.0.2 and enhance logging for EVCC charging state transitions
+- fix: improve grid charge power handling and logging in ControlsManager - fix 0.2.24: After setting override, I cannot disable override or change it, from the UI Fixes [#119](https://github.com/ohAnd/EOS_connect/issues/119)
+- fix: update expense and income color representation to use 'lightgray' for better visibility
+- fix: update expense and income color representation to improve visibility thresholds
+- chore: update version prefix in workflow and version file to 0.2.25 - adjust SOC color representation in schedule manager
+
 **Version 0.2.25.144-fix1** published on 2025-10-19
 - fix HAaddon - src missing
 - feat: implement retry logic for HTTP requests in LoadInterface and add unit tests
