@@ -1,3 +1,8 @@
+**Version 0.2.25.151** published on 2025-10-25
+- fix: enhance data validation by checking for 'unknown' state in energy data
+- fix: add DST change detection and adjust EMS data retrieval accordingly - preperation for full EOS DST change capability - fixes Null values lead to crash Fixes [#130](https://github.com/ohAnd/EOS_connect/issues/130)
+- fix: implement last control data tracking for optimized charging decisions - fixes Log file flooded with 'WARNING [Main] EOS requested AC charging (0.75) but battery SoC (100.0%) at/above maximum (100%) - overriding to 0' Fixes [#131](https://github.com/ohAnd/EOS_connect/issues/131)
+
 **Version 0.2.25.145** published on 2025-10-20
 - fix: update API version to 0.0.2 and enhance logging for EVCC charging state transitions
 - fix: improve grid charge power handling and logging in ControlsManager - fix 0.2.24: After setting override, I cannot disable override or change it, from the UI Fixes [#119](https://github.com/ohAnd/EOS_connect/issues/119)
