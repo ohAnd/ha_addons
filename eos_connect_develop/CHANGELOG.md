@@ -1,3 +1,9 @@
+**Version 0.2.25.153** published on 2025-10-25
+- Implement currency symbols from price provider ([#129](https://github.com/ohAnd/EOS_connect/issues/129)) thanks to @LordMike
+  - * feat: expose currency for chosen price provider such that ui sees it
+  - * bugfix: currency ui symbol
+  - * refactor localization for a centrilzed structure
+
 **Version 0.2.25.151** published on 2025-10-25
 - fix: enhance data validation by checking for 'unknown' state in energy data
 - fix: add DST change detection and adjust EMS data retrieval accordingly - preperation for full EOS DST change capability - fixes Null values lead to crash Fixes [#130](https://github.com/ohAnd/EOS_connect/issues/130)
