@@ -1,3 +1,6 @@
+**Version 0.2.25.164** published on 2025-10-27
+- feat: enhance historical data processing to include attributes and unit conversion for HA source - found by @WolfImBusch
+
 **Version 0.2.25.163** published on 2025-10-27
 - Add Strømligning.dk price provider ([#126](https://github.com/ohAnd/EOS_connect/issues/126)) - implements [#123](https://github.com/ohAnd/EOS_connect/issues/123) - thanks to @LordMike
   - feat: add Stromligning price provider
