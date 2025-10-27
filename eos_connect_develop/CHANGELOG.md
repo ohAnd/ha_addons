@@ -1,3 +1,14 @@
+**Version 0.2.25.163** published on 2025-10-27
+- Add Strømligning.dk price provider ([#126](https://github.com/ohAnd/EOS_connect/issues/126)) - implements [#123](https://github.com/ohAnd/EOS_connect/issues/123) - thanks to @LordMike
+  - feat: add Stromligning price provider
+  - feat: extend stromligning price window by using their forecast API
+  - Update price interface for stromligning as per discussion
+  - Tweak the docs
+  - Handle some pylint issues
+- fix: [#122](https://github.com/ohAnd/EOS_connect/issues/122) set all evcc states to avoid discharge ([#134](https://github.com/ohAnd/EOS_connect/issues/134)) - fixes [#122](https://github.com/ohAnd/EOS_connect/issues/122)
+  - fix: [#66](https://github.com/ohAnd/EOS_connect/issues/66) set all evcc states to avoid discharge
+  - fix: enhance MQTT value and command templates for better state handling
+
 **Version 0.2.25.158** published on 2025-10-27
 - fix: remove currency symbol from in/out text display in schedule
 - update EVCC charging modes in connection with EOS demands
