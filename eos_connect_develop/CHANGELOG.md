@@ -1,3 +1,12 @@
+**Version 0.2.25.158** published on 2025-10-27
+- fix: remove currency symbol from in/out text display in schedule
+- update EVCC charging modes in connection with EOS demands
+- Introduced a new color constant for "Charge From Grid During E-Car Fast Charge" in `constants.js`.
+- Updated the schedule display logic in `schedule.js` to include the new charging mode.
+- Improved logging format in `pv_interface.py` for better readability.
+- feat: add 'Charge from Grid EVCC FAST' option to MQTT command templates - touches Haus-Batterie wird nicht gesperrt, sofern evcc mode = "PV" und Ladeplan aktiv touches [#66](https://github.com/ohAnd/EOS_connect/issues/66)
+
+
 **Version 0.2.25.153** published on 2025-10-25
 - Implement currency symbols from price provider ([#129](https://github.com/ohAnd/EOS_connect/issues/129)) thanks to @LordMike
   - * feat: expose currency for chosen price provider such that ui sees it
