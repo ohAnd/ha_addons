@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.25.164"
+version: "0.2.25.166"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -37,8 +37,9 @@ options:
     additional_load_1_consumption: 0 # overall consumption of additional load 1 in Wh for the given hours
 
   eos:
-    server: 192.168.1.94 # EOS server address
-    port: 8503 # port for EOS server
+    source: eos_server # EOS server source - eos_server, evcc_opt - default: eos_server
+    server: 192.168.1.94 # # EOS or evcc opt server address
+    port: 8503 # port for EOS server (8503) or evcc opt server (7050) - default: 8503
     timeout: 180 # timeout for EOS optimize request in seconds
 
   price:
@@ -128,8 +129,9 @@ schema:
     additional_load_1_consumption: int(0,)? # overall consumption of additional load 1 in Wh for the given hours
 
   eos:
-    server: str # EOS server address
-    port: port # port for EOS server
+    source: list(eos_server|evcc_opt)
+    server: str # # EOS or evcc opt server address
+    port: port # port for EOS server (8503) or evcc opt server (7050) - default: 8503
     timeout: int(1,) # timeout for EOS optimize request in seconds
 
   price:

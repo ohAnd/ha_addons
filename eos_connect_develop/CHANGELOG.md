@@ -1,3 +1,17 @@
+**Version 0.2.25.166** published on 2025-10-29
+- EXPERIMENTAL: Evcc opt wrapper ([#138](https://github.com/ohAnd/EOS_connect/issues/138))
+  - first working draft of second source for optimization - evcc opt
+  - feat: update README and configuration for EOS server source and port settings - fixes eos intrerface tests
+  - feat: update README and UI to support evcc optimization backend and display experimental mode banner
+  - refactor: remove hardcoded base URL for EVCC optimization request
+  - feat: Add OptimizationInterface for backend optimization management
+    - Introduced OptimizationInterface class to serve as an abstraction layer for interacting with EOS and EVCC Opt optimization backends.
+    - Implemented methods for optimization, control data examination, and scheduling management.
+    - Added functionality to calculate the next optimal run time and retrieve EOS version from the backend.
+    - Created unit tests for OptimizationInterface, covering backend selection, response handling, and error management.
+    - Included a dummy backend for testing integration without actual backend dependencies.
+    - refactor: remove obsolete test module for EosInterface scheduling algorithm
+
 **Version 0.2.25.164** published on 2025-10-27
 - feat: enhance historical data processing to include attributes and unit conversion for HA source - found by @WolfImBusch
 
