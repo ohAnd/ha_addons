@@ -1,3 +1,8 @@
+**Version 0.2.25.170** published on 2025-10-30
+- feat: enhance PV configuration handling with default values for azimuth and tilt, and improve horizon parameter checks - fix PV: All options seem to be required, despite not using akkudoktor Fixes [#135](https://github.com/ohAnd/EOS_connect/issues/135)
+- fix: update references from EVCC Opt to EVopt across documentation and codebase
+- Renaming EVCCOptBackend to EVOptBackend + fix grid charge calculation for fulfilling EOS api and get right target value
+
 **Version 0.2.25.166** published on 2025-10-29
 - EXPERIMENTAL: Evcc opt wrapper ([#138](https://github.com/ohAnd/EOS_connect/issues/138))
   - first working draft of second source for optimization - evcc opt
