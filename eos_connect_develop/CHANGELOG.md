@@ -1,3 +1,7 @@
+**Version 0.2.25.171** published on 2025-10-30
+- fix: update default azimuth, tilt, power, and inverter settings in PvInterface configuration for solcast, evcc
+- fix: enhance EOS version handling and configuration validation for version 0.1.0+dev - incl. automatic config update if needed
+
 **Version 0.2.25.170** published on 2025-10-30
 - feat: enhance PV configuration handling with default values for azimuth and tilt, and improve horizon parameter checks - fix PV: All options seem to be required, despite not using akkudoktor Fixes [#135](https://github.com/ohAnd/EOS_connect/issues/135)
 - fix: update references from EVCC Opt to EVopt across documentation and codebase
