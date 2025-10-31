@@ -1,3 +1,7 @@
+**Version 0.2.25.172** published on 2025-10-31
+- fix: enhance Docker workflows to support multi-platform builds and QEMU setup
+- fix: update BaseControl to include time frame base and calculate needed AC charge power
+
 **Version 0.2.25.171** published on 2025-10-30
 - fix: update default azimuth, tilt, power, and inverter settings in PvInterface configuration for solcast, evcc
 - fix: enhance EOS version handling and configuration validation for version 0.1.0+dev - incl. automatic config update if needed
