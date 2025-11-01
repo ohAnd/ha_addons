@@ -1,3 +1,64 @@
+**Version 0.2.27** (2025-11-01)
+
+Highlights
+- Added new optimization backend `evopt` for flexible control and broader optimization tasks.
+- Strømligning.dk price provider added for Denmark, including support for supplier/product/customer group tokens. ( thanks to @LordMike )
+- UI now displays correct currency symbols for all price providers (Tibber, SmartEnergy AT, Strømligning.dk, etc.). ( thanks to @LordMike )
+- Refactored interfaces for battery, load, price, PV, and optimization to improve modularity and future integration.
+- Updated Web UI for better usability, clearer system status, and improved statistics visualization.
+- Enhanced support for multiple EVCCs, including override handling for reliable operation in multi-controller setups.
+- Expanded and refined test coverage for interfaces and optimization logic to increase reliability.
+- Improved robustness in reading and processing configuration and test data to reduce errors and edge-case failures.
+
+### Features
+- Optimization & backend selection
+  - New standalone optimizer `evopt` available; select between EOS optimizer and `evopt` in your config for more flexibility.
+  - Easily switch optimization engines by changing the `source` value in the `eos` section of `config.yaml`.
+- Price handling
+  - Added Strømligning.dk price provider for Denmark, supporting supplier/product/customer group tokens.
+  - UI now shows correct currency symbol for selected price provider.
+- Interfaces
+  - Refactored battery, load, price, PV, and optimization interfaces for easier integration and future-proofing.
+- Web UI
+  - HTML, CSS, and JS updates for more intuitive controls and better visualization.
+- Multi-EVCC support
+  - Improved logic for handling multiple EV charge controllers and user overrides.
+- Testing
+  - Expanded tests for interfaces and optimization logic.
+
+### Configuration Updates
+- Backend selection
+  - In the `eos` section of `config.yaml`, set `source` to either `eos_server` (original optimizer) or `evopt` (standalone optimizer).
+  - Example:
+    ```yaml
+    eos:
+      source: evopt  # EOS server source - eos_server, evopt - default: eos_server
+      server: <your_ip>
+      port: 7050
+      timeout: 30
+    ```
+  - For `evopt`, default port is `7050`. For `eos_server`, default port is `8503`.
+- Price provider
+  - In the `price` section, you can now set `source: stromligning` and provide the required token:
+    ```yaml
+    price:
+      source: stromligning
+      token: "<supplier_id>:<product_id>:<customer_group_id>"
+    ```
+  - UI will show the correct currency symbol for Tibber, SmartEnergy AT, Strømligning.dk, etc.
+- New JSON formats
+  - Optimization request and response formats have changed for `evopt`. See `src/json/optimize_request_evopt.json` and `src/json/optimize_response_evopt.json` for examples.
+- Documentation
+  - Comments in `config.yaml` updated to guide you through available options and usage.
+
+### Notes
+- Set the optimizer backend in the `eos` section (`source: evopt` or `source: eos_server`).
+- Update the `server` and `port` fields as needed for your optimizer.
+- Review and update integrations to use the new JSON formats if you switch to `evopt`.
+- For price provider, select the appropriate source and provide tokens as needed; UI will display the correct currency.
+- Check documentation and comments in `config.yaml` for details on new features and setup steps.
+
+
 **Version 0.2.24** (2025-10-18)
 
 Highlights

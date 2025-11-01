@@ -1,6 +1,6 @@
 name: "EOS connect"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.24"
+version: "0.2.27"
 slug: "eos_connect"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -37,8 +37,9 @@ options:
     additional_load_1_consumption: 0 # overall consumption of additional load 1 in Wh for the given hours
 
   eos:
-    server: 192.168.1.94 # EOS server address
-    port: 8503 # port for EOS server
+    source: eos_server # EOS server source - eos_server, evopt - default: eos_server
+    server: 192.168.1.94 # # EOS or evcc opt server address
+    port: 8503 # port for EOS server (8503) or evcc opt server (7050) - default: 8503
     timeout: 180 # timeout for EOS optimize request in seconds
 
   price:
@@ -128,13 +129,14 @@ schema:
     additional_load_1_consumption: int(0,)? # overall consumption of additional load 1 in Wh for the given hours
 
   eos:
-    server: str # EOS server address
-    port: port # port for EOS server
+    source: list(eos_server|evopt)
+    server: str # # EOS or evcc opt server address
+    port: port # port for EOS server (8503) or evcc opt server (7050) - default: 8503
     timeout: int(1,) # timeout for EOS optimize request in seconds
 
   price:
-    source: list(smartenergy_at|tibber|fixed_24h|default) # Data source for electricity price
-    token: password? # Token for electricity price
+    source: list(smartenergy_at|tibber|stromligning|fixed_24h|default) # Data source for electricity price
+    token: str? # Token for electricity price. For Stromligning use supplierId/productId[/groupId].
     fixed_price_adder_ct: float(0,1000)? # Describes the fixed cost addition in ct per kWh.
     relative_price_multiplier: float(0.0,1.0)? # Applied to (base energy price + fixed_price_adder_ct). Use a decimal (e.g., 0.05 for 5%).
     fixed_24h_array: str? # 24 hours array with fixed prices over the day

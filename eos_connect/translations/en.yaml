@@ -21,6 +21,9 @@ configuration:
   eos:
     name: EOS Settings
     description: Configuration for EOS server connection.
+    source:
+      name: EOS Source
+      description: "Data source for EOS. Possible values: eos_server, evopt - default: eos_server."
     server:
       name: EOS Server
       description: EOS server address.
@@ -36,10 +39,10 @@ configuration:
     description: Configuration for electricity price data source and settings.
     source:
       name: Price Source
-      description: "Data source for electricity price. Possible values: tibber, default (=akkudoktor)."
+      description: "Data source for electricity price. Possible values: tibber, smartenergy_at, stromligning, fixed_24h, default (=akkudoktor)."
     token:
       name: Price Token
-      description: Token for electricity price from tibber.
+      description: Token for electricity price. For Stromligning use supplierId/productId[/groupId].
     fixed_price_adder_ct:
       name: Fixed Price Adder (ct/kWh)
       description: Fixed cost addition in ct per kWh for electricity price from default (Akkudoktor).
