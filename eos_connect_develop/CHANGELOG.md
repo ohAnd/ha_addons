@@ -1,3 +1,9 @@
+**Version 0.2.25.174** published on 2025-11-01
+- bugreport - fix: show current version - refactor: clean up whitespace and improve readability in BugReportManager methods
+- refactor: rename EVCCOptBackend to EVOptBackend and update related transformation methods
+- refactor: adjust forecast calculations for EVopt source based on current time
+- refactor: adjust background opacity of experimental banner in index.html
+
 **Version 0.2.25.173** published on 2025-11-01
 - fix: comment out debug logging for needed AC charge power calculation
 - refactor: enhance MQTT control command handling and add SOC limit management incl. via MQTT
