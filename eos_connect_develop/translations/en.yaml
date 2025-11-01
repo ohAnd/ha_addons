@@ -23,7 +23,7 @@ configuration:
     description: Configuration for EOS server connection.
     source:
       name: EOS Source
-      description: "Data source for EOS. Possible values: eos_server, evcc_opt - default: eos_server."
+      description: "Data source for EOS. Possible values: eos_server, evopt - default: eos_server."
     server:
       name: EOS Server
       description: EOS server address.

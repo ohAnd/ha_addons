@@ -1,3 +1,8 @@
+**Version 0.2.25.173** published on 2025-11-01
+- fix: comment out debug logging for needed AC charge power calculation
+- refactor: enhance MQTT control command handling and add SOC limit management incl. via MQTT
+- refactor: update configuration for EOS and EVopt sources, including time frame base adjustments - breaking change in config evcc_opt -> evopt
+
 **Version 0.2.25.172** published on 2025-10-31
 - fix: enhance Docker workflows to support multi-platform builds and QEMU setup
 - fix: update BaseControl to include time frame base and calculate needed AC charge power
