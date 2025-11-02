@@ -1,3 +1,7 @@
+**Version 0.2.28.181** published on 2025-11-02
+- Refactor PvInterface configuration validation and enhance Solcast data handling in tests
+- Update CONFIG_README and pv_interface.py for clarity on configuration parameters and source requirements - fix Solcast forecast for yield way too high Fixes [#149](https://github.com/ohAnd/EOS_connect/issues/149)
+
 **Version 0.2.25.174** published on 2025-11-01
 - bugreport - fix: show current version - refactor: clean up whitespace and improve readability in BugReportManager methods
 - refactor: rename EVCCOptBackend to EVOptBackend and update related transformation methods
