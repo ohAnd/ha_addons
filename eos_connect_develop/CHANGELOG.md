@@ -1,3 +1,9 @@
+**Version 0.2.28.182** published on 2025-11-07
+- Fix energy conversion calculation in PvInterface to correctly convert kW to Wh for 30-minute periods - fix Solcast forecast for yield way too high Fixes [#149](https://github.com/ohAnd/EOS_connect/issues/149)
+- Enhance PvInterface to support dynamic time frame base for PV forecasts and adjust related tests
+- Enhance PriceInterface to support dynamic time frame base for price retrieval and update related tests for hourly and 15-minute aggregations
+- Enhance LoadInterface to support dynamic time frame base for load profile calculations and update related tests
+
 **Version 0.2.28.181** published on 2025-11-02
 - Refactor PvInterface configuration validation and enhance Solcast data handling in tests
 - Update CONFIG_README and pv_interface.py for clarity on configuration parameters and source requirements - fix Solcast forecast for yield way too high Fixes [#149](https://github.com/ohAnd/EOS_connect/issues/149)
