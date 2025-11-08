@@ -30,6 +30,9 @@ configuration:
     port:
       name: EOS Port
       description: Port for EOS server.
+    time_frame:
+      name: Time Frame
+      description: Granularity of optimization steps in seconds (900=15min, 3600=hourly).
     timeout:
       name: Timeout
       description: Timeout for EOS optimize request in seconds.

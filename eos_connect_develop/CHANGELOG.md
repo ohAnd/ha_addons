@@ -1,3 +1,9 @@
+**Version 0.2.28.183** published on 2025-11-08
+- Enhance LoadInterface to extend energy calculation for incomplete intervals and update related tests for accurate load profile generation
+- Enhance EVOptBackend to support dynamic time frame base for load and price series calculations, accommodating both hourly and 15-minute intervals.
+- Enhance chart and statistics management to support dynamic time frame base for data processing, including 15-minute and hourly intervals, and update related calculations and display logic.
+- Enhance configuration and documentation to support new time frame settings for optimization cycles, allowing 15-minute and hourly intervals. Update related logic in the ConfigManager and EOS connection handling. (currently only with EVopt as backend)
+
 **Version 0.2.28.182** published on 2025-11-07
 - Fix energy conversion calculation in PvInterface to correctly convert kW to Wh for 30-minute periods - fix Solcast forecast for yield way too high Fixes [#149](https://github.com/ohAnd/EOS_connect/issues/149)
 - Enhance PvInterface to support dynamic time frame base for PV forecasts and adjust related tests
