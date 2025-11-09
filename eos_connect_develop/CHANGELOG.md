@@ -1,3 +1,10 @@
+**Version 0.2.28.184** published on 2025-11-09
+- Refactor EVOptBackend to correct variable names for request and response handling, ensuring consistency in transformation methods and improving debug file outputs.
+- Enhance ScheduleManager to transform ac_charge and discharge_allowed to hourly values, improving data accuracy for schedule display.
+- Refactor ChartManager to improve label time calculation for hourly intervals and enhance discharge data handling based on time frame settings.
+- Enhance showMainMenu and showInfoMenu to include backend and granularity parameters, improving information display for users.
+- Enhance battery and schedule managers to support conversion of 15-min interval data to hourly averages, improving data accuracy and UI updates. Update setBatteryChargingData to accept data_controls for better handling of charging data.
+
 **Version 0.2.28.183** published on 2025-11-08
 - Enhance LoadInterface to extend energy calculation for incomplete intervals and update related tests for accurate load profile generation
 - Enhance EVOptBackend to support dynamic time frame base for load and price series calculations, accommodating both hourly and 15-minute intervals.

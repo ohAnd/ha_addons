@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.28.183"
+version: "0.2.28.184"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -133,7 +133,7 @@ schema:
     source: list(eos_server|evopt)
     server: str # # EOS or evcc opt server address
     port: port # port for EOS server (8503) or evcc opt server (7050) - default: 8503
-    time_frame: int(900,3600) # granularity of optimization steps in seconds (900=15min, 3600=hourly)
+    time_frame: list(900|3600) # granularity of optimization steps in seconds (900=15min, 3600=hourly) - default: 3600
     timeout: int(1,) # timeout for EOS optimize request in seconds
 
   price:
