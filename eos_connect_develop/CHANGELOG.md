@@ -1,3 +1,7 @@
+**Version 0.2.28.186** published on 2025-11-09
+- Update EOS version checks to include 0.2.0+dev for configuration handling
+- Refactor control data handling in optimize method to use current step index instead of hour, improving accuracy for AC and DC charge demands and discharge allowance logging.
+
 **Version 0.2.28.185** published on 2025-11-09
 - Enhance time frame configuration with validation and fallback. Add type checking for time_frame and improve logging for invalid configurations.
 
