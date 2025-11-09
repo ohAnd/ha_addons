@@ -1,3 +1,6 @@
+**Version 0.2.28.185** published on 2025-11-09
+- Enhance time frame configuration with validation and fallback. Add type checking for time_frame and improve logging for invalid configurations.
+
 **Version 0.2.28.184** published on 2025-11-09
 - Refactor EVOptBackend to correct variable names for request and response handling, ensuring consistency in transformation methods and improving debug file outputs.
 - Enhance ScheduleManager to transform ac_charge and discharge_allowed to hourly values, improving data accuracy for schedule display.
