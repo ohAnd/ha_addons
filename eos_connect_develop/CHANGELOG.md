@@ -1,3 +1,11 @@
+**Version 0.2.28.188** published on 2025-11-11
+- HA addon specific - added port config for addon - fixes https://github.com/ohAnd/EOS_connect/issues/144
+- Enhance EVOpt response handling with detailed array length specifications and improved processing logic for control and result arrays. Update methods to ensure correct sizing and padding based on time frame, and extract battery parameters more robustly.
+- Fix AC charge value calculation for quarterly slots in ChartManager to ensure correct power distribution.
+- Update PV Forecast Configuration section in CONFIG_README.md to clarify sources and parameters
+- Increase retry parameters in PV forecast request to enhance error handling and data retrieval reliability.
+- Fix lambda function in test_api_error_triggers_fallback to correctly handle additional arguments in retry request
+
 **Version 0.2.28.186** published on 2025-11-09
 - Update EOS version checks to include 0.2.0+dev for configuration handling
 - Refactor control data handling in optimize method to use current step index instead of hour, improving accuracy for AC and DC charge demands and discharge allowance logging.

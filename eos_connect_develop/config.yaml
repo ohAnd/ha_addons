@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.28.186"
+version: "0.2.28.188"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -24,6 +24,11 @@ map:
     read_only: false
     path: /app/addon_config
 host_network: true
+
+ports:
+  8081/tcp: 8081
+ports_description:
+  8081/tcp: "EOS_connect server port"
 
 options:
   load:
