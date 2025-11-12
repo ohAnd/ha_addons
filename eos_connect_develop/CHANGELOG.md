@@ -1,3 +1,6 @@
+**Version 0.2.28.189** published on 2025-11-12
+- Refactor battery price calculation to remove unnecessary division and update schedule manager to use hourly sums for AC charge transformation
+
 **Version 0.2.28.188** published on 2025-11-11
 - HA addon specific - added port config for addon - fixes https://github.com/ohAnd/EOS_connect/issues/144
 - Enhance EVOpt response handling with detailed array length specifications and improved processing logic for control and result arrays. Update methods to ensure correct sizing and padding based on time frame, and extract battery parameters more robustly.
