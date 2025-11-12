@@ -1,3 +1,8 @@
+**Version 0.2.28.190** published on 2025-11-12
+- Refactor chart data processing to ensure consistent use of server timestamp for current slot calculations
+- Adjust update interval logic for Solcast based on configuration length - fixes Solcast, rate limit exceeded Fixes [#151](https://github.com/ohAnd/EOS_connect/issues/151)
+- Enhance load profile calculation to handle cases with zero values, ensuring accurate averaging and data integrity - fix load profile at 50% if two weeks before have no historical data Fixes [#156](https://github.com/ohAnd/EOS_connect/issues/156)
+
 **Version 0.2.28.189** published on 2025-11-12
 - Refactor battery price calculation to remove unnecessary division and update schedule manager to use hourly sums for AC charge transformation
 
