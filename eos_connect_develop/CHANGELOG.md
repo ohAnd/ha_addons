@@ -1,3 +1,8 @@
+**Version 0.2.28.191** published on 2025-11-15
+- Add fallback for avg_runtime and error handling in calculate_next_run_time method
+- Update discharge_allowed mapping to convert values to binary representation
+- HA addon specific - fixed external port config for addon - fixes https://github.com/ohAnd/EOS_connect/issues/144
+
 **Version 0.2.28.190** published on 2025-11-12
 - Refactor chart data processing to ensure consistent use of server timestamp for current slot calculations
 - Adjust update interval logic for Solcast based on configuration length - fixes Solcast, rate limit exceeded Fixes [#151](https://github.com/ohAnd/EOS_connect/issues/151)
