@@ -1,3 +1,11 @@
+**Version 0.2.28.192** published on 2025-11-16
+- Update port configuration logic to default to 8081 in HA addon mode
+- Fix: Enable Docker port mapping by removing host_network mode
+  - Removes host_network: true to allow port mapping configuration
+  - Removes eos_connect_web_port from addon UI options (use ports: section instead)
+  - Retains schema for backward compatibility with local installations
+  - Fixes issue [#144](https://github.com/ohAnd/EOS_connect/issues/144): 404 in home assistant UI
+
 **Version 0.2.28.191** published on 2025-11-15
 - Add fallback for avg_runtime and error handling in calculate_next_run_time method
 - Update discharge_allowed mapping to convert values to binary representation
