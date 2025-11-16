@@ -31,7 +31,7 @@ RUN echo "::group::Installing Scientific Libraries" && \
     echo "=== INSTALLING NUMPY & PANDAS ===" && \
     . /opt/venv/bin/activate && \
     pip install --no-cache-dir \
-        numpy>=2.2.2 pandas>=2.2.3 && \
+    numpy>=2.2.2 pandas>=2.2.3 && \
     echo "=== SCIENTIFIC LIBRARIES INSTALLED ===" && \
     echo "::endgroup::"
 
@@ -40,7 +40,7 @@ RUN echo "::group::Installing Web Framework" && \
     echo "=== INSTALLING FLASK & GEVENT ===" && \
     . /opt/venv/bin/activate && \
     pip install --no-cache-dir \
-        Flask>=2.2.5 requests>=2.26.0 gevent>=24.2.1 && \
+    Flask>=2.2.5 requests>=2.26.0 gevent>=24.2.1 && \
     echo "=== WEB FRAMEWORK INSTALLED ===" && \
     echo "::endgroup::"
 
@@ -49,9 +49,9 @@ RUN echo "::group::Installing Configuration & Utilities" && \
     echo "=== INSTALLING CONFIG & UTILITY PACKAGES ===" && \
     . /opt/venv/bin/activate && \
     pip install --no-cache-dir \
-        pyyaml>=6.0 ruamel.yaml>=0.18.10 \
-        pytz>=2025.1 paho-mqtt>=2.1.0 \
-        open-meteo-solar-forecast>=0.1.22 psutil>=7.0.0 && \
+    pyyaml>=6.0 ruamel.yaml>=0.18.10 \
+    pytz>=2025.1 paho-mqtt>=2.1.0 packaging>=23.2\
+    open-meteo-solar-forecast>=0.1.22 psutil>=7.0.0 && \
     echo "=== ALL PACKAGES INSTALLED ===" && \
     echo "::endgroup::"
 
@@ -67,7 +67,7 @@ RUN echo "::group::Finalizing Application" && \
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:8081/ || exit 1
+    CMD curl -f http://localhost:8081/ || exit 1
 
 EXPOSE 8081
 CMD ["/opt/venv/bin/python", "/app/src/eos_connect.py"]

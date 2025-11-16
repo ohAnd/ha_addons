@@ -1,3 +1,7 @@
+**Version 0.2.28.193** published on 2025-11-16
+- Refactor EOS version handling and add unit tests for EOSBackend class - fixes 422 Client Error: Unprocessable Entity for url: http://eos:8503/optimize?start_hour=9 Fixes [#158](https://github.com/ohAnd/EOS_connect/issues/158)
+- Refactor temperature forecast handling in PvInterface to use default values and clean up commented code - fixes [#154](https://github.com/ohAnd/EOS_connect/issues/154) - PV Forecats from evcc but I get [PV-IF] Akkudoktor API error for temperature: HTTPSConnectionPool
+
 **Version 0.2.28.192** published on 2025-11-16
 - Update port configuration logic to default to 8081 in HA addon mode
 - Fix: Enable Docker port mapping by removing host_network mode
