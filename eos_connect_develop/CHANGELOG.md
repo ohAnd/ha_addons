@@ -1,3 +1,6 @@
+**Version 0.2.28.194** published on 2025-11-22
+- Refactor FroniusWRV2 inverter data fetching to improve error handling and add unit tests for monitoring functionality
+
 **Version 0.2.28.193** published on 2025-11-16
 - Refactor EOS version handling and add unit tests for EOSBackend class - fixes 422 Client Error: Unprocessable Entity for url: http://eos:8503/optimize?start_hour=9 Fixes [#158](https://github.com/ohAnd/EOS_connect/issues/158)
 - Refactor temperature forecast handling in PvInterface to use default values and clean up commented code - fixes [#154](https://github.com/ohAnd/EOS_connect/issues/154) - PV Forecats from evcc but I get [PV-IF] Akkudoktor API error for temperature: HTTPSConnectionPool
