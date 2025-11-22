@@ -1,3 +1,52 @@
+**Version 0.2.28** (2025-11-22)
+
+Highlights
+- Added support for 15-minute optimization intervals (`time_frame: 900`) with EVopt backend only.
+- Fixed Solcast integration issues: corrected yield forecasts and API rate limits.
+- Improved EVCC temperature forecasts and EOS API compatibility.
+- Enhanced reliability with better PV forecast retries and error handling.
+- Updated web interface with backend indicators and granularity display.
+- Added unit tests for Fronius inverter and EOS backend.
+
+### Features
+- Optimization & scheduling
+  - Support for 15-minute time frames in addition to hourly intervals.
+  - Automatic data transformation between 15-min and hourly modes.
+  - Web UI shows active backend and time granularity.
+
+**Configuration:**
+```yaml
+optimization:
+  backend: evopt
+  time_frame: 900  # 15 minutes (or 3600 for hourly)
+```
+
+### Bug Fixes
+- **Solcast**: Corrected kW to Wh conversion for yield forecasts; added automatic rate limit adjustment.
+- **EVCC**: Fixed temperature forecast errors; added fallback to default values.
+- **EOS**: Resolved "422 Unprocessable Entity" errors; support for EOS version 0.2.0+dev.
+- **Load Profile**: Fixed stuck profiles at 50% with missing data; better handling of incomplete data.
+- **Data Accuracy**: Fixed AC charge calculations for 15-minute slots; improved discharge control and battery price calculations.
+
+### Improvements
+- Reliability: Enhanced PV forecast request retries, EVopt response processing, and server timestamp consistency.
+- Configuration: Port defaults to 8081 in Home Assistant mode; better validation and error messages.
+- Web Interface: Backend indicator (EOS/EVopt) in menu; granularity display (hourly/15min); improved monitoring.
+- Testing: Added unit tests for Fronius inverter monitoring and EOS backend; enhanced test coverage.
+
+## Migration Notes
+- For 15-minute optimization: Switch to EVopt backend and set `time_frame: 900`.
+- Solcast users: Forecasts now accurate automatically; rate limiting handled.
+- EVCC users: PV forecast integration more reliable; temperature errors resolved.
+
+## Known Limitations
+- 15-minute intervals require EVopt backend (EOS support coming soon).
+- Solcast free tier: 10 API calls/day (auto-managed).
+- Dynamic max charge power via EVCC external battery control not yet supported.
+
+---
+---
+
 **Version 0.2.27** (2025-11-01)
 
 Highlights
@@ -58,6 +107,8 @@ Highlights
 - For price provider, select the appropriate source and provide tokens as needed; UI will display the correct currency.
 - Check documentation and comments in `config.yaml` for details on new features and setup steps.
 
+---
+---
 
 **Version 0.2.24** (2025-10-18)
 
@@ -100,6 +151,9 @@ Highlights
 - If you use external price adjustments, review new price adder/multiplier settings.
 - Solcast requires a Solcast API key to enable that provider.
 - pvlib was removed; typical user configs should continue to work, but custom setups depending on pvlib internals may need review.
+
+---
+---
 
 **Version 0.1.23** (2025-09-22)
 - **Features:**

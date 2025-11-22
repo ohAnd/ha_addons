@@ -30,6 +30,9 @@ configuration:
     port:
       name: EOS Port
       description: Port for EOS server.
+    time_frame:
+      name: Time Frame
+      description: Granularity of optimization steps in seconds (900=15min, 3600=hourly).
     timeout:
       name: Timeout
       description: Timeout for EOS optimize request in seconds.
@@ -89,10 +92,10 @@ configuration:
     max_soc_percentage:
       name: Max SOC Percentage
       description: Maximum state of charge percentage.
-    price_euro_per_wh_accu: 
+    price_euro_per_wh_accu:
       name: Price Euro per Wh Accu
       description: Price for battery in €/Wh.
-  
+
   pv_forecast_source:
     name: PV Forecast Source
     description: Configuration for PV forecast data source.

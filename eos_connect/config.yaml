@@ -1,6 +1,6 @@
 name: "EOS connect"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.27"
+version: "0.2.28"
 slug: "eos_connect"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -23,7 +23,12 @@ map:
   - type: addon_config
     read_only: false
     path: /app/addon_config
-host_network: true
+# host_network: true
+
+ports:
+  8081/tcp: 8081
+ports_description:
+  8081/tcp: "EOS_connect web server (edit for port conflict resolution)"
 
 options:
   load:
@@ -40,6 +45,7 @@ options:
     source: eos_server # EOS server source - eos_server, evopt - default: eos_server
     server: 192.168.1.94 # # EOS or evcc opt server address
     port: 8503 # port for EOS server (8503) or evcc opt server (7050) - default: 8503
+    time_frame: 3600 # granularity of optimization steps in seconds (900=15min, 3600=hourly)
     timeout: 180 # timeout for EOS optimize request in seconds
 
   price:
@@ -111,10 +117,8 @@ options:
     tls: false # Use TLS for MQTT server - default: false
     ha_mqtt_auto_discovery: true # Enable Home Assistant MQTT auto discovery - default: true
     ha_mqtt_auto_discovery_prefix: homeassistant # Prefix for Home Assistant MQTT auto discovery - default: homeassistant
-  
   refresh_time: 3 # Default refresh time in minutes
   time_zone: Europe/Berlin # Default time zone
-  eos_connect_web_port: 8081 # Default port for EOS connect server
   log_level: info # loglevel: debug, info, warning, error
 
 schema:
@@ -132,6 +136,7 @@ schema:
     source: list(eos_server|evopt)
     server: str # # EOS or evcc opt server address
     port: port # port for EOS server (8503) or evcc opt server (7050) - default: 8503
+    time_frame: list(900|3600) # granularity of optimization steps in seconds (900=15min, 3600=hourly) - default: 3600
     timeout: int(1,) # timeout for EOS optimize request in seconds
 
   price:
@@ -193,5 +198,5 @@ schema:
     ha_mqtt_auto_discovery_prefix: str # Prefix for Home Assistant MQTT auto discovery - default: homeassistant
   refresh_time: int(1,) # Default refresh time in minutes
   time_zone: str # Default time zone
-  eos_connect_web_port: int(1,65535) # Port for EOS server
+  eos_connect_web_port: int(1,65535)? # Port for EOS server (local/Docker installations only)
   log_level: list(debug|info|warning|error) # loglevel options
