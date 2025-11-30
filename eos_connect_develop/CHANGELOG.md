@@ -1,3 +1,7 @@
+**Version 0.2.29.196** published on 2025-11-30
+- Refactor AC charge demand handling to use get_needed_ac_charge_power() for MQTT updates and add comprehensive tests for AC charge demand conversion - fixes evopt lädt zu wenig/langsam
+Fixes [#167](https://github.com/ohAnd/EOS_connect/issues/167)
+
 **Version 0.2.28.194** published on 2025-11-22
 - Refactor FroniusWRV2 inverter data fetching to improve error handling and add unit tests for monitoring functionality
 
