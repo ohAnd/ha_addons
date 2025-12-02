@@ -1,3 +1,7 @@
+**Version 0.2.29.198** published on 2025-12-02
+- Limit AC charge power to the maximum battery charge capacity in get_current_ac_charge_demand()
+- Add battery charge max settings to AC charge demand tests for accurate power simulation - touches [#167](https://github.com/ohAnd/EOS_connect/issues/167)
+
 **Version 0.2.29.196** published on 2025-11-30
 - Refactor AC charge demand handling to use get_needed_ac_charge_power() for MQTT updates and add comprehensive tests for AC charge demand conversion - fixes evopt lädt zu wenig/langsam
 Fixes [#167](https://github.com/ohAnd/EOS_connect/issues/167)
