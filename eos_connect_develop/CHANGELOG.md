@@ -1,3 +1,7 @@
+**Version 0.2.29.202** published on 2025-12-07
+- Add charge rate limiting for AC and DC in change_control_state function - fixes Max grid charge rate wrong calculation
+Fixes [#171](https://github.com/ohAnd/EOS_connect/issues/171)
+
 **Version 0.2.29.198** published on 2025-12-02
 - Limit AC charge power to the maximum battery charge capacity in get_current_ac_charge_demand()
 - Add battery charge max settings to AC charge demand tests for accurate power simulation - touches [#167](https://github.com/ohAnd/EOS_connect/issues/167)
