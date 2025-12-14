@@ -1,3 +1,7 @@
+**Version 0.2.29.207** published on 2025-12-14
+- Fix AC charge power calculation during override in get_current_ac_charge_demand method - fixes Override Charge funktioniert nicht mehr unter EOS Connect develop
+Fixes [#173](https://github.com/ohAnd/EOS_connect/issues/173)
+
 **Version 0.2.29.202** published on 2025-12-07
 - Add charge rate limiting for AC and DC in change_control_state function - fixes Max grid charge rate wrong calculation
 Fixes [#171](https://github.com/ohAnd/EOS_connect/issues/171)
