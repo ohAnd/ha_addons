@@ -1,3 +1,9 @@
+**Version 0.2.29.208** published on 2025-12-15
+- Enhance discharge state handling by introducing effective discharge logic and updating related MQTT topics to reflect final states after overrides - fixes Missing State in HA for Allow Discharge EVCC
+Fixes [#175](https://github.com/ohAnd/EOS_connect/issues/175)
+- Implement dynamic max charge power based on charging curve configuration in get_pv_akku_data function - fixes part 2 of evopt lädt zu wenig/langsam
+Fixes [#167](https://github.com/ohAnd/EOS_connect/issues/167)
+
 **Version 0.2.29.207** published on 2025-12-14
 - Fix AC charge power calculation during override in get_current_ac_charge_demand method - fixes Override Charge funktioniert nicht mehr unter EOS Connect develop
 Fixes [#173](https://github.com/ohAnd/EOS_connect/issues/173)
