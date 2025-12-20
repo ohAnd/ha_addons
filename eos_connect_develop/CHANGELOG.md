@@ -1,3 +1,11 @@
+**Version 0.2.29.209** published on 2025-12-20
+- Refactor charge demand calculations in BaseControl to use optimization_max_charge_power_w for consistent value conversion - fixes evopt lädt zu wenig/langsam
+Fixes [#167](https://github.com/ohAnd/EOS_connect/issues/167)
+- Enhance clipboard functionality in BugReportManager for improved iOS compatibility and user experience - fixes Copy to clipboard funktioniert nicht
+Fixes [#180](https://github.com/ohAnd/EOS_connect/issues/180)
+- Enhance error handling in EVOptBackend for response validation and initial SOC clamping
+- Improve error handling in OptimizationScheduler and PvInterface for robustness against None values and API errors - closes [#178](https://github.com/ohAnd/EOS_connect/issues/178) [FIX] catch more exceptions in main loop
+
 **Version 0.2.29.208** published on 2025-12-15
 - Enhance discharge state handling by introducing effective discharge logic and updating related MQTT topics to reflect final states after overrides - fixes Missing State in HA for Allow Discharge EVCC
 Fixes [#175](https://github.com/ohAnd/EOS_connect/issues/175)
