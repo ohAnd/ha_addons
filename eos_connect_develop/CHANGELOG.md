@@ -1,3 +1,9 @@
+**Version 0.2.29.213** published on 2025-12-20
+- Feature: add dynamic battery energy price from Home-Assistant/OpenHAB - adds support for price_euro_per_wh_sensor to dynamically fetch battery price
+Closes [#172](https://github.com/ohAnd/EOS_connect/pull/172)
+- Refactor: update battery price configuration and unify data fetching methods
+- Add defensive handling for price of stored energy in EVOptBackend
+
 **Version 0.2.29.209** published on 2025-12-20
 - Refactor charge demand calculations in BaseControl to use optimization_max_charge_power_w for consistent value conversion - fixes evopt lädt zu wenig/langsam
 Fixes [#167](https://github.com/ohAnd/EOS_connect/issues/167)

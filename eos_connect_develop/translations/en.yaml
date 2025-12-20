@@ -92,10 +92,16 @@ configuration:
     max_soc_percentage:
       name: Max SOC Percentage
       description: Maximum state of charge percentage.
-    price_euro_per_wh_accu: 
+    price_euro_per_wh_accu:
       name: Price Euro per Wh Accu
       description: Price for battery in €/Wh.
-  
+    price_euro_per_wh_sensor:
+      name: Price Euro per Wh Sensor
+      description: Item/entity name for price_euro_per_wh_accu (optional, overrides static value if set).
+    charging_curve_enabled:
+      name: Charging Curve Enabled
+      description: Enable charging curve for battery - default: true.
+
   pv_forecast_source:
     name: PV Forecast Source
     description: Configuration for PV forecast data source.
