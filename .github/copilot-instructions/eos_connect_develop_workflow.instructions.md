@@ -1,10 +1,32 @@
 ---
-applyTo: "c:/projects/ha_addons/eos_connect_develop/**"
+applyTo: "**/eos_connect_develop/**"
 ---
 
 # EOS Connect Develop Commit Preparation Workflow
 
-When the user asks to "prepare for eos connect develop commit" or similar, follow this workflow:
+## Trigger Phrases
+
+When the user says any of the following, **IMMEDIATELY** execute the full workflow without asking for confirmation:
+
+- "prepare to commit for eos connect develop"
+- "prepare for eos connect develop commit"
+- "eos connect develop commit prep"
+- "bump eos connect develop version"
+- "prepare eos connect develop"
+
+## Workflow Overview
+
+The workflow will automatically:
+
+1. Sync submodule with develop branch
+2. Extract version from latest [AUTO] commit
+3. Update config.yaml version (remove -develop suffix)
+4. Update CHANGELOG.md with new entries
+5. Stage all changes and show proposed commit message
+
+## Workflow Steps
+
+Execute the following steps automatically:
 
 ## Step 1: Sync the Submodule
 
