@@ -100,16 +100,16 @@ configuration:
       description: Item/entity name for price_euro_per_wh_accu (optional, overrides static value if set).
     charging_curve_enabled:
       name: Charging Curve Enabled
-      description: Enable charging curve for battery - default: true.
+      description: "Enable charging curve for battery - default: true."
     price_calculation_enabled:
       name: Price Calculation Enabled
-      description: Enable dynamic battery price calculation based on history - default: false.
+      description: "Enable dynamic battery price calculation based on history - default: false."
     price_update_interval:
       name: Price Update Interval
-      description: Interval for price update in seconds - default: 900 (15 min).
+      description: "Interval for price update in seconds - default: 900 (15 min)."
     price_history_lookback_hours:
       name: Price History Lookback Hours
-      description: Hours of history to analyze for price calculation - default: 96.
+      description: "Hours of history to analyze for price calculation - default: 96."
     battery_power_sensor:
       name: Battery Power Sensor
       description: HA entity ID or OpenHAB item for battery power in W (positive = charging).
@@ -127,10 +127,10 @@ configuration:
       description: HA entity ID or OpenHAB item for electricity price in €/kWh or ct/kWh.
     charging_threshold_w:
       name: Charging Threshold (W)
-      description: Minimum battery power to consider as charging (W) - default: 50.0.
+      description: "Minimum battery power to consider as charging (W) - default: 50.0."
     grid_charge_threshold_w:
       name: Grid Charge Threshold (W)
-      description: Minimum grid surplus to consider as grid charging (W) - default: 100.0.
+      description: "Minimum grid surplus to consider as grid charging (W) - default: 100.0."
 
   pv_forecast_source:
     name: PV Forecast Source
