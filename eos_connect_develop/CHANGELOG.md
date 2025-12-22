@@ -1,3 +1,13 @@
+**Version 0.2.29.214** published on 2025-12-22
+- Feature: implement dynamic battery price calculation and update configuration settings - adds comprehensive battery price analysis and overview features
+- Feature: enhance battery overview UI for better mobile responsiveness and readability
+- Feature: enhance battery price calculation by adjusting gap tolerances and improving event handling
+- Feature: implement inventory valuation for dynamic battery price calculation and enhance UI for better clarity
+- Fix: correct import statement for BatteryPriceHandler in battery_interface.py
+- Feat: add sanitization step for Docker tag reference name in workflow
+- Feat: enhance battery overview to reflect dynamic price calculation status and improve UI responsiveness
+Closes [#186](https://github.com/ohAnd/EOS_connect/pull/186)
+
 **Version 0.2.29.213** published on 2025-12-20
 - Feature: add dynamic battery energy price from Home-Assistant/OpenHAB - adds support for price_euro_per_wh_sensor to dynamically fetch battery price
 Closes [#172](https://github.com/ohAnd/EOS_connect/pull/172)

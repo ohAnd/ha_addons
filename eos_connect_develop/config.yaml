@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.29.213"
+version: "0.2.29.214"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -71,6 +71,16 @@ options:
     price_euro_per_wh_accu: 0.0000 # price for battery in €/Wh
     price_euro_per_wh_sensor: "" # item / entity name for price_euro_per_wh_accu (optional, overrides static value if set)
     charging_curve_enabled: true # Enable charging curve for battery - default: true
+    price_calculation_enabled: false # Enable dynamic battery price calculation based on history - default: false
+    price_update_interval: 900 # Interval for price update in seconds - default: 900 (15 min)
+    price_history_lookback_hours: 96 # Hours of history to analyze for price calculation - default: 96
+    battery_power_sensor: "" # HA entity ID or OpenHAB item for battery power in W (positive = charging)
+    pv_power_sensor: "" # HA entity ID or OpenHAB item for PV power in W
+    grid_power_sensor: "" # HA entity ID or OpenHAB item for grid power in W (positive = import)
+    load_power_sensor: "" # HA entity ID or OpenHAB item for load power in W
+    price_sensor: "" # HA entity ID or OpenHAB item for electricity price in €/kWh or ct/kWh
+    charging_threshold_w: 50.0 # Minimum battery power to consider as charging (W) - default: 50.0
+    grid_charge_threshold_w: 100.0 # Minimum grid surplus to consider as grid charging (W) - default: 100.0
 
   pv_forecast_source:
     source: akkudoktor # data source for solar forecast providers akkudoktor, openmeteo, openmeteo_local, forecast_solar, evcc, solcast, default (default uses akkudoktor)
@@ -163,6 +173,16 @@ schema:
     price_euro_per_wh_accu: float # price for battery in €/Wh
     price_euro_per_wh_sensor: str? # item / entity name for price_euro_per_wh_accu (optional, overrides static value if set)
     charging_curve_enabled: bool # Enable charging curve for battery - default: true
+    price_calculation_enabled: bool # Enable dynamic battery price calculation based on history - default: false
+    price_update_interval: int(1,) # Interval for price update in seconds - default: 900 (15 min)
+    price_history_lookback_hours: int(1,) # Hours of history to analyze for price calculation - default: 96
+    battery_power_sensor: str? # HA entity ID or OpenHAB item for battery power in W (positive = charging)
+    pv_power_sensor: str? # HA entity ID or OpenHAB item for PV power in W
+    grid_power_sensor: str? # HA entity ID or OpenHAB item for grid power in W (positive = import)
+    load_power_sensor: str? # HA entity ID or OpenHAB item for load power in W
+    price_sensor: str? # HA entity ID or OpenHAB item for electricity price in €/kWh or ct/kWh
+    charging_threshold_w: float(0,) # Minimum battery power to consider as charging (W) - default: 50.0
+    grid_charge_threshold_w: float(0,) # Minimum grid surplus to consider as grid charging (W) - default: 100.0
 
   pv_forecast_source:
     source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|evcc|solcast|default) # data source for solar forecast providers, default (default uses akkudoktor)
