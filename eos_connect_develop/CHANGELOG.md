@@ -1,3 +1,8 @@
+**Version 0.2.29.215** published on 2025-12-23
+- feat: remove experimental banner for optimization source 'evopt' in controls manager
+- feat: adjust canvas size and stroke color for charging data patterns in battery chart
+- feat: implement auto-detection of battery power convention and enhance historical data fetching - touches calculating price for stored energy in battery and using dynamically for optimization touches [#185](https://github.com/ohAnd/EOS_connect/issues/185)
+
 **Version 0.2.29.214** published on 2025-12-22
 - Feature: implement dynamic battery price calculation and update configuration settings - adds comprehensive battery price analysis and overview features
 - Feature: enhance battery overview UI for better mobile responsiveness and readability
