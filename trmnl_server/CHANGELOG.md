@@ -1,7 +1,8 @@
-**Version 0.0.8-fix1** published on 01.01.2026
+**Version 0.0.8-fix2** published on 01.01.2026
 - adapt to current TRMNL fw
 - Enhance image footer functionality by using absolute paths for fonts and adding compatibility flag
 - adapt dockerfile for new reqs
+- Refactor footer image processing to improve font loading and add right-alignment for date/time display
 
 **Version 0.0.7-fix2** published on 26.04.2025
 - colored logo for better visibility in HA addon overview active (colored)/ not active (b/w)
