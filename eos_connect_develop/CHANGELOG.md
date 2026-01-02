@@ -1,3 +1,11 @@
+**Version 0.2.29.217** published on 2026-01-02
+- fix: pin ruamel.yaml version to 0.18.17 for compatibility - and avoid building ruamel.yaml.clibz during image build
+- fix: change log level from warning to info for no energy charged event in BatteryPriceHandler - touches calculating price for stored energy in battery and using dynamically for optimization [#185](https://github.com/ohAnd/EOS_connect/issues/185)
+- feat: improve battery price calculation startup hang and race conditions [#185](https://github.com/ohAnd/EOS_connect/issues/185)
+- fix: update was_overall_state_changed_recently method to support consuming state change events - prevent double triggers for inverter control
+- fix: integrate BaseControl with BatteryInterface for dynamic charge power updates - prevent dyn charge limit not taken over to control
+- feat: enhance SOC auto-detection logic and add comprehensive unit tests - fixes Detected decimal format (0.0-1.0): 1.0 -> 100.0% Fixes [#187](https://github.com/ohAnd/EOS_connect/issues/187)
+
 **Version 0.2.29.215** published on 2025-12-23
 - feat: remove experimental banner for optimization source 'evopt' in controls manager
 - feat: adjust canvas size and stroke color for charging data patterns in battery chart
