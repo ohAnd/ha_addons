@@ -101,6 +101,9 @@ configuration:
     charging_curve_enabled:
       name: Charging Curve Enabled
       description: "Enable charging curve for battery - default: true."
+    sensor_battery_temperature:
+      name: Battery Temperature Sensor
+      description: Sensor for battery temperature in °C (optional, used for temperature protection during charging).
     price_calculation_enabled:
       name: Price Calculation Enabled
       description: "Enable dynamic battery price calculation based on history - default: false."

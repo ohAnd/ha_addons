@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.29.217"
+version: "0.2.29.218"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -71,6 +71,7 @@ options:
     price_euro_per_wh_accu: 0.0000 # price for battery in €/Wh
     price_euro_per_wh_sensor: "" # item / entity name for price_euro_per_wh_accu (optional, overrides static value if set)
     charging_curve_enabled: true # Enable charging curve for battery - default: true
+    sensor_battery_temperature: "" # sensor for battery temperature in °C (optional)
     price_calculation_enabled: false # Enable dynamic battery price calculation based on history - default: false
     price_update_interval: 900 # Interval for price update in seconds - default: 900 (15 min)
     price_history_lookback_hours: 96 # Hours of history to analyze for price calculation - default: 96
@@ -173,6 +174,7 @@ schema:
     price_euro_per_wh_accu: float # price for battery in €/Wh
     price_euro_per_wh_sensor: str? # item / entity name for price_euro_per_wh_accu (optional, overrides static value if set)
     charging_curve_enabled: bool # Enable charging curve for battery - default: true
+    sensor_battery_temperature: str? # sensor for battery temperature in °C (optional)
     price_calculation_enabled: bool # Enable dynamic battery price calculation based on history - default: false
     price_update_interval: int(1,) # Interval for price update in seconds - default: 900 (15 min)
     price_history_lookback_hours: int(1,) # Hours of history to analyze for price calculation - default: 96
