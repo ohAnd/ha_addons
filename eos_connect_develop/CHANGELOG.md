@@ -1,9 +1,8 @@
 **Version 0.2.29.218** published on 2026-01-06
 - feat: enhance dynamic charging curve with temperature protection and update configuration options
 - docs: add comprehensive user guide and "What is EOS Connect?" documentation
-- docs: create new GitHub Pages documentation with detailed configuration reference
+- docs: create new GitHub Pages documentation with detailed configuration reference -> https://ohand.github.io/EOS_connect/
 - docs: introduce new configuration reference document (CONFIG_README_NEW.md)
-- feat: improve battery interface with enhanced temperature protection during charging
 
 **Version 0.2.29.217** published on 2026-01-02
 - fix: pin ruamel.yaml version to 0.18.17 for compatibility - and avoid building ruamel.yaml.clibz during image build
