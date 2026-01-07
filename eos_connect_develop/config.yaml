@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.29.218"
+version: "0.2.29.220"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -131,6 +131,7 @@ options:
     ha_mqtt_auto_discovery_prefix: homeassistant # Prefix for Home Assistant MQTT auto discovery - default: homeassistant
   refresh_time: 3 # Default refresh time in minutes
   time_zone: Europe/Berlin # Default time zone
+  request_timeout: 10 # Request timeout for Home Assistant and OpenHAB API calls in seconds (5-120)
   log_level: info # loglevel: debug, info, warning, error
 
 schema:
@@ -223,4 +224,5 @@ schema:
   refresh_time: int(1,) # Default refresh time in minutes
   time_zone: str # Default time zone
   eos_connect_web_port: int(1,65535)? # Port for EOS server (local/Docker installations only)
+  request_timeout: int(5,120)? # Request timeout for Home Assistant and OpenHAB API calls in seconds - default: 10
   log_level: list(debug|info|warning|error) # loglevel options

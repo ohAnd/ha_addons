@@ -242,6 +242,10 @@ configuration:
     name: EOS Connect Web Port
     description: Default port for EOS connect server.
 
+  request_timeout:
+    name: Request Timeout
+    description: "Request timeout for Home Assistant and OpenHAB API calls in seconds (5-120). Default: 10."
+
   log_level:
     name: Log Level
     description: "Log level: debug, info, warning, error."

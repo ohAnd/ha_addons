@@ -33,19 +33,28 @@ Execute the following steps automatically:
 - Navigate to `c:\projects\ha_addons\eos_connect_develop\src`
 - Run: `git pull origin develop` to sync the submodule with the latest changes
 
-## Step 2: Extract Version Information
+## Step 2: Check for New Configuration Parameters
+
+- Compare `src/src/config.py` with `config.yaml` to identify any new parameters
+- For each new parameter found:
+  - Add to `config.yaml` in both the `options` section (with default value and comment)
+  - Add to `config.yaml` in the `schema` section (with proper validation)
+  - Add to `translations/en.yaml` with name and description
+- If new parameters are found, ensure they are properly documented
+
+## Step 3: Extract Version Information
 
 - Get the most recent commits from the submodule
 - Find the latest `[AUTO]` version update commit (format: "Update version to X.X.X.XXX-develop")
 - Extract the version number from that commit message
 - The version format is: MAJOR.MINOR.PATCH.BUILD (e.g., 0.2.29.208)
 
-## Step 3: Update config.yaml
+## Step 4: Update config.yaml
 
 - Update the version field in `eos_connect_develop\config.yaml`
 - Remove the "-develop" suffix from the version (e.g., 0.2.29.208-develop becomes 0.2.29.208)
 
-## Step 4: Update CHANGELOG.md
+## Step 5: Update CHANGELOG.md
 
 - Add a new entry at the TOP of `eos_connect_develop\CHANGELOG.md` (before any existing entries)
 - Format: `**Version X.X.X.XXX** published on YYYY-MM-DD`
@@ -74,7 +83,7 @@ Fixes [#167](https://github.com/ohAnd/EOS_connect/issues/167)
 - Multiple related changes from one commit should be on separate bullet points if they are logically distinct
 - When a commit has "Fixes #XXX" in the message, put it on a separate line
 
-## Step 5: Show Proposed Commit Message
+## Step 6: Show Proposed Commit Message
 
 - After completing all updates, display the proposed commit message for the user to review
 - Commit message format: `eos_connect_develop: bump version to X.X.X.XXX; update changelog with [brief summary of changes]; modify config.yaml for version update`

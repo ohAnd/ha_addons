@@ -1,3 +1,9 @@
+**Version 0.2.29.220** published on 2026-01-07
+- feat: add request_timeout configuration for Home Assistant and OpenHAB API calls - fixes [#193](https://github.com/ohAnd/EOS_connect/issues/193)
+- feat: add version badge to navigation across documentation and enforce documentation updates for code changes
+- Enhance documentation and styling for EOS Connect
+- feat: add mobile menu toggle and back-to-top button functionality across documentation and fix mobile view
+
 **Version 0.2.29.218** published on 2026-01-06
 - feat: enhance dynamic charging curve with temperature protection and update configuration options
 - docs: add comprehensive user guide and "What is EOS Connect?" documentation
