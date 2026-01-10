@@ -1,3 +1,9 @@
+**Version 0.2.29.221** published on 2026-01-10
+- feat: add diagnostics and logging for missing sensor data in BatteryPriceHandler - Battery Overview incorrectly attributes Grid charging to PV touches [#195](https://github.com/ohAnd/EOS_connect/issues/195)
+- feat: add scroll-margin-top to body for improved navigation experience
+- feat: add Battery Pricing section with dynamic pricing modes and configuration details
+- feat: enhance Battery Overview section with real-time status and mobile-responsive display
+
 **Version 0.2.29.220** published on 2026-01-07
 - feat: add request_timeout configuration for Home Assistant and OpenHAB API calls - fixes [#193](https://github.com/ohAnd/EOS_connect/issues/193)
 - feat: add version badge to navigation across documentation and enforce documentation updates for code changes
