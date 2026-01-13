@@ -1,3 +1,7 @@
+**Version 0.2.29.223** published on 2026-01-13
+- feat: enhance battery capacity handling in EVOptBackend and update API version
+Fixes [#194](https://github.com/ohAnd/EOS_connect/issues/194) and [#174](https://github.com/ohAnd/EOS_connect/issues/174)
+
 **Version 0.2.29.222** published on 2026-01-11
 - feat: enhance sensor auto-detection documentation and implementation for battery and grid polarity - fixes [#195](https://github.com/ohAnd/EOS_connect/issues/195)
 - feat: update documentation for energy source attribution and cost assignment in battery configuration
