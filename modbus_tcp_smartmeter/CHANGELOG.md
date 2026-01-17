@@ -1,3 +1,6 @@
+**Version 1.0.1** published on 17.01.2026
+- fixing startup behavior
+
 **Version 1.0.0** published on 17.01.2026
 - Major refactor: improved data abstraction and error handling for unavailable or invalid energy data
 - Exception handling for unreachable OpenHAB host

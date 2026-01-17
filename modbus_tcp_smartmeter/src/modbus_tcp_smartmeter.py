@@ -17,11 +17,11 @@ import sys
 import time
 
 # Import local modules
-from .modbus_server import rt as server_rt
-from .config_manager import ConfigManager
-from .energy_data import EnergyData, isfloat
-from . import modbus_server
-from .modbus_server import (
+from modbus_server import rt as server_rt
+from config_manager import ConfigManager
+from energy_data import EnergyData, isfloat
+import modbus_server
+from modbus_server import (
     build_modbus_context,
     start_modbus_services,
     stop_modbus_services,

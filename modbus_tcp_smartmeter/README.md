@@ -173,9 +173,11 @@ debug:
    ```
 
 2. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+  ```bash
+  python3 -m venv venv
+  source venv/bin/activate
+  pip install -r requirements.txt
+  ```
 
 3. **Configure:**
    ```bash
@@ -184,43 +186,47 @@ debug:
    ```
 
 4. **Run:**
-   ```bash
-   python3 src/modbus_tcp_smartmeter.py
-   ```
+  ```bash
+  # From the src directory:
+  cd src
+  python modbus_tcp_smartmeter.py
+  ```
 
 #### System Service Installation
 
 To run as a system service:
 
-1. **Make executable:**
-   ```bash
-   chmod +x src/modbus_tcp_smartmeter.py
-   ```
+1. **Create a virtual environment and install dependencies:**
+  ```bash
+  python3 -m venv venv
+  source venv/bin/activate
+  pip install -r requirements.txt
+  ```
 
 2. **Create service file** (`/etc/systemd/system/modbus-tcp-smartmeter.service`):
-   ```ini
-   [Unit]
-   Description=Modbus TCP Smart Meter Service
-   After=network.target
+  ```ini
+  [Unit]
+  Description=Modbus TCP Smart Meter Service
+  After=network.target
 
-   [Service]
-   ExecStart=/usr/bin/python3 /path/to/modbus_tcp_smartmeter/src/modbus_tcp_smartmeter.py
-   WorkingDirectory=/path/to/modbus_tcp_smartmeter
-   StandardOutput=inherit
-   StandardError=inherit
-   Restart=always
-   User=your-user
+  [Service]
+  ExecStart=/path/to/modbus_tcp_smartmeter/venv/bin/python /path/to/modbus_tcp_smartmeter/src/modbus_tcp_smartmeter.py
+  WorkingDirectory=/path/to/modbus_tcp_smartmeter/src
+  StandardOutput=inherit
+  StandardError=inherit
+  Restart=always
+  User=your-user
 
-   [Install]
-   WantedBy=multi-user.target
-   ```
+  [Install]
+  WantedBy=multi-user.target
+  ```
 
 3. **Enable and start:**
-   ```bash
-   sudo systemctl daemon-reload
-   sudo systemctl enable modbus-tcp-smartmeter
-   sudo systemctl start modbus-tcp-smartmeter
-   ```
+  ```bash
+  sudo systemctl daemon-reload
+  sudo systemctl enable modbus-tcp-smartmeter
+  sudo systemctl start modbus-tcp-smartmeter
+  ```
 
 #### Docker Installation
 
@@ -231,6 +237,8 @@ docker run -d \
   -v /path/to/config:/app/config.yaml \
   ghcr.io/ohand/ha-addon-modbus_tcp_smartmeter
 ```
+
+*Note: The Docker image and Home Assistant add-on are configured to run the script directly (`python /app/modbus_tcp_smartmeter.py`), matching the standalone script usage in all environments.*
 
 ## Contributing
 
