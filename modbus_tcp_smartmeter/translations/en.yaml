@@ -1,33 +1,66 @@
 configuration:
-  
+  data:
+    name: Data Source Settings
+    description: Configure where to fetch inverter data from
+    source:
+      name: Data Source
+      description: Choose openhab or homeassistant as the data source
+    host:
+      name: OpenHAB/Home Assistant Host
+      description: Host IP or internal DNS of your OpenHAB/Home Assistant instance
+    access_token:
+      name: Home Assistant Access Token
+      description: Long-lived access token for Home Assistant (leave empty if using OpenHAB)
 
-  connected_phase:
-    name: Connected Phase of Single Phase inverter
-    description: 1, 2 or 3 represents the phases L1, L2 or L3
-  energy_counter_out:
-    name: OpenHAB item name of inverter energy counter
-    description: inverter energy or smartmeter_energy
-  current_voltage:
-    name: OpenHAB item name of inverter current grid voltage
-    description: inverter voltage or smartmeter_voltage
-  current_current:
-    name: OpenHAB item name of inverter current grid current
-    description: inverter current or smartmeter_current
-  current_power:
-    name: OpenHAB item name of inverter current grid output power
-    description: inverter power or smartmeter_power
-  current_frequency:
-    name: OpenHAB item name of inverter current grid frequency
-    description: inverter frequency or smartmeter_frequency - leave empty to disable
-  openhab_host:
-    name: your OpenHAB host
-    description: Host IP/ internal DNS of your OpenHAB where the current inverter data are available
-  modbus_tcp_address:
-    name: Modbus TCP Address
-    description: Modbus TCP address of this smartmeter emulation
-  loglevel:
-    name: Log Level
-    description: debug, info, warning or error
-  time_zone:
-    name: Time Zone
-    description: your local time zone to get the right timestamp in the logging
+  modbus:
+    name: Modbus TCP Settings
+    description: Configure Modbus TCP server parameters
+    modbus_tcp_address:
+      name: Modbus TCP Address
+      description: Modbus TCP address of this smartmeter emulation (0-15)
+    connected_phase:
+      name: Connected Phase of Single Phase Inverter
+      description: 1, 2 or 3 represents the phases L1, L2 or L3
+
+  smartmeter_energy:
+    name: Energy Counter Settings
+    description: Configure energy counter item and validation threshold
+    energy_counter_out:
+      name: OpenHAB Item Name of Inverter Energy Counter
+      description: inverter energy or smartmeter_energy
+    min_energy_threshold:
+      name: Minimum Energy Threshold
+      description: Minimum valid energy value in kWh to filter near-zero startup values and access delays (default 0.1)
+
+  smartmeter_livedata:
+    name: Live Data Settings
+    description: Configure voltage, current, power, and frequency items
+    current_voltage:
+      name: OpenHAB Item Name of Inverter Current Grid Voltage
+      description: inverter voltage or smartmeter_voltage
+    current_current:
+      name: OpenHAB Item Name of Inverter Current Grid Current
+      description: inverter current or smartmeter_current
+    current_power:
+      name: OpenHAB Item Name of Inverter Current Grid Output Power
+      description: inverter power or smartmeter_power
+    current_frequency:
+      name: OpenHAB Item Name of Inverter Current Grid Frequency
+      description: inverter frequency or smartmeter_frequency - leave empty to disable
+
+  general:
+    name: General Settings
+    description: Configure logging and time zone
+    loglevel:
+      name: Log Level
+      description: debug, info, warning or error
+    time_zone:
+      name: Time Zone
+      description: your local time zone to get the right timestamp in the logging
+
+  debug:
+    name: Debug Settings
+    description: Configure debug logging options
+    modbus_requests:
+      name: Debug Modbus Requests
+      description: When enabled, logs all incoming Modbus TCP requests including function codes, register addresses, and values. Useful for developing test clients that replicate real-world Modbus communication patterns.

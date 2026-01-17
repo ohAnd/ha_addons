@@ -1,2 +1,3 @@
 .vscode/**
 modbus_tcp_smartmeter/src/config.yaml
+modbus_tcp_smartmeter/src/__pycache__/**

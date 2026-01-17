@@ -1,117 +1,262 @@
+# Modbus TCP Smart Meter
 
-Table of content
-- [modbus tcp smartmeter](#modbus-tcp-smartmeter)
-  - [features](#features)
-  - [configuration](#configuration)
-    - [Configuration Parameters](#configuration-parameters)
-    - [Home Assistant Add-on Configuration](#home-assistant-add-on-configuration)
-    - [Local Usage](#local-usage)
-  - [installing locally as system service](#installing-locally-as-system-service)
-  - [Further information](#further-information)
+![Modbus TCP Smartmeter Icon](icon.png)
 
-# modbus tcp smartmeter
+**Simulates a smart meter via Modbus TCP to provide real-time energy data to inverters and other devices.**
 
-![Modbus TCP Smartmeter Icon](icon.png) 
+This addon creates a Modbus TCP server that emulates a smart meter, fetching live data from OpenHAB or Home Assistant and serving it to connected clients like solar inverters (e.g., Fronius Gen24). Perfect for integrating energy monitoring systems where direct smart meter connection isn't available.
 
-Simulates a Fronius Smart Meter for providing necessary information to inverters (e.g. Gen24).
+## Table of Contents
+- [Quick Start](#quick-start)
+- [Features](#features)
+- [Configuration](#configuration)
+- [Installation](#installation)
+- [Contributing](#contributing)
+- [Support](#support)
 
-## features
+## Quick Start
 
-- **Fronius Smart Meter Simulation**: Simulates a Fronius Smart Meter to provide necessary data for inverters like Gen24.
-- **Modbus TCP Server**: Implements a Modbus TCP server to serve data to connected clients.
-- **Dynamic Data Updates**: Periodically updates Modbus registers with real-time data from OpenHAB.
-- **OpenHAB Integration**: Fetches data from OpenHAB REST API for parameters like energy, voltage, current, power, and frequency.
-- **Selected Phase Support**: Supports specific single-phase configurations (L1, L2, L3).
-- **Customizable Configuration**: Allows configuration of parameters like `loglevel`, `openhab_host`, `connected_phase`, and more via Home Assistant Add-on or local `config.yaml`.
-- **Thread-Safe Updates**: Ensures thread safety while updating Modbus registers using a global lock.
-- **System Time Zone Handling**: Automatically sets the time zone for accurate logging.
-- **Graceful Shutdown**: Handles termination signals (e.g., Ctrl+C) to stop the server and clean up resources.
-- **System Service Support**: Can be installed and run as a system service for local usage.
+### Home Assistant Add-on Installation
+1. Add this repository to your Home Assistant Add-on Store: `https://github.com/ohAnd/ha_addons`
+2. Install the "Modbus TCP Smart Meter" addon
+3. Configure your data source (OpenHAB or Home Assistant) and item names
+4. Start the addon
+5. Connect your inverter to the addon's IP on port 502
 
+### Local Installation
+1. Clone this repository
+2. Install dependencies: `pip install -r requirements.txt`
+3. Copy `src/config.yaml` and configure your settings
+4. Run: `python3 src/modbus_tcp_smartmeter.py`
 
-## configuration
+## Features
 
-### Configuration Parameters
+### Core Functionality
+- **Smart Meter Emulation**: Full Modbus TCP server implementing smart meter registers
+- **Real-time Data**: Continuously updates with live energy data from your home automation system
+- **Multi-Source Support**: Compatible with both OpenHAB and Home Assistant
+- **Phase-Specific Data**: Supports single-phase configurations (L1, L2, L3)
 
-- **connected_phase** : Connected Phase of Single Phase Inverter - Specifies the phase the inverter is connected to. Use `1`, `2`, or `3` to represent phases L1, L2, or L3.
-- **energy_counter_out** : OpenHAB Item Name of Inverter Energy Counter - Name of the OpenHAB item representing the inverter energy counter (e.g., `inverter_energy` or `smartmeter_energy`).
-- **current_voltage** : OpenHAB Item Name of Inverter Current Grid Voltage - Name of the OpenHAB item representing the current grid voltage (e.g., `inverter_voltage` or `smartmeter_voltage`).
-- **current_current** : OpenHAB Item Name of Inverter Current Grid Current - Name of the OpenHAB item representing the current grid current (e.g., `inverter_current` or `smartmeter_current`).
-- **current_power** : OpenHAB Item Name of Inverter Current Grid Output Power - Name of the OpenHAB item representing the current grid output power (e.g., `inverter_power` or `smartmeter_power`).
-- **openhab_host** : Your OpenHAB Host - Host IP or internal DNS of your OpenHAB instance where the current inverter data is available.
-- **modbus_tcp_address** : Log Level - Defines the logging level for the add-on (e.g., debug, info, warning, error).
-- **loglevel** : Log Level - Defines the logging level for the add-on (e.g., debug, info, warning, error).
-- **time_zone** : Time Zone - Your local time zone to ensure the correct timestamp is used in logging.
+### Data Types Supported
+- **Energy Counter**: Cumulative energy production/consumption
+- **Live Measurements**:
+  - Grid voltage
+  - Grid current
+  - Grid power
+  - Grid frequency (optional)
 
-### Home Assistant Add-on Configuration
+### Advanced Features
+- **Thread-Safe Operations**: Concurrent data updates with proper locking
+- **Configurable Thresholds**: Filter invalid low-energy readings
+- **Timezone Handling**: Automatic timezone detection with fallback configuration
+- **Debug Logging**: Detailed Modbus request logging for development
+- **Graceful Shutdown**: Proper cleanup on termination signals
+- **System Service Support**: Can run as a systemd service for production use
 
-The add-on can be configured directly through the Home Assistant Add-on configuration interface.
+### Technical Specifications
+- **Protocol**: Modbus TCP
+- **Port**: 502 (configurable via Docker/host networking)
+- **Unit ID**: Configurable 0-15
+- **Register Map**: Compatible with Fronius smart meter specifications
+- **Update Interval**: 2-second data refresh cycle
 
-### Local Usage
+## Configuration
 
-Create a config.yaml in folder /src - and configure your settings
+### Configuration Overview
 
-example config file 
+The addon supports two primary configuration methods:
+- **Home Assistant Add-on**: Configure through the HA UI
+- **Local Config File**: Use `src/config.yaml` for standalone operation
+
+### Data Source Configuration
+
+Choose between OpenHAB or Home Assistant as your data source:
+
+#### OpenHAB Setup
+```yaml
+data:
+  source: openhab
+  host: 192.168.1.31  # Your OpenHAB instance IP
+  access_token: ""    # Not required for OpenHAB
+```
+
+#### Home Assistant Setup
+```yaml
+data:
+  source: homeassistant
+  host: 192.168.1.31              # Your HA instance IP
+  access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."  # Long-lived access token
+```
+
+### Modbus Configuration
 
 ```yaml
-connected_phase: 2
-energy_counter_out: inverter2_PV_E_total
-current_voltage: inverter2_Grid_U
-current_current: inverter2_Grid_I
-current_power: inverter2_Grid_P
-openhab_host: 192.168.1.31
-modbus_tcp_address: 2
-loglevel: debug
-time_zone: Europe/Berlin
+modbus:
+  modbus_tcp_address: 2    # Unit ID (0-15)
+  connected_phase: 2       # Phase: 1=L1, 2=L2, 3=L3
 ```
 
-## installing locally as system service
+### Energy Data Configuration
 
-Install required Python dependencies
+```yaml
+smartmeter_energy:
+  energy_counter_out: sensor.pv_energy_total  # Item/entity name for cumulative energy
+  min_energy_threshold: 0.1                   # Minimum valid energy value in kWh
+```
+
+### Live Data Configuration
+
+```yaml
+smartmeter_livedata:
+  current_voltage: sensor.grid_voltage     # Grid voltage sensor
+  current_current: sensor.grid_current     # Grid current sensor
+  current_power: sensor.grid_power         # Grid power sensor
+  current_frequency: sensor.grid_frequency # Grid frequency sensor (optional)
+```
+
+### General Settings
+
+```yaml
+general:
+  loglevel: debug          # Logging level: debug, info, warning, error
+  time_zone: Europe/Berlin # Timezone for logging timestamps
+```
+
+### Debug Settings
+
+```yaml
+debug:
+  modbus_requests: false   # Enable detailed Modbus request logging
+```
+
+### Configuration Parameters Reference
+
+| Parameter | Required | Default | Description |
+|-----------|----------|---------|-------------|
+| `data.source` | Yes | openhab | Data source: `openhab` or `homeassistant` |
+| `data.host` | Yes | 192.168.1.99 | IP address of your home automation system |
+| `data.access_token` | No | "" | HA long-lived access token (HA only) |
+| `modbus.modbus_tcp_address` | Yes | 0 | Modbus unit ID (0-15) |
+| `modbus.connected_phase` | Yes | 1 | Connected phase (1-3) |
+| `smartmeter_energy.energy_counter_out` | Yes | inverter_energy | Energy counter item/entity name |
+| `smartmeter_energy.min_energy_threshold` | Yes | 0.1 | Minimum valid energy value in kWh |
+| `smartmeter_livedata.current_voltage` | Yes | inverter_voltage | Voltage item/entity name |
+| `smartmeter_livedata.current_current` | Yes | inverter_current | Current item/entity name |
+| `smartmeter_livedata.current_power` | Yes | inverter_power | Power item/entity name |
+| `smartmeter_livedata.current_frequency` | No | "" | Frequency item/entity name |
+| `general.loglevel` | Yes | debug | Logging level |
+| `general.time_zone` | Yes | UTC | Timezone for logging |
+| `debug.modbus_requests` | No | false | Enable Modbus request logging |
+
+## Installation
+
+### Home Assistant Add-on
+
+1. In Home Assistant, go to **Settings > Add-ons > Add-on Store**
+2. Click the menu (⋮) and select **Repositories**
+3. Add repository: `https://github.com/ohAnd/ha_addons`
+4. Find and install "Modbus TCP Smart Meter"
+5. Configure the addon options
+6. Start the addon
+
+### Local Installation
+
+#### Prerequisites
+- Python 3.8+
+- Access to OpenHAB or Home Assistant instance
+
+#### Setup Steps
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/ohAnd/ha_addons.git
+   cd ha_addons/modbus_tcp_smartmeter
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Configure:**
+   ```bash
+   cp src/config.yaml.example src/config.yaml
+   # Edit src/config.yaml with your settings
+   ```
+
+4. **Run:**
+   ```bash
+   python3 src/modbus_tcp_smartmeter.py
+   ```
+
+#### System Service Installation
+
+To run as a system service:
+
+1. **Make executable:**
+   ```bash
+   chmod +x src/modbus_tcp_smartmeter.py
+   ```
+
+2. **Create service file** (`/etc/systemd/system/modbus-tcp-smartmeter.service`):
+   ```ini
+   [Unit]
+   Description=Modbus TCP Smart Meter Service
+   After=network.target
+
+   [Service]
+   ExecStart=/usr/bin/python3 /path/to/modbus_tcp_smartmeter/src/modbus_tcp_smartmeter.py
+   WorkingDirectory=/path/to/modbus_tcp_smartmeter
+   StandardOutput=inherit
+   StandardError=inherit
+   Restart=always
+   User=your-user
+
+   [Install]
+   WantedBy=multi-user.target
+   ```
+
+3. **Enable and start:**
+   ```bash
+   sudo systemctl daemon-reload
+   sudo systemctl enable modbus-tcp-smartmeter
+   sudo systemctl start modbus-tcp-smartmeter
+   ```
+
+#### Docker Installation
+
 ```bash
-pip install -r requirements.txt
+docker run -d \
+  --name modbus-tcp-smartmeter \
+  --network host \
+  -v /path/to/config:/app/config.yaml \
+  ghcr.io/ohand/ha-addon-modbus_tcp_smartmeter
 ```
 
-installing as system service:
+## Contributing
 
-```bash
-sudo chmod +x /your/path/to/modbus_tcp_smartmeter/src/modbus_tcp_smartmeter.py
-```
+We welcome contributions! Please see our [contributing guidelines](CONTRIBUTING.md) for details.
 
-create service file e.g. /home/pi/ModbusTCP_SmartMeter.service
+### Development Setup
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-```ini
-[Unit]
-Description=Modbus TCP Smart Meter Service
-After=network.target
+### Testing
+- Use `test_client_example.py` to test Modbus connectivity
+- Enable `debug.modbus_requests` for detailed logging
+- Test with both OpenHAB and Home Assistant sources
 
-[Service]
-ExecStart=/usr/bin/python3 /your/path/to/modbus_tcp_smartmeter/src/modbus_tcp_smartmeter.py
-WorkingDirectory=/path/to/your/
-StandardOutput=inherit
-StandardError=inherit
-Restart=always
-User=root
+## Support
 
-[Install]
-WantedBy=multi-user.target
-```
-then
-```bash
-sudo cp /home/pi/ModbusTCP_SmartMeter.service /etc/systemd/system/
-sudo systemctl enable ModbusTCP_SmartMeter.service
-sudo systemctl start ModbusTCP_SmartMeter.service
-```
+### Issues
+- Check existing [GitHub Issues](https://github.com/ohAnd/ha_addons/issues)
+- Provide detailed logs and configuration (redact sensitive data)
 
-If you prefer not to run the script as root, you can use setcap to grant the necessary capabilities:
+### Sponsoring
+If you find this project helpful, consider [sponsoring development](https://github.com/sponsors/ohAnd) to support continued maintenance and feature development.
 
-```bash
-sudo setcap 'cap_net_bind_service=+ep' /usr/bin/python3
-```
+---
 
-This setup will ensure your script runs automatically at startup with the necessary permissions.
-
-
-## Further information
-
-...
+**Disclaimer**: This software is provided as-is. Use at your own risk. Ensure proper electrical safety measures when working with energy systems.

@@ -1,6 +1,6 @@
 name: "Modbus TCP Smart Meter"
 description: "emulates a modbus tcp client to pretend to be an energy metering device"
-version: "0.0.11"
+version: "1.0.0"
 slug: "modbus_tcp_smartmeter"
 url: "https://github.com/ohAnd/ha_addons"
 init: false
@@ -20,26 +20,46 @@ map:
 host_network: true
 
 options:
-  connected_phase: 1 # 1, 2 or 3 for L1, L2 or L3
-  energy_counter_out: inverter_energy # energy_counter_out or smartmeter_energy
-  current_voltage: inverter_voltage # current_voltage or smartmeter_voltage
-  current_current: inverter_current # current_current or smartmeter_current
-  current_power: inverter_power # current_power or smartmeter_power
-  current_frequency: # current_frequency or smartmeterfrequency - leave empty to disable
-  openhab_host: 192.168.1.30
-  modbus_tcp_address: 0
-  loglevel: debug
-  time_zone: UTC
+  data:
+    source: openhab # openhab or homeassistant
+    host: 192.168.1.30
+    access_token: "" # Home Assistant long-lived access token (leave empty for OpenHAB)
+  modbus:
+    modbus_tcp_address: 0 # Modbus TCP Address (Unit ID) of the smart meter (0-15)
+    connected_phase: 1 # 1, 2 or 3 for L1, L2 or L3
+  smartmeter_energy:
+    energy_counter_out: smartmeter_energy # energy_counter_out or smartmeter_energy
+    min_energy_threshold: 0.1 # Minimum valid energy value in kWh to filter near-zero startup values
+  smartmeter_livedata:
+    current_voltage: smartmeter_voltage # current_voltage or smartmeter_voltage
+    current_current: smartmeter_current # current_current or smartmeter_current
+    current_power: smartmeter_power # current_power or smartmeter_power
+    current_frequency: # current_frequency or smartmeterfrequency - leave empty to disable
+  general:
+    loglevel: debug
+    time_zone: UTC
+  debug:
+    modbus_requests: false # Log incoming Modbus TCP requests for test client development
 
 schema:
-  connected_phase: int(1,3)
-  energy_counter_out: str
-  current_voltage: str
-  current_current: str
-  current_power: str
-  current_frequency: str
-  openhab_host: str
-  modbus_tcp_address: int(0,15)
-  loglevel: list(debug|info|warning|error)
-  time_zone: str
+  data:
+    source: list(openhab|homeassistant)
+    host: str
+    access_token: password?
+  modbus:
+    modbus_tcp_address: int(0,15)
+    connected_phase: int(1,3)
+  smartmeter_energy:
+    energy_counter_out: str
+    min_energy_threshold: float(0,)
+  smartmeter_livedata:
+    current_voltage: str
+    current_current: str
+    current_power: str
+    current_frequency: str?
+  general:
+    loglevel: list(debug|info|warning|error)
+    time_zone: str
+  debug:
+    modbus_requests: bool
 image: "ghcr.io/ohand/ha-addon-modbus_tcp_smartmeter_{arch}"

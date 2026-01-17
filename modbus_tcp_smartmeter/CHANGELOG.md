@@ -1,3 +1,18 @@
+**Version 1.0.0** published on 17.01.2026
+- Major refactor: improved data abstraction and error handling for unavailable or invalid energy data
+- Exception handling for unreachable OpenHAB host
+- Logging now supports timezone and is configurable via config.yaml
+- Configuration is managed by a new ConfigManager class; config.yaml structure is now strictly enforced
+- If config.yaml is missing, a default is created and server restart is required
+- Home Assistant is now supported as a data source (in addition to OpenHAB)
+- Energy data updates now run in a background thread for real-time accuracy
+- Modbus register updates are more robust and thread-safe
+- Signal handling for graceful shutdown (Ctrl+C)
+- Improved docstrings and comments for maintainability
+- BREAKING CHANGE: config.yaml must be updated to the new structure; old configs may not be compatible
+- Existing parameters (modbus address, connected phase, etc.) are now strictly required and validated
+- Phase selection for power/current data is now more robust
+
 **Version 0.0.11** published on 06.05.2025
 - fix: wrong last data for energy_data
 - 
