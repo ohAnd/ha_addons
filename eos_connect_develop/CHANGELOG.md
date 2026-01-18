@@ -1,3 +1,9 @@
+**Version 0.2.29.224** published on 2026-01-18
+- feat: add temperature forecast handling for EOS backend only and update documentation - fix Temperature forecast for EOS Fixes #199
+Fixes [#199](https://github.com/ohAnd/EOS_connect/issues/199)
+- feat: update configuration documentation for inverter and EVCC settings
+- feat: improve EVCC error handling and ensure safe defaults for loadpoints
+
 **Version 0.2.29.223** published on 2026-01-13
 - feat: enhance battery capacity handling in EVOptBackend and update API version
 Fixes [#194](https://github.com/ohAnd/EOS_connect/issues/194) and [#174](https://github.com/ohAnd/EOS_connect/issues/174)

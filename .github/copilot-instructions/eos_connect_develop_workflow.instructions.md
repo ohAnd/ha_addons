@@ -24,6 +24,15 @@ The workflow will automatically:
 4. Update CHANGELOG.md with new entries
 5. Stage all changes and show proposed commit message
 
+## Agent Rules (MANDATORY)
+
+- NEVER perform `git commit` or `git push` without explicit human confirmation.
+- The exact confirmation phrase required is: "approve eos commit"
+- The agent MUST show the full proposed commit message, the extracted version number, and the list of non-[AUTO] commits used to populate `CHANGELOG.md`, and then wait for a human message that matches the confirmation phrase exactly before performing any commit or push.
+- The agent MUST NOT accept any other phrasing or implicit approvals (for example, "looks good" or "proceed").
+- The agent MAY stage changes (`git add`) to prepare a commit, but MUST NOT run `git commit` or `git push` until it has received the exact confirmation phrase.
+- If any step fails, the agent must abort the workflow and report the failure; do not attempt automatic retries that result in changes to git history.
+
 ## Workflow Steps
 
 Execute the following steps automatically:
@@ -89,3 +98,20 @@ Fixes [#167](https://github.com/ohAnd/EOS_connect/issues/167)
 - Commit message format: `eos_connect_develop: bump version to X.X.X.XXX; update changelog with [brief summary of changes]; modify config.yaml for version update`
 - Brief summary should mention the key features/fixes (e.g., "discharge state handling and dynamic max charge power")
 - DO NOT automatically commit - let the user review and commit manually
+
+### Mandatory confirmation step
+
+- After showing the proposed commit message the agent MUST wait for the human to send the exact phrase `approve eos commit` before performing any `git commit` or `git push`.
+- If the human responds with anything else, the agent must NOT commit and should instead ask for clarification or update the proposed commit message as requested.
+
+### Staging behaviour
+
+- The agent should list staged files and may stage changes, but MUST NOT commit/push without the exact confirmation phrase.
+
+### Audit and reporting
+
+- The agent must include the extracted version number and the list of non-[AUTO] commit messages used to populate `CHANGELOG.md` in the confirmation request.
+
+## Important: Enforcement recommendation
+
+- To help ensure these rules are respected by any automated agent, create a repository-level git hook or CI check which blocks commits unless an environment variable `ALLOW_BOT_COMMIT=true` is explicitly set by a human step. This instructions file defines the expected behaviour but cannot enforce it without repository hooks or CI.
