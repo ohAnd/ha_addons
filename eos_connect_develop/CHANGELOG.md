@@ -1,3 +1,8 @@
+**Version 0.2.29.226** published on 2026-01-23
+- feat: patch datetime to return a real object for accurate AC charge demand testing
+- feat: add sanity check for implausible energy values in load profile
+- feat: increase log memory capacity and enhance logging messages for EOS and EVopt backends
+
 **Version 0.2.29.224** published on 2026-01-18
 - feat: add temperature forecast handling for EOS backend only and update documentation - fix Temperature forecast for EOS Fixes #199
 Fixes [#199](https://github.com/ohAnd/EOS_connect/issues/199)
