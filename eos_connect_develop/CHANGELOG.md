@@ -1,3 +1,7 @@
+**Version 0.2.29.227** published on 2026-01-25
+- feat: enhance chart responsiveness and layout for better display on various screen sizes ([#203](https://github.com/ohAnd/EOS_connect/issues/203))
+- feat: update AC charge demand logging to reflect values in Wh and improve clarity ([#200](https://github.com/ohAnd/EOS_connect/issues/200))
+
 **Version 0.2.29.226** published on 2026-01-23
 - feat: patch datetime to return a real object for accurate AC charge demand testing
 - feat: add sanity check for implausible energy values in load profile
