@@ -1,6 +1,6 @@
 name: "Modbus TCP Smart Meter"
 description: "emulates a modbus tcp client to pretend to be an energy metering device"
-version: "1.0.1"
+version: "1.0.2"
 slug: "modbus_tcp_smartmeter"
 url: "https://github.com/ohAnd/ha_addons"
 init: false

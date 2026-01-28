@@ -1,3 +1,6 @@
+**Version 1.0.2** published on 28.01.2026
+- fixing exported energy calculations in modbus_server
+
 **Version 1.0.1** published on 17.01.2026
 - fixing startup behavior
 

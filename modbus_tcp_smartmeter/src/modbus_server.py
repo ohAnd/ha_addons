@@ -505,7 +505,29 @@ def updating_writer(a_context, energy_data_instance, config_manager_instance):
     power_total_int1, power_total_int2 = calculate_register(float(input_power))
     current_total_int1, current_total_int2 = calculate_register(float(input_current))
     ti_int1, ti_int2 = calculate_register(inverter_energy_total_in_corr)
-    to_int1, to_int2 = calculate_register(inverter_energy_total_out_corr)
+
+    exp_int1, exp_int2 = calculate_register(inverter_energy_total_out_corr)
+
+    exp_tot_int1, exp_tot_int2 = (0, 0)
+    exp1_int1, exp1_int2 = (0, 0)
+    exp2_int1, exp2_int2 = (0, 0)
+    exp3_int1, exp3_int2 = (0, 0)
+
+    if connected_phase == 1:
+        exp_tot_int1, exp_tot_int2 = calculate_register(inverter_energy_total_out_corr)
+        exp1_int1, exp1_int2 = calculate_register(inverter_energy_total_out_corr)
+        exp2_int1, exp2_int2 = (0, 0)
+        exp3_int1, exp3_int2 = (0, 0)
+    elif connected_phase == 2:
+        exp_tot_int1, exp_tot_int2 = calculate_register(inverter_energy_total_out_corr)
+        exp1_int1, exp1_int2 = (0, 0)
+        exp2_int1, exp2_int2 = calculate_register(inverter_energy_total_out_corr)
+        exp3_int1, exp3_int2 = (0, 0)
+    elif connected_phase == 3:
+        exp_tot_int1, exp_tot_int2 = calculate_register(inverter_energy_total_out_corr)
+        exp1_int1, exp1_int2 = (0, 0)
+        exp2_int1, exp2_int2 = (0, 0)
+        exp3_int1, exp3_int2 = calculate_register(inverter_energy_total_out_corr)
 
     l1_int1, l1_int2 = calculate_register(float(l1))
     l2_int1, l2_int2 = calculate_register(float(l2))
@@ -521,11 +543,7 @@ def updating_writer(a_context, energy_data_instance, config_manager_instance):
 
     f1_int1, f1_int2 = calculate_register(float(input_frequency))
 
-    # Exported energy values
-    exp1_int1, exp1_int2 = to_int1, to_int2
-    exp2_int1, exp2_int2 = to_int1, to_int2
-    exp3_int1, exp3_int2 = to_int1, to_int2
-
+    # updating the context with new values
     context = a_context[0]
     register = 3
     # slave_id = 0x01
@@ -594,12 +612,12 @@ def updating_writer(a_context, energy_data_instance, config_manager_instance):
         0,  # AC PF phase C
         0,
         0,  # AC PF scale factor
+        exp_tot_int1,
+        exp_tot_int2,  # Total Watt Hours Exported [Wh]
         exp1_int1,
-        exp1_int2,  # Total Watt Hours Exported [Wh]
+        exp1_int2,  # Watt Hours Exported L1 [Wh]
         exp2_int1,
-        exp2_int2,  # Watt Hours Exported L1 [Wh]
-        exp3_int1,
-        exp3_int2,  # Watt Hours Exported L2 [Wh]
+        exp2_int2,  # Watt Hours Exported L2 [Wh]
         exp3_int1,
         exp3_int2,  # Watt Hours Exported L3 [Wh]
         ti_int1,
