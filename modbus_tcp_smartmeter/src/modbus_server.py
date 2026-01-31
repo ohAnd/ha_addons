@@ -100,21 +100,33 @@ class RepeatedTimer:
         self.is_running = False
 
 
+# def calculate_register(value_float):
+#     """
+#     Converts a floating-point value into two 16-bit integer registers.
+
+#     Uses IEEE 754 floating-point representation for Modbus communication.
+#     """
+#     if value_float == 0:
+#         int1 = 0
+#         int2 = 0
+#     else:
+#         value_hex = hex(struct.unpack("<I", struct.pack("<f", value_float))[0])
+#         value_hex_part1 = str(value_hex)[2:6]
+#         value_hex_part2 = str(value_hex)[6:10]
+#         int1 = int(value_hex_part1, 16)
+#         int2 = int(value_hex_part2, 16)
+#     return (int1, int2)
+
+
 def calculate_register(value_float):
     """
-    Converts a floating-point value into two 16-bit integer registers.
-
-    Uses IEEE 754 floating-point representation for Modbus communication.
+    Converts a floating-point value into two 16-bit integer registers (Modbus standard, big-endian).
     """
     if value_float == 0:
-        int1 = 0
-        int2 = 0
-    else:
-        value_hex = hex(struct.unpack("<I", struct.pack("<f", value_float))[0])
-        value_hex_part1 = str(value_hex)[2:6]
-        value_hex_part2 = str(value_hex)[6:10]
-        int1 = int(value_hex_part1, 16)
-        int2 = int(value_hex_part2, 16)
+        return (0, 0)
+    packed = struct.pack(">f", value_float)  # big-endian float
+    int1 = int.from_bytes(packed[0:2], byteorder="big")
+    int2 = int.from_bytes(packed[2:4], byteorder="big")
     return (int1, int2)
 
 
@@ -551,69 +563,65 @@ def updating_writer(a_context, energy_data_instance, config_manager_instance):
 
     values = [
         current_total_int1,
-        0,  # AC Total Current value [A]
+        current_total_int2,  # Ampere - AC Total Current Value [A]
         i1_int1,
-        i1_int2,  # AC Current value L1 [A]
+        i1_int2,  # Ampere - AC Current Value L1 [A]
         i2_int1,
-        i2_int2,  # AC Current value L2 [A]
+        i2_int2,  # Ampere - AC Current Value L2 [A]
         i3_int1,
-        i3_int2,  # AC Current value L3 [A]
+        i3_int2,  # Ampere - AC Current Value L3 [A]
         v1_int1,
-        v1_int2,  # AC Voltage average phase to neutral [V]
+        v1_int2,  # Voltage - Average Phase to Neutral [V]
         v1_int1,
-        v1_int2,  # AC Voltage phase L1 to neutral [V]
+        v1_int2,  # Voltage - Phase L1 to Neutral [V]
         v2_int1,
-        v2_int2,  # AC Voltage phase L2 to neutral [V]
+        v2_int2,  # Voltage - Phase L2 to Neutral [V]
         v3_int1,
-        v3_int2,  # AC Voltage phase L3 to neutral [V]
+        v3_int2,  # Voltage - Phase L3 to Neutral [V]
         0,
-        0,  # AC Voltage average phase to phase [V]
+        0,  # Voltage - Average Phase to Phase [V]
         0,
-        0,  # AC Voltage phase L1 to L2 [V]
+        0,  # Voltage - Phase L1 to L2 [V]
         0,
-        0,  # AC Voltage phase L2 to L3 [V]
+        0,  # Voltage - Phase L2 to L3 [V]
         0,
-        0,  # AC Voltage phase L1 to L3 [V]
+        0,  # Voltage - Phase L1 to L3 [V]
         f1_int1,
         f1_int2,  # AC Frequency [Hz]
         power_total_int1,
-        power_total_int2,  # AC Power value (Total) [W]
+        power_total_int2,  # AC Power value (Total) [W] ==> Second hex word not needed
         l1_int1,
-        l1_int2,  # AC Power value L1 [W]
+        l1_int2,  # AC Power Value L1 [W]
         l2_int1,
-        l2_int2,  # AC Power value L2 [W]
+        l2_int2,  # AC Power Value L2 [W]
         l3_int1,
-        l3_int2,  # AC Power value L3 [W]
+        l3_int2,  # AC Power Value L3 [W]
         0,
-        0,  # AC Power scale factor
+        0,  # AC Apparent Power [VA]
         0,
-        0,  # AC VA phase A
+        0,  # AC Apparent Power L1 [VA]
         0,
-        0,  # AC VA phase B
+        0,  # AC Apparent Power L2 [VA]
         0,
-        0,  # AC VA phase C
+        0,  # AC Apparent Power L3 [VA]
         0,
-        0,  # AC VA scale factor
+        0,  # AC Reactive Power [VAr]
         0,
-        0,  # AC VAR phase A
+        0,  # AC Reactive Power L1 [VAr]
         0,
-        0,  # AC VAR phase B
+        0,  # AC Reactive Power L2 [VAr]
         0,
-        0,  # AC VAR phase C
+        0,  # AC Reactive Power L3 [VAr]
         0,
-        0,  # AC VAR scale factor
+        0,  # AC power factor total [cosphi]
         0,
-        0,  # AC PF average
+        0,  # AC power factor L1 [cosphi]
         0,
-        0,  # AC PF phase A
+        0,  # AC power factor L2 [cosphi]
         0,
-        0,  # AC PF phase B
-        0,
-        0,  # AC PF phase C
-        0,
-        0,  # AC PF scale factor
-        exp_tot_int1,
-        exp_tot_int2,  # Total Watt Hours Exported [Wh]
+        0,  # AC power factor L3 [cosphi]
+        exp_int1,
+        exp_int2,  # Total Watt Hours Exportet [Wh]
         exp1_int1,
         exp1_int2,  # Watt Hours Exported L1 [Wh]
         exp2_int1,

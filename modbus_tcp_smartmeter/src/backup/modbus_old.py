@@ -424,7 +424,6 @@ class EnergyData:
             self.__update_item("current_current")
             self.__update_item("current_power")
             self.__update_item("current_frequency")
-
             logger.debug(
                 "[ENERGY-DATA] Updated items: %s",
                 {
@@ -514,7 +513,7 @@ def updating_writer(a_context):
         )
         os._exit(1)  # Forcefully exit the whole application
 
-    inverter_energy_total_in = 2541.3
+    inverter_energy_total_in = 0
 
     input_power = float(energy_data.get_power_value()) * -1
     input_voltage = float(energy_data.get_voltage_value())
@@ -628,28 +627,24 @@ def updating_writer(a_context):
     context = a_context[0]
     register = 3
     # slave_id = 0x01
-    address = 0x9C87  # 40072
-    logger.debug("[MODBUS] Writing Modbus Registers at address: %s", address)
-    logger.debug(
-        "values: current_total_int1: %s - i1_int1: %s", current_total_int1, i1_int1
-    )
+    address = 0x9C87
     values = [
         current_total_int1,
         0,  # Ampere - AC Total Current Value [A]
         i1_int1,
-        i1_int2,  # Ampere - AC Current Value L1 [A]
+        0,  # Ampere - AC Current Value L1 [A]
         i2_int1,
-        i2_int2,  # Ampere - AC Current Value L2 [A]
+        0,  # Ampere - AC Current Value L2 [A]
         i3_int1,
-        i3_int2,  # Ampere - AC Current Value L3 [A]
+        0,  # Ampere - AC Current Value L3 [A]
         v1_int1,
-        v1_int2,  # Voltage - Average Phase to Neutral [V]
+        0,  # Voltage - Average Phase to Neutral [V]
         v1_int1,
-        v1_int2,  # Voltage - Phase L1 to Neutral [V]
+        0,  # Voltage - Phase L1 to Neutral [V]
         v2_int1,
-        v2_int2,  # Voltage - Phase L2 to Neutral [V]
+        0,  # Voltage - Phase L2 to Neutral [V]
         v3_int1,
-        v3_int2,  # Voltage - Phase L3 to Neutral [V]
+        0,  # Voltage - Phase L3 to Neutral [V]
         0,
         0,  # Voltage - Average Phase to Phase [V]
         0,
@@ -659,15 +654,15 @@ def updating_writer(a_context):
         0,
         0,  # Voltage - Phase L1 to L3 [V]
         f1_int1,
-        f1_int2,  # AC Frequency [Hz]
+        0,  # AC Frequency [Hz]
         power_total_int1,
-        power_total_int2,  # AC Power value (Total) [W] ==> Second hex word not needed
+        0,  # AC Power value (Total) [W] ==> Second hex word not needed
         l1_int1,
-        l1_int2,  # AC Power Value L1 [W]
+        0,  # AC Power Value L1 [W]
         l2_int1,
-        l2_int2,  # AC Power Value L2 [W]
+        0,  # AC Power Value L2 [W]
         l3_int1,
-        l3_int2,  # AC Power Value L3 [W]
+        0,  # AC Power Value L3 [W]
         0,
         0,  # AC Apparent Power [VA]
         0,

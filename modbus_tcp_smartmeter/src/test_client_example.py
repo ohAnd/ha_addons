@@ -108,6 +108,12 @@ def main():
                 voltage_l3_idx = 14  # L3 voltage
                 freq_idx = 24  # Frequency
                 power_total_idx = 26  # Total power
+
+                energy_exported_idx_old = 58  # Total Watt Hours Exported [Wh]
+                energy_exported_l1_idx_old = 60  # Total Watt Hours Exported [Wh]
+                energy_exported_l2_idx_old = 62  # Total Watt Hours Exported [Wh]
+                energy_exported_l3_idx_old = 64  # Total Watt Hours Exported [Wh]
+
                 energy_exported_idx = 62  # Total Watt Hours Exported [Wh]
                 energy_exported_l1_idx = 64  # Total Watt Hours Exported [Wh]
                 energy_exported_l2_idx = 66  # Total Watt Hours Exported [Wh]
@@ -144,6 +150,26 @@ def main():
                 power_total = decode_float(
                     result.registers, power_total_idx, label="Power Total (W)"
                 )
+                energy_exported_old = decode_float(
+                    result.registers,
+                    energy_exported_idx_old,
+                    label="Energy Exported Old (Wh)",
+                )
+                energy_exported_l1_old = decode_float(
+                    result.registers,
+                    energy_exported_l1_idx_old,
+                    label="Energy Exported L1 Old (Wh)",
+                )
+                energy_exported_l2_old = decode_float(
+                    result.registers,
+                    energy_exported_l2_idx_old,
+                    label="Energy Exported L2 Old (Wh)",
+                )
+                energy_exported_l3_old = decode_float(
+                    result.registers,
+                    energy_exported_l3_idx_old,
+                    label="Energy Exported L3 Old (Wh)",
+                )
                 energy_exported = decode_float(
                     result.registers, energy_exported_idx, label="Energy Exported (Wh)"
                 )
@@ -177,6 +203,10 @@ def main():
                 print(f"  Voltage L3 (V): {voltage_l3}")
                 print(f"--Frequency (Hz): {frequency}")
                 print(f"--Power Total (W): {power_total}")
+                print(f"--Energy Exported Old (Wh): {energy_exported_old}")
+                print(f"  Energy Exported L1 Old (Wh): {energy_exported_l1_old}")
+                print(f"  Energy Exported L2 Old (Wh): {energy_exported_l2_old}")
+                print(f"  Energy Exported L3 Old (Wh): {energy_exported_l3_old}")
                 print(f"--Energy Exported (Wh): {energy_exported}")
                 print(f"  Energy Exported L1 (Wh): {energy_exported_l1}")
                 print(f"  Energy Exported L2 (Wh): {energy_exported_l2}")

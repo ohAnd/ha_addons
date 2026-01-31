@@ -1,3 +1,10 @@
+**Version 1.0.4** published on 31.01.2026
+- Refactor Modbus register calculations and update energy export handling
+- Updated `calculate_register` function to use big-endian format for floating-point values.
+- Modified `updating_writer` to streamline the register values for AC power, voltage, and current.
+- Added handling for old energy exported values in `test_client_example.py` to maintain backward compatibility.
+- Introduced a backup version of the Modbus server in `modbus_old.py` for reference and potential rollback.
+
 **Version 1.0.3** published on 31.01.2026
 - fixing precise of provided values
 
