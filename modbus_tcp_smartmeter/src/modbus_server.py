@@ -553,19 +553,19 @@ def updating_writer(a_context, energy_data_instance, config_manager_instance):
         current_total_int1,
         0,  # AC Total Current value [A]
         i1_int1,
-        0,  # AC Current value L1 [A]
+        i1_int2,  # AC Current value L1 [A]
         i2_int1,
-        0,  # AC Current value L2 [A]
+        i2_int2,  # AC Current value L2 [A]
         i3_int1,
-        0,  # AC Current value L3 [A]
+        i3_int2,  # AC Current value L3 [A]
         v1_int1,
-        0,  # AC Voltage average phase to neutral [V]
+        v1_int2,  # AC Voltage average phase to neutral [V]
         v1_int1,
-        0,  # AC Voltage phase L1 to neutral [V]
+        v1_int2,  # AC Voltage phase L1 to neutral [V]
         v2_int1,
-        0,  # AC Voltage phase L2 to neutral [V]
+        v2_int2,  # AC Voltage phase L2 to neutral [V]
         v3_int1,
-        0,  # AC Voltage phase L3 to neutral [V]
+        v3_int2,  # AC Voltage phase L3 to neutral [V]
         0,
         0,  # AC Voltage average phase to phase [V]
         0,
@@ -575,15 +575,15 @@ def updating_writer(a_context, energy_data_instance, config_manager_instance):
         0,
         0,  # AC Voltage phase L1 to L3 [V]
         f1_int1,
-        0,  # AC Frequency [Hz]
+        f1_int2,  # AC Frequency [Hz]
         power_total_int1,
-        0,  # AC Power value (Total) [W]
+        power_total_int2,  # AC Power value (Total) [W]
         l1_int1,
-        0,  # AC Power value L1 [W]
+        l1_int2,  # AC Power value L1 [W]
         l2_int1,
-        0,  # AC Power value L2 [W]
+        l2_int2,  # AC Power value L2 [W]
         l3_int1,
-        0,  # AC Power value L3 [W]
+        l3_int2,  # AC Power value L3 [W]
         0,
         0,  # AC Power scale factor
         0,

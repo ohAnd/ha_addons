@@ -71,7 +71,7 @@ class ConfigManager:
 
     def __init__(self):
         self.config_file = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), "config.yaml"
+            os.path.dirname(os.path.abspath(__file__)), "config_old.yaml"
         )
         self.default_config = {
             "connected_phase": 1,
@@ -424,6 +424,12 @@ class EnergyData:
             self.__update_item("current_current")
             self.__update_item("current_power")
             self.__update_item("current_frequency")
+
+            self.energy_data["current_frequency"]["value"] = 50.104  # fixed frequency
+            self.energy_data["current_voltage"]["value"] = 230.4  # fixed voltage
+            self.energy_data["current_power"]["value"] = 500.2  # fixed power
+            self.energy_data["current_current"]["value"] = 3.726  # fixed current
+
             logger.debug(
                 "[ENERGY-DATA] Updated items: %s",
                 {
@@ -513,7 +519,7 @@ def updating_writer(a_context):
         )
         os._exit(1)  # Forcefully exit the whole application
 
-    inverter_energy_total_in = 0
+    inverter_energy_total_in = 2541.3
 
     input_power = float(energy_data.get_power_value()) * -1
     input_voltage = float(energy_data.get_voltage_value())
@@ -627,24 +633,28 @@ def updating_writer(a_context):
     context = a_context[0]
     register = 3
     # slave_id = 0x01
-    address = 0x9C87
+    address = 0x9C87  # 40072
+    logger.debug("[MODBUS] Writing Modbus Registers at address: %s", address)
+    logger.debug(
+        "values: current_total_int1: %s - i1_int1: %s", current_total_int1, i1_int1
+    )
     values = [
         current_total_int1,
         0,  # AC Total Current value [A]
         i1_int1,
-        0,  # AC Current value L1 [A]
+        i1_int2,  # AC Current value L1 [A]
         i2_int1,
         0,  # AC Current value L2 [A]
         i3_int1,
         0,  # AC Current value L3 [A]
         v1_int1,
-        0,  # AC Voltage average phase to neutral [V]
+        v1_int2,  # AC Voltage average phase to neutral [V]
         v1_int1,
-        0,  # AC Voltage phase L1 to neutral [V]
+        v1_int2,  # AC Voltage phase L1 to neutral [V]
         v2_int1,
-        0,  # AC Voltage phase L2 to neutral [V]
+        v2_int2,  # AC Voltage phase L2 to neutral [V]
         v3_int1,
-        0,  # AC Voltage phase L3 to neutral [V]
+        v3_int2,  # AC Voltage phase L3 to neutral [V]
         0,
         0,  # AC Voltage average phase to phase [V]
         0,
@@ -654,15 +664,15 @@ def updating_writer(a_context):
         0,
         0,  # AC Voltage phase L1 to L3 [V]
         f1_int1,
-        0,  # AC Frequency [Hz]
+        f1_int2,  # AC Frequency [Hz]
         power_total_int1,
-        0,  # AC Power value (Total) [W]
+        power_total_int2,  # AC Power value (Total) [W]
         l1_int1,
-        0,  # AC Power value L1 [W]
+        l1_int1,  # AC Power value L1 [W]
         l2_int1,
-        0,  # AC Power value L2 [W]
+        l2_int2,  # AC Power value L2 [W]
         l3_int1,
-        0,  # AC Power value L3 [W]
+        l3_int2,  # AC Power value L3 [W]
         0,
         0,  # AC Power scale factor
         0,
@@ -693,10 +703,10 @@ def updating_writer(a_context):
         0,  # AC PF scale factor
         exp1_int1,
         exp1_int2,  # Total Watt Hours Exported [Wh]
+        exp1_int1,
+        exp1_int2,  # Watt Hours Exported L1 [Wh]
         exp2_int1,
-        exp2_int2,  # Watt Hours Exported L1 [Wh]
-        exp3_int1,
-        exp3_int2,  # Watt Hours Exported L2 [Wh]
+        exp2_int2,  # Watt Hours Exported L2 [Wh]
         exp3_int1,
         exp3_int2,  # Watt Hours Exported L3 [Wh]
         ti_int1,

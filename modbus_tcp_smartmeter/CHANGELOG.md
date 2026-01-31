@@ -1,3 +1,6 @@
+**Version 1.0.3** published on 31.01.2026
+- fixing precise of provided values
+
 **Version 1.0.2** published on 28.01.2026
 - fixing exported energy calculations in modbus_server
 

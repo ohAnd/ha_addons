@@ -16,69 +16,174 @@ from pymodbus.client import ModbusTcpClient
 from pymodbus.constants import Endian
 from pymodbus.payload import BinaryPayloadDecoder
 from pymodbus.exceptions import ModbusException
+import struct
 
 
 def main():
     """Main function to run the Modbus TCP test client."""
     # Server connection details
     host = "localhost"
+    # host = "192.168.1.135"
+    # host = "192.168.1.125"
     port = 502
-    unit_id = 244  # Modbus TCP Address + 240 (from config)
+    unit_id = 0  # Use 0 for single context mode (matches pymodbus server default)
 
     print(f"Connecting to Modbus server at {host}:{port}, unit {unit_id}")
 
-    # Create client
     client = ModbusTcpClient(host=host, port=port)
 
     try:
-        # Connect to server
         if not client.connect():
             print("Failed to connect to server")
             return
 
         print("Connected successfully!")
 
-        # Example requests based on typical Smart Meter usage
-        # These patterns were observed from debug logs
-
-        # 1. Read Holding Registers - Device identification
-        print("\n1. Reading device identification (Holding Registers 40001-40005)")
-        result = client.read_holding_registers(address=40001, count=5, slave=unit_id)
+        # Read from the actual address where the server writes (offset 40072)
+        print("\nReading Holding Registers at offset 40072 (register 80073)")
+        address = 40071
+        count = 70  # Read a block to see all values written by the server
+        result = client.read_holding_registers(
+            address=address, count=count, slave=unit_id
+        )
         if result.isError():
             print(f"Error: {result}")
         else:
-            print(f"Manufacturer/Model: {result.registers}")
+            print(f"Registers 40072-40141: {result.registers}")
 
-        # 2. Read Input Registers - Live data (this is where energy/current/voltage are)
-        print("\n2. Reading live meter data (Input Registers 40070-40072)")
-        result = client.read_input_registers(address=40070, count=3, slave=unit_id)
-        if result.isError():
-            print(f"Error: {result}")
-        else:
-            # Decode the energy value (32-bit float, big-endian)
-            decoder = BinaryPayloadDecoder.fromRegisters(
-                result.registers, byteorder=Endian.Big, wordorder=Endian.Big
-            )
-            energy_wh = decoder.decode_32bit_float()
-            print(".1f")
+            # Example extraction: decode several floats from the block
+            def decode_float(regs, idx, label=None):
+                if idx + 1 >= len(regs):
+                    return None
+                int1 = regs[idx]
+                int2 = regs[idx + 1]
+                hex1 = f"{int1:04x}"
+                hex2 = f"{int2:04x}"
+                value_hex = "0x" + hex1 + hex2
+                try:
+                    as_int = int(value_hex, 16)
+                    val = struct.unpack("<f", as_int.to_bytes(4, "little"))[0]
+                except Exception:
+                    val = None
+                if label:
+                    print(
+                        f"{label} registers [{idx}, {idx+1}]: [{int1}, {int2}] hex: {value_hex} decoded: {val}"
+                    )
+                return val
 
-        # 3. Read more live data
-        print("\n3. Reading additional live data")
-        result = client.read_input_registers(address=40190, count=10, slave=unit_id)
-        if not result.isError():
-            print(f"Additional data: {result.registers}")
-
-        # 4. Periodic reads (simulate what a real inverter would do)
-        print("\n4. Starting periodic reads (every 2 seconds for 10 seconds)")
-        for i in range(5):
-            result = client.read_input_registers(address=40070, count=3, slave=unit_id)
-            if not result.isError():
-                decoder = BinaryPayloadDecoder.fromRegisters(
-                    result.registers, byteorder=Endian.Big, wordorder=Endian.Big
+            # Print all register pairs and their decoded float values for mapping
+            print("\n--- Register Pair Scan (first 60 registers) ---")
+            for idx in range(0, 120, 2):
+                int1 = result.registers[idx] if idx < len(result.registers) else None
+                int2 = (
+                    result.registers[idx + 1]
+                    if idx + 1 < len(result.registers)
+                    else None
                 )
-                energy_wh = decoder.decode_32bit_float()
-                print(".1f")
-            time.sleep(2)
+                if int1 is None or int2 is None:
+                    continue
+                hex1 = f"{int1:04x}"
+                hex2 = f"{int2:04x}"
+                value_hex = "0x" + hex1 + hex2
+                try:
+                    as_int = int(value_hex, 16)
+                    val = struct.unpack("<f", as_int.to_bytes(4, "little"))[0]
+                except Exception:
+                    val = None
+                print(
+                    f"Registers [{idx}, {idx+1}]: [{int1}, {int2}] hex: {value_hex} decoded: {val}"
+                )
+            print("--- End Register Pair Scan ---\n")
+
+            # Use correct indices as per server's register mapping
+            try:
+                # Indices for the main values in the block from server (starting at 40072)
+                current_total_idx = 0  # Total current
+                current_l1_idx = 2  # L1 current
+                current_l2_idx = 4  # L2 current
+                current_l3_idx = 6  # L3 current
+                voltage_avg_idx = 8  # Average voltage
+                voltage_l1_idx = 10  # L1 voltage
+                voltage_l2_idx = 12  # L2 voltage
+                voltage_l3_idx = 14  # L3 voltage
+                freq_idx = 24  # Frequency
+                power_total_idx = 26  # Total power
+                energy_exported_idx = 62  # Total Watt Hours Exported [Wh]
+                energy_exported_l1_idx = 64  # Total Watt Hours Exported [Wh]
+                energy_exported_l2_idx = 66  # Total Watt Hours Exported [Wh]
+                energy_exported_l3_idx = 68  # Total Watt Hours Exported [Wh]
+                energy_imported_idx = 70  # Total Watt Hours Imported [Wh]
+
+                current_total = decode_float(
+                    result.registers, current_total_idx, label="Current Total (A)"
+                )
+                current_l1 = decode_float(
+                    result.registers, current_l1_idx, label="Current L1 (A)"
+                )
+                current_l2 = decode_float(
+                    result.registers, current_l2_idx, label="Current L2 (A)"
+                )
+                current_l3 = decode_float(
+                    result.registers, current_l3_idx, label="Current L3 (A)"
+                )
+                voltage_avg = decode_float(
+                    result.registers, voltage_avg_idx, label="Voltage Avg (V)"
+                )
+                voltage_l1 = decode_float(
+                    result.registers, voltage_l1_idx, label="Voltage L1 (V)"
+                )
+                voltage_l2 = decode_float(
+                    result.registers, voltage_l2_idx, label="Voltage L2 (V)"
+                )
+                voltage_l3 = decode_float(
+                    result.registers, voltage_l3_idx, label="Voltage L3 (V)"
+                )
+                frequency = decode_float(
+                    result.registers, freq_idx, label="Frequency (Hz)"
+                )
+                power_total = decode_float(
+                    result.registers, power_total_idx, label="Power Total (W)"
+                )
+                energy_exported = decode_float(
+                    result.registers, energy_exported_idx, label="Energy Exported (Wh)"
+                )
+                energy_exported_l1 = decode_float(
+                    result.registers,
+                    energy_exported_l1_idx,
+                    label="Energy Exported L1 (Wh)",
+                )
+                energy_exported_l2 = decode_float(
+                    result.registers,
+                    energy_exported_l2_idx,
+                    label="Energy Exported L2 (Wh)",
+                )
+                energy_exported_l3 = decode_float(
+                    result.registers,
+                    energy_exported_l3_idx,
+                    label="Energy Exported L3 (Wh)",
+                )
+                energy_imported = decode_float(
+                    result.registers, energy_imported_idx, label="Energy Imported (Wh)"
+                )
+
+                print(f"Decoded values:")
+                print(f"--Current Total (A): {current_total}")
+                print(f"  Current L1 (A): {current_l1}")
+                print(f"  Current L2 (A): {current_l2}")
+                print(f"  Current L3 (A): {current_l3}")
+                print(f"--Voltage Avg (V): {voltage_avg}")
+                print(f"  Voltage L1 (V): {voltage_l1}")
+                print(f"  Voltage L2 (V): {voltage_l2}")
+                print(f"  Voltage L3 (V): {voltage_l3}")
+                print(f"--Frequency (Hz): {frequency}")
+                print(f"--Power Total (W): {power_total}")
+                print(f"--Energy Exported (Wh): {energy_exported}")
+                print(f"  Energy Exported L1 (Wh): {energy_exported_l1}")
+                print(f"  Energy Exported L2 (Wh): {energy_exported_l2}")
+                print(f"  Energy Exported L3 (Wh): {energy_exported_l3}")
+                print(f"--Energy Imported (Wh): {energy_imported}")
+            except Exception as e:
+                print(f"Error decoding values: {e}")
 
     except ModbusException as me:
         print(f"Modbus error: {me}")
