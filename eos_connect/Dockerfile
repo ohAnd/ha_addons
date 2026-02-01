@@ -49,7 +49,7 @@ RUN echo "::group::Installing Configuration & Utilities" && \
     echo "=== INSTALLING CONFIG & UTILITY PACKAGES ===" && \
     . /opt/venv/bin/activate && \
     pip install --no-cache-dir \
-    pyyaml>=6.0 ruamel.yaml>=0.18.10 \
+    pyyaml>=6.0 ruamel.yaml==0.18.17 \
     pytz>=2025.1 paho-mqtt>=2.1.0 packaging>=23.2\
     open-meteo-solar-forecast>=0.1.22 psutil>=7.0.0 && \
     echo "=== ALL PACKAGES INSTALLED ===" && \

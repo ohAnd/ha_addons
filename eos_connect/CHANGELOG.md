@@ -1,4 +1,55 @@
-**Version 0.2.28** (2025-11-22)
+## **Version 0.2.29** (2026-02-01)
+
+### NEW FEATURES
+
+- **Dynamic Battery Price Calculation** - System now calculates stored energy pricing using inventory valuation method for smarter optimization
+- **Battery Dashboard Sections** - New Battery Overview & Battery Pricing displays showing real-time status, pricing modes, and energy attribution
+- **Temperature-Aware Charging Curve** - Charging adapts to battery temperature to prevent thermal stress
+- **Enhanced Dashboard** - Improved responsiveness across desktop and mobile devices
+- **New full documentation** - reduced the detailing in readme and moved details to the new full doc at https://ohand.github.io/EOS_connect/
+
+---
+
+### OTHER IMPROVEMENTS
+
+- **Chart Responsiveness Fix** - Enhanced dashboard layout for desktop/various screen sizes (#203)
+- **AC Charge Demand Logging** - Now displays in Wh instead of kWh for clarity (#200)
+- **Temperature Forecast for EOS** - Backend-specific handling with improved documentation (#199)
+- **Battery Capacity Handling** - Fixed EVopt charging to respect max SOC limits (#194, #174)
+- **Battery Sensor Auto-Detection** - Improved grid polarity attribution (#195)
+- **Battery Overview & Pricing Sections** - Mobile-responsive status and pricing information
+- **Request Timeout Config** - Configurable Home Assistant/OpenHAB API timeout (#193)
+- **Documentation Enhancements** - Version badges, mobile nav, back-to-top button
+- **SOC Auto-Detection** - Fixed decimal format handling (0.0-1.0 vs 0-100%) (#187)
+- **Temperature Protection in Charging Curve** - Enhanced dynamic max charge power
+- **MQTT Integration Clarity** - Improved documentation for MQTT control handling
+- **Improved Documentation** - README and user guide clarity updates
+
+### BUGFIXES
+
+- Fixed EVopt charging too slowly - Charge rate limiting for AC/DC (#167, #171)
+- Fixed battery 100% charging despite max SOC limit (#194, #174)
+- Fixed battery overview incorrectly attributing grid to PV (#195)
+- Fixed AC override charge not working (#173)
+- Fixed double inverter control triggers - State change event handling
+- Fixed AC charge power during override calculation (#173)
+- Fixed dynamic charge power not transferred to controls
+- Fixed copy-to-clipboard on iOS compatibility (#180)
+- Fixed load profile sanity checks for implausible values
+- Fixed EVCC error handling with safe defaults
+- Fixed temperature forecast retrieval with better defaults
+- Improved error handling in optimization scheduler and PV interface
+- Fixed discharge state handling with effective discharge logic (#175)
+- Enhanced SOC failure handling and recovery
+- Ruamel.yaml version pinning for Docker build compatibility
+
+### TECHNICAL
+
+- Enhanced logging memory capacity for EOS/EVopt backends
+- Improved datetime patching for accurate AC demand testing
+- Better error handling across all interfaces
+
+## **Version 0.2.28** (2025-11-22)
 
 Highlights
 - Added support for 15-minute optimization intervals (`time_frame: 900`) with EVopt backend only.
@@ -47,7 +98,7 @@ optimization:
 ---
 ---
 
-**Version 0.2.27** (2025-11-01)
+## **Version 0.2.27** (2025-11-01)
 
 Highlights
 - Added new optimization backend `evopt` for flexible control and broader optimization tasks.
@@ -110,7 +161,7 @@ Highlights
 ---
 ---
 
-**Version 0.2.24** (2025-10-18)
+## **Version 0.2.24** (2025-10-18)
 
 Highlights
 - Improved scheduling and optimization with 15‑minute interval support and better quarter-hour alignment.
@@ -155,7 +206,7 @@ Highlights
 ---
 ---
 
-**Version 0.1.23** (2025-09-22)
+## **Version 0.1.23** (2025-09-22)
 - **Features:**
   - Add new Fronius GEN24 V2 interface with enhanced authentication support for improved inverter compatibility - [#86](https://github.com/ohAnd/EOS_connect/issues/86)
   - Implement timezone handling for schedule display and update time labels to reflect server time for better user experience
@@ -188,7 +239,7 @@ Highlights
   - Updated README and CONFIG_README to reflect new inverter type support
   - Improved configuration documentation for EVCC PV forecasts
 
-**Version 0.1.22** (2025-08-03)
+## **Version 0.1.22** (2025-08-03)
 - **Features:**
   - Add new `charging_curve_enabled` configuration option to dynamically adjust battery charging power based on the state of charge (SOC), optimizing battery health and efficiency
   - Update EVCC interface to handle both old and new API versions with automatic version detection and logging [evcc-io/evcc#22299](evcc-io/evcc#22299)
@@ -204,13 +255,13 @@ Highlights
   - Update README to better explain the dynamic charging curve and load sensor requirements
   - Align documentation with new features and configurations for improved clarity
 
-**Version 0.1.21-fix1** 2025-07-04
+## **Version 0.1.21-fix1** 2025-07-04
 - fix:
     - change max configurable value in HA addon for inverter max_grid_charge_rate and max_pv_charge_rate - [#74](https://github.com/ohAnd/EOS_connect/issues/74)
 - org:
     - add building of armhf/ armv7 / i386 - until finally deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
 
-**Version 0.1.21** published on 2025-06-28
+## **Version 0.1.21** published on 2025-06-28
 - Features
     - enhance error logging for OPTIMIZE requests by including payload and response details
     - add the payload too to the error, so a user could replay the request
@@ -221,11 +272,11 @@ Highlights
     - fixes screenshot filename for readme
     - Update README.md with enhanced features and quick start guide; add flow diagram and updated screenshot
 
-**Version 0.1.20-fix1** published on 2025-06-26
+## **Version 0.1.20-fix1** published on 2025-06-26
 - Fixes
     - fix: wrong naming of image for release version
 
-**Version 0.1.20** published on 2025-06-25
+## **Version 0.1.20** published on 2025-06-25
 - Features
     - feat: update Python version in Pylint workflow to 3.11
     - feat: add open-meteo-solar-forecast dependency to requirements
