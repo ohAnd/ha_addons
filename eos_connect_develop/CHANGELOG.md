@@ -1,3 +1,6 @@
+**Version 0.2.29.231** published on 2026-02-03
+- fix: pin Python 3.11 across Docker and CI for NumPy/Pandas compatibility - https://github.com/ohAnd/EOS_connect/issues/209
+
 **Version 0.2.29.229** published on 2026-02-01
 - feat: enhance documentation clarity and improve MQTT integration details
 - feat: update README and user guide for improved clarity and installation instructions
