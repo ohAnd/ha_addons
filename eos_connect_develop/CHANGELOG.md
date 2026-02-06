@@ -1,3 +1,8 @@
+**Version 0.2.30.232** published on 2026-02-06
+- feat: upgrade to Python 3.13 and NumPy 2.0+ for improved performance
+- fix: align Dockerfile NumPy requirement with requirements.txt (>=2.0.0)
+- note: Proxmox users should set VM CPU type to 'host' for optimal compatibility
+
 **Version 0.2.29.231** published on 2026-02-03
 - fix: pin Python 3.11 across Docker and CI for NumPy/Pandas compatibility - https://github.com/ohAnd/EOS_connect/issues/209
 
