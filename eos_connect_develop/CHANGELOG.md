@@ -1,3 +1,9 @@
+**Version 0.2.31.236** published on 2026-02-07
+- feat: enhance documentation for load configuration to support Home Assistant energy entities
+- fix: feature branch Docker workflow - add conditional GHCR push
+- feat: merge PR [#179](https://github.com/ohAnd/EOS_connect/pull/179) - Home Assistant energy entities support thanks to https://github.com/forouher
+- chore: update version to 0.2.31 across documentation and configuration files
+
 **Version 0.2.30.232** published on 2026-02-06
 - feat: upgrade to Python 3.13 and NumPy 2.0+ for improved performance
 - fix: align Dockerfile NumPy requirement with requirements.txt (>=2.0.0)
