@@ -31,7 +31,7 @@ RUN echo "::group::Installing Scientific Libraries" && \
     echo "=== INSTALLING NUMPY & PANDAS ===" && \
     . /opt/venv/bin/activate && \
     pip install --no-cache-dir \
-    numpy>=2.2.2 pandas>=2.2.3 && \
+    numpy>=2.0.0 pandas>=2.2.3 && \
     echo "=== SCIENTIFIC LIBRARIES INSTALLED ===" && \
     echo "::endgroup::"
 

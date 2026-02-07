@@ -1,3 +1,17 @@
+## **Version 0.2.30** (2026-02-07)
+
+### IMPROVEMENTS
+
+- **Python 3.13 Upgrade** - Upgraded to Python 3.13 and NumPy 2.0+ for improved performance
+- **Docker Base Image Update** - Updated to Python 3.13 Alpine 3.22 base images
+- **Dependency Alignment** - Aligned NumPy requirements across Dockerfile and requirements.txt (>=2.0.0)
+
+### NOTES
+
+- Proxmox users should set VM CPU type to 'host' for optimal compatibility with Python 3.13
+
+---
+
 ## **Version 0.2.29** (2026-02-01)
 
 ### NEW FEATURES
