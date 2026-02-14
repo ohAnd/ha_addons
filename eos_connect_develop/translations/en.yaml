@@ -58,6 +58,15 @@ configuration:
     negative_price_switch:
       name: Negative Price Switch
       description: Switch for negative stock price handling (True/False, optional).
+    energyforecast_enabled:
+      name: Energy Forecast Enabled
+      description: Enable smart price prediction with energyforecast.de (when primary source lacks tomorrow prices).
+    energyforecast_token:
+      name: Energy Forecast API Token
+      description: API token from energyforecast.de.
+    energyforecast_market_zone:
+      name: Energy Forecast Market Zone
+      description: "Market zone for energyforecast.de. Possible values: DE-LU, AT, FR, NL, BE, PL, DK1, DK2."
 
   battery:
     name: Battery Settings

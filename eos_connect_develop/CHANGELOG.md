@@ -1,3 +1,8 @@
+**Version 0.2.31.239** published on 2026-02-14
+- feat: Add Smart Price Prediction with energyforecast.de integration - check [ENERGYFORECAST_TESTING.md](https://github.com/ohAnd/EOS_connect/blob/develop/ENERGYFORECAST_TESTING.md)
+- fix: Correct import statement for PortInterface in update_checker.py
+- feat: Implement Update Checker and Update Banner for EOS Connect
+
 **Version 0.2.31.236** published on 2026-02-07
 - feat: enhance documentation for load configuration to support Home Assistant energy entities
 - fix: feature branch Docker workflow - add conditional GHCR push
