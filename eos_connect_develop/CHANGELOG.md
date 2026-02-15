@@ -1,3 +1,7 @@
+**Version 0.2.31.241** published on 2026-02-15
+- feat: Add price forecast visualization with metadata API
+- feat: Implement smart caching and throttling for energyforecast.de API calls to optimize usage and stay within rate limits
+
 **Version 0.2.31.240** published on 2026-02-15
 - fix: Improve logging messages in PriceInterface for clarity and UI compatibility - touches [#192](https://github.com/ohAnd/EOS_connect/discussions/192)
 
