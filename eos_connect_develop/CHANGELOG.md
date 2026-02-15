@@ -1,3 +1,6 @@
+**Version 0.2.31.240** published on 2026-02-15
+- fix: Improve logging messages in PriceInterface for clarity and UI compatibility - touches [#192](https://github.com/ohAnd/EOS_connect/discussions/192)
+
 **Version 0.2.31.239** published on 2026-02-14
 - feat: Add Smart Price Prediction with energyforecast.de integration - check [ENERGYFORECAST_TESTING.md](https://github.com/ohAnd/EOS_connect/blob/develop/ENERGYFORECAST_TESTING.md)
 - fix: Correct import statement for PortInterface in update_checker.py
