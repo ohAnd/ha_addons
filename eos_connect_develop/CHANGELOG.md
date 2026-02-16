@@ -1,3 +1,6 @@
+**Version 0.2.31.243** published on 2026-02-16
+- fix: update z-index in UI styles; add responsive version comparison layout
+
 **Version 0.2.31.242** published on 2026-02-16
 - feat: Adjust forecast start index calculations for price and schedule displays based on current time frame
 
