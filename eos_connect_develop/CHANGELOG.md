@@ -1,3 +1,6 @@
+**Version 0.2.31.242** published on 2026-02-16
+- feat: Adjust forecast start index calculations for price and schedule displays based on current time frame
+
 **Version 0.2.31.241** published on 2026-02-15
 - feat: Add price forecast visualization with metadata API
 - feat: Implement smart caching and throttling for energyforecast.de API calls to optimize usage and stay within rate limits
