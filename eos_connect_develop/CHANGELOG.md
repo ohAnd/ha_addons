@@ -1,3 +1,6 @@
+**Version 0.2.31.244** published on 2026-02-17
+- fix: cache issue preventing price and update endpoints via HA addon ingress
+
 **Version 0.2.31.243** published on 2026-02-16
 - fix: update z-index in UI styles; add responsive version comparison layout
 
