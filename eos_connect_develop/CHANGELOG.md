@@ -1,3 +1,6 @@
+**Version 0.2.31.245** published on 2026-02-17
+- fix: remove leading slash from fetch URLs in data and update banner managers
+
 **Version 0.2.31.244** published on 2026-02-17
 - fix: cache issue preventing price and update endpoints via HA addon ingress
 
