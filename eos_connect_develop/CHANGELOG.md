@@ -1,3 +1,6 @@
+**Version 0.2.31.246** published on 2026-02-21
+- feat: Unrestricted mode overrides with enhanced UI feedback
+
 **Version 0.2.31.245** published on 2026-02-17
 - fix: remove leading slash from fetch URLs in data and update banner managers
 
