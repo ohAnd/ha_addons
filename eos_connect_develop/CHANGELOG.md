@@ -1,3 +1,6 @@
+**Version 0.2.31.247** published on 2026-02-21
+- feat: Add toast notification styles for mobile and clean up grid power section rendering
+
 **Version 0.2.31.246** published on 2026-02-21
 - feat: Unrestricted mode overrides with enhanced UI feedback - see [Override sollte unabhängig vom aktuellen Modus möglich sein](https://github.com/ohAnd/EOS_connect/discussions/206)
 
