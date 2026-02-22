@@ -1,3 +1,6 @@
+**Version 0.2.31.248** published on 2026-02-22
+- fix: Update chart segment styling logic to use current slot offset for price forecast data
+
 **Version 0.2.31.247** published on 2026-02-21
 - feat: Add toast notification styles for mobile and clean up grid power section rendering
 
