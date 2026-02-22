@@ -1,3 +1,37 @@
+## **Version 0.2.31** (2026-02-22)
+
+### NEW FEATURES
+
+- **Price Forecast Visualization** - Add price forecast visualization with metadata API
+- **Smart Price Prediction** - Implement smart caching and throttling for energyforecast.de API calls to optimize usage and stay within rate limits
+- **Smart Price Prediction with energyforecast.de integration** - Add Smart Price Prediction with energyforecast.de integration
+- **Update Checker** - Implement Update Checker and Update Banner for EOS Connect
+- **Toast Notifications** - Add toast notification styles for mobile and clean up grid power section rendering
+- **Unrestricted Mode Overrides** - Unrestricted mode overrides with enhanced UI feedback
+- **Forecast Display Adjustments** - Adjust forecast start index calculations for price and schedule displays based on current time frame
+
+### BUG FIXES
+
+- **Price & Update Endpoints Caching** - Fix cache issue preventing price and update endpoints via HA addon ingress
+- **Fetch URL Paths** - Fix remove leading slash from fetch URLs in data and update banner managers
+- **UI/UX Improvements** - Fix Correct version number in version.py and update z-index in UI styles; add responsive version comparison layout
+- **Logging Messages** - Improve logging messages in PriceInterface for clarity and UI compatibility - touches [#192](https://github.com/ohAnd/EOS_connect/discussions/192)
+- **Chart Styling** - Update chart segment styling logic to use current slot offset for price forecast data
+
+### IMPROVEMENTS
+
+- **Python 3.13 Upgrade** - Upgraded to Python 3.13 and NumPy 2.0+ for improved performance
+- **Docker Base Image Update** - Updated to Python 3.13 Alpine 3.22 base images
+- **Dependency Alignment** - Aligned NumPy requirements across Dockerfile and requirements.txt (>=2.0.0)
+- **Import Correction** - Correct import statement for PortInterface in update_checker.py
+- **Responsive UI** - Responsive version comparison layout with improved z-index handling
+
+### NOTES
+
+- Proxmox users should set VM CPU type to 'host' for optimal compatibility
+- See [Override sollte unabhängig vom aktuellen Modus möglich sein](https://github.com/ohAnd/EOS_connect/discussions/206) for unrestricted mode overrides details
+- Check [ENERGYFORECAST_TESTING.md](https://github.com/ohAnd/EOS_connect/blob/develop/ENERGYFORECAST_TESTING.md) for Smart Price Prediction testing
+
 ## **Version 0.2.30** (2026-02-07)
 
 ### IMPROVEMENTS

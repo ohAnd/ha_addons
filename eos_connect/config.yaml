@@ -1,6 +1,6 @@
 name: "EOS connect"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.30"
+version: "0.2.31"
 slug: "eos_connect"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -56,6 +56,9 @@ options:
     fixed_24h_array: "" # 24 hours array with fixed prices over the day
     feed_in_price: 0 # Feed-in price for electricity in EUR/kWh (optional)
     negative_price_switch: False # Switch for negative stock price handling True/ False (optional)
+    energyforecast_enabled: false # Enable smart price prediction with energyforecast.de (when primary source lacks tomorrow prices)
+    energyforecast_token: "demo_token" # API token from energyforecast.de
+    energyforecast_market_zone: "DE-LU" # Market zone: DE-LU, AT, FR, NL, BE, PL, DK1, DK2
 
   battery:
     source: default # Data source for battery SOC - openhab, homeassistant, default (static data)
@@ -160,6 +163,9 @@ schema:
     fixed_24h_array: str? # 24 hours array with fixed prices over the day
     feed_in_price: float? # Feed-in price for electricity in EUR/kWh (optional)
     negative_price_switch: bool? # Switch for negative stock price handling True/ False (optional)
+    energyforecast_enabled: bool? # Enable smart price prediction with energyforecast.de
+    energyforecast_token: password? # API token from energyforecast.de
+    energyforecast_market_zone: list(DE-LU|AT|FR|NL|BE|PL|DK1|DK2)? # Market zone for energyforecast.de
 
   battery:
     source: list(openhab|homeassistant|default) # Data source for battery SOC
