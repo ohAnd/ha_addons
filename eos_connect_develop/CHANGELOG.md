@@ -1,3 +1,7 @@
+**Version 0.2.32.250** published on 2026-02-28
+- feat: enhance charge demand logging across modules - touches Discrepancy between requested energy (0.6 kWh) and actual AC Charge Demand
+Fixes [#200](https://github.com/ohAnd/EOS_connect/issues/200)
+
 **Version 0.2.31.248** published on 2026-02-22
 - fix: Update chart segment styling logic to use current slot offset for price forecast data
 
