@@ -1,3 +1,7 @@
+**Version 0.2.32.251** published on 2026-02-28
+- feat: improve logging for AC charge power to reduce duplicates and add heartbeat tracking - fixes [BUG] High-frequency state updates for eos_ac_charge_demand
+Fixes [#217](https://github.com/ohAnd/EOS_connect/issues/217)
+
 **Version 0.2.32.250** published on 2026-02-28
 - feat: enhance charge demand logging across modules - touches Discrepancy between requested energy (0.6 kWh) and actual AC Charge Demand
 Fixes [#200](https://github.com/ohAnd/EOS_connect/issues/200)
