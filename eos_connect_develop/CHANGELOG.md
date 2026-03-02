@@ -1,3 +1,7 @@
+**Version 0.2.32.252** published on 2026-03-02
+- feat: enhance DC charge demand logging to avoid duplicates and implement heartbeat tracking
+- feat: implement generic temperature derating curve for battery charging based on BYD HVM specifications
+
 **Version 0.2.32.251** published on 2026-02-28
 - feat: improve logging for AC charge power to reduce duplicates and add heartbeat tracking - fixes [BUG] High-frequency state updates for eos_ac_charge_demand
 Fixes [#217](https://github.com/ohAnd/EOS_connect/issues/217)
