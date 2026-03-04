@@ -1,3 +1,7 @@
+**Version 0.2.32.253** published on 2026-03-04
+- feat: update AC charge display to show power in kW and include energy in kWh
+- feat: enhance AC charge power logging to reduce noise and implement threshold-based change detection
+
 **Version 0.2.32.252** published on 2026-03-02
 - feat: enhance DC charge demand logging to avoid duplicates and implement heartbeat tracking
 - feat: implement generic temperature derating curve for battery charging based on BYD HVM specifications
