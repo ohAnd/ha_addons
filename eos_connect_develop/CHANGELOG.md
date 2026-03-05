@@ -1,3 +1,6 @@
+**Version 0.2.32.255** published on 2026-03-05
+- Implement AC charging precedence in dynamic discharge override logic
+
 **Version 0.2.32.254** published on 2026-03-05
 - Implement dynamic PV>Load discharge override - allow battery discharge when PV forecast exceeds household load, preventing unwanted grid input during cloud shadows
 Fixes [#157](https://github.com/ohAnd/EOS_connect/issues/157)
