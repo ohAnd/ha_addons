@@ -1,3 +1,7 @@
+**Version 0.2.32.254** published on 2026-03-05
+- Implement dynamic PV>Load discharge override - allow battery discharge when PV forecast exceeds household load, preventing unwanted grid input during cloud shadows
+Fixes [#157](https://github.com/ohAnd/EOS_connect/issues/157)
+
 **Version 0.2.32.253** published on 2026-03-04
 - feat: update AC charge display to show power in kW and include energy in kWh
 - feat: enhance AC charge power logging to reduce noise and implement threshold-based change detection

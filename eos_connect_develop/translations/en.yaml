@@ -36,6 +36,9 @@ configuration:
     timeout:
       name: Timeout
       description: Timeout for EOS optimize request in seconds.
+    dyn_override_discharge_allowed_pv_greater_load:
+      name: PV > Load Discharge Override
+      description: "Allow battery discharge when solar PV forecast exceeds household load, preventing unwanted grid input during cloud shadows. Default: false (disabled)."
 
   price:
     name: Price Settings
