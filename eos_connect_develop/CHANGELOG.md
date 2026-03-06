@@ -1,3 +1,6 @@
+**Version 0.2.32.256** published on 2026-03-06
+- Update battery max charge power calculation for accurate demand capping
+
 **Version 0.2.32.255** published on 2026-03-05
 - Implement AC charging precedence in dynamic discharge override logic
 
