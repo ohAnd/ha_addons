@@ -1,3 +1,7 @@
+**Version 0.2.32.257** published on 2026-03-07
+- Implement energy commitment strategy for stable power delivery - addresses Discrepancy between requested energy (0.6 kWh) and actual AC Charge Demand
+Refs [#200](https://github.com/ohAnd/EOS_connect/issues/200)
+
 **Version 0.2.32.256** published on 2026-03-06
 - Update battery max charge power calculation for accurate demand capping
 
