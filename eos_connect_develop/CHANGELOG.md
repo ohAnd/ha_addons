@@ -1,3 +1,9 @@
+**Version 0.2.32.258** published on 2026-03-08
+- Add direct Victron VRM API solar forecast integration with 15-minute aligned forecasts for EVopt optimization
+Fixes [#188](https://github.com/ohAnd/EOS_connect/issues/188)
+- Update default azimuth value to 0° (South) for PV configuration
+Refs [#94](https://github.com/ohAnd/EOS_connect/issues/94)
+
 **Version 0.2.32.257** published on 2026-03-07
 - Implement energy commitment strategy for stable power delivery - addresses Discrepancy between requested energy (0.6 kWh) and actual AC Charge Demand
 Refs [#200](https://github.com/ohAnd/EOS_connect/issues/200)

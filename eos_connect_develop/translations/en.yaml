@@ -152,10 +152,10 @@ configuration:
     description: Configuration for PV forecast data source.
     source:
       name: PV Forecast Source
-      description: "Data source for solar forecast providers. Possible values: akkudoktor, openmeteo, openmeteo_local, forecast_solar, evcc, solcast, default (default uses akkudoktor)."
+      description: "Data source for solar forecast providers. Possible values: akkudoktor, openmeteo, openmeteo_local, forecast_solar, evcc, solcast, victron, default (default uses akkudoktor)."
     api_key:
-      name: Solcast API Key
-      description: Your Solcast API key (required if using solcast as source).
+      name: Solcast/Victron API Key
+      description: Your Solcast or Victron API key (required if using solcast or victron as source).
 
   pv_forecast:
     name: PV Forecast Settings
@@ -187,7 +187,7 @@ configuration:
         description: Optional - Horizon to calculate shading up to 360 values to describe shading situation for your PV.
       resource_id:
         name: Resource ID
-        description: Optional resource id for solcast API.
+        description: Optional resource id for solcast or Victron APIs.
   inverter:
     name: Inverter Settings
     description: Configuration for inverter settings.
