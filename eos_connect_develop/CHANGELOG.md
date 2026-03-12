@@ -1,3 +1,8 @@
+**Version 0.2.32.259** published on 2026-03-12
+- Implement EVCC mode handling and update controls display priority with precedence order: manual > evcc > dyn override
+- Enhance logging for household energy calculations and save original sensor value
+Fixes [#221](https://github.com/ohAnd/EOS_connect/issues/221)
+
 **Version 0.2.32.258** published on 2026-03-08
 - Add direct Victron VRM API solar forecast integration with 15-minute aligned forecasts for EVopt optimization
 Fixes [#188](https://github.com/ohAnd/EOS_connect/issues/188)
