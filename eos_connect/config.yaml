@@ -1,6 +1,6 @@
 name: "EOS connect"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.31"
+version: "0.2.32"
 slug: "eos_connect"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -47,6 +47,7 @@ options:
     port: 8503 # port for EOS server (8503) or evcc opt server (7050) - default: 8503
     time_frame: 3600 # granularity of optimization steps in seconds (900=15min, 3600=hourly)
     timeout: 180 # timeout for EOS optimize request in seconds
+    dyn_override_discharge_allowed_pv_greater_load: false # Allow discharge when PV forecast > load - default: false
 
   price:
     source: default # Data source for electricity price
@@ -87,8 +88,8 @@ options:
     grid_charge_threshold_w: 100.0 # Minimum grid surplus to consider as grid charging (W) - default: 100.0
 
   pv_forecast_source:
-    source: akkudoktor # data source for solar forecast providers akkudoktor, openmeteo, openmeteo_local, forecast_solar, evcc, solcast, default (default uses akkudoktor)
-    api_key: "your_solcast_api_key_here" # Your Solcast API key (required if using solcast as source)
+    source: akkudoktor # data source for solar forecast providers akkudoktor, openmeteo, openmeteo_local, forecast_solar, evcc, solcast, victron, default (default uses akkudoktor)
+    api_key: "your_solcast_api_key_here" # Your Solcast or Victron API key (required if using solcast or victron as source)
 
   pv_forecast:
     - name: roof_west #name
@@ -100,7 +101,7 @@ options:
       powerInverter: 5000 # Power Inverter for PV forecast @ Akkudoktor API
       inverterEfficiency: 0.9 # Inverter Efficiency for PV forecast @ Akkudoktor API
       horizon: "10,20,10,15" # Horizon to calculate shading up to 360 values to describe shading situation for your PV
-      resource_id: "" # Optional resource id for forecast_solar API
+      resource_id: "" # Optional resource id for solcast or Victron API
     - name: garden_south #name
       lat: 47.5 # Latitude for PV forecast @ Akkudoktor API
       lon: 8.5 # Longitude for PV forecast @ Akkudoktor API
@@ -110,7 +111,7 @@ options:
       powerInverter: 800 # Power Inverter for PV forecast @ Akkudoktor API
       inverterEfficiency: 0.9 # Inverter Efficiency for PV forecast @ Akkudoktor API
       horizon: "" # Horizon to calculate shading up to 360 values to describe shading situation for your PV
-      resource_id: "" # Optional resource id for forecast_solar API
+      resource_id: "" # Optional resource id for solcast or Victron API
 
   inverter:
     type: "default"
@@ -154,6 +155,7 @@ schema:
     port: port # port for EOS server (8503) or evcc opt server (7050) - default: 8503
     time_frame: list(900|3600) # granularity of optimization steps in seconds (900=15min, 3600=hourly) - default: 3600
     timeout: int(1,) # timeout for EOS optimize request in seconds
+    dyn_override_discharge_allowed_pv_greater_load: bool? # Allow discharge when PV forecast > load - default: false
 
   price:
     source: list(smartenergy_at|tibber|stromligning|fixed_24h|default) # Data source for electricity price
@@ -194,8 +196,8 @@ schema:
     grid_charge_threshold_w: float(0,) # Minimum grid surplus to consider as grid charging (W) - default: 100.0
 
   pv_forecast_source:
-    source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|evcc|solcast|default) # data source for solar forecast providers, default (default uses akkudoktor)
-    api_key: password? # Your Solcast API key (required if using solcast as source)
+    source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|evcc|solcast|victron|default) # data source for solar forecast providers, default (default uses akkudoktor)
+    api_key: password? # Your Solcast or Victron API key (required if using solcast or victron as source)
 
   pv_forecast:
     - name: str # name
@@ -207,7 +209,7 @@ schema:
       powerInverter: int(1,) # Power Inverter for PV forecast
       inverterEfficiency: float(0.0,1.0) # Inverter Efficiency for PV forecast
       horizon: str? # Optional - Horizon to calculate shading
-      resource_id: str? # Optional resource id for solcast API
+      resource_id: str? # Optional resource id for solcast or Victron API
 
   inverter:
     type: list(fronius_gen24|fronius_gen24_legacy|evcc|default)

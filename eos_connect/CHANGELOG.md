@@ -1,3 +1,40 @@
+## **Version 0.2.32** (2026-03-12)
+
+### NEW FEATURES
+
+- **Dynamic PV>Load Discharge Override** - Allow battery discharge when solar PV forecast exceeds household load, preventing unwanted grid input during cloud shadows
+  - New config option: `eos.dyn_override_discharge_allowed_pv_greater_load` (default: false)
+  - Fixes [#157](https://github.com/ohAnd/EOS_connect/issues/157)
+- **Victron VRM API Integration** - Direct Victron VRM API solar forecast integration with 15-minute aligned forecasts
+  - Reuse existing `api_key` and `resource_id` parameters
+  - Support for EVopt optimization
+  - Fixes [#188](https://github.com/ohAnd/EOS_connect/issues/188)
+- **EVCC Mode Handling** - Updating EVCC mode handling with control display priority (manual > evcc > dyn override)
+- **Energy Commitment Strategy** - Implement energy commitment strategy for stable power delivery
+  - Addresses discrepancy between requested energy (0.6 kWh) and actual AC Charge Demand
+  - Refs [#200](https://github.com/ohAnd/EOS_connect/issues/200)
+- **AC Charging Precedence** - Implement AC charging precedence in dynamic discharge override logic
+
+### IMPROVEMENTS
+
+- **Battery Max Charge Power** - Update battery max charge power calculation for accurate demand capping
+- **Default Azimuth** - Update default azimuth value to 0° (South) for PV configuration
+  - Refs [#94](https://github.com/ohAnd/EOS_connect/issues/94)
+- **Household Energy Logging** - Enhance logging for household energy calculations and save original sensor value
+  - Fixes [#221](https://github.com/ohAnd/EOS_connect/issues/221)
+- **AC Charge Display** - Update AC charge display to show power in kW and include energy in kWh
+- **AC Charge Logging** - Enhance AC charge power logging to reduce noise with threshold-based change detection
+- **DC Charge Logging** - Enhance DC charge demand logging to avoid duplicates with heartbeat tracking
+- **Temperature Derating** - Implement generic temperature derating curve for battery charging based on BYD HVM specifications
+- **Charge Demand Logging** - Enhance charge demand logging across modules
+- **Controls Display** - Update controls display with improved UI feedback
+
+### BUG FIXES
+
+- **High-Frequency State Updates** - Fix [BUG] High-frequency state updates for eos_ac_charge_demand
+  - Fixes [#217](https://github.com/ohAnd/EOS_connect/issues/217)
+- **Data Error Handling** - Fix [LOAD-IF] DATA ERROR load smaller than car load with improved logging
+
 ## **Version 0.2.31** (2026-02-22)
 
 ### NEW FEATURES
