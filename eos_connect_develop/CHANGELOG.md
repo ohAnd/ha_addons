@@ -1,3 +1,13 @@
+**Version 0.2.33.261** published on 2026-03-14
+- Refactor PV interface validation and fix API integration issues
+  - Split validation into 3 independent paths: source-specific, common, temperature
+  - Fix Akkudoktor API 400 errors: change from URL string concat to requests.get(params=dict)
+  - Fix horizon parameter encoding: convert list to comma-separated string
+  - Decouple temperature forecasting from PV source requirements
+  - Add config format validation with user-friendly error messages
+  - Set sensible defaults (azimuth=0.1, tilt=30°, power=1kW, eff=0.95)
+Fixes [#188](https://github.com/ohAnd/EOS_connect/issues/188)
+
 **Version 0.2.32.259** published on 2026-03-12
 - Implement EVCC mode handling and update controls display priority with precedence order: manual > evcc > dyn override
 - Enhance logging for household energy calculations and save original sensor value
