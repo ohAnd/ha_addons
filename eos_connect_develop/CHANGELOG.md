@@ -1,3 +1,15 @@
+**Version 0.2.33.263** published on 2026-03-15
+- Cleanup regarding pylint for new inverter abstraction and belonging tests
+
+**Version 0.2.33.262** published on 2026-03-15
+- **New: Victron inverter support** - Full ESS control with state restore (automatic recovery when EOS Connect closes)
+  - Support for Fronius (Legacy/V2), Victron, EVCC, and display-only modes
+  - Victron ESS modes: avoid_discharge (neutral to grid), force_charge (import from grid), normal discharge
+  - Successfully tested on real three-phase Victron systems
+  - Special thanks to @Awienert for Victron inverter interface implementation and testing
+- Improved inverter architecture for better maintainability and extensibility (backend refactoring)
+- Full backward compatibility - all existing configurations continue to work unchanged
+
 **Version 0.2.33.261** published on 2026-03-14
 - Refactor PV interface validation and fix API integration issues
   - Split validation into 3 independent paths: source-specific, common, temperature

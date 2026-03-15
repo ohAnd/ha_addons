@@ -193,7 +193,7 @@ configuration:
     description: Configuration for inverter settings.
     type:
       name: Inverter Type
-      description: Type of inverter - fronius_gen24, evcc or default (display only mode).
+      description: Type of inverter - fronius_gen24, fronius_gen24_legacy, evcc, victron, or default (default and victron display only, no control).
     address:
       name: Inverter Address
       description: Address of the inverter.
