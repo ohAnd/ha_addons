@@ -209,6 +209,12 @@ configuration:
     max_pv_charge_rate:
       name: Max PV Charge Rate
       description: Maximum PV charge rate in W.
+    token:
+      name: Home Assistant Token
+      description: Access token for Home Assistant (only required for homeassistant inverter type).
+    url:
+      name: Home Assistant URL
+      description: URL for Home Assistant (only required for homeassistant inverter type).
   evcc:
     name: EVCC Settings
     description: Configuration for EVCC settings.

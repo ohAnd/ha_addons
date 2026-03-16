@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.33.263"
+version: "0.2.33.265"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -120,6 +120,8 @@ options:
     password: "abc123"
     max_grid_charge_rate: 5000
     max_pv_charge_rate: 5000
+    token: "" # Access token for Home Assistant (homeassistant only)
+    url: "" # URL for Home Assistant (homeassistant only)
 
   evcc:
     url: http://yourEVCCserver:7070 # URL to your evcc installation, if not used set to "" or leave as http://yourEVCCserver:7070
@@ -219,6 +221,8 @@ schema:
     password: password?
     max_grid_charge_rate: int(0,50000)?
     max_pv_charge_rate: int(0,50000)?
+    token: password?
+    url: str?
   evcc:
     url: str # URL to your evcc installation
   mqtt:

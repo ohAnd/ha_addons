@@ -1,3 +1,12 @@
+**Version 0.2.33.265** published on 2026-03-16
+- **New: Home Assistant inverter support** - Control your inverter directly from Home Assistant - thanks for contribution to @chriszero
+  - Implement InverterHA class for seamless Home Assistant integration
+  - Query inverter data directly from HA entities and sensors
+  - Eliminates need for separate inverter IP/credentials when using Home Assistant as intermediary
+  - Full BaseInverter compliance (avoided repeat code via tests/BaseInverterTestSuite)
+- Add config parameters: `inverter.token` and `inverter.url` for Home Assistant inverter type
+- Document Home Assistant inverter setup and configuration in guide
+
 **Version 0.2.33.263** published on 2026-03-15
 - Cleanup regarding pylint for new inverter abstraction and belonging tests
 
