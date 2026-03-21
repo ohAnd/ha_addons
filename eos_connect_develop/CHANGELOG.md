@@ -1,3 +1,14 @@
+**Version 0.2.33.267** published on 2026-03-21
+- Fix and improve dynamic discharge override functionality
+  - Corrected override duration to allow up to 24h as selectable in the UI
+  - Merged feature branch with UI improvements
+
+**Version 0.2.33.266** published on 2026-03-21
+- Fix: Restore Fronius grid charging functionality
+  - Remove zero-initialization that was overwriting config values
+  - Add proper type hints to BaseInverter
+  - Suppress pylint warnings for intentional API attribute updates
+
 **Version 0.2.33.265** published on 2026-03-16
 - **New: Home Assistant inverter support** - Control your inverter directly from Home Assistant - thanks for contribution to @chriszero
   - Implement InverterHA class for seamless Home Assistant integration
