@@ -1,5 +1,9 @@
+**Version 0.2.33.268** published on 2026-03-28
+- fix: update price prediction logic to use slots instead of hours - fixing DST issues with 15min slots and evopt
+Fixes [#231](https://github.com/ohAnd/EOS_connect/issues/231)
+
 **Version 0.2.33.267** published on 2026-03-21
-- Fix and improve dynamic discharge override functionality
+- Fix and improve dynamic discharge override functionality - thanks to @Chesstimation
   - Corrected override duration to allow up to 24h as selectable in the UI
   - Merged feature branch with UI improvements
 
