@@ -1,3 +1,7 @@
+**Version 0.2.33.270** published on 2026-03-28
+- fix: handle resource_id as integer in PvInterface to prevent crashes - fixes PV Prognose über EVCC template victron funktioniert nicht
+Touches [#188](https://github.com/ohAnd/EOS_connect/issues/188)
+
 **Version 0.2.33.269** published on 2026-03-28
 - Merge pull request #229 from Chesstimation/develop
 - Corrected display of Stored Energy Price to correctly display ct/kWh
