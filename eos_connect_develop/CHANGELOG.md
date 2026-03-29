@@ -1,3 +1,6 @@
+**Version 0.2.33.273-fix1** published on 2026-03-29
+- fix: update wrapper Dockerfile to replace gevent with waitress and add build tools for psutil compilation
+
 **Version 0.2.33.273** published on 2026-03-29
 - fix: add default timeout value for eos configuration if not specified
 - fix: suppress waitress internal task-queue logging noise in PortInterface

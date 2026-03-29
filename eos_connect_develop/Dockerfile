@@ -11,7 +11,7 @@ RUN echo "::group::Build Environment Setup" && \
 # Install runtime dependencies efficiently
 RUN echo "::group::Installing System Dependencies" && \
     echo "=== INSTALLING SYSTEM PACKAGES ===" && \
-    apk add --no-cache python3 py3-pip curl && \
+    apk add --no-cache python3 py3-pip curl gcc python3-dev musl-dev && \
     echo "=== SYSTEM PACKAGES INSTALLED ===" && \
     echo "::endgroup::"
 
@@ -37,10 +37,10 @@ RUN echo "::group::Installing Scientific Libraries" && \
 
 # Install web framework packages
 RUN echo "::group::Installing Web Framework" && \
-    echo "=== INSTALLING FLASK & GEVENT ===" && \
+    echo "=== INSTALLING FLASK & WAITRESS ===" && \
     . /opt/venv/bin/activate && \
     pip install --no-cache-dir \
-    Flask>=2.2.5 requests>=2.26.0 gevent>=24.2.1 && \
+    Flask>=2.2.5 requests>=2.26.0 waitress>=3.0.0 && \
     echo "=== WEB FRAMEWORK INSTALLED ===" && \
     echo "::endgroup::"
 
@@ -51,9 +51,11 @@ RUN echo "::group::Installing Configuration & Utilities" && \
     pip install --no-cache-dir \
     pyyaml>=6.0 ruamel.yaml==0.18.17 \
     pytz>=2025.1 paho-mqtt>=2.1.0 packaging>=23.2\
-    open-meteo-solar-forecast>=0.1.22 psutil>=7.0.0 && \
+    open-meteo-solar-forecast>=0.1.22 psutil>=7.0.0 pymodbus>=3.0.0 && \
     echo "=== ALL PACKAGES INSTALLED ===" && \
-    echo "::endgroup::"
+    echo "::endgroup::" && \
+    apk del --purge gcc python3-dev musl-dev && \
+    rm -rf /var/cache/apk/*
 
 # Copy application and finalize
 COPY ./src /app
