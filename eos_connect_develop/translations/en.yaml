@@ -39,6 +39,9 @@ configuration:
     dyn_override_discharge_allowed_pv_greater_load:
       name: PV > Load Discharge Override
       description: "Allow battery discharge when solar PV forecast exceeds household load, preventing unwanted grid input during cloud shadows. Default: false (disabled)."
+    pv_battery_charge_control_enabled:
+      name: PV Battery Charge Control
+      description: "Enable PV battery charge control via optimizer dc_charge signal to let the optimizer control PV-to-battery charging on a per-slot basis. Only supported with Fronius inverters. Default: false (disabled)."
 
   price:
     name: Price Settings

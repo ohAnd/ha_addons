@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.33.273-fix1"
+version: "0.2.33.274"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -48,6 +48,7 @@ options:
     time_frame: 3600 # granularity of optimization steps in seconds (900=15min, 3600=hourly)
     timeout: 180 # timeout for EOS optimize request in seconds
     dyn_override_discharge_allowed_pv_greater_load: false # Allow discharge when PV forecast > load - default: false
+    pv_battery_charge_control_enabled: false # PV battery charge control via optimizer dc_charge signal - default: false
 
   price:
     source: default # Data source for electricity price
@@ -159,6 +160,7 @@ schema:
     time_frame: list(900|3600) # granularity of optimization steps in seconds (900=15min, 3600=hourly) - default: 3600
     timeout: int(1,) # timeout for EOS optimize request in seconds
     dyn_override_discharge_allowed_pv_greater_load: bool? # Allow discharge when PV forecast > load - default: false
+    pv_battery_charge_control_enabled: bool? # PV battery charge control via optimizer dc_charge signal - default: false
 
   price:
     source: list(smartenergy_at|tibber|stromligning|fixed_24h|default) # Data source for electricity price

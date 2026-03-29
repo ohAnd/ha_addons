@@ -1,3 +1,8 @@
+**Version 0.2.33.274** published on 2026-03-29
+- feat: PV battery charge control via optimizer dc_charge signal - Introduce eos.pv_battery_charge_control_enabled to let the optimizer control PV-to-battery charging on a per-slot basis
+Fixes [#227](https://github.com/ohAnd/EOS_connect/pull/227)
+- fix: improve serve_forever documentation and adjust waitress logging level to ERROR
+
 **Version 0.2.33.273-fix1** published on 2026-03-29
 - fix: update wrapper Dockerfile to replace gevent with waitress and add build tools for psutil compilation
 
