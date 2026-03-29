@@ -1,3 +1,15 @@
+**Version 0.2.33.273** published on 2026-03-29
+- fix: add default timeout value for eos configuration if not specified
+- fix: suppress waitress internal task-queue logging noise in PortInterface
+- fix: strip whitespace from access_token in BatteryInterface and LoadInterface to prevent configuration errors
+
+**Version 0.2.33.272** published on 2026-03-29
+- fix: enhance Docker workflows to clean up orphaned SHA manifests and improve tagging consistency
+
+**Version 0.2.33.271** published on 2026-03-29
+- fix: replace gevent with waitress to fix ARM64 container crash
+Fixes [#141](https://github.com/ohAnd/EOS_connect/issues/141)
+
 **Version 0.2.33.270** published on 2026-03-28
 - fix: handle resource_id as integer in PvInterface to prevent crashes - fixes PV Prognose über EVCC template victron funktioniert nicht
 Touches [#188](https://github.com/ohAnd/EOS_connect/issues/188)
