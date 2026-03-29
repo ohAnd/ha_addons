@@ -1,3 +1,11 @@
+**Version 0.2.33.276** published on 2026-03-29
+- Add DST handling tests and normalize time-series arrays in EVOpt and PV interfaces
+  - Enhance the `normalize` function in `EVOptBackend` to ensure time-series arrays are consistently padded or truncated to the expected length
+  - Implement DST handling in the `PvInterface` to normalize PV forecasts to exactly 48 hourly slots, accommodating spring-forward and fall-back scenarios
+  - Introduce comprehensive unit tests for DST handling in both `EVOptBackend` and `PvInterface`, covering various edge cases and ensuring consistent output lengths
+  - Validate that all time-series arrays produced by the transformation functions maintain the same length, regardless of input variations due to DST changes
+Fixes [#231](https://github.com/ohAnd/EOS_connect/issues/231)
+
 **Version 0.2.33.274** published on 2026-03-29
 - feat: PV battery charge control via optimizer dc_charge signal - Introduce eos.pv_battery_charge_control_enabled to let the optimizer control PV-to-battery charging on a per-slot basis
 Fixes [#227](https://github.com/ohAnd/EOS_connect/pull/227)
