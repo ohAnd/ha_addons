@@ -1,3 +1,9 @@
+**Version 0.2.33.277** published on 2026-03-30
+- chore: update version to v0.2.33 across documentation and add optimization configuration section - see [discussion #216](https://github.com/ohAnd/EOS_connect/discussions/216)
+- docs: enhance EVCC integration section with detailed monitoring and control scenarios
+- fix: handle retained MQTT messages and adjust azimuth parameter for Akkudoktor API
+- chore: update actions/checkout and actions/setup-python to v6 in workflow files
+
 **Version 0.2.33.276** published on 2026-03-29
 - Add DST handling tests and normalize time-series arrays in EVOpt and PV interfaces
   - Enhance the `normalize` function in `EVOptBackend` to ensure time-series arrays are consistently padded or truncated to the expected length
