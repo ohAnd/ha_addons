@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.33.277"
+version: "0.2.33.278"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -87,6 +87,7 @@ options:
     price_sensor: "" # HA entity ID or OpenHAB item for electricity price in €/kWh or ct/kWh
     charging_threshold_w: 50.0 # Minimum battery power to consider as charging (W) - default: 50.0
     grid_charge_threshold_w: 100.0 # Minimum grid surplus to consider as grid charging (W) - default: 100.0
+    battery_price_include_feedin: false # include feed-in price as opportunity cost for PV-sourced energy in battery price calculation - default: false
 
   pv_forecast_source:
     source: akkudoktor # data source for solar forecast providers akkudoktor, openmeteo, openmeteo_local, forecast_solar, evcc, solcast, victron, default (default uses akkudoktor)
@@ -199,6 +200,7 @@ schema:
     price_sensor: str? # HA entity ID or OpenHAB item for electricity price in €/kWh or ct/kWh
     charging_threshold_w: float(0,) # Minimum battery power to consider as charging (W) - default: 50.0
     grid_charge_threshold_w: float(0,) # Minimum grid surplus to consider as grid charging (W) - default: 100.0
+    battery_price_include_feedin: bool? # include feed-in price as opportunity cost for PV-sourced energy in battery price calculation - default: false
 
   pv_forecast_source:
     source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|evcc|solcast|victron|default) # data source for solar forecast providers, default (default uses akkudoktor)

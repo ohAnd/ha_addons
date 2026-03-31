@@ -149,6 +149,9 @@ configuration:
     grid_charge_threshold_w:
       name: Grid Charge Threshold (W)
       description: "Minimum grid surplus to consider as grid charging (W) - default: 100.0."
+    battery_price_include_feedin:
+      name: Include Feed-in Price in Battery Price
+      description: "Include feed-in price as opportunity cost for PV-sourced energy in battery price calculation. When enabled, the battery price considers both the electricity price and the forgone feed-in revenue for PV energy. Default: false (disabled)."
 
   pv_forecast_source:
     name: PV Forecast Source

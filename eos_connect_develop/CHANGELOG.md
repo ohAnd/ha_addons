@@ -1,3 +1,16 @@
+**Version 0.2.33.278** published on 2026-03-31
+- **NEW EXPERIMENTAL FEATURE: Feed-in Price in Battery Optimization**
+  
+  Added `battery.battery_price_include_feedin` (default: OFF) to factor your feed-in tariff as an "opportunity cost" when the optimizer decides to charge or sell PV power.
+  
+  **Advantages:** Smarter economic decisions that consider what you'd earn by selling PV power instead of storing it.
+  
+  **Note (EXPERIMENTAL):** Monitor results to verify it improves your savings. Change charging patterns significantly. Requires accurate `price.feed_in_price` configuration.
+  
+  **Enable it:** Set `battery.battery_price_include_feedin: true` in addon config (only if you have a favorable feed-in rate and want to experiment).
+  
+Fixes [#234](https://github.com/ohAnd/EOS_connect/pull/234)
+
 **Version 0.2.33.277** published on 2026-03-30
 - chore: update version to v0.2.33 across documentation and add optimization configuration section - see [discussion #216](https://github.com/ohAnd/EOS_connect/discussions/216)
 - docs: enhance EVCC integration section with detailed monitoring and control scenarios
