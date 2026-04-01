@@ -1,6 +1,6 @@
 name: "EOS connect"
 description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.32"
+version: "0.2.33"
 slug: "eos_connect"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -48,6 +48,7 @@ options:
     time_frame: 3600 # granularity of optimization steps in seconds (900=15min, 3600=hourly)
     timeout: 180 # timeout for EOS optimize request in seconds
     dyn_override_discharge_allowed_pv_greater_load: false # Allow discharge when PV forecast > load - default: false
+    pv_battery_charge_control_enabled: false # PV battery charge control via optimizer dc_charge signal - default: false
 
   price:
     source: default # Data source for electricity price
@@ -86,6 +87,7 @@ options:
     price_sensor: "" # HA entity ID or OpenHAB item for electricity price in €/kWh or ct/kWh
     charging_threshold_w: 50.0 # Minimum battery power to consider as charging (W) - default: 50.0
     grid_charge_threshold_w: 100.0 # Minimum grid surplus to consider as grid charging (W) - default: 100.0
+    battery_price_include_feedin: false # include feed-in price as opportunity cost for PV-sourced energy in battery price calculation - default: false
 
   pv_forecast_source:
     source: akkudoktor # data source for solar forecast providers akkudoktor, openmeteo, openmeteo_local, forecast_solar, evcc, solcast, victron, default (default uses akkudoktor)
@@ -156,6 +158,7 @@ schema:
     time_frame: list(900|3600) # granularity of optimization steps in seconds (900=15min, 3600=hourly) - default: 3600
     timeout: int(1,) # timeout for EOS optimize request in seconds
     dyn_override_discharge_allowed_pv_greater_load: bool? # Allow discharge when PV forecast > load - default: false
+    pv_battery_charge_control_enabled: bool? # PV battery charge control via optimizer dc_charge signal - default: false
 
   price:
     source: list(smartenergy_at|tibber|stromligning|fixed_24h|default) # Data source for electricity price
@@ -194,6 +197,7 @@ schema:
     price_sensor: str? # HA entity ID or OpenHAB item for electricity price in €/kWh or ct/kWh
     charging_threshold_w: float(0,) # Minimum battery power to consider as charging (W) - default: 50.0
     grid_charge_threshold_w: float(0,) # Minimum grid surplus to consider as grid charging (W) - default: 100.0
+    battery_price_include_feedin: bool? # include feed-in price as opportunity cost for PV-sourced energy in battery price calculation - default: false
 
   pv_forecast_source:
     source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|evcc|solcast|victron|default) # data source for solar forecast providers, default (default uses akkudoktor)

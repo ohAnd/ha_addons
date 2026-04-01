@@ -1,10 +1,23 @@
 ---
-applyTo: "**/eos_connect_develop/**"
+applyTo: "**/eos_connect* **"
 ---
 
-# EOS Connect Develop Commit Preparation Workflow
+# EOS Connect Release Preparation Workflows
 
-## Trigger Phrases
+This document defines two complementary workflows:
+
+1. **DEVELOP WORKFLOW** — Frequent integration of upstream develop branch changes (eos_connect_develop/)
+2. **PRODUCTIVE/RELEASE WORKFLOW** — Infrequent main branch releases to production (eos_connect/)
+
+---
+
+## WORKFLOW 1: DEVELOP (eos_connect_develop) — Frequent Integration
+
+### Purpose
+
+Regularly sync wrapper with `EOS_connect` develop branch changes. This is a lightweight, frequent operation.
+
+### Trigger Phrases
 
 When the user says any of the following, **IMMEDIATELY** execute the full workflow without asking for confirmation:
 
@@ -13,91 +26,249 @@ When the user says any of the following, **IMMEDIATELY** execute the full workfl
 - "eos connect develop commit prep"
 - "bump eos connect develop version"
 - "prepare eos connect develop"
+- "new ride" (casual trigger for next cycle)
 
-## Workflow Overview
-
-The workflow will automatically:
-
-1. Sync submodule with develop branch
-2. Extract version from latest [AUTO] commit
-3. Update config.yaml version (remove -develop suffix)
-4. Update CHANGELOG.md with new entries
-5. Stage all changes and show proposed commit message
-
-## Agent Rules (MANDATORY)
+### Agent Rules (MANDATORY)
 
 - NEVER perform `git commit` or `git push` without explicit human confirmation.
-- The exact confirmation phrase required is: "approve eos commit"
-- The agent MUST show the full proposed commit message, the extracted version number, and the list of non-[AUTO] commits used to populate `CHANGELOG.md`, and then wait for a human message that matches the confirmation phrase exactly before performing any commit or push.
-- The agent MUST NOT accept any other phrasing or implicit approvals (for example, "looks good" or "proceed").
-- The agent MAY stage changes (`git add`) to prepare a commit, but MUST NOT run `git commit` or `git push` until it has received the exact confirmation phrase.
-- If any step fails, the agent must abort the workflow and report the failure; do not attempt automatic retries that result in changes to git history.
+- The exact confirmation phrase required is: `approve eos commit`
+- The agent MUST show: proposed commit message, extracted version number, list of non-[AUTO] commits used
+- The agent MUST NOT accept other phrasing (e.g., "looks good", "proceed")
+- The agent MAY stage changes (`git add`) but MUST NOT commit until receiving exact confirmation phrase
+- If any step fails, abort and report failure; do NOT retry automatically
 
-## Workflow Steps
+### Workflow Steps
 
-Execute the following steps automatically:
-
-## Step 1: Sync the Submodule
+#### Step 1: Sync the Submodule
 
 - Navigate to `c:\projects\ha_addons\eos_connect_develop\src`
-- Run: `git pull origin develop` to sync the submodule with the latest changes
+- Run: `git pull origin develop`
 
-## Step 2: Check for New Configuration Parameters
+#### Step 2: Check for New Configuration Parameters
 
-- Compare `src/src/config.py` with `config.yaml` to identify any new parameters
-- For each new parameter found:
-  - Add to `config.yaml` in both the `options` section (with default value and comment)
-  - Add to `config.yaml` in the `schema` section (with proper validation)
-  - Add to `translations/en.yaml` with name and description
-- If new parameters are found, ensure they are properly documented
+- Compare `src/src/config.py` with wrapper's `config.yaml`
+- For each NEW parameter found:
+  - Add to `config.yaml` in `options` section (with default value, comment)
+  - Add to `config.yaml` in `schema` section (with validation rules)
+  - Add to `translations/en.yaml` (with UI name and description)
+- Mark as EXPERIMENTAL if feature is new/untested
 
-## Step 3: Extract Version Information
+#### Step 3: Extract Version Information
 
-- Get the most recent commits from the submodule
-- Find the latest `[AUTO]` version update commit (format: "Update version to X.X.X.XXX-develop")
-- Extract the version number from that commit message
-- The version format is: MAJOR.MINOR.PATCH.BUILD (e.g., 0.2.29.208)
+- Get latest commits from submodule
+- Find latest `[AUTO]` commit (format: "Update version to X.X.X.XXX-develop")
+- Extract version number: MAJOR.MINOR.PATCH.BUILD (e.g., 0.2.33.278)
 
-## Step 4: Update config.yaml
+#### Step 4: Update config.yaml
 
-- Update the version field in `eos_connect_develop\config.yaml`
-- Remove the "-develop" suffix from the version (e.g., 0.2.29.208-develop becomes 0.2.29.208)
+- Update version field: remove "-develop" suffix (0.2.33.278-develop → 0.2.33.278)
 
-## Step 5: Update CHANGELOG.md
+#### Step 5: Update CHANGELOG.md
 
-- Add a new entry at the TOP of `eos_connect_develop\CHANGELOG.md` (before any existing entries)
+- Add entry at TOP of `eos_connect_develop\CHANGELOG.md`
 - Format: `**Version X.X.X.XXX** published on YYYY-MM-DD`
-- For EACH non-AUTO commit since the last eos_connect_develop parent repo commit:
-  - Add a bullet point with the commit message
-  - If the commit message contains "fixes" or "Fixes #XXX", include the issue reference
-  - Preserve the original formatting (issue links, descriptions)
-  - Skip commits with `[AUTO]` prefix
+- For EACH non-[AUTO] commit since last wrapper commit:
+  - Add bullet point with commit message
+  - Preserve GitHub issue links: `[#XXX](https://github.com/ohAnd/EOS_connect/issues/XXX)`
+  - Mark experimental features clearly ("EXPERIMENTAL", "Status: experimental")
+  - Skip [AUTO] commits
+- User-friendly descriptions focused on "what changed for users"
 
-## Entry Format Example:
+#### Step 6: Stage Changes & Show Proposed Commit
+
+- Stage: `config.yaml`, `CHANGELOG.md`, `src` submodule, `translations/en.yaml`
+- Show proposed commit message (format: `eos_connect_develop: bump version to X.X.X.XXX; update changelog with [key features]`)
+- Wait for: `approve eos commit` confirmation
+
+#### Format Example:
+
+```markdown
+**Version 0.2.33.278** published on 2026-03-31
+
+- **NEW EXPERIMENTAL FEATURE: Feed-in Price in Battery Optimization**
+  Added `battery.battery_price_include_feedin` (default: OFF) to factor your feed-in tariff as an "opportunity cost"
+  Fixes [PR #234](https://github.com/ohAnd/EOS_connect/pull/234)
+```
+
+---
+
+## WORKFLOW 2: PRODUCTIVE/RELEASE (eos_connect) — Infrequent Main Branch Release
+
+### Purpose
+
+Prepare wrapper for production release based on main branch. Occurs less frequently than develop updates.  
+**Blueprint**: Use develop workflow as foundation; add additional dependency/wrapper-level checks.
+
+### Trigger Phrases
+
+When the user says any of the following, **IMMEDIATELY** execute the full workflow:
+
+- "prepare eos connect for release"
+- "prepare eos connect main release"
+- "eos connect production prep"
+- "prepare for commit - eos connect"
+- "prepare eos_connect commit"
+
+### Agent Rules (MANDATORY)
+
+- Same commit/push restrictions as DEVELOP workflow
+- Confirmation phrase: `approve eos commit`
+- Do NOT automatically stage or commit
+- Show proposed commit message and all modified files
+- If any step fails, abort and report; do NOT retry
+
+### Workflow Steps (Extended from DEVELOP)
+
+#### Steps 1-6: Same as DEVELOP workflow
+
+- Sync submodule (to main branch, not develop)
+- Check for new config parameters
+- Extract version
+- Update config.yaml (NO "-develop" suffix to remove - main is already released version)
+- Update CHANGELOG.md (comprehensive user-facing content, mark experimental features)
+- Stage changes and show proposed commit
+
+#### ADDITIONAL Step 7: Verify Dockerfile & Dependencies (WRAPPER-LEVEL)
+
+This is the KEY difference between develop and productive flows.
+
+**7a: Compare Wrapper Dockerfile with Develop**
+
+- Check `c:\projects\ha_addons\eos_connect\Dockerfile` vs. `eos_connect_develop\Dockerfile`
+- Verify alignment on:
+  - System packages (apk add): gcc, python3-dev, musl-dev for build tools
+  - Build cleanup: `apk del --purge gcc python3-dev musl-dev` (production must not include build tools)
+  - WSGI server: must be waitress (NOT gevent for ARM64 stability)
+  - Python package versions: must match or exceed develop version pinning
+  - New dependencies: check for new packages in develop that should be in productive
+  - Examples to check: pymodbus, psutil, waitress, numpy, pandas versions
+
+**7b: Check requirements.txt Alignment**
+
+- Verify `eos_connect/requirements.txt` (if exists) matches packages in Dockerfile
+- Verify versions are compatible with develop submodule
+
+**7c: Check Config Parameter Coverage**
+
+- Ensure new config parameters are documented in:
+  - `config.yaml` options section (with defaults)
+  - `config.yaml` schema section (with validation)
+  - `translations/en.yaml` (with UI strings)
+  - All three must match exactly
+
+**7d: Mark Experimental Features in CHANGELOG**
+
+- Features marked "EXPERIMENTAL" in develop MUST also be marked in productive CHANGELOG
+- Include clear warnings about testing requirements
+- Provide user guidance for evaluation periods
+- Examples:
+  - `battery.battery_price_include_feedin` → EXPERIMENTAL, opt-in toggle
+  - `eos.pv_battery_charge_control_enabled` → EXPERIMENTAL, affects PV routing strategy
+
+**7e: Verify Submodule Commit**
+
+- Confirm submodule is at main branch (not develop)
+- Verify version in submodule matches wrapper config.yaml version
+
+#### Step 8: Show Complete Change Summary
+
+Display:
 
 ```
-**Version 0.2.29.208** published on 2025-12-15
-- Enhance discharge state handling by introducing effective discharge logic and updating related MQTT topics to reflect final states after overrides - fixes Missing State in HA for Allow Discharge EVCC
-Fixes [#175](https://github.com/ohAnd/EOS_connect/issues/175)
-- Implement dynamic max charge power based on charging curve configuration in get_pv_akku_data function - fixes part 2 of evopt lädt zu wenig/langsam
-Fixes [#167](https://github.com/ohAnd/EOS_connect/issues/167)
+Files Modified (NOT staged):
+1. config.yaml
+   - Version: X.X.X.XXX → Y.Y.Y.YYY
+   - New parameters: [list]
+   - Dockerfile updates: [list]
+
+2. CHANGELOG.md
+   - User-friendly release notes with experimental warnings
+
+3. Dockerfile
+   - Dependencies aligned with develop: [specific changes]
+   - Build tools: gcc/python3-dev/musl-dev added
+   - Cleanup stage: build tools removed
+   - WSGI server: gevent→waitress
+
+4. translations/en.yaml
+   - New parameter descriptions
+
+5. eos_connect/src (submodule)
+   - Updated to: [commit hash] (main branch, v0.2.33)
+
+Commit Message: [show full message]
 ```
 
-## Important Notes:
+### DEPENDENCIES TO CHECK (Productive Workflow Only)
 
-- Skip commits with `[AUTO]` prefix in the commit message (these are automatic version bumps)
-- Each feature/fix from the actual commits gets its own bullet point
-- Preserve GitHub issue links in the format `[#XXX](https://github.com/ohAnd/EOS_connect/issues/XXX)`
-- Use the current date for the "published on" field
-- Multiple related changes from one commit should be on separate bullet points if they are logically distinct
-- When a commit has "Fixes #XXX" in the message, put it on a separate line
+Always verify these align between develop and productive Dockerfile:
 
-## Step 6: Show Proposed Commit Message
+- **System packages**: gcc, python3-dev, musl-dev (build tools)
+- **Python versions**: numpy, pandas (scientific stack)
+- **Web server**: waitress (not gevent)
+- **MQTT**: paho-mqtt
+- **Configuration**: pyyaml, ruamel.yaml
+- **Optimization**: pytz, packaging
+- **Forecasting**: open-meteo-solar-forecast
+- **System info**: psutil
+- **Inverter**: pymodbus (NEW in v0.2.33)
+- **Build cleanup**: apk del must remove build tools post-installation
 
-- After completing all updates, display the proposed commit message for the user to review
-- Commit message format: `eos_connect_develop: bump version to X.X.X.XXX; update changelog with [brief summary of changes]; modify config.yaml for version update`
-- Brief summary should mention the key features/fixes (e.g., "discharge state handling and dynamic max charge power")
-- DO NOT automatically commit - let the user review and commit manually
+### Commit Message Format (Productive Release)
+
+```
+eos_connect: release vX.X.X with [headline features]; align wrapper with main branch updates
+
+Wrapper config/dependency updates:
+- Upgrade version X.X.X → Y.Y.Y
+- [New parameters with experimental status]
+- [Dockerfile changes if needed]
+- [Translation updates]
+
+Submodule sync (develop→main):
+- eos_connect/src → vY.Y.Y main branch (commit [hash])
+- Includes: [major features from this release]
+
+Release focus:
+- [User-impacting improvements]
+- All changes fully backward compatible
+
+Status: [Production-ready/Testing phase]
+```
+
+---
+
+## General Guidelines for Both Workflows
+
+### Configuration Parameter Documentation
+
+1. Always add parameters to **all three locations**:
+   - `config.yaml` options section
+   - `config.yaml` schema section
+   - `translations/en.yaml`
+
+2. For EXPERIMENTAL features:
+   - Default must be OFF (false/disabled)
+   - Mark as opt-in
+   - Explain in CHANGELOG what user needs to monitor
+   - Provide warnings about side effects or tradeoffs
+
+### CHANGELOG Best Practices
+
+- **Develop**: Focus on technical accuracy, PR/issue references, what changed in code
+- **Productive**: Focus on user benefits, what to expect, when to enable features, testing guidance
+- Mark EXPERIMENTAL features with clear warnings
+- Provide actionable guidance (e.g., "Set X to true to enable")
+- Link to relevant PRs/issues
+
+### Version Management
+
+- **Develop**: Version format X.X.X.XXX-develop (BUILD number increments with [AUTO] commits)
+- **Productive**: Version format X.X.X (remove -develop suffix, represents stable release)
+
+---
+
+## applyTo: "**/eos_connect\* **"
 
 ### Mandatory confirmation step
 

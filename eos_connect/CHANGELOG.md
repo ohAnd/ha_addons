@@ -1,3 +1,117 @@
+## **Version 0.2.33** (2026-04-01)
+
+### HEADLINE IMPROVEMENTS
+- **Better Economic Battery Charging** - Optional new experimental feed-in aware battery pricing mode for smarter energy storage decisions
+- **Major Inverter Expansion** - New Home Assistant (thanks to @chriszero) and Victron (thanks to @Awienert) inverter support with cleaner architecture
+- **Improved Reliability** - Better ARM64 Docker stability, robust time-series handling during DST transitions, and configuration robustness
+- **Cleaner Operations** - Reduced log noise, better configuration defaults, and fewer edge-case failures
+
+### NEW FEATURES
+
+- **Experimental Feed-in Price in Battery Optimization** - Factor your feed-in tariff as an "opportunity cost" when the optimizer decides to charge or sell PV power
+  - New Option: `battery.battery_price_include_feedin` (default: **OFF**, opt-in)
+  - Lets optimization consider potential feed-in revenue when making storage decisions
+  - Can improve economic decisions when deciding between storing PV energy and exporting it
+  - **Status: EXPERIMENTAL** — recommended for testing before permanent enablement
+  - How to enable: Set `battery.battery_price_include_feedin: true` in addon config (only if you have a favorable feed-in rate)
+  - Fixes [PR #234](https://github.com/ohAnd/EOS_connect/pull/234)
+
+- **PV Battery Charge Control via Optimizer** - Per-slot optimizer control for PV-to-battery charging decisions
+  - New Option: `eos.pv_battery_charge_control_enabled` (default: **OFF**, opt-in)
+  - Enables granular optimizer control of PV energy routing (to battery vs. grid) on a per-slot basis
+  - Currently supported for Fronius inverters
+  - **Status: EXPERIMENTAL** — behavior depends on your specific system, load patterns, and PV forecast accuracy
+  - **Important Note:** Optimizer decisions may lead to increased feed-in instead of battery charging if real-time conditions differ from forecast data (e.g., actual PV generation exceeds forecast or load is lower than expected)
+  - **Recommendation:** Enable only if you understand the tradeoffs and can monitor results. Verify over multiple cycles that it improves your overall economic benefit before permanent enablement
+  - How to enable: Set `eos.pv_battery_charge_control_enabled: true` in addon config if you want to experiment with optimizer-driven PV routing
+  - Fixes [PR #227](https://github.com/ohAnd/EOS_connect/pull/227)
+
+- **Home Assistant Inverter Support** - Direct inverter control via Home Assistant entities
+  - New inverter type: Home Assistant integration for seamless HA-centric setups
+  - Query inverter data directly from HA sensors and entities
+  - Reduces configuration complexity (no separate inverter endpoint credentials needed)
+  - Thanks to @chriszero for contribution
+
+- **Victron Inverter Support** - Complete ESS (Energy Storage System) control with intelligent state restore
+  - Supports key ESS control states: avoid_discharge, force_charge, normal discharge
+  - Automatic recovery of ESS mode when EOS Connect restarts
+  - Successfully tested on real three-phase Victron systems
+  - Thanks to @Awienert for Victron ESS interface implementation and testing
+
+- **Inverter Platform Architecture Refactor** - Cleaner base/factory architecture for better maintainability and extensibility
+  - Easier extension for future inverter types
+  - Full backward compatibility preserved
+
+### IMPROVEMENTS
+
+- **Battery Pricing & Economic Decisions:**
+  - Feed-in price integration improved with better defaults and opt-in behavior
+  - Stored energy price display corrected to ct/kWh
+  - More accurate battery price calculation for smarter economic charging
+
+- **Time-Series Reliability (DST & Slot Consistency):**
+  - Robust spring-forward and fall-back scenario management in PV and EVOpt interfaces
+  - Array normalization ensures consistent output lengths (e.g., 48 hourly slots)
+  - Comprehensive unit tests for DST edge cases
+  - Fixes [Issue #231](https://github.com/ohAnd/EOS_connect/issues/231)
+
+- **PV API Integration Hardening:**
+  - Better parameter validation and handling in PV interface
+  - Fixed URL parameter construction to prevent HTTP 400 errors
+  - Improved horizon and resource_id parameter handling
+  - Sensible configuration defaults (azimuth=0.1, tilt=30°, power=1kW, efficiency=0.95)
+  - Supports flexible parameter types (e.g., integer resource_id values)
+  - Fixes [Issue #188](https://github.com/ohAnd/EOS_connect/issues/188)
+
+- **Operations & CI/CD:**
+  - GitHub Actions dependencies modernized (checkout and setup-python to v6)
+  - Docker workflow cleanup with better SHA manifest handling
+  - Improved build reliability and reproducibility
+
+- **Documentation & User Guidance:**
+  - Expanded EVCC integration documentation with detailed monitoring scenarios
+  - Updated inverter configuration guides for new HA and Victron support
+  - Enhanced optimization parameter documentation
+  - Improved setup and troubleshooting guides
+
+### BUG FIXES
+
+- **Stability & Runtime (Critical):**
+  - **ARM64 container crash fix:** Replaced gevent with waitress as WSGI server
+    - Eliminates container crashes on ARM64 architecture
+    - Better compatibility with Home Assistant container environments
+    - Fixes [Issue #141](https://github.com/ohAnd/EOS_connect/issues/141)
+  - Docker wrapper follow-up fix for psutil build tools
+
+- **Configuration Robustness:**
+  - Added sensible default EOS timeout when not explicitly configured
+  - Automatic whitespace trimming of access tokens and YAML folded values to prevent configuration failures
+  - Better type handling and parsing to reduce edge-case breakage
+
+- **Logging Quality:**
+  - Suppressed noisy internal waitress task-queue logging for clearer troubleshooting
+  - Adjusted logging levels for better operational visibility
+  - Reduced log noise while preserving important debug information
+
+- **Data Handling & Compatibility:**
+  - Fixed PvInterface crash on integer resource_id values
+  - Improved MQTT retained message handling to avoid stale control effects
+  - Better azimuth parameter handling for Akkudoktor API
+
+- **Inverter Behavior & Control:**
+  - Restored Fronius grid charging functionality
+  - Fixed dynamic discharge override with correct UI duration handling up to 24h
+  - Improved battery and load interface whitespace handling
+  - Better type hints and validation in inverter base classes
+
+### UPGRADE NOTES
+
+- All new features are fully backward compatible
+- Existing configurations continue to work without changes
+- Optional new parameters default to previous behavior
+- No mandatory configuration changes required
+- Recommended: Review new PV battery charge control and feed-in price features if applicable to your setup
+
 ## **Version 0.2.32** (2026-03-12)
 
 ### NEW FEATURES
