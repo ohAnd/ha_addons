@@ -17,6 +17,9 @@ After installation, open the EOS Connect web UI. A Setup Wizard will guide you t
 - Any changes made via the HA addon config panel after this update **will be ignored** — use the web UI instead
 
 ---
+**Version 0.3.34.281-fix1** published on 2026-04-04
+- fix: update fetch URLs to remove leading slashes for consistency
+- refactor: format JSON responses for improved readability
 
 **Version 0.3.34.281** published on 2026-04-04
 
