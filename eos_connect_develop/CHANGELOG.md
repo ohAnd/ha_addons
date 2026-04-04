@@ -1,3 +1,48 @@
+## !! IMPORTANT: Web-Based Configuration — Action Required for All Users !!
+
+**This update changes how EOS Connect stores its configuration.**
+
+### What changed
+All settings (load, battery, EOS server, price, inverter, MQTT, etc.) are now managed through the **built-in EOS Connect web UI** and stored in a local database. The HA addon config panel will only retain 3 fields in a future release: Web Port, Time Zone, Log Level.
+
+### For existing users (including auto-update users)
+**Your settings are safe.** On first start after this update, EOS Connect automatically reads your current `options.json` and migrates all your settings into the new storage. No manual action needed — your system will continue running with your existing configuration.
+
+### For new installs
+After installation, open the EOS Connect web UI. A Setup Wizard will guide you through the initial configuration.
+
+### What you will notice
+- The EOS Connect web UI now has a **Configuration** section where all configuration is managed
+- The HA addon config panel still shows all fields for now — they will be removed in a later release once migration is confirmed working for all users
+- Any changes made via the HA addon config panel after this update **will be ignored** — use the web UI instead
+
+---
+
+**Version 0.3.34.281** published on 2026-04-04
+
+**MAJOR RELEASE — Version prefix bumped to 0.3.34**
+
+- **NEW: Web-Based Configuration UI** — All EOS Connect settings are now managed through the built-in web interface and stored in a local SQLite database. The HA addon config panel is no longer the place to configure the system.
+  Introduced via [PR #241](https://github.com/ohAnd/EOS_connect/pull/241)
+
+- **NEW: Setup Wizard** — New installs show a guided Setup Wizard on first start to walk through initial configuration without touching any YAML files.
+
+- **NEW: Hot-Reload for Live Config Changes** — Selected settings (price sources, battery SOC thresholds) apply immediately without restarting the addon.
+
+- **NEW: HA Addon Bootstrap & Legacy Migration** — Running as HA addon is detected automatically. Bootstrap values (port, timezone, log level) are read from `options.json`. A legacy `options.json` with full config is automatically imported into SQLite on first run — no data loss during upgrade.
+
+- **NEW: Environment Variable Bootstrap** — `EOS_WEB_PORT`, `EOS_TIMEZONE`, `EOS_LOG_LEVEL` can override bootstrap values (useful for Docker/non-HA installs).
+
+- **fix: Atomic migration and DB corruption recovery** — Migration writes atomically; corrupted DB is auto-recovered with a clean state and graceful startup fallback.
+
+- **fix: Wizard UX improvements** — Wizard no longer shows on real existing configs; fixed crash on fresh install with invalid `eos.source` default; replaced auto-close with persistent restart screen and action buttons.
+
+- **fix: Password masking in config API** — Passwords are now correctly masked in all API responses including nested keys.
+
+- **fix: Hot-reload wiring** — Hot-reload adapter correctly connected to running interfaces (was missed in Phase 4).
+
+- **fix: Validation hardening** — Invalid field values fall back to schema defaults rather than crashing.
+
 **Version 0.2.33.278** published on 2026-03-31
 - **NEW EXPERIMENTAL FEATURE: Feed-in Price in Battery Optimization**
   
