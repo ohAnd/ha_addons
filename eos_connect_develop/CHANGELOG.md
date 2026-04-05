@@ -17,6 +17,10 @@ After installation, open the EOS Connect web UI. A Setup Wizard will guide you t
 - Any changes made via the HA addon config panel after this update **will be ignored** — use the web UI instead
 
 ---
+**Version 0.3.34.284** published on 2026-04-05
+- add PV hot-reload support and update hot-reload guidance
+- fix PV forecast configuration handling and add template-based installation creation
+
 **Version 0.3.34.283** published on 2026-04-04
 - refactor: move time frame base validation after DB merge for accurate configuration
 
