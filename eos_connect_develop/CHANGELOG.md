@@ -17,6 +17,10 @@ After installation, open the EOS Connect web UI. A Setup Wizard will guide you t
 - Any changes made via the HA addon config panel after this update **will be ignored** — use the web UI instead
 
 ---
+**Version 0.3.34.288** published on 2026-04-08
+- fix: frontend asset cache busting for config UI updates (#242)
+- cleanup: remove deprecated legacy dashboard route and legacy assets
+
 **Version 0.3.34.287** published on 2026-04-07
 - feat: make optimizer settings hot-reloadable (timeout and control flags)
 - test: enhance dummy backend integration with additional configuration options
