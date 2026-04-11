@@ -17,6 +17,9 @@ After installation, open the EOS Connect web UI. A Setup Wizard will guide you t
 - Any changes made via the HA addon config panel after this update **will be ignored** — use the web UI instead
 
 ---
+**Version 0.3.34.291** published on 2026-04-11
+- feat(config-web): hot-reload battery price feed-in settings in runtime handler
+
 **Version 0.3.34.290** published on 2026-04-10
 - fix(control): always cap DC PV charge by battery max
 - fix(battery): trigger max-charge change callbacks when charging curve is disabled
