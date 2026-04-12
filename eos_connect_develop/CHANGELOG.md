@@ -17,6 +17,9 @@ After installation, open the EOS Connect web UI. A Setup Wizard will guide you t
 - Any changes made via the HA addon config panel after this update **will be ignored** — use the web UI instead
 
 ---
+**Version 0.3.34.292** published on 2026-04-12
+- fix(chart): improve household load calculation and optimizer load handling in chart updates for EOS (akkudoktor) responses - touches [#204](https://github.com/ohAnd/EOS_connect/issues/204)
+
 **Version 0.3.34.291** published on 2026-04-11
 - feat(config-web): hot-reload battery price feed-in settings in runtime handler
 
