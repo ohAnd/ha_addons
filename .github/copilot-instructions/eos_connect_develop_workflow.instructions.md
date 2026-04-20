@@ -51,6 +51,8 @@ When the user says any of the following, **IMMEDIATELY** execute the full workfl
   - Add to `config.yaml` in `options` section (with default value, comment)
   - Add to `config.yaml` in `schema` section (with validation rules)
   - Add to `translations/en.yaml` (with UI name and description)
+  - If configuration is now managed via the web UI (not config.yaml), ALWAYS prompt the user before adding new parameters to config.yaml, schema, or translations. By default, do NOT add new parameters unless the user explicitly approves.
+  - Clearly ask the user if a new parameter should be added to config.yaml, schema, and translations, or skipped. This keeps config.yaml changes optional as migration continues.
 - Mark as EXPERIMENTAL if feature is new/untested
 
 #### Step 3: Extract Version Information
