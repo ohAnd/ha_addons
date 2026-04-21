@@ -61,7 +61,6 @@ RUN echo "::group::Installing Configuration & Utilities" && \
 COPY ./src /app
 WORKDIR /app/src
 RUN echo "::group::Finalizing Application" && \
-    ln -sf /data/options.json /app/src/config.yaml && \
     echo "=== APPLICATION COPIED ===" && \
     echo "Virtual environment size: $(du -sh /opt/venv)" && \
     echo "=== BUILD COMPLETED: $(date) ===" && \

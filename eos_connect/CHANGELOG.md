@@ -1,3 +1,46 @@
+## !! IMPORTANT: Web-Based Configuration — Action Required for All Users !!
+
+**This update fundamentally changes how EOS Connect is configured and managed.**
+
+### What changed
+- **All settings** (load, battery, EOS server, price, inverter, MQTT, etc.) are now managed through the **EOS Connect web UI** and stored in a local database.
+- The Home Assistant addon config panel will soon only show three fields: **Web Port, Time Zone, and Log Level**. All other options are now handled in the web UI.
+- **No more YAML editing or config panel changes** for day-to-day operation.
+
+### For existing users (including auto-update users)
+- **Automatic migration:** On first start after this update, your current settings are automatically imported from `options.json` into the new database. No manual action is required.
+- **Your system will continue running with your existing configuration.**
+- **After migration, any changes made in the HA addon config panel will be ignored.** Use the web UI for all adjustments.
+
+### For new installs
+- After installation, open the EOS Connect web UI. A **Setup Wizard** will guide you through the initial configuration step-by-step.
+
+---
+
+## **Version 0.2.34** (2026-04-21)
+
+### Key New Features & Improvements
+
+- **Web-Based Configuration UI:** Manage all settings in a modern, user-friendly web interface.
+- **Setup Wizard:** New installations are guided through initial setup—no YAML or manual editing required.
+- **Automatic Migration:** Existing settings are seamlessly imported; no data loss or manual steps.
+- **Live Hot-Reload:** Change many settings (like price sources, battery thresholds) without restarting the addon.
+- **PV & Battery Enhancements:** Improved PV forecast handling, battery pricing, and new options for advanced users.
+- **Inverter Support:** Expanded support for Home Assistant and Victron inverters, with easier integration.
+- **Experimental Features:** Try feed-in price optimization and granular PV-to-battery charge control (opt-in, see web UI).
+- **Improved Logging & Diagnostics:** Better error handling, logging, and troubleshooting tools.
+- **Security & Stability:** Passwords are masked, migration is atomic, and the system recovers gracefully from errors.
+
+### Upgrade Notes
+
+- All new features are fully backward compatible.
+- Existing configurations continue to work without changes.
+- Optional new parameters default to previous behavior.
+- No mandatory configuration changes required.
+- Recommended: Explore the new web UI and try out advanced features like feed-in price optimization or PV charge control if they fit your setup.
+
+For full details, see: https://github.com/ohAnd/EOS_connect/releases/tag/v0.3.34
+
 ## **Version 0.2.33** (2026-04-01)
 
 ### HEADLINE IMPROVEMENTS

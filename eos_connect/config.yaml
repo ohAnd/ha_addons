@@ -1,6 +1,6 @@
 name: "EOS connect"
-description: "Tool to optimize energy usage with EOS system data."
-version: "0.2.33"
+description: "IMPORTANT UPDATE v0.3.34: Web-based configuration introduced. Your existing settings are migrated automatically on first start. After update, open the EOS Connect web UI to manage all settings. The addon config panel will only show Web Port, Time Zone and Log Level in a future release."
+version: "0.2.34"
 slug: "eos_connect"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -122,6 +122,8 @@ options:
     password: "abc123"
     max_grid_charge_rate: 5000
     max_pv_charge_rate: 5000
+    token: "" # Access token for Home Assistant (homeassistant only)
+    url: "" # URL for Home Assistant (homeassistant only)
 
   evcc:
     url: http://yourEVCCserver:7070 # URL to your evcc installation, if not used set to "" or leave as http://yourEVCCserver:7070
@@ -137,6 +139,7 @@ options:
     ha_mqtt_auto_discovery_prefix: homeassistant # Prefix for Home Assistant MQTT auto discovery - default: homeassistant
   refresh_time: 3 # Default refresh time in minutes
   time_zone: Europe/Berlin # Default time zone
+  eos_connect_web_port: 8081 # Default port for EOS connect server
   request_timeout: 10 # Request timeout for Home Assistant and OpenHAB API calls in seconds (5-120)
   log_level: info # loglevel: debug, info, warning, error
 
@@ -216,12 +219,14 @@ schema:
       resource_id: str? # Optional resource id for solcast or Victron API
 
   inverter:
-    type: list(fronius_gen24|fronius_gen24_legacy|evcc|default)
+    type: list(fronius_gen24|fronius_gen24_legacy|evcc|victron|default)
     address: str?
     user: str?
     password: password?
     max_grid_charge_rate: int(0,50000)?
     max_pv_charge_rate: int(0,50000)?
+    token: password?
+    url: str?
   evcc:
     url: str # URL to your evcc installation
   mqtt:
