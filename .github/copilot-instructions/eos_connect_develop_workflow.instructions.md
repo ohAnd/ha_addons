@@ -44,28 +44,17 @@ When the user says any of the following, **IMMEDIATELY** execute the full workfl
 - Navigate to `c:\projects\ha_addons\eos_connect_develop\src`
 - Run: `git pull origin develop`
 
-#### Step 2: Check for New Configuration Parameters
-
-- Compare `src/src/config.py` with wrapper's `config.yaml`
-- For each NEW parameter found:
-  - Add to `config.yaml` in `options` section (with default value, comment)
-  - Add to `config.yaml` in `schema` section (with validation rules)
-  - Add to `translations/en.yaml` (with UI name and description)
-  - If configuration is now managed via the web UI (not config.yaml), ALWAYS prompt the user before adding new parameters to config.yaml, schema, or translations. By default, do NOT add new parameters unless the user explicitly approves.
-  - Clearly ask the user if a new parameter should be added to config.yaml, schema, and translations, or skipped. This keeps config.yaml changes optional as migration continues.
-- Mark as EXPERIMENTAL if feature is new/untested
-
-#### Step 3: Extract Version Information
+#### Step 2: Extract Version Information
 
 - Get latest commits from submodule
 - Find latest `[AUTO]` commit (format: "Update version to X.X.X.XXX-develop")
 - Extract version number: MAJOR.MINOR.PATCH.BUILD (e.g., 0.2.33.278)
 
-#### Step 4: Update config.yaml
+#### Step 3: Update config.yaml
 
 - Update version field: remove "-develop" suffix (0.2.33.278-develop → 0.2.33.278)
 
-#### Step 5: Update CHANGELOG.md
+#### Step 4: Update CHANGELOG.md
 
 - Add entry at TOP of `eos_connect_develop\CHANGELOG.md`
 - Format: `**Version X.X.X.XXX** published on YYYY-MM-DD`
@@ -76,9 +65,9 @@ When the user says any of the following, **IMMEDIATELY** execute the full workfl
   - Skip [AUTO] commits
 - User-friendly descriptions focused on "what changed for users"
 
-#### Step 6: Stage Changes & Show Proposed Commit
+#### Step 5: Stage Changes & Show Proposed Commit
 
-- Stage: `config.yaml`, `CHANGELOG.md`, `src` submodule, `translations/en.yaml`
+- Stage: `config.yaml`, `CHANGELOG.md`, `src` submodule
 - Show proposed commit message (format: `eos_connect_develop: bump version to X.X.X.XXX; update changelog with [key features]`)
 - Wait for: `approve eos commit` confirmation
 

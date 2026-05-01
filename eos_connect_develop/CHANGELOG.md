@@ -1,3 +1,19 @@
+> **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
+
+---
+**Version 0.3.35.295** published on 2026-05-01
+
+- **NEW FEATURE: negative_price_switch support for fixed_24h prices**
+  - When using fixed 24-hour electricity rates, you can now enable `negative_price_switch` to automatically set feed-in compensation to 0 during negative wholesale price periods
+  - Your fixed_24h prices remain active for grid cost calculations
+  - This allows cost-optimal battery discharge timing while avoiding penalties during negative price events
+  - Fixes [#228](https://github.com/ohAnd/EOS_connect/issues/228)
+
+- **FIX: Removed redundant debug logging for disabled MQTT configuration**
+  - Cleans up logs when MQTT is not configured
+
+---
+**Version 0.3.34.xxx**
 ## !! IMPORTANT: Web-Based Configuration — Action Required for All Users !!
 
 **This update changes how EOS Connect stores its configuration.**
@@ -15,8 +31,7 @@ After installation, open the EOS Connect web UI. A Setup Wizard will guide you t
 - The EOS Connect web UI now has a **Configuration** section where all configuration is managed
 - The HA addon config panel still shows all fields for now — they will be removed in a later release once migration is confirmed working for all users
 - Any changes made via the HA addon config panel after this update **will be ignored** — use the web UI instead
-
----
+----
 **Version 0.3.34.293** published on 2026-04-20
 - feat: Add “use real data correction” option for EVCC PV forecast
     - Adds a config option to enable/disable real data correction (scaling) for EVCC PV forecasts
