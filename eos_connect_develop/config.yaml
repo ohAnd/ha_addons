@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "IMPORTANT UPDATE v0.3.34: Web-based configuration introduced. Your existing settings are migrated automatically on first start. After update, open the EOS Connect web UI to manage all settings. The addon config panel will only show Web Port, Time Zone and Log Level in a future release."
-version: "0.3.35.295"
+version: "0.3.35.296"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:

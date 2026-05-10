@@ -1,6 +1,15 @@
 > **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
 
 ---
+**Version 0.3.35.296** published on 2026-05-10
+
+- **NEW FEATURE: Startup Error Helper with Scoped Alerts**
+  - EOS Connect now shows only startup-relevant errors in the web UI startup panel
+  - Errors include direct links to configuration sections where fixes are needed ("ACTION REQUIRED" markers)
+  - Reduces confusion from pre-existing errors and focuses on what matters for startup
+  - Improves troubleshooting experience for users experiencing configuration issues
+  - Fixes [#251](https://github.com/ohAnd/EOS_connect/issues/251)
+
 **Version 0.3.35.295** published on 2026-05-01
 
 - **NEW FEATURE: negative_price_switch support for fixed_24h prices**
