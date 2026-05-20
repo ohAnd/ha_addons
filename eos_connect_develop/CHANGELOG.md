@@ -1,6 +1,15 @@
 > **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
 
 ---
+**Version 0.3.35.297** published on 2026-05-20
+
+- **FIX: Add metadata markers to runtime data fetch errors**
+  - Price interface now marks Tibber fetch errors with config links for easier troubleshooting
+  - Battery interface marks state update errors with actionable metadata
+  - Properly handles NoneType errors in Tibber price responses
+  - Enables visibility of data fetch failures in startup panel instead of just HA logs
+  - Continues improvement of [#251](https://github.com/ohAnd/EOS_connect/issues/251)
+
 **Version 0.3.35.296** published on 2026-05-10
 
 - **NEW FEATURE: Startup Error Helper with Scoped Alerts**
