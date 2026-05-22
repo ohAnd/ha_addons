@@ -1,6 +1,24 @@
 > **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
 
 ---
+**Version 0.3.35.298** published on 2026-05-22
+
+- **NEW FEATURE: Dynamic Feed-In Pricing with Multi-Source Support**
+  - Support for multiple feed-in pricing sources: Fixed prices, Elpris DK spot prices, EPEX-Spot prices via Akkudoktor API
+  - All prices standardized to ct/kWh for consistency across the UI
+  - FeedInPriceInterface handles multi-source management with background price updates
+  - Backward compatible: Existing fixed prices automatically migrated (config key renamed)
+  - New web UI configuration section with hot-reload support
+  - Comprehensive test suite (26 tests) covering all sources
+  - Fixes [#219](https://github.com/ohAnd/EOS_connect/issues/219)
+
+- **FIX: MQTT state labels for EVCC discharge modes**
+  - Corrected incorrect state display: States 4 & 5 now show "Discharge Allowed EVCC" instead of "Avoid Discharge"
+  - Users can now manually select discharge-allowed modes in Home Assistant
+  - MQTT command mapping fixed to enable proper mode selection
+  - Documentation updated to reflect correct behavior
+  - Fixes [#252](https://github.com/ohAnd/EOS_connect/issues/252)
+
 **Version 0.3.35.297** published on 2026-05-20
 
 - **FIX: Add metadata markers to runtime data fetch errors**
