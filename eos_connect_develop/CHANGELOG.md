@@ -1,6 +1,13 @@
 > **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
 
 ---
+**Version 0.3.35.299-fix1** published on 2026-06-04
+
+- **FIX: Dockerfile PuLP Dependency for local_evopt**
+  - Added missing `pulp>=2.7.0` dependency to wrapper Dockerfile
+  - Ensures local_evopt MILP optimizer has required solver library
+  - Required for full functionality of the new local_evopt optimizer introduced in v0.3.35.299
+  
 **Version 0.3.35.299** published on 2026-06-04
 
 - **MAJOR FEATURE: Built-in Local MILP Optimizer (local_evopt)**

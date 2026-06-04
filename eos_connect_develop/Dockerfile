@@ -51,7 +51,7 @@ RUN echo "::group::Installing Configuration & Utilities" && \
     pip install --no-cache-dir \
     pyyaml>=6.0 ruamel.yaml==0.18.17 \
     pytz>=2025.1 paho-mqtt>=2.1.0 packaging>=23.2\
-    open-meteo-solar-forecast>=0.1.22 psutil>=7.0.0 pymodbus>=3.0.0 && \
+    open-meteo-solar-forecast>=0.1.22 psutil>=7.0.0 pymodbus>=3.0.0 pulp>=2.7.0 && \
     echo "=== ALL PACKAGES INSTALLED ===" && \
     echo "::endgroup::" && \
     apk del --purge gcc python3-dev musl-dev && \
