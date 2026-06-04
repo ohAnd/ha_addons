@@ -1,6 +1,31 @@
 > **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
 
 ---
+**Version 0.3.35.299** published on 2026-06-04
+
+- **MAJOR FEATURE: Built-in Local MILP Optimizer (local_evopt)**
+  - EOS Connect now includes a fully self-contained MILP optimizer—no external server required for most home setups
+  - Solves 2-day energy dispatch problem in-process using PuLP/CBC (MIT licence)
+  - Supports charging strategies: charge_before_export, maximize_self_consumption, attenuate_grid_peaks, discharge_before_import
+  - Supports discharging strategies: discharge_before_import, emergency reserve with configurable SOC floor
+  - Set as new default optimizer source (configurable via web UI)
+  - Hot-reload support for strategy/parameter changes—immediate re-run triggers automatically
+  - Closes [#258](https://github.com/ohAnd/EOS_connect/pull/258)
+
+- **NEW FEATURE: Day/Night Cycle Awareness in Optimizer**
+  - Optimizer now includes smart PV forecast extension teaching day/night cycles
+  - Improves forecast accuracy outside standard daylight hours
+  - Better planning for early morning/evening discharge and charging
+
+- **BUG FIXES & IMPROVEMENTS**
+  - Fix chart grid display for local_evopt backend
+  - Restore penalty_base floor matching upstream behavior
+  - Improve hot-reload feed-in price changes to take effect on next run
+  - Display-only inverter mode warning fixed
+  - Prevent stale past-data corruption in MILP horizon truncation
+  - Startup PV forecast race condition: poll up to 30s for forecast population
+  - Improve `maximize_self_consumption` strategy: lower charging break-even from 9.8 ct/kWh to 7.6 ct/kWh
+
 **Version 0.3.35.298** published on 2026-05-22
 
 - **NEW FEATURE: Dynamic Feed-In Pricing with Multi-Source Support**
