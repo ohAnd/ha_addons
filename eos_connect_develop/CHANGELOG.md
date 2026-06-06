@@ -1,6 +1,22 @@
 > **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
 
 ---
+**Version 0.3.35.300** published on 2026-06-06
+
+- **FIX: Implement PV Forecast Fallback Caching on API Failures**
+  - Add cache mechanism similar to PriceInterface for fault tolerance
+  - Track consecutive API failures (max 24) before falling back to defaults
+  - When any PV forecast API fails, reuse last successful forecast
+  - Applies to all PV sources: Akkudoktor, Solcast, Victron, OpenMeteo
+  - Cache resets automatically when PV configuration changes (source switch, etc.)
+  - Improves system reliability during external API outages
+  - Fixes [#256](https://github.com/ohAnd/EOS_connect/issues/256)
+
+- **FIX: Prevent Startup Crash on Incomplete Configuration**
+  - Enable web UI access even when configuration is incomplete or invalid
+  - Prevents startup crashes during initial setup or configuration errors
+  - Users can now fix issues directly through the web UI without manual config edits
+
 **Version 0.3.35.299-fix3** published on 2026-06-06
 
 - **FIX: rollback CBC Solver System Package for local_evopt**
