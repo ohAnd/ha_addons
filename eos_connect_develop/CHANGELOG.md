@@ -1,7 +1,11 @@
 > **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
 
 ---
-**Version 0.3.35.299-fix2** (unreleased)
+**Version 0.3.35.299-fix3** published on 2026-06-06
+
+- **FIX: rollback CBC Solver System Package for local_evopt**
+  
+**Version 0.3.35.299-fix2** published on 2026-06-06
 
 - **FIX: Add CBC Solver System Package for local_evopt**
   - Added missing `coinor-cbc` system package to Dockerfile
