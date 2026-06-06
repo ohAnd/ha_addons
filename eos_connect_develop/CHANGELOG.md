@@ -1,6 +1,15 @@
 > **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
 
 ---
+**Version 0.3.35.299-fix2** (unreleased)
+
+- **FIX: Add CBC Solver System Package for local_evopt**
+  - Added missing `coinor-cbc` system package to Dockerfile
+  - Ensures CBC solver binary is available for local_evopt MILP optimizer on all architectures
+  - Fixes fresh installs on ARM64 (Raspberry Pi) where CBC binary was not included
+  - Previous fix (v0.3.35.299-fix1) only added Python PuLP package without the actual solver binary
+  - Fixes [#260](https://github.com/ohAnd/EOS_connect/issues/260)
+
 **Version 0.3.35.299-fix1** published on 2026-06-04
 
 - **FIX: Dockerfile PuLP Dependency for local_evopt**
