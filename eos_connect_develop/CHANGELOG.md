@@ -1,6 +1,22 @@
 > **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
 
 ---
+**Version 0.3.35.302** published on 2026-06-11
+
+- **ENHANCEMENT: Refactor negative_price_switch to FeedInPriceInterface**
+  - Move negative price detection logic from PriceInterface to FeedInPriceInterface
+  - Support all feed-in price sources: Fixed prices, Elpris DK, EPEX Spot via Akkudoktor
+  - Add `price.feed_in_negative_price_switch` configuration field with dynamic descriptions
+  - Implement hot-reload support for live configuration changes without restart
+  - Add cross-field dependency validation (e.g., inverter.type="evcc" requires evcc.url)
+  - Enhance /api/config/schema endpoint with resolved descriptions and dependency mapping
+  - Cleaner separation of concerns: FeedInPriceInterface now owns all negative-price logic
+  - Fixes [#255](https://github.com/ohAnd/EOS_connect/issues/255)
+
+- **DOCS: Add Troubleshooting Notes for local_evopt on Proxmox**
+  - New troubleshooting section for users running EOS Connect on Proxmox
+  - Guidance for optimizing CBC solver behavior in containerized environments
+
 **Version 0.3.35.300** published on 2026-06-06
 
 - **FIX: Implement PV Forecast Fallback Caching on API Failures**
