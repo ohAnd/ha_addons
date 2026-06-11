@@ -1,6 +1,21 @@
 > **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
 
 ---
+**Version 0.3.35.303** published on 2026-06-11
+
+- **MAJOR ENHANCEMENT: Fully Configurable Home Assistant Inverter Service Calls**
+  - Remove deprecated inverter.url/token fields from schema
+  - Consolidate HA credentials at data_source level via merger injection
+  - Add three JSON-type fields for custom mode-sequence service call definitions
+  - Enable users to configure exact HA service calls for different battery modes (charge, discharge, auto, etc.)
+  - Implement cross-field dependencies (inverter configuration depends on selected data_source)
+  - Add JSON textarea field type to web UI with on-blur validation and dark-theme styling
+  - Update InverterHA to parse and execute JSON-defined service call sequences
+  - Fix address logging bug: override schema default with actual HA URL
+  - Comprehensive test suite: 14 new tests (289 total passing)
+  - User-facing configuration guide added to documentation
+  - Fixes [#253](https://github.com/ohAnd/EOS_connect/issues/253)
+
 **Version 0.3.35.302** published on 2026-06-11
 
 - **ENHANCEMENT: Refactor negative_price_switch to FeedInPriceInterface**
