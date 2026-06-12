@@ -1,6 +1,17 @@
 > **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
 
 ---
+**Version 0.3.35.304** published on 2026-06-12
+
+- **NEW FEATURE: SSL Certificate Verification Control for Self-Signed Certificates**
+  - Add `data_source.ssl_ignore` config option (expert level) to disable SSL verification
+  - Enables connection to Home Assistant and OpenHAB instances with self-signed or private CA certificates
+  - Applied to LoadInterface with security warnings logged
+  - Extended SSL ignore support to all Home Assistant interfaces (battery, inverter, etc.)
+  - All HTTP requests respect the ssl_ignore setting
+  - Comprehensive test coverage: new tests for SSL verify behavior
+  - Fixes [#254](https://github.com/ohAnd/EOS_connect/pull/254)
+
 **Version 0.3.35.303** published on 2026-06-11
 
 - **MAJOR ENHANCEMENT: Fully Configurable Home Assistant Inverter Service Calls**
