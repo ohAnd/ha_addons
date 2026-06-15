@@ -1,6 +1,23 @@
 > **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
 
 ---
+**Version 0.3.35.305** published on 2026-06-15
+
+- **MAJOR FEATURE: Unified Timeseries Data Source for Prices and PV Forecasts**
+  - Add "timeseries" as price source with HTTP endpoint support
+  - Add "timeseries" as PV forecast source with HTTP endpoint support
+  - Enable Home Assistant sensor integration for both prices and PV forecasts
+  - Support custom HTTP APIs with JSON timeseries format: [{start, end, value}, ...]
+  - Implement central Home Assistant data source reuse (avoid credential duplication)
+  - Add pre-flight validation for Home Assistant sensor existence
+  - All timeseries fields support hot-reload without restart
+  - Automatic resolution detection (900s vs 3600s) with conversion
+  - Value range validation and clamping (-0.5 to 1.0 EUR/Wh)
+  - Smart hot-reload behavior: immediate for timeseries/summarized, debounced for per-installation sources
+  - Comprehensive test suite: 42 timeseries parsing tests + 8 hot-reload tests + 3 merger tests
+  - Updated GitHub Pages with timeseries configuration guide and JSON path reference
+  - Fixes [#214](https://github.com/ohAnd/EOS_connect/discussions/214)
+
 **Version 0.3.35.304** published on 2026-06-12
 
 - **NEW FEATURE: SSL Certificate Verification Control for Self-Signed Certificates**
