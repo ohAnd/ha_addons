@@ -1,6 +1,17 @@
 > **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
 
 ---
+**Version 0.3.35.306** published on 2026-06-15
+
+- **ENHANCEMENT: Refactor PV Source Configuration with Code Quality Improvements**
+  - Move `resource_id` from PV forecast array entries to `pv_forecast_source` section
+  - Reclassify sources as location-based vs non-location-based for better organization
+  - Architecture: Added `LOCATION_BASED_PV_SOURCES` constant for code reuse
+  - Location-based sources (4): akkudoktor, openmeteo, forecast_solar, openmeteo_local — require PV Installations array
+  - Non-location-based sources (5): default (built-in), solcast (resource ID), victron (resource ID), evcc (from EVCC instance), timeseries (HTTP/HA)
+  - Improved UX: Added source-specific messages in config panel explaining data configuration requirements
+  - Updated documentation with comprehensive requirements matrix
+
 **Version 0.3.35.305** published on 2026-06-15
 
 - **MAJOR FEATURE: Unified Timeseries Data Source for Prices and PV Forecasts**
