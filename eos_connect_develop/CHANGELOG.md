@@ -1,6 +1,35 @@
 > **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
 
 ---
+**Version 0.3.35.307** published on 2026-06-16
+
+- **MAJOR FEATURE: EVCC as Price Source**
+  - Added EVCC as a new price source with intelligent 3-tier fallback strategy
+  - Fallback sequence: energyforecast.de smart prediction → yesterday prices → today repetition
+  - Enables price optimization when EVCC instance provides tariff data
+  - Fixed hot-reload: price_interface.src now properly updates on configuration changes
+  - Added cross-field validation: EVCC price source requires EVCC URL to be configured
+  - Comprehensive test suite: 11 new EVCC price tests + 8 hot-reload tests (all passing)
+  - Updated GitHub Pages with EVCC configuration guide
+  - Fixes [#176](https://github.com/ohAnd/EOS_connect/issues/176)
+
+- **MAJOR FEATURE: EVCC as Feed-In Source**
+  - Added EVCC as a new feed-in price source with hot-reload support
+  - Enables battery discharge optimization based on EVCC feed-in tariffs
+  - Added comprehensive test suite (402 tests for feed-in validation)
+  - Automatically validates configuration and provides user guidance
+  - Works seamlessly with hot-reload configuration changes
+
+- **ENHANCEMENT: Grid Price Forecast Feature Marked Stable**
+  - Removed experimental label from Grid Price Forecast feature
+  - Feature is now fully supported and production-ready
+  - All edge cases handled and tested
+
+- **ENHANCEMENT: Price Section UI Clarity Improvements**
+  - Reorganized display groups in Price configuration section for better clarity
+  - Improved user experience when selecting price sources
+  - Better visual grouping of related price configuration options
+
 **Version 0.3.35.306** published on 2026-06-15
 
 - **ENHANCEMENT: Refactor PV Source Configuration with Code Quality Improvements**
