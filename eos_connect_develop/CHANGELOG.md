@@ -1,6 +1,10 @@
-> **Note**: Configuration now managed via web UI. See v0.3.34 changelog for migration details.
+**Version 0.3.35.308** published on 2026-06-21
 
----
+- **REFACTOR: Bootstrap Configuration Cleanup**
+  - Removed legacy config.py, now only used for bootstrap
+  - Streamlined configuration initialization for improved startup performance
+  - Cleaner separation between bootstrap and web-based configuration management
+
 **Version 0.3.35.307** published on 2026-06-16
 
 - **MAJOR FEATURE: EVCC as Price Source**
