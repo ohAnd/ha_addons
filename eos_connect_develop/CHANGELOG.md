@@ -1,3 +1,10 @@
+**Version 0.3.35.309** published on 2026-06-23
+
+- **BUG FIX: Display Correct Backend Label for Local EVOPT**
+  - Fixed incorrect backend label display in info menu for local_evopt interface
+  - Dashboard Info menu now correctly shows: "Local EVOpt (built-in)" when local_evopt is active
+  - Improves clarity when viewing system information
+
 **Version 0.3.35.308** published on 2026-06-21
 
 - **REFACTOR: Bootstrap Configuration Cleanup**
