@@ -1,3 +1,8 @@
+**Version 0.3.35.312** published on 2026-06-23
+
+- Improved error logging for Home Assistant connection failures
+- Enhanced PvInterface logging by breaking taint chains in initialization and configuration
+
 **Version 0.3.35.309** published on 2026-06-23
 
 - **BUG FIX: Display Correct Backend Label for Local EVOPT**
