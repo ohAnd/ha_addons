@@ -1,19 +1,45 @@
-## !! IMPORTANT: Web-Based Configuration — Action Required for All Users !!
+## **Version 0.3.35** published on 2026-06-23
 
-**This update fundamentally changes how EOS Connect is configured and managed.**
+### 🚀 MAJOR FEATURES
 
-### What changed
-- **All settings** (load, battery, EOS server, price, inverter, MQTT, etc.) are now managed through the **EOS Connect web UI** and stored in a local database.
-- The Home Assistant addon config panel will soon only show three fields: **Web Port, Time Zone, and Log Level**. All other options are now handled in the web UI.
-- **No more YAML editing or config panel changes** for day-to-day operation.
+- **Built-in MILP Optimizer (local_evopt)**: Full linear programming optimizer integrated as default backend—no external EOS server required for advanced energy optimization
+- **EVCC Price & Feed-In Integration**: Dynamically fetch electricity prices and feed-in tariffs directly from EVCC (eliminates manual price configuration)
+- **Multi-Source Price System**: Unified timeseries data source architecture supporting multiple price/forecast sources with fallback strategies
+- **Day/Night Cycle Awareness**: Optimizer now understands day/night cycles for smarter battery charging and PV utilization decisions
 
-### For existing users (including auto-update users)
-- **Automatic migration:** On first start after this update, your current settings are automatically imported from `options.json` into the new database. No manual action is required.
-- **Your system will continue running with your existing configuration.**
-- **After migration, any changes made in the HA addon config panel will be ignored.** Use the web UI for all adjustments.
+### 🔧 IMPROVEMENTS & FIXES
 
-### For new installs
-- After installation, open the EOS Connect web UI. A **Setup Wizard** will guide you through the initial configuration step-by-step.
+- **Enhanced Logging & Diagnostics**:
+  - Better Home Assistant connection error logging
+  - Improved PV interface initialization with clearer taint chain breaking
+  - Startup error helper with scoped alerts and actionable config links
+  
+- **Security & Stability**:
+  - SSL ignore option for self-signed certificates across all Home Assistant interfaces
+  - Better PV forecast fallback caching on API failures
+  - Crash prevention on incomplete config—web UI remains accessible for repairs
+  - Hot-reload feed-in price changes take effect immediately on next optimizer run
+  
+- **Configuration & UX**:
+  - Fully configurable Home Assistant inverter service calls (issue #253)
+  - Negative price switch support for fixed_24h price source
+  - Grid Price Forecast now marked as **STABLE** (previously experimental)
+  - Improved Price section UI clarity with reorganized display groups
+
+- **Code Quality**:
+  - Reduced config.py to bootstrap-only, moved full config to web schema
+  - Legacy config code cleanup and refactoring
+  - Pylint/mypy compliance improvements across codebase
+
+### ⚠️ EXPERIMENTAL FEATURES (Opt-in)
+
+- **local_evopt Backend**: New built-in MILP optimizer—configure `eos.source: local_evopt` to use (default remains `eos_server` for backward compatibility)
+- **Dynamic Feed-In Pricing**: Factor your feed-in tariff as opportunity cost in battery pricing (battery.battery_price_include_feedin)
+- **PV Battery Charge Control**: Route PV output directly to battery via optimizer signal (pv_battery_charge_control_enabled)
+
+### 📝 CHANGELOG
+
+For complete details and PR references, see: https://github.com/ohAnd/EOS_connect/releases/tag/v0.3.35
 
 ---
 
