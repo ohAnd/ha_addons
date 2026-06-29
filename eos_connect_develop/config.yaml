@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "IMPORTANT UPDATE v0.3.34: Web-based configuration introduced. Your existing settings are migrated automatically on first start. After update, open the EOS Connect web UI to manage all settings. The addon config panel will only show Web Port, Time Zone and Log Level in a future release."
-version: "0.3.35.312"
+version: "0.3.36.313"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -23,223 +23,20 @@ map:
   - type: addon_config
     read_only: false
     path: /app/addon_config
-# host_network: true
 
 ports:
   8081/tcp: 8081
 ports_description:
   8081/tcp: "EOS_connect web server (edit for port conflict resolution)"
 
+# Bootstrap configuration
+# All other settings are managed through the web UI and stored in the database
 options:
-  load:
-    source: default # Data source for load power - openhab, homeassistant, default (static data)
-    url: http://<ip>:8080 # URL for openhab (e.g. ip:8080) or homeassistant (e.g. ip:8123)
-    access_token: "" # access token for homeassistant (optional)
-    load_sensor: sensor.load_power # item / entity name for load power data (openhab item/ homeassistant sensor)
-    car_charge_load_sensor: "" # item / entity for wallbox power data
-    additional_load_1_sensor: "" # item / entity for additional load power data in watts
-    additional_load_1_runtime: 0 # runtime of additional load 1 in hours
-    additional_load_1_consumption: 0 # overall consumption of additional load 1 in Wh for the given hours
-
-  eos:
-    source: eos_server # EOS server source - eos_server, evopt - default: eos_server
-    server: 192.168.1.94 # # EOS or evcc opt server address
-    port: 8503 # port for EOS server (8503) or evcc opt server (7050) - default: 8503
-    time_frame: 3600 # granularity of optimization steps in seconds (900=15min, 3600=hourly)
-    timeout: 180 # timeout for EOS optimize request in seconds
-    dyn_override_discharge_allowed_pv_greater_load: false # Allow discharge when PV forecast > load - default: false
-    pv_battery_charge_control_enabled: false # PV battery charge control via optimizer dc_charge signal - default: false
-
-  price:
-    source: default # Data source for electricity price
-    token: "" # Token for electricity price
-    fixed_price_adder_ct: 0 # Describes the fixed cost addition in ct per kWh.
-    relative_price_multiplier: 0.00 # Applied to (base energy price + fixed_price_adder_ct). Use a decimal (e.g., 0.05 for 5%).
-    fixed_24h_array: "" # 24 hours array with fixed prices over the day
-    feed_in_price: 0 # Feed-in price for electricity in EUR/kWh (optional)
-    negative_price_switch: False # Switch for negative stock price handling True/ False (optional)
-    energyforecast_enabled: false # Enable smart price prediction with energyforecast.de (when primary source lacks tomorrow prices)
-    energyforecast_token: "demo_token" # API token from energyforecast.de
-    energyforecast_market_zone: "DE-LU" # Market zone: DE-LU, AT, FR, NL, BE, PL, DK1, DK2
-
-  battery:
-    source: default # Data source for battery SOC - openhab, homeassistant, default (static data)
-    url: http://<ip>:8080 # URL for openhab (e.g. ip:8080) or homeassistant (e.g. ip:8123)
-    soc_sensor: sensor.battery_soc
-    access_token: 123456abcd # access token for homeassistant (optional)
-    capacity_wh: 11059 # Battery capacity in Wh
-    charge_efficiency: 0.88 # Efficiency for charging the battery
-    discharge_efficiency: 0.88 # Efficiency for discharging the battery
-    max_charge_power_w: 5000 # Maximum charging power in W
-    min_soc_percentage: 5 # Minimum state of charge percentage
-    max_soc_percentage: 100 # Maximum state of charge percentage
-    price_euro_per_wh_accu: 0.0000 # price for battery in €/Wh
-    price_euro_per_wh_sensor: "" # item / entity name for price_euro_per_wh_accu (optional, overrides static value if set)
-    charging_curve_enabled: true # Enable charging curve for battery - default: true
-    sensor_battery_temperature: "" # sensor for battery temperature in °C (optional)
-    price_calculation_enabled: false # Enable dynamic battery price calculation based on history - default: false
-    price_update_interval: 900 # Interval for price update in seconds - default: 900 (15 min)
-    price_history_lookback_hours: 96 # Hours of history to analyze for price calculation - default: 96
-    battery_power_sensor: "" # HA entity ID or OpenHAB item for battery power in W (positive = charging)
-    pv_power_sensor: "" # HA entity ID or OpenHAB item for PV power in W
-    grid_power_sensor: "" # HA entity ID or OpenHAB item for grid power in W (positive = import)
-    load_power_sensor: "" # HA entity ID or OpenHAB item for load power in W
-    price_sensor: "" # HA entity ID or OpenHAB item for electricity price in €/kWh or ct/kWh
-    charging_threshold_w: 50.0 # Minimum battery power to consider as charging (W) - default: 50.0
-    grid_charge_threshold_w: 100.0 # Minimum grid surplus to consider as grid charging (W) - default: 100.0
-    battery_price_include_feedin: false # include feed-in price as opportunity cost for PV-sourced energy in battery price calculation - default: false
-
-  pv_forecast_source:
-    source: akkudoktor # data source for solar forecast providers akkudoktor, openmeteo, openmeteo_local, forecast_solar, evcc, solcast, victron, default (default uses akkudoktor)
-    api_key: "your_solcast_api_key_here" # Your Solcast or Victron API key (required if using solcast or victron as source)
-
-  pv_forecast:
-    - name: roof_west #name
-      lat: 47.5 # Latitude for PV forecast @ Akkudoktor API
-      lon: 8.5 # Longitude for PV forecast @ Akkudoktor API
-      azimuth: 90.0 # Azimuth for PV forecast @ Akkudoktor API
-      tilt: 30.0 # Tilt for PV forecast @ Akkudoktor API
-      power: 4600 # Power for PV forecast @ Akkudoktor API
-      powerInverter: 5000 # Power Inverter for PV forecast @ Akkudoktor API
-      inverterEfficiency: 0.9 # Inverter Efficiency for PV forecast @ Akkudoktor API
-      horizon: "10,20,10,15" # Horizon to calculate shading up to 360 values to describe shading situation for your PV
-      resource_id: "" # Optional resource id for solcast or Victron API
-    - name: garden_south #name
-      lat: 47.5 # Latitude for PV forecast @ Akkudoktor API
-      lon: 8.5 # Longitude for PV forecast @ Akkudoktor API
-      azimuth: 0.1 # Azimuth for PV forecast @ Akkudoktor API
-      tilt: 45.0 # Tilt for PV forecast @ Akkudoktor API
-      power: 860 # Power for PV forecast @ Akkudoktor API
-      powerInverter: 800 # Power Inverter for PV forecast @ Akkudoktor API
-      inverterEfficiency: 0.9 # Inverter Efficiency for PV forecast @ Akkudoktor API
-      horizon: "" # Horizon to calculate shading up to 360 values to describe shading situation for your PV
-      resource_id: "" # Optional resource id for solcast or Victron API
-
-  inverter:
-    type: "default"
-    address: "192.168.1.12"
-    user: "customer"
-    password: "abc123"
-    max_grid_charge_rate: 5000
-    max_pv_charge_rate: 5000
-    token: "" # Access token for Home Assistant (homeassistant only)
-    url: "" # URL for Home Assistant (homeassistant only)
-
-  evcc:
-    url: http://yourEVCCserver:7070 # URL to your evcc installation, if not used set to "" or leave as http://yourEVCCserver:7070
-
-  mqtt:
-    enabled: false # Enable MQTT - default: false
-    broker: localhost # URL for MQTT server - default: mqtt://yourMQTTserver
-    port: 1883 # Port for MQTT server - default: 1883
-    user: mqtt_user # Username for MQTT server - default: mqtt
-    password: mqtt_password # Password for MQTT server - default: mqtt
-    tls: false # Use TLS for MQTT server - default: false
-    ha_mqtt_auto_discovery: true # Enable Home Assistant MQTT auto discovery - default: true
-    ha_mqtt_auto_discovery_prefix: homeassistant # Prefix for Home Assistant MQTT auto discovery - default: homeassistant
-  refresh_time: 3 # Default refresh time in minutes
-  time_zone: Europe/Berlin # Default time zone
-  eos_connect_web_port: 8081 # Default port for EOS connect server
-  request_timeout: 10 # Request timeout for Home Assistant and OpenHAB API calls in seconds (5-120)
-  log_level: info # loglevel: debug, info, warning, error
+  eos_connect_web_port: 8081 # Port for EOS Connect web server
+  time_zone: Europe/Berlin # Time zone for the application
+  log_level: info # Log level: debug, info, warning, error
 
 schema:
-  load:
-    source: list(openhab|homeassistant|default) # Data source for load power
-    url: str # URL for openhab or homeassistant
-    access_token: password? # access token for homeassistant (optional)
-    load_sensor: str # item / entity name for load power data
-    car_charge_load_sensor: str? # item / entity for wallbox power data
-    additional_load_1_sensor: str? # item / entity for additional load power data in watts
-    additional_load_1_runtime: int(0,)? # runtime of additional load 1 in hours
-    additional_load_1_consumption: int(0,)? # overall consumption of additional load 1 in Wh for the given hours
-
-  eos:
-    source: list(eos_server|evopt)
-    server: str # # EOS or evcc opt server address
-    port: port # port for EOS server (8503) or evcc opt server (7050) - default: 8503
-    time_frame: list(900|3600) # granularity of optimization steps in seconds (900=15min, 3600=hourly) - default: 3600
-    timeout: int(1,) # timeout for EOS optimize request in seconds
-    dyn_override_discharge_allowed_pv_greater_load: bool? # Allow discharge when PV forecast > load - default: false
-    pv_battery_charge_control_enabled: bool? # PV battery charge control via optimizer dc_charge signal - default: false
-
-  price:
-    source: list(smartenergy_at|tibber|stromligning|fixed_24h|default) # Data source for electricity price
-    token: str? # Token for electricity price. For Stromligning use supplierId/productId[/groupId].
-    fixed_price_adder_ct: float(0,1000)? # Describes the fixed cost addition in ct per kWh.
-    relative_price_multiplier: float(0.0,1.0)? # Applied to (base energy price + fixed_price_adder_ct). Use a decimal (e.g., 0.05 for 5%).
-    fixed_24h_array: str? # 24 hours array with fixed prices over the day
-    feed_in_price: float? # Feed-in price for electricity in EUR/kWh (optional)
-    negative_price_switch: bool? # Switch for negative stock price handling True/ False (optional)
-    energyforecast_enabled: bool? # Enable smart price prediction with energyforecast.de
-    energyforecast_token: password? # API token from energyforecast.de
-    energyforecast_market_zone: list(DE-LU|AT|FR|NL|BE|PL|DK1|DK2)? # Market zone for energyforecast.de
-
-  battery:
-    source: list(openhab|homeassistant|default) # Data source for battery SOC
-    url: str # URL for openhab or homeassistant
-    soc_sensor: str # item / entity name for soc_sensor
-    access_token: password? # access token for homeassistant (optional)
-    capacity_wh: int(1,) # Battery capacity in Wh
-    charge_efficiency: float(0,1) # Efficiency for charging the battery
-    discharge_efficiency: float(0,1) # Efficiency for discharging the battery
-    max_charge_power_w: int(1,) # Maximum charging power in W
-    min_soc_percentage: int(0,100) # Minimum state of charge percentage
-    max_soc_percentage: int(0,100) # Maximum state of charge percentage
-    price_euro_per_wh_accu: float # price for battery in €/Wh
-    price_euro_per_wh_sensor: str? # item / entity name for price_euro_per_wh_accu (optional, overrides static value if set)
-    charging_curve_enabled: bool # Enable charging curve for battery - default: true
-    sensor_battery_temperature: str? # sensor for battery temperature in °C (optional)
-    price_calculation_enabled: bool # Enable dynamic battery price calculation based on history - default: false
-    price_update_interval: int(1,) # Interval for price update in seconds - default: 900 (15 min)
-    price_history_lookback_hours: int(1,) # Hours of history to analyze for price calculation - default: 96
-    battery_power_sensor: str? # HA entity ID or OpenHAB item for battery power in W (positive = charging)
-    pv_power_sensor: str? # HA entity ID or OpenHAB item for PV power in W
-    grid_power_sensor: str? # HA entity ID or OpenHAB item for grid power in W (positive = import)
-    load_power_sensor: str? # HA entity ID or OpenHAB item for load power in W
-    price_sensor: str? # HA entity ID or OpenHAB item for electricity price in €/kWh or ct/kWh
-    charging_threshold_w: float(0,) # Minimum battery power to consider as charging (W) - default: 50.0
-    grid_charge_threshold_w: float(0,) # Minimum grid surplus to consider as grid charging (W) - default: 100.0
-    battery_price_include_feedin: bool? # include feed-in price as opportunity cost for PV-sourced energy in battery price calculation - default: false
-
-  pv_forecast_source:
-    source: list(akkudoktor|openmeteo|openmeteo_local|forecast_solar|evcc|solcast|victron|default) # data source for solar forecast providers, default (default uses akkudoktor)
-    api_key: password? # Your Solcast or Victron API key (required if using solcast or victron as source)
-
-  pv_forecast:
-    - name: str # name
-      lat: float(,90) # Latitude for PV forecast
-      lon: float(,180) # Longitude for PV forecast
-      azimuth: float(,180) # Azimuth for PV forecast
-      tilt: int(0,90) # Tilt for PV forecast
-      power: int(1,) # Power for PV forecast
-      powerInverter: int(1,) # Power Inverter for PV forecast
-      inverterEfficiency: float(0.0,1.0) # Inverter Efficiency for PV forecast
-      horizon: str? # Optional - Horizon to calculate shading
-      resource_id: str? # Optional resource id for solcast or Victron API
-
-  inverter:
-    type: list(fronius_gen24|fronius_gen24_legacy|evcc|victron|default)
-    address: str?
-    user: str?
-    password: password?
-    max_grid_charge_rate: int(0,50000)?
-    max_pv_charge_rate: int(0,50000)?
-    token: password?
-    url: str?
-  evcc:
-    url: str # URL to your evcc installation
-  mqtt:
-    enabled: bool # Enable MQTT - default: false
-    broker: str # URL for MQTT server - default: mqtt://yourMQTTserver
-    port: int(1,65535) # Port for MQTT server - default: 1883
-    user: str # Username for MQTT server - default: mqtt
-    password: password # Password for MQTT server - default: mqtt
-    tls: bool # Use TLS for MQTT server - default: false
-    ha_mqtt_auto_discovery: bool # Enable Home Assistant MQTT auto discovery - default: true
-    ha_mqtt_auto_discovery_prefix: str # Prefix for Home Assistant MQTT auto discovery - default: homeassistant
-  refresh_time: int(1,) # Default refresh time in minutes
-  time_zone: str # Default time zone
-  eos_connect_web_port: int(1,65535)? # Port for EOS server (local/Docker installations only)
-  request_timeout: int(5,120)? # Request timeout for Home Assistant and OpenHAB API calls in seconds - default: 10
-  log_level: list(debug|info|warning|error) # loglevel options
+  eos_connect_web_port: int(1,65535)? # Port for EOS Connect web server - default: 8081
+  time_zone: str # Time zone for the application - default: Europe/Berlin
+  log_level: list(debug|info|warning|error) # Log level options - default: info

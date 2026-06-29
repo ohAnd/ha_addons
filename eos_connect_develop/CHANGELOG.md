@@ -1,3 +1,9 @@
+**Version 0.3.36.313** published on 2026-06-29
+
+- Implement smart defaults for EVopt grid limits [#268](https://github.com/ohAnd/EOS_connect/issues/268)
+- Enhance Proxmox VM troubleshooting documentation for CPU configuration issues
+- Update config creation logic to exclude HA addon mode
+
 **Version 0.3.35.312** published on 2026-06-23
 
 - Improved error logging for Home Assistant connection failures
