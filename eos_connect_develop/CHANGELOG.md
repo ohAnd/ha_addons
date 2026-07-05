@@ -1,3 +1,9 @@
+**Version 0.3.36.315** published on 2026-07-05
+
+- **BUG FIX: Prevent spurious Infeasible errors in EVopt**
+  Fixed regression where tight_M sizing ignored grid limits, leading to solver failures. Fixes [#269](https://github.com/ohAnd/EOS_connect/issues/269)
+- Reduced log noise by changing missing value fill messages to debug level in LoadInterface
+
 **Version 0.3.36.314** published on 2026-07-05
 
 - Improved data reliability: automatically recover from incomplete Home Assistant sensor data using forward-fill techniques
