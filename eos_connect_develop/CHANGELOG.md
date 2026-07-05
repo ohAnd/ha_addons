@@ -1,3 +1,7 @@
+**Version 0.3.36.314** published on 2026-07-05
+
+- Improved data reliability: automatically recover from incomplete Home Assistant sensor data using forward-fill techniques
+
 **Version 0.3.36.313** published on 2026-06-29
 
 - Implement smart defaults for EVopt grid limits [#268](https://github.com/ohAnd/EOS_connect/issues/268)
