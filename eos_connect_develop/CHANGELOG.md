@@ -1,3 +1,8 @@
+**Version 0.3.36.317** published on 2026-07-12
+
+- **BUG FIX: EVCC Feed-in Price Resolution**
+  Fixed issue where EVCC feed-in price data could be misaligned due to incorrect resolution conversion. Now uses timestamp-aware processing. Fixes [#267](https://github.com/ohAnd/EOS_connect/issues/267)
+
 **Version 0.3.36.316** published on 2026-07-12
 
 - **BUG FIX: Improved EVCC price padding**
