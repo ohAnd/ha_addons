@@ -1,3 +1,10 @@
+**Version 0.3.36.316** published on 2026-07-12
+
+- **BUG FIX: Improved EVCC price padding**
+  EVCC price source now uses cyclic padding for complete calendar days, ensuring smoother operation when data is sparse. Fixes [#267](https://github.com/ohAnd/EOS_connect/issues/267)
+- **STRICTER CONFIG VALIDATION**
+  The `price.fixed_24h_array` setting now strictly requires exactly 24 values to prevent configuration errors.
+
 **Version 0.3.36.315** published on 2026-07-05
 
 - **BUG FIX: Prevent spurious Infeasible errors in EVopt**
