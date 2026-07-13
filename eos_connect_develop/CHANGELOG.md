@@ -1,3 +1,9 @@
+**Version 0.3.36.318** published on 2026-07-13
+
+- **BUG FIX: Robust PV timeseries source**
+  Added support for a flexible `timeseries` PV forecast source that handles arbitrary start times and provides improved resilience. [#270](https://github.com/ohAnd/EOS_connect/issues/270)
+- **Improved Source Dispatch**: Added missing PV forecast source dispatch for `timeseries` and `external`.
+
 **Version 0.3.36.317** published on 2026-07-12
 
 - **BUG FIX: EVCC Feed-in Price Resolution**
