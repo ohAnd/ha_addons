@@ -1,3 +1,41 @@
+## **Version 0.3.36** published on 2026-07-16
+
+### 🚀 NEW FEATURES & IMPROVEMENTS
+
+- **Robust PV Timeseries Source**: Complete timeseries PV forecast source dispatch with arbitrary start time support for maximum flexibility
+- **Enhanced EVCC Integration**: 
+  - Timestamp-aware resolution conversion for feed-in data fixes [#267](https://github.com/ohAnd/EOS_connect/issues/267)
+  - Cyclic padding for complete calendar days handling
+- **Smart EVopt Grid Defaults**: Implement intelligent defaults for grid import/export limits to prevent spurious Infeasible errors [#268](https://github.com/ohAnd/EOS_connect/issues/268)
+- **PV Forecast Data Source**: Timeseries PV forecast source dispatch dispatch missing implementation
+- **Price Validation**: Added strict validation requiring exactly 24 values for fixed_24h_array price source
+- **Home Assistant Addon Optimization**: Update config creation logic to exclude HA addon mode from legacy flows
+
+### 🔧 STABILITY & RELIABILITY FIXES
+
+- **Optimizer Accuracy**: Fixed grid flow energy calculation in tight_M sizing that caused spurious Infeasible errors (regression from #268) [#269](https://github.com/ohAnd/EOS_connect/issues/269)
+- **Home Assistant Sensor Recovery**: Recover gracefully from incomplete HA sensor data with forward-fill fallback strategy
+- **Improved Logging**:
+  - Reduced log noise: LoadInterface filled value logging reduced from warning to debug level
+- **EVCC Resolution Handling**: Proper timestamp-aware handling of feed-in resolution conversions
+
+### 📚 DOCUMENTATION
+
+- Enhanced Proxmox VM troubleshooting section for CPU configuration issues
+- Clarified mandatory git workflow rules and user approval processes
+
+### ⚠️ EXPERIMENTAL FEATURES (Inherited from v0.3.35, Opt-in)
+
+- **local_evopt Backend**: Built-in MILP optimizer—configure `eos.source: local_evopt` to use (default remains `eos_server` for backward compatibility)
+- **Dynamic Feed-In Pricing**: Factor your feed-in tariff as opportunity cost in battery pricing (battery.battery_price_include_feedin)
+- **PV Battery Charge Control**: Route PV output directly to battery via optimizer signal (pv_battery_charge_control_enabled)
+
+### 📝 RELEASE INFO
+
+For complete details and PR references, see: https://github.com/ohAnd/EOS_connect/releases/tag/v0.3.36
+
+---
+
 ## **Version 0.3.35** published on 2026-06-23
 
 ### 🚀 MAJOR FEATURES
