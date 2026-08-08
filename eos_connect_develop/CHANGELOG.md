@@ -1,3 +1,15 @@
+**Version 0.3.37.321** published on 2026-08-08
+
+- **FIX: Location-based PV forecast handling (PR #277)**
+  Prevent issues when a location-based PV source is selected but no PV installations are configured; preserve merged configuration and installation entries. See [PR #277](https://github.com/ohAnd/EOS_connect/pull/277)
+- **FIX: Improve version comparison & tests**
+  Enhanced version comparison handling and updated test assertions for clarity.
+- **FIX: Preserve PV installation saves**
+  Ensure location-based PV installation saves are preserved when merging configuration.
+- **DOCS/CHORE: Update documentation/workflow version references**
+  Updated references to v0.3.37 in documentation and workflow files.
+- **Merge:** Merge branch 'main' into develop
+
 **Version 0.3.36.318** published on 2026-07-13
 
 - **BUG FIX: Robust PV timeseries source**
