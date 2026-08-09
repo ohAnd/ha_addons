@@ -11,7 +11,8 @@ RUN echo "::group::Build Environment Setup" && \
 # Install runtime dependencies efficiently
 RUN echo "::group::Installing System Dependencies" && \
     echo "=== INSTALLING SYSTEM PACKAGES ===" && \
-    apk add --no-cache python3 py3-pip curl gcc python3-dev musl-dev coin-or-cbc && \
+    apk add --no-cache python3 py3-pip curl gcc python3-dev musl-dev && \
+    apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing cbc && \
     echo "=== SYSTEM PACKAGES INSTALLED ===" && \
     echo "::endgroup::"
 
