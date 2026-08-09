@@ -1,3 +1,8 @@
+**Version 0.3.37.322** published on 2026-08-09
+
+- **FIX: Prefer system CBC solver for local_evopt on musl/Alpine**
+  Detect a system-installed `cbc` binary and use it before falling back to the PuLP bundled binary. Resolves CBC launch failures on Home Assistant OS x86_64 add-ons where the bundled binary is glibc-linked. Fixes [#273](https://github.com/ohAnd/EOS_connect/issues/273), [#260](https://github.com/ohAnd/EOS_connect/issues/260), [#264](https://github.com/ohAnd/EOS_connect/issues/264), [#265](https://github.com/ohAnd/EOS_connect/issues/265)
+
 **Version 0.3.37.321** published on 2026-08-08
 
 - **FIX: Location-based PV forecast handling (PR #277)**
