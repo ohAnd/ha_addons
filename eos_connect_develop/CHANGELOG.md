@@ -1,3 +1,10 @@
+**Version 0.3.37.323** published on 2026-08-16
+
+- **NEW: Compact EVCC Forecasts API Integration**
+  - Enhanced PV forecast handling to support compact format from EVCC [#32391](https://github.com/evcc-io/evcc/pull/32391)
+  - Forecast data now published as arrays with Unix timestamps (before commit BC)
+  - Improves compatibility with modern EVCC versions that use the compact timestamp format
+
 **Version 0.3.37.322** published on 2026-08-09
 
 - **FIX: Prefer system CBC solver for local_evopt on musl/Alpine**

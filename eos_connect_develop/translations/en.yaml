@@ -5,7 +5,7 @@ configuration:
 
   eos_connect_web_port:
     name: EOS Connect Web Port
-    description: Port for EOS Connect web server (default: 8081).
+    description: "Port for EOS Connect web server (default: 8081)."
 
   log_level:
     name: Log Level
