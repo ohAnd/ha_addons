@@ -1,3 +1,21 @@
+**Version 0.3.38.327** published on 2026-08-22
+
+- **NEW: PV Forecast Auto-Scaling**
+  Learns from historical measured solar yield and automatically corrects PV forecasts
+  with per-timeframe scale factors before optimization, so persistent forecast bias
+  (panel soiling, shading, model drift) self-corrects over time instead of requiring
+  manual tuning.
+  - New `PvAutoscaler` collects hourly real yield vs. live EOS forecast and computes
+    kWh-based scale factors; `PvYieldStore` persists the history with automatic
+    Wh→kWh migration
+  - PV interface also gained a startup readiness guard to prevent incomplete forecast
+    writes, and now accepts EVCC's compact `[unix_ts, value]` forecast format
+    ([evcc-io/evcc#32391](https://github.com/evcc-io/evcc/pull/32391)) alongside the
+    legacy `{ts, val}` format
+  - Configured entirely through the web UI; no add-on options changed
+  - [Learn more →](https://ohAnd.github.io/EOS_connect/user-guide/configuration.html#pv-autoscaling)
+  - See [PR #281](https://github.com/ohAnd/EOS_connect/pull/281)
+
 **Version 0.3.37.324** published on 2026-08-22
 
 - **FIX: Upstream CBC solver detection now probes before use**
