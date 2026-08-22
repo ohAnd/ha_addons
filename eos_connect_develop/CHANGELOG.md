@@ -1,3 +1,13 @@
+**Version 0.3.37.323-fix1** published on 2026-08-21
+
+- **FIX: local_evopt now works on x86_64 Home Assistant OS**
+  The add-on image now ships a statically linked CBC solver (COIN-OR 2.10.13) on x86_64.
+  The binary bundled with `pulp` is glibc-linked and cannot be executed on the Alpine/musl
+  add-on base, which surfaced as `FileNotFoundError` on a file that plainly exists.
+  - aarch64 is unchanged — PuLP's bundled arm64 CBC is already statically linked
+  - Removed `gcompat`: it cannot provide glibc's internal `__fpu_control` and never helped
+  - Fixes [#260](https://github.com/ohAnd/EOS_connect/issues/260), [#264](https://github.com/ohAnd/EOS_connect/issues/264), [#265](https://github.com/ohAnd/EOS_connect/issues/265), [#273](https://github.com/ohAnd/EOS_connect/issues/273)
+
 **Version 0.3.37.323** published on 2026-08-16
 
 - **NEW: Compact EVCC Forecasts API Integration**
