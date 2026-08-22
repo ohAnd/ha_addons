@@ -1,3 +1,17 @@
+**Version 0.3.37.324** published on 2026-08-22
+
+- **FIX: Upstream CBC solver detection now probes before use**
+  `PULP_CBC_CMD.available()` only stat'd the binary, so the glibc-linked x86_64 CBC
+  bundled with `pulp` passed the check on Alpine/musl and only then failed at solve
+  time. The solver candidate is now executed, not just stat'd, and a broken system
+  `cbc` on PATH falls back to the bundled binary. Also fixes the solver logger
+  (previously wrote to a handler-less logger, hiding the solver choice from bug
+  reports) and corrects README/docs: the failure was never an AVX issue, and the
+  Alpine `coin-or-cbc` package it told users to install does not exist.
+  - Addresses the same root cause as the wrapper's `0.3.37.323-fix1` static-CBC
+    Dockerfile workaround; the two fixes are complementary for now.
+  - Fixes [#260](https://github.com/ohAnd/EOS_connect/issues/260), [#264](https://github.com/ohAnd/EOS_connect/issues/264), [#265](https://github.com/ohAnd/EOS_connect/issues/265), [#273](https://github.com/ohAnd/EOS_connect/issues/273)
+
 **Version 0.3.37.323-fix1** published on 2026-08-21
 
 - **FIX: local_evopt now works on x86_64 Home Assistant OS**
