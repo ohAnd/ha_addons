@@ -251,6 +251,7 @@ Status: [Production-ready/Testing phase]
 - Mark EXPERIMENTAL features with clear warnings
 - Provide actionable guidance (e.g., "Set X to true to enable")
 - Link to relevant PRs/issues
+- No emoji/icons in section headers or bullets (plain text only, e.g. `### NEW FEATURES & IMPROVEMENTS` not `### 🚀 NEW FEATURES & IMPROVEMENTS`)
 
 ### Version Management
 

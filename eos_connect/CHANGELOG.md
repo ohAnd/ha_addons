@@ -1,6 +1,23 @@
+## **Version 0.3.37** published on 2026-08-22
+
+### NEW FEATURES & IMPROVEMENTS
+
+- **Compact EVCC Forecasts API Integration**: Added support for EVCC's newer compact forecast format, which publishes PV forecast data as arrays with Unix timestamps. Improves compatibility with modern EVCC versions using this format.
+
+### STABILITY & RELIABILITY FIXES
+
+- **Local EVopt Solver Reliability on x86_64 (Home Assistant OS)**: Fixed `local_evopt` failing with a misleading `FileNotFoundError` on x86_64 add-on installs. The bundled CBC solver binary is glibc-linked and can't run on this add-on's Alpine/musl base.
+  - The add-on solver detection now prefers a working system `cbc` binary, and probes it by actually running it (not just checking that the file exists) before trusting it — a broken system `cbc` correctly falls back to the bundled binary instead of failing at solve time.
+  - This add-on's image now also ships a statically linked CBC solver (COIN-OR 2.10.13) on x86_64, so a working solver is available out of the box.
+  - aarch64 installs are unaffected — the bundled arm64 CBC binary was already statically linked.
+  - Fixes [#260](https://github.com/ohAnd/EOS_connect/issues/260), [#264](https://github.com/ohAnd/EOS_connect/issues/264), [#265](https://github.com/ohAnd/EOS_connect/issues/265), [#273](https://github.com/ohAnd/EOS_connect/issues/273)
+- **PV Setup Wizard**: Fixed location-based PV installation entries being lost when saving configuration; installation and dependent settings are now correctly preserved across merged-config rebuilds.
+- **Improved Version Comparison Handling**: Internal version comparison logic hardened, with clearer test coverage.
+- **Dependency Hardening**: Pinned `pulp` to `<4` in the add-on image. PuLP 4.0 drops the bundled CBC solver binary this add-on's `local_evopt` backend relies on; the pin prevents that from silently breaking the aarch64 build on a future image rebuild.
+
 ## **Version 0.3.36** published on 2026-07-16
 
-### 🚀 NEW FEATURES & IMPROVEMENTS
+### NEW FEATURES & IMPROVEMENTS
 
 - **Robust PV Timeseries Source**: Complete timeseries PV forecast source dispatch with arbitrary start time support for maximum flexibility
 - **Enhanced EVCC Integration**: 
@@ -11,7 +28,7 @@
 - **Price Validation**: Added strict validation requiring exactly 24 values for fixed_24h_array price source
 - **Home Assistant Addon Optimization**: Update config creation logic to exclude HA addon mode from legacy flows
 
-### 🔧 STABILITY & RELIABILITY FIXES
+### STABILITY & RELIABILITY FIXES
 
 - **Optimizer Accuracy**: Fixed grid flow energy calculation in tight_M sizing that caused spurious Infeasible errors (regression from #268) [#269](https://github.com/ohAnd/EOS_connect/issues/269)
 - **Home Assistant Sensor Recovery**: Recover gracefully from incomplete HA sensor data with forward-fill fallback strategy
@@ -19,18 +36,18 @@
   - Reduced log noise: LoadInterface filled value logging reduced from warning to debug level
 - **EVCC Resolution Handling**: Proper timestamp-aware handling of feed-in resolution conversions
 
-### 📚 DOCUMENTATION
+### DOCUMENTATION
 
 - Enhanced Proxmox VM troubleshooting section for CPU configuration issues
 - Clarified mandatory git workflow rules and user approval processes
 
-### ⚠️ EXPERIMENTAL FEATURES (Inherited from v0.3.35, Opt-in)
+### EXPERIMENTAL FEATURES (Inherited from v0.3.35, Opt-in)
 
 - **local_evopt Backend**: Built-in MILP optimizer—configure `eos.source: local_evopt` to use (default remains `eos_server` for backward compatibility)
 - **Dynamic Feed-In Pricing**: Factor your feed-in tariff as opportunity cost in battery pricing (battery.battery_price_include_feedin)
 - **PV Battery Charge Control**: Route PV output directly to battery via optimizer signal (pv_battery_charge_control_enabled)
 
-### 📝 RELEASE INFO
+### RELEASE INFO
 
 For complete details and PR references, see: https://github.com/ohAnd/EOS_connect/releases/tag/v0.3.36
 
@@ -38,14 +55,14 @@ For complete details and PR references, see: https://github.com/ohAnd/EOS_connec
 
 ## **Version 0.3.35** published on 2026-06-23
 
-### 🚀 MAJOR FEATURES
+### MAJOR FEATURES
 
 - **Built-in MILP Optimizer (local_evopt)**: Full linear programming optimizer integrated as default backend—no external EOS server required for advanced energy optimization
 - **EVCC Price & Feed-In Integration**: Dynamically fetch electricity prices and feed-in tariffs directly from EVCC (eliminates manual price configuration)
 - **Multi-Source Price System**: Unified timeseries data source architecture supporting multiple price/forecast sources with fallback strategies
 - **Day/Night Cycle Awareness**: Optimizer now understands day/night cycles for smarter battery charging and PV utilization decisions
 
-### 🔧 IMPROVEMENTS & FIXES
+### IMPROVEMENTS & FIXES
 
 - **Enhanced Logging & Diagnostics**:
   - Better Home Assistant connection error logging
@@ -69,13 +86,13 @@ For complete details and PR references, see: https://github.com/ohAnd/EOS_connec
   - Legacy config code cleanup and refactoring
   - Pylint/mypy compliance improvements across codebase
 
-### ⚠️ EXPERIMENTAL FEATURES (Opt-in)
+### EXPERIMENTAL FEATURES (Opt-in)
 
 - **local_evopt Backend**: New built-in MILP optimizer—configure `eos.source: local_evopt` to use (default remains `eos_server` for backward compatibility)
 - **Dynamic Feed-In Pricing**: Factor your feed-in tariff as opportunity cost in battery pricing (battery.battery_price_include_feedin)
 - **PV Battery Charge Control**: Route PV output directly to battery via optimizer signal (pv_battery_charge_control_enabled)
 
-### 📝 CHANGELOG
+### CHANGELOG
 
 For complete details and PR references, see: https://github.com/ohAnd/EOS_connect/releases/tag/v0.3.35
 
