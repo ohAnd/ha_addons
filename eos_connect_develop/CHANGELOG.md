@@ -1,3 +1,25 @@
+**Version 0.3.38.329** published on 2026-08-23
+
+- **FIX: PV Auto-Scaling now applies the correction it reports**
+  The PV Auto-Scaling panel could show a scale correction while every timeframe
+  factor still read 1.000x, and the solar forecast handed to the optimizer lost more
+  of the current hour on every run — so the running hour was optimized against a
+  forecast decaying towards zero. Most visible on a fresh install at the day
+  rollover. Panel and forecast now agree, and the forecast keeps its real values.
+  - A newly computed scale factor now takes effect immediately instead of waiting for
+    the next forecast provider fetch — up to 15 minutes, or 2.5 hours on Solcast — so
+    the panel and the optimizer no longer disagree after the factors update
+  - Both issues date from the PV Auto-Scaling feature in 0.3.38.327; no add-on
+    options changed and no action is needed
+
+- **FIX: Error messages no longer expose internal details**
+  Failure messages shown in the web UI and returned by the API included the raw
+  exception text, which could name resolved hostnames, ports, any proxy in the chain,
+  and absolute file paths inside the container. They now state what failed and where
+  to look, with the full technical detail kept in the log for bug reports.
+  - Affects the optimizer status and PV Auto-Scaling status responses; the solver
+    message keeps its actionable advice
+
 **Version 0.3.38.328** published on 2026-08-23
 
 - **NEW: Whole-Install Backup and Restore**
