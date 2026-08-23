@@ -1,3 +1,22 @@
+**Version 0.3.38.328** published on 2026-08-23
+
+- **NEW: Whole-Install Backup and Restore**
+  Complete backup/restore with measured PV history, configuration, and system state.
+  New menu entry makes backup/restore discoverable and unified, with browser-based
+  interface. Restore previews all changes (settings to be removed, replaced values,
+  time-shifted history) before committing to the database.
+  - Configuration import/export now validates and applies changes through hot-reload,
+    with restart-required tracking and per-field error reporting
+  - Measured PV history export includes timestamp and forecast; import marks restored
+    rows with an origin stamp so the UI can distinguish measured vs. seeded data
+  - History time-shift seeding preserves measured/forecast ratios while shifting old
+    data to recent timeframes so the auto-scaler still reads it; prevents loss of
+    scale factors after hardware moves or reinstalls
+  - PV Auto-Scaling panel marks restored days with a badge showing restored-hour count
+  - Documentation covers the file format, what replace-mode removes, time-shift
+    semantics, and the API endpoints
+  - See [PR #282](https://github.com/ohAnd/EOS_connect/pull/282)
+
 **Version 0.3.38.327** published on 2026-08-22
 
 - **NEW: PV Forecast Auto-Scaling**
