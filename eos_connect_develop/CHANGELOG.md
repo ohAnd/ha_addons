@@ -1,3 +1,65 @@
+**Version 0.3.38.332** published on 2026-08-25
+
+- **BREAKING: Custom timeseries sources now read EUR/kWh and W**
+  The unified timeseries source was documented as accepting EVCC's
+  `{start, end, value}` payload, but expected the units EOS_connect uses internally —
+  EUR/Wh for prices and Wh-per-slot for PV. No real source publishes either, so
+  pointing it at EVCC's own `/api/tariff/grid` rendered 34660 ct/kWh, and Home
+  Assistant sensors were rejected over a mandatory `end` field that is never read.
+  Prices are now read as EUR/kWh and PV as W, matching what EVCC and the common Home
+  Assistant integrations actually deliver.
+  - ACTION REQUIRED: if you already use a timeseries source, it inherits the new
+    default unit and changes meaning. Set `value_unit` to `EUR/Wh` (price) resp. `Wh`
+    (PV) to restore the previous behaviour
+  - `value_unit` is available as an escape hatch for other units — prices accept
+    `EUR/kWh`, `ct/kWh`, `EUR/Wh`; PV accepts `W`, `kW`, `Wh`, `kWh`
+  - `end` is now derived from the following entry instead of being required
+  - A new "Test" button next to the timeseries URL shows the first slots converted
+    into the unit the schedule displays, so a wrong unit is visible before saving
+    rather than hours later (backed by the documented but previously missing
+    `POST /api/config/test-timeseries` endpoint)
+  - Foreign attribute names remain unsupported by design — use a Home Assistant
+    template sensor; the user guide now carries ready-made snippets for the reported
+    sources. Parsing stays strict otherwise: one malformed entry rejects the whole
+    payload rather than silently shifting every later hourly price a slot early
+  - Fixes [#214](https://github.com/ohAnd/EOS_connect/issues/214), see
+    [PR #284](https://github.com/ohAnd/EOS_connect/pull/284)
+
+- **FIX: Feed-in price inflated the battery price by 100x**
+  With `battery.battery_price_include_feedin` enabled, the configured feed-in price
+  (ct/kWh) was passed to the battery cost calculation unconverted, where EUR/kWh was
+  expected — inflating the PV opportunity cost, and therefore the computed battery
+  price, by a factor of 100. Both the startup path and the hot-reload path were
+  affected. The conversion now happens at the same boundary as every other price.
+  - Also removed the fixed-price unit auto-detection in the feed-in interface, which
+    guessed EUR vs. ct from a magnitude threshold and missed exactly this class of
+    mistake for realistic ct/kWh values
+  - Documentation corrected: `feed_in_price` is a `price.*` key in ct/kWh, and
+    `battery_price_include_feedin` must be enabled for it to take effect
+  - Fixes [#283](https://github.com/ohAnd/EOS_connect/issues/283), see
+    [PR #286](https://github.com/ohAnd/EOS_connect/pull/286)
+
+- **CHANGE: Battery wear price is now entered in ct/kWh**
+  `battery.price_euro_per_wh_accu` was the only price typed directly into the
+  configuration that used EUR/Wh instead of ct/kWh, unlike every other price field.
+  It is now `battery.price_ct_kwh_accu` and takes ct/kWh.
+  - A one-time migration moves and rescales the stored value of existing
+    installations, so an already-configured price survives the change unchanged in
+    meaning — no action needed
+  - The internal engine and the payload sent to the EOS optimizer are untouched
+
+- **FIX: Temperature forecast could return PV power values**
+  Temperature and PV power forecasts shared one Akkudoktor client method, error
+  handler, cache, and failure counter. A failed temperature request could hand back
+  cached PV watts mislabeled as degrees Celsius, and the shared failure counter reset
+  on every successful power fetch before it could reach the threshold that falls back
+  to the 15 C default.
+  - Temperature now has its own cache and failure counter, the fetch target is
+    threaded through the error handler so it picks the matching one, fallback data no
+    longer re-enters raw-JSON processing, and a range check was added as a fail-safe
+  - Fixes [#276](https://github.com/ohAnd/EOS_connect/issues/276), see
+    [PR #285](https://github.com/ohAnd/EOS_connect/pull/285)
+
 **Version 0.3.38.329** published on 2026-08-23
 
 - **FIX: PV Auto-Scaling now applies the correction it reports**
