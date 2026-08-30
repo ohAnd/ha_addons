@@ -1,3 +1,30 @@
+**Version 0.3.38.333** published on 2026-08-30
+
+- **FIX: A fresh install can now be set up**
+  The setup wizard could not be completed on a first boot — the final save was always
+  rejected and nothing was ever stored. Setup now works end to end.
+  - The wizard asks for the data source before the inverter, and steps that used to
+    render empty now show their fields
+  - It starts on the built-in PV forecast, so a first run finishes without entering
+    coordinates. That forecast is demo data sized to a 4 kW home — replace it with
+    your own PV source
+  - The review step names what a choice still leaves outstanding
+  - See [PR #290](https://github.com/ohAnd/EOS_connect/pull/290)
+
+- **FIX: evcc and Solcast PV sources were refused without an installation**
+  These sources bring their own configuration and need no PV installation, but the
+  check demanded one anyway — leaving the forecast at zero and refusing the switch
+  from the web UI.
+
+- **FIX: New installs warned about features that were switched off**
+  A first boot raised a PV auto-scaling alert for a feature that was not enabled, and
+  polled Home Assistant entities nobody had chosen. Sensor fields now start empty and
+  appear once a data source is saved.
+
+- **FIX: Sensor "Test" button**
+  It now sits in its own row on every sensor field instead of wrapping underneath the
+  input, and its error messages no longer show internal connection details.
+
 **Version 0.3.38.332** published on 2026-08-25
 
 - **BREAKING: Custom timeseries sources now read EUR/kWh and W**

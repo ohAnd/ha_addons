@@ -59,11 +59,34 @@ When the user says any of the following, **IMMEDIATELY** execute the full workfl
 - Add entry at TOP of `eos_connect_develop\CHANGELOG.md`
 - Format: `**Version X.X.X.XXX** published on YYYY-MM-DD`
 - For EACH non-[AUTO] commit since last wrapper commit:
-  - Add bullet point with commit message
+  - Add ONE bullet, written from the user's point of view (see LENGTH & PERSPECTIVE below)
   - Preserve GitHub issue links: `[#XXX](https://github.com/ohAnd/EOS_connect/issues/XXX)`
   - Mark experimental features clearly ("EXPERIMENTAL", "Status: experimental")
   - Skip [AUTO] commits
-- User-friendly descriptions focused on "what changed for users"
+
+##### LENGTH & PERSPECTIVE (MANDATORY)
+
+The changelog is read by add-on users, not by developers of EOS_connect.
+
+- **Hard budget: a whole version entry is at most ~25 lines.** A single bullet is a
+  bold headline plus **1-3 sentences**. If it needs more, it is being written from the
+  code's point of view, not the user's — cut it down.
+- Write **symptom then result**: what the user saw or could not do before, and what
+  happens now. Not how it was fixed.
+- **Do NOT include**: file or module names, function/method/class names, HTTP endpoints,
+  internal variables, HTTP status codes, refactoring notes, test/CI changes, docs-only
+  changes, or an explanation of the root cause in code terms.
+- **DO include** (only when it applies): configuration keys the user sets, units and
+  defaults, `ACTION REQUIRED` steps, and what a user must monitor for an EXPERIMENTAL
+  feature.
+- Sub-bullets are for **user-facing consequences only** — a setting to change, a
+  behaviour to be aware of, the PR/issue link. Not a list of the sub-commits.
+- A large squashed PR gets **one entry** summarising its user-visible outcome, plus at
+  most a couple of sub-bullets for separately noticeable effects. Never one bullet per
+  sub-commit.
+- If a commit changed nothing a user can notice (tests, CI, refactors, internal docs),
+  **leave it out of the CHANGELOG entirely** — it is still listed in the commit-message
+  summary and in the audit list shown for approval.
 
 #### Step 5: Stage Changes & Show Proposed Commit
 
@@ -79,7 +102,28 @@ When the user says any of the following, **IMMEDIATELY** execute the full workfl
 - **NEW EXPERIMENTAL FEATURE: Feed-in Price in Battery Optimization**
   Added `battery.battery_price_include_feedin` (default: OFF) to factor your feed-in tariff as an "opportunity cost"
   Fixes [PR #234](https://github.com/ohAnd/EOS_connect/pull/234)
+
+- **FIX: A fresh install can now be set up**
+  The setup wizard could not be completed on a first boot — the final save was always
+  rejected and nothing was ever stored. Setup now works end to end.
+  - It starts on the built-in PV forecast, so a first run finishes without entering
+    coordinates. That forecast is demo data — replace it with your own PV source
+  - See [PR #290](https://github.com/ohAnd/EOS_connect/pull/290)
 ```
+
+#### Counter-Example (DO NOT WRITE THIS):
+
+```markdown
+- **FIX: Saving the configuration wrote values it then refused**
+  `PUT /api/config/` answered an unmet dependency with "cannot save" but had already
+  written every value in the request... The check ran late because installations arrive
+  as indexed keys and only become a list once the merger rebuilds; the count is now
+  derived from the request directly.
+```
+
+Endpoint names, internal data flow, and the code-level cause. The user only needs:
+"a fresh install could not save its configuration; it now can" — which is already
+covered by the fresh-install bullet above, so this gets no bullet of its own.
 
 ---
 
@@ -246,8 +290,11 @@ Status: [Production-ready/Testing phase]
 
 ### CHANGELOG Best Practices
 
-- **Develop**: Focus on technical accuracy, PR/issue references, what changed in code
-- **Productive**: Focus on user benefits, what to expect, when to enable features, testing guidance
+- **Both flows are user-facing.** Short, plain descriptions of what changed for the
+  person running the add-on. Length budget and exclusion list: see
+  "LENGTH & PERSPECTIVE (MANDATORY)" under DEVELOP Step 4 — it applies to both flows.
+- **Develop**: what changed and the PR/issue reference, kept brief
+- **Productive**: user benefits, what to expect, when to enable features, testing guidance
 - Mark EXPERIMENTAL features with clear warnings
 - Provide actionable guidance (e.g., "Set X to true to enable")
 - Link to relevant PRs/issues
