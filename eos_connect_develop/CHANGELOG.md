@@ -1,3 +1,13 @@
+**Version 0.3.38.335** published on 2026-09-01
+
+- **FIX: Outside temperature forecast is now reliable and accurate**
+  Temperature data is used to refine PV predictions. Previous versions could lose
+  forecast data on request failure, insert a 0-degree slot, or degrade unnecessarily
+  when location coordinates were missing — causing poor PV estimates.
+  - You can now disable external temperature calls entirely via
+    `eos.temperature_forecast_enabled` (default: ON) and use a static 15 °C curve
+  - See [PR #292](https://github.com/ohAnd/EOS_connect/pull/292)
+
 **Version 0.3.38.334** published on 2026-09-01
 
 - **FIX: Docker standalone mode now retains your settings across container restarts**
