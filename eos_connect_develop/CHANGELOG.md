@@ -1,3 +1,13 @@
+**Version 0.3.38.334** published on 2026-09-01
+
+- **FIX: Docker standalone mode now retains your settings across container restarts**
+  In a standalone Docker setup (without Home Assistant), all configuration and
+  historical data was lost whenever the container was recreated. The settings
+  database is now persisted to a volume, so your setup survives updates and restarts.
+  - ACTION REQUIRED: ensure you mount a volume at `/app/data` — see the updated
+    Docker documentation
+  - See [PR #287](https://github.com/ohAnd/EOS_connect/pull/287)
+
 **Version 0.3.38.333** published on 2026-08-30
 
 - **FIX: A fresh install can now be set up**
