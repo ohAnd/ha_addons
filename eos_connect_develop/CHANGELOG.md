@@ -1,3 +1,20 @@
+**Version 0.3.38.337** published on 2026-09-02
+
+- **NEW FEATURE: forecast.solar Personal and Professional accounts**
+  You can now use your forecast.solar API key to access Personal or Professional
+  tier forecasts, which offer higher rate limits and more accurate predictions.
+  - Enter your API key in the PV source configuration
+  - Rate limiting is now handled gracefully: retries respect the server's
+    retry-after header and polling scales with the number of PV installations
+  - See [PR #293](https://github.com/ohAnd/EOS_connect/pull/293)
+
+- **FIX: akkudoktor weather errors are now visible**
+  The akkudoktor service proxies upstream weather faults as generic 500 errors,
+  hiding the real cause. Error bodies are now logged so you can see what went wrong,
+  and rate-limited requests (429) are handled correctly instead of retrying
+  endlessly.
+  - See [Issue #289](https://github.com/ohAnd/EOS_connect/issues/289)
+
 **Version 0.3.38.335** published on 2026-09-01
 
 - **FIX: Outside temperature forecast is now reliable and accurate**
