@@ -1,3 +1,14 @@
+**Version 0.3.38.338** published on 2026-09-02
+
+- **IMPROVEMENT: PV autoscaler now aligns with solar production hours**
+  The PV auto-scaling factors are now grouped into timeframes that match actual
+  sunlight patterns: 00-08, 08-12, 12-16, 16-24. Previously, four 6-hour blocks
+  wasted half the feature by grouping night hours with productive ones. The new
+  boundaries give morning ramp, midday peak, and evening ramp their own factors,
+  while night hours (which add zero to both sides of the ratio) no longer dilute
+  the scaling.
+  - See [PR #294](https://github.com/ohAnd/EOS_connect/pull/294)
+
 **Version 0.3.38.337** published on 2026-09-02
 
 - **NEW FEATURE: forecast.solar Personal and Professional accounts**
