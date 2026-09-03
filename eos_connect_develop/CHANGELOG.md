@@ -1,3 +1,14 @@
+**Version 0.3.38.339** published on 2026-09-03
+
+- **FIX: forecast.solar yields now accurate and properly timed**
+  forecast.solar timestamps each value with the end of the period it covers, but
+  EOS_connect was reading it as the start — making the whole curve one hour late.
+  Additionally, API keys give 30-minute resolution, but only the full-hour values were
+  being read, losing roughly half the yield. Both are now fixed: values are summed
+  over the hour they were actually produced in, at whatever resolution your
+  account provides.
+  - See [PR #296](https://github.com/ohAnd/EOS_connect/pull/296)
+
 **Version 0.3.38.338** published on 2026-09-02
 
 - **IMPROVEMENT: PV autoscaler now aligns with solar production hours**
