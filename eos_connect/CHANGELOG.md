@@ -1,3 +1,30 @@
+## **Version 0.3.38** published on 2026-09-05
+
+### MAJOR FEATURES
+
+- **PV Forecast Auto-Scaling**: Automatically corrects PV forecasts with learned scale factors to account for panel soiling, shading, or model drift. Per-timeframe factors now align with solar production hours (00-08, 08-12, 12-16, 16-24) for better accuracy across morning ramp, midday peak, and evening ramp.
+- **Whole-Install Backup and Restore**: Complete system state backup with browser-based interface. Restore previews all changes before committing, with time-shift support for historical data and scale factor preservation.
+
+### NEW FEATURES & IMPROVEMENTS
+
+- **forecast.solar Personal/Professional Support**: Use your forecast.solar API key for higher rate limits and more accurate predictions with 30-minute resolution. Correctly handles yield calculation and timing (previously one hour late and missing half the yield).
+- **Docker Standalone Mode**: Settings database now persists across container restarts when mounted at `/app/data`.
+- **Improved Error Handling**: akkudoktor weather errors are now visible with proper logging; rate-limited requests (429) handled correctly.
+- **Configuration Reliability**: Fresh installs can now complete setup end-to-end; evcc and Solcast PV sources work without requiring a PV installation entry.
+
+### STABILITY & RELIABILITY FIXES
+
+- **Temperature Forecast Hardening**: More reliable and accurate outside temperature forecasts for PV prediction refinement.
+- **Feed-In Price Unit Conversion**: Fixed 100x inflation bug in battery price calculations when feed-in pricing enabled.
+- **Timeseries Unit Alignment**: Custom timeseries sources now correctly read EUR/kWh and W (previously expected internal units).
+
+### UI/UX IMPROVEMENTS
+
+- **PV Autoscaler Mobile Optimization**: Overlay panels now fit phone screens with responsive CSS classes, eliminating overflow and nested scroll issues.
+- **Enhanced Documentation**: Comprehensive user guide updates covering new features and configuration options.
+
+---
+
 ## **Version 0.3.37** published on 2026-08-22
 
 ### NEW FEATURES & IMPROVEMENTS
