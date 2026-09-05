@@ -1,3 +1,14 @@
+**Version 0.3.38.340** published on 2026-09-05
+
+- **FIX: PV autoscaler overlay now usable on mobile devices**
+  The overlay panel was built with hard-coded inline styles that no media query could
+  override. On phones, the Forecast Comparison card overflowed, four timeframe cells
+  wrapped every reading across multiple lines, and nested scrollers made the UI
+  difficult to use. Layout now uses CSS classes that collapse under 768px, the
+  WHOLE DAY scaling percentage has its own line, and overlay dimensions adapt
+  correctly when the device orientation changes.
+  - See [PR #297](https://github.com/ohAnd/EOS_connect/pull/297)
+
 **Version 0.3.38.339** published on 2026-09-03
 
 - **FIX: forecast.solar yields now accurate and properly timed**
