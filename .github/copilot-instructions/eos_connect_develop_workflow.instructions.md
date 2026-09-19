@@ -41,7 +41,7 @@ When the user says any of the following, **IMMEDIATELY** execute the full workfl
 
 #### Step 1: Sync the Submodule
 
-- Navigate to `c:\projects\ha_addons\eos_connect_develop\src`
+- Navigate to `./eos_connect_develop/src`
 - Run: `git pull origin develop`
 
 #### Step 2: Extract Version Information

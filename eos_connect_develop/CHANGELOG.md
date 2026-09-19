@@ -1,3 +1,22 @@
+**Version 0.3.39.344** published on 2026-09-19
+
+- **FIX: EVopt now prices leftover battery charge at its buy-back value, not what was paid**
+  The built-in optimizer was valuing charge left at the end of the horizon at its
+  historical cost, which for PV-charged batteries often sat below the feed-in tariff.
+  This caused the model to export solar surplus rather than keep it. Now uses the
+  cheapest price ahead (the window always ends at midnight, so that is also what the
+  charge could be rebought for just after). Applies to both built-in local_evopt and
+  external EVopt server.
+  - See [PR #301](https://github.com/ohAnd/EOS_connect/pull/301)
+
+- **DOCS: User guide rebuilt with app theme and disclosure levels**
+  The six documentation pages have been re-authored against current code, with a new
+  style that matches the app design tokens and three disclosure levels
+  (getting_started/standard/expert). Also corrects documentation clarifications:
+  load uses consumption history, temperature is EOS-only, and EOS Connect never
+  commands a wallbox.
+  - See [PR #299](https://github.com/ohAnd/EOS_connect/pull/299)
+
 **Version 0.3.38.340** published on 2026-09-05
 
 - **FIX: PV autoscaler overlay now usable on mobile devices**
