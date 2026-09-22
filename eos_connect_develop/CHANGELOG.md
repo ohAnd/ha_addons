@@ -1,3 +1,16 @@
+**Version 0.3.39.345** published on 2026-09-22
+
+- **NEW FEATURE: Managed Loads for shiftable appliances**
+  Schedule high-power appliances (heat pumps, sauna, hot water tanks) to run in the
+  cheapest slots. Two kinds: *Contingent* loads declare how much energy they need and
+  when they can run — EOS Connect places them in the cheapest allowed slots; *Profile*
+  loads inject a fixed schedule for appliances whose timing is outside your control.
+  Presets cover pool heat pumps, sauna, hot water and buffer tanks over a thermal model
+  that learns loss coefficients and COP from real operation. Shared power budget
+  prevents multiple loads from stacking. New dashboard tile shows state, remaining
+  demand, next run time and planned slots for each load.
+  - See [PR #304](https://github.com/ohAnd/EOS_connect/pull/304)
+
 **Version 0.3.39.344** published on 2026-09-19
 
 - **FIX: EVopt now prices leftover battery charge at its buy-back value, not what was paid**
