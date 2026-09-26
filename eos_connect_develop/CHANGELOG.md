@@ -1,3 +1,9 @@
+**Version 0.3.39.348-fix1** published on 2026-09-26
+
+- **FIX: EOS_Connect not starting after re-install**
+  enhance web server port description and clean up configuration options
+  [#310](https://github.com/ohAnd/EOS_connect/issues/310)
+
 **Version 0.3.39.348** published on 2026-09-26
 
 - **FIX: Battery state survives unavailable sensor readings**
