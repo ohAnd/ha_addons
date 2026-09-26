@@ -1,3 +1,12 @@
+**Version 0.3.39.349** published on 2026-09-26
+
+- **FIX: Prevent startup hang on unreachable Fronius inverter**
+  Inverter initialization now runs in a background thread after the web server starts,
+  with reduced retries and sleep times for fail-fast behavior. If initialization fails,
+  the system falls back to a NullInverter and shows the error in the startup panel, so you
+  can fix the configuration without restarting the container.
+  - See [Issue #309](https://github.com/ohAnd/EOS_connect/issues/309)
+
 **Version 0.3.39.348-fix1** published on 2026-09-26
 
 - **FIX: EOS_Connect not starting after re-install**
