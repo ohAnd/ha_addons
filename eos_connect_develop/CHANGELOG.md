@@ -1,3 +1,14 @@
+**Version 0.3.39.346** published on 2026-09-26
+
+- **FIX: Home Assistant load profile history now reliable**
+  Load consumption data from Home Assistant was not cached efficiently, causing profiles
+  to be rebuilt on every optimizer run and history to be understated when managed loads
+  were disabled. The profile is now built once per day and reused, timezone handling is
+  corrected, and disabling a managed load no longer removes its history from the total.
+
+  Thanks for the contribution to  @nexulm - see [PR #306](https://github.com/ohAnd/EOS_connect/pull/306)
+  
+
 **Version 0.3.39.345** published on 2026-09-22
 
 - **NEW FEATURE: Managed Loads for shiftable appliances**
