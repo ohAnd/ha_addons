@@ -1,6 +1,6 @@
 name: "EOS connect"
 description: "Advanced energy management system with built-in MILP optimizer, multi-source price integration, and real-time battery control. Configure via web UI with automatic Home Assistant integration."
-version: "0.3.38"
+version: "0.3.38-fix1"
 slug: "eos_connect"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -27,16 +27,15 @@ map:
 ports:
   8081/tcp: 8081
 ports_description:
-  8081/tcp: "EOS_connect web server (edit for port conflict resolution)"
+  8081/tcp: "EOS Connect web server - If port 8081 is in use on your system, change this line to e.g. '8082/tcp: 8081' to expose the addon on port 8082 (container still uses 8081 internally)"
 
-# Bootstrap configuration
+# Bootstrap configuration - only these options remain
 # All other settings are managed through the web UI and stored in the database
+# Note: The web server port is fixed at 8081 internally. Use ports section above to change external exposure.
 options:
-  eos_connect_web_port: 8081 # Port for EOS Connect web server
-  time_zone: Europe/Berlin # Time zone for the application
-  log_level: info # Log level: debug, info, warning, error
+  time_zone: "Europe/Berlin"
+  log_level: "info"
 
 schema:
-  eos_connect_web_port: int(1,65535)? # Port for EOS Connect web server - default: 8081
-  time_zone: str # Time zone for the application - default: Europe/Berlin
-  log_level: list(debug|info|warning|error) # Log level options - default: info
+  time_zone: str
+  log_level: list(debug|info|warning|error)
