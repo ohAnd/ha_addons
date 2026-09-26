@@ -1,3 +1,17 @@
+**Version 0.3.39.348** published on 2026-09-26
+
+- **FIX: Battery state survives unavailable sensor readings**
+  When a battery sensor entity reports an empty/unknown state, EOS Connect now handles
+  it gracefully instead of crashing the battery update thread. This prevents SOC,
+  temperature and price data from freezing until a restart.
+  - See [PR #308](https://github.com/ohAnd/EOS_connect/pull/308)
+
+- **FIX: Full support for EVCC 0.316+ charging modes**
+  New EVCC instances (v0.316+) use "smart" and "alwaysCharge" modes. These are now
+  translated to the legacy "pv" and "minpv" modes so your existing battery-priority
+  logic works unchanged. Unknown mode values fall back to "off" instead of crashing.
+  - See [Issue #307](https://github.com/ohAnd/EOS_connect/issues/307)
+
 **Version 0.3.39.346** published on 2026-09-26
 
 - **FIX: Home Assistant load profile history now reliable**
