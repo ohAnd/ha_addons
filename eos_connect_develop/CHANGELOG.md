@@ -1,3 +1,11 @@
+**Version 0.3.39.350** published on 2026-09-28
+
+- **NEW FEATURE: Develop documentation now publicly available**
+  Documentation for develop branch features is now published under /develop/ on the
+  GitHub Pages site, so you can read docs for upcoming features without waiting for
+  release. In-app links automatically point to the matching docs for your version.
+  - See [PR #313](https://github.com/ohAnd/EOS_connect/pull/313)
+
 **Version 0.3.39.349** published on 2026-09-26
 
 - **FIX: Prevent startup hang on unreachable Fronius inverter**
