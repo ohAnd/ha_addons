@@ -1,3 +1,13 @@
+**Version 0.3.39.351** published on 2026-09-28
+
+- **NEW FEATURE: Documentation restructured into topic-based guides**
+  The user guide and configuration reference are now split into focused pages (Install,
+  First Run, Daily Use, Troubleshooting, Configuration topics) with their own
+  navigation, so you can jump directly to what you need instead of scrolling through
+  one long page. Managed loads now have a dedicated guide with presets and parameters
+  in one place. Help links in the web UI now land on the correct section.
+  - See [PR #314](https://github.com/ohAnd/EOS_connect/pull/314)
+
 **Version 0.3.39.350** published on 2026-09-28
 
 - **NEW FEATURE: Develop documentation now publicly available**
