@@ -1,3 +1,22 @@
+## **Version 0.3.39** published on 2026-09-29
+
+### MAJOR FEATURES
+
+- **Managed Loads for Shiftable Appliances**: Schedule high-power appliances (heat pumps, sauna, hot water tanks, buffer tanks) to run in the cheapest slots. Two types: Contingent loads declare energy needs and time windows for automatic placement; Profile loads use fixed schedules. Presets cover common appliances with thermal models that learn loss coefficients and COP. Shared power budget prevents multiple loads from stacking. New dashboard tile shows state, remaining demand, next run time, and planned slots for each load.
+
+### STABILITY & RELIABILITY FIXES
+
+- **Battery State Survives Unavailable Sensor Readings**: When a battery sensor entity reports an empty or unknown state, EOS Connect now handles it gracefully instead of crashing the battery update thread, preventing SOC, temperature, and price data from freezing.
+- **Full Support for EVCC 0.316+ Charging Modes**: New EVCC instances use "smart" and "alwaysCharge" modes, now translated to legacy "pv" and "minpv" modes for backward compatibility.
+- **Home Assistant Load Profile History Now Reliable**: Load consumption data is cached efficiently and reused, preventing history understatement when managed loads are disabled. Thanks to the contribution @nexulm
+- **Prevent Startup Hang on Unreachable Fronius Inverter**: Inverter initialization runs in a background thread after web server starts, with reduced retries for fail-fast behavior. Falls back to NullInverter and shows error in startup panel.
+
+### OPTIMIZER IMPROVEMENTS
+
+- **EVopt Battery Pricing Fix**: Leftover battery charge at the end of the horizon is now priced at its buy-back value (feed-in tariff) rather than historical cost, preventing the model from exporting solar surplus instead of keeping it.
+
+---
+
 ## **Version 0.3.38-fix1** published on 2026-09-26
 
 - **FIX: EOS_Connect not starting after re-install**
