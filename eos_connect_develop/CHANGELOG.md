@@ -1,3 +1,18 @@
+**Version 0.3.40.355** published on 2026-10-10
+
+- **FIX: Managed-loads card no longer shows sporadic 500 errors**
+  A race condition caused the managed-loads card to fail intermittently. The card now
+  displays reliably without internal errors. - See [PR #316](https://github.com/ohAnd/EOS_connect/pull/316)
+
+- **FIX: Migration from old config no longer causes 401 authentication errors**
+  When migrating from config.yaml to SQLite, old per-section data source overrides
+  could block the new global data source, causing authentication failures. The migration
+  now automatically clears stale overrides when a proper global data source is configured. - See [Issue #320](https://github.com/ohAnd/EOS_connect/issues/320)
+
+- **FIX: Feed-in price settings survive corrupted configuration**
+  A corrupted feed-in price configuration no longer crashes the application. The system
+  now handles the error gracefully and continues operating. - See [Issue #321](https://github.com/ohAnd/EOS_connect/pull/321), [PR #324](https://github.com/ohAnd/EOS_connect/pull/324)
+
 **Version 0.3.39.351** published on 2026-09-28
 
 - **NEW FEATURE: Documentation restructured into topic-based guides**
@@ -5,16 +20,14 @@
   First Run, Daily Use, Troubleshooting, Configuration topics) with their own
   navigation, so you can jump directly to what you need instead of scrolling through
   one long page. Managed loads now have a dedicated guide with presets and parameters
-  in one place. Help links in the web UI now land on the correct section.
-  - See [PR #314](https://github.com/ohAnd/EOS_connect/pull/314)
+  in one place. Help links in the web UI now land on the correct section. - See [PR #314](https://github.com/ohAnd/EOS_connect/pull/314)
 
 **Version 0.3.39.350** published on 2026-09-28
 
 - **NEW FEATURE: Develop documentation now publicly available**
   Documentation for develop branch features is now published under /develop/ on the
   GitHub Pages site, so you can read docs for upcoming features without waiting for
-  release. In-app links automatically point to the matching docs for your version.
-  - See [PR #313](https://github.com/ohAnd/EOS_connect/pull/313)
+  release. In-app links automatically point to the matching docs for your version. - See [PR #313](https://github.com/ohAnd/EOS_connect/pull/313)
 
 **Version 0.3.39.349** published on 2026-09-26
 
@@ -22,8 +35,7 @@
   Inverter initialization now runs in a background thread after the web server starts,
   with reduced retries and sleep times for fail-fast behavior. If initialization fails,
   the system falls back to a NullInverter and shows the error in the startup panel, so you
-  can fix the configuration without restarting the container.
-  - See [Issue #309](https://github.com/ohAnd/EOS_connect/issues/309)
+  can fix the configuration without restarting the container. - See [Issue #309](https://github.com/ohAnd/EOS_connect/issues/309)
 
 **Version 0.3.39.348-fix1** published on 2026-09-26
 
@@ -36,14 +48,12 @@
 - **FIX: Battery state survives unavailable sensor readings**
   When a battery sensor entity reports an empty/unknown state, EOS Connect now handles
   it gracefully instead of crashing the battery update thread. This prevents SOC,
-  temperature and price data from freezing until a restart.
-  - See [PR #308](https://github.com/ohAnd/EOS_connect/pull/308)
+  temperature and price data from freezing until a restart. - See [PR #308](https://github.com/ohAnd/EOS_connect/pull/308)
 
 - **FIX: Full support for EVCC 0.316+ charging modes**
   New EVCC instances (v0.316+) use "smart" and "alwaysCharge" modes. These are now
   translated to the legacy "pv" and "minpv" modes so your existing battery-priority
-  logic works unchanged. Unknown mode values fall back to "off" instead of crashing.
-  - See [Issue #307](https://github.com/ohAnd/EOS_connect/issues/307)
+  logic works unchanged. Unknown mode values fall back to "off" instead of crashing. - See [Issue #307](https://github.com/ohAnd/EOS_connect/issues/307)
 
 **Version 0.3.39.346** published on 2026-09-26
 
@@ -66,8 +76,7 @@
   Presets cover pool heat pumps, sauna, hot water and buffer tanks over a thermal model
   that learns loss coefficients and COP from real operation. Shared power budget
   prevents multiple loads from stacking. New dashboard tile shows state, remaining
-  demand, next run time and planned slots for each load.
-  - See [PR #304](https://github.com/ohAnd/EOS_connect/pull/304)
+  demand, next run time and planned slots for each load. - See [PR #304](https://github.com/ohAnd/EOS_connect/pull/304)
 
 **Version 0.3.39.344** published on 2026-09-19
 
@@ -77,16 +86,14 @@
   This caused the model to export solar surplus rather than keep it. Now uses the
   cheapest price ahead (the window always ends at midnight, so that is also what the
   charge could be rebought for just after). Applies to both built-in local_evopt and
-  external EVopt server.
-  - See [PR #301](https://github.com/ohAnd/EOS_connect/pull/301)
+  external EVopt server. - See [PR #301](https://github.com/ohAnd/EOS_connect/pull/301)
 
 - **DOCS: User guide rebuilt with app theme and disclosure levels**
   The six documentation pages have been re-authored against current code, with a new
   style that matches the app design tokens and three disclosure levels
   (getting_started/standard/expert). Also corrects documentation clarifications:
   load uses consumption history, temperature is EOS-only, and EOS Connect never
-  commands a wallbox.
-  - See [PR #299](https://github.com/ohAnd/EOS_connect/pull/299)
+  commands a wallbox. - See [PR #299](https://github.com/ohAnd/EOS_connect/pull/299)
 
 **Version 0.3.38.340** published on 2026-09-05
 
@@ -96,8 +103,7 @@
   wrapped every reading across multiple lines, and nested scrollers made the UI
   difficult to use. Layout now uses CSS classes that collapse under 768px, the
   WHOLE DAY scaling percentage has its own line, and overlay dimensions adapt
-  correctly when the device orientation changes.
-  - See [PR #297](https://github.com/ohAnd/EOS_connect/pull/297)
+  correctly when the device orientation changes. - See [PR #297](https://github.com/ohAnd/EOS_connect/pull/297)
 
 **Version 0.3.38.339** published on 2026-09-03
 
@@ -107,8 +113,7 @@
   Additionally, API keys give 30-minute resolution, but only the full-hour values were
   being read, losing roughly half the yield. Both are now fixed: values are summed
   over the hour they were actually produced in, at whatever resolution your
-  account provides.
-  - See [PR #296](https://github.com/ohAnd/EOS_connect/pull/296)
+  account provides. - See [PR #296](https://github.com/ohAnd/EOS_connect/pull/296)
 
 **Version 0.3.38.338** published on 2026-09-02
 
@@ -118,8 +123,7 @@
   wasted half the feature by grouping night hours with productive ones. The new
   boundaries give morning ramp, midday peak, and evening ramp their own factors,
   while night hours (which add zero to both sides of the ratio) no longer dilute
-  the scaling.
-  - See [PR #294](https://github.com/ohAnd/EOS_connect/pull/294)
+  the scaling. - See [PR #294](https://github.com/ohAnd/EOS_connect/pull/294)
 
 **Version 0.3.38.337** published on 2026-09-02
 
