@@ -1,3 +1,11 @@
+**Version 0.3.40.357** published on 2026-10-10
+
+- **FIX: Season configuration is now only available for pool heat pump loads**
+  Managed loads of other types (sauna, hot water tank, buffer tank, external profiles)
+  no longer accept season settings, and any existing invalid configurations are
+  cleaned up automatically. The UI prevents this by clearing season fields when you
+  switch types. - See [Issue #322](https://github.com/ohAnd/EOS_connect/issues/322), [PR #325](https://github.com/ohAnd/EOS_connect/pull/325)
+
 **Version 0.3.40.355** published on 2026-10-10
 
 - **FIX: Managed-loads card no longer shows sporadic 500 errors**
