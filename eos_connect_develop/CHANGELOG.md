@@ -1,3 +1,30 @@
+**Version 0.3.40.367** published on 2026-10-12
+
+- **NEW FEATURE: Timeseries feed-in price source**
+  You can now use Home Assistant timeseries sensors as feed-in price sources, with full
+  adjustment options (adder, multiplier, negative price switch). - See [PR #333](https://github.com/ohAnd/EOS_connect/pull/333)
+
+- **FIX: Elpris API now fetches day-two prices correctly**
+  The parser expected a wrapper the API never provided, causing it to silently repeat day one.
+  Day two prices are now fetched correctly. - See [PR #335](https://github.com/ohAnd/EOS_connect/pull/335)
+
+- **FIX: EVCC price sources align correctly by time**
+  Grid and feed-in prices from EVCC now map to time slots instead of array positions,
+  preventing dropped data and misaligned timelines. - See [PR #334](https://github.com/ohAnd/EOS_connect/pull/334)
+
+- **FIX: Price adders/multipliers limited to exchange sources**
+  Adjustments now only apply to raw exchange sources (default/akkudoktor, smartenergy_at,
+  timeseries). Tibber, stromligning, EVCC and fixed_24h that already include grid fees
+  are no longer double-counted. - See [PR #332](https://github.com/ohAnd/EOS_connect/pull/332)
+
+- **FIX: DST transition days work correctly**
+  Forecasts, managed-load windows, washing schedules and PV autoscaler now anchor to
+  true local midnight, fixing one-hour misalignments on DST days. - See [PR #329](https://github.com/ohAnd/EOS_connect/pull/329), [PR #328](https://github.com/ohAnd/EOS_connect/pull/328), [PR #330](https://github.com/ohAnd/EOS_connect/pull/330)
+
+- **FIX: Managed-load run windows open and close on time**
+  Slot-to-hour conversion uses the proper anchor, so windows open and close at the
+  correct time, especially on 25-hour DST days. - See [PR #327](https://github.com/ohAnd/EOS_connect/pull/327), [PR #326](https://github.com/ohAnd/EOS_connect/pull/326)
+
 **Version 0.3.40.357** published on 2026-10-10
 
 - **FIX: Season configuration is now only available for pool heat pump loads**
