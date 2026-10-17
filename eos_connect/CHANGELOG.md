@@ -1,3 +1,27 @@
+## **Version 0.3.40** published on 2026-10-17
+
+### MAJOR IMPROVEMENTS
+
+- **Unified Timestamped Forecast Grid**: All forecasts now share a single timestamped grid, ensuring perfect alignment between PV production, price data, and load schedules. This eliminates timing mismatches and provides a consistent view across all optimization calculations.
+
+### NEW FEATURES & IMPROVEMENTS
+
+- **Timeseries Feed-In Price Source**: You can now use Home Assistant timeseries sensors as feed-in price sources, with full adjustment options (adder, multiplier, negative price switch) for maximum flexibility. See [PR #333](https://github.com/ohAnd/EOS_connect/pull/333)
+
+### STABILITY & RELIABILITY FIXES
+
+- **Elpris API Day-Two Prices Now Correct**: The Elpris API parser now correctly fetches day-two prices instead of silently repeating day one. See [PR #335](https://github.com/ohAnd/EOS_connect/pull/335)
+- **EVCC Price Sources Align by Time**: Grid and feed-in prices from EVCC now map to time slots instead of array positions, preventing dropped data and misaligned timelines. See [PR #334](https://github.com/ohAnd/EOS_connect/pull/334)
+- **Price Adders/Multipliers Limited to Exchange Sources**: Adjustments now only apply to raw exchange sources (default/akkudoktor, smartenergy_at, timeseries). Tibber, stromligning, EVCC and fixed_24h that already include grid fees are no longer double-counted. See [PR #332](https://github.com/ohAnd/EOS_connect/pull/332)
+- **DST Transition Days Work Correctly**: Forecasts, managed-load windows, washing schedules and PV autoscaler now anchor to true local midnight, fixing one-hour misalignments on DST days. See [PR #329](https://github.com/ohAnd/EOS_connect/pull/329), [PR #328](https://github.com/ohAnd/EOS_connect/pull/328), [PR #330](https://github.com/ohAnd/EOS_connect/pull/330)
+- **Managed-Load Windows Open and Close on Time**: Slot-to-hour conversion uses the proper anchor, so windows open and close at the correct time, especially on 25-hour DST days. See [PR #327](https://github.com/ohAnd/EOS_connect/pull/327), [PR #326](https://github.com/ohAnd/EOS_connect/pull/326)
+- **Managed-Loads Card No Longer Shows Sporadic 500 Errors**: A race condition caused the managed-loads card to fail intermittently. The card now displays reliably without internal errors. See [PR #316](https://github.com/ohAnd/EOS_connect/pull/316)
+- **Migration Auth Fix**: When migrating from config.yaml to SQLite, old per-section data source overrides could block the new global data source, causing authentication failures. The migration now automatically clears stale overrides when a proper global data source is configured. See [Issue #320](https://github.com/ohAnd/EOS_connect/issues/320)
+- **Feed-In Price Settings Survive Corrupted Configuration**: A corrupted feed-in price configuration no longer crashes the application. The system now handles the error gracefully and continues operating. See [Issue #321](https://github.com/ohAnd/EOS_connect/pull/321), [PR #324](https://github.com/ohAnd/EOS_connect/pull/324)
+- **Managed Loads Season Validation**: Season configuration is now only available for pool heat pump loads. Managed loads of other types (sauna, hot water tank, buffer tank, external profiles) no longer accept season settings, and any existing invalid configurations are cleaned up automatically. See [Issue #322](https://github.com/ohAnd/EOS_connect/issues/322), [PR #325](https://github.com/ohAnd/EOS_connect/pull/325)
+
+---
+
 ## **Version 0.3.39** published on 2026-09-29
 
 ### MAJOR FEATURES
