@@ -1,6 +1,6 @@
 name: "EOS connect develop"
 description: "DEVELOP version: Advanced energy management system with built-in MILP optimizer, multi-source price integration, and real-time battery control. Configure via web UI with automatic Home Assistant integration."
-version: "0.3.40.367"
+version: "0.3.41.372"
 slug: "eos_connect_develop"
 url: "https://github.com/ohAnd/EOS_connect"
 arch:
@@ -20,7 +20,7 @@ init: false
 image: "ghcr.io/ohand/ha-addon-eos_connect_develop_{arch}"
 
 map:
-  - type: addon_config
+  - type: app_config
     read_only: false
     path: /app/addon_config
 

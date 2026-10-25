@@ -1,3 +1,27 @@
+**Version 0.3.41.372** published on 2026-10-25
+
+- **NEW FEATURE: EVCC as Central Data Source**
+  EVCC is now a full data source with its own configuration section, offering native EVCC integration
+  for wallbox and battery management. All EVCC sensors (charging, battery, PV, home, grid) are now
+  available as unified data sources alongside non-EVCC sensors.
+  - See [PR #341](https://github.com/ohAnd/EOS_connect/pull/341)
+
+- **EVCC Battery SoC Limits**: Battery state-of-charge limits are now read directly from EVCC when available,
+  ensuring consistent behavior between EVCC and EOS Connect. - See [PR #341](https://github.com/ohAnd/EOS_connect/pull/341)
+
+- **EVCC History as Data Source**: EVCC history data can now be used as a data source, enabling you to leverage
+  historical charging and energy data for analysis and optimization.
+
+- **Improved Load Sensor Support**: Non-EVCC load sensors can now be read through the second data source connection,
+  expanding compatibility and flexibility for mixed system configurations.
+
+- **Configuration UX Improvements**: 
+  - EVCC-native configuration interface with better field organization
+  - Notices now depend on multiple settings for more context-aware guidance
+  - Clearer error messages and connection status indicators
+
+---
+
 **Version 0.3.40.367** published on 2026-10-12
 
 - **NEW FEATURE: Timeseries feed-in price source**
