@@ -1,3 +1,16 @@
+**Version 0.3.41.376** published on 2026-10-26
+
+- **FIX: EOS device configuration shape compatibility** — EOS devices configuration can now be read in both old and new shapes,
+  ensuring compatibility with different configuration structures. - See [PR #350](https://github.com/ohAnd/EOS_connect/pull/350)
+
+- **NEW FEATURE: Resolve configuration status** — The system now provides feedback on whether a configuration has been
+  successfully saved or is still pending, improving visibility during setup. - See [PR #346](https://github.com/ohAnd/EOS_connect/pull/346)
+
+- **FIX: Battery charge distribution accuracy** — Unplaced PV energy is no longer charged to batteries by default,
+  preventing inefficient energy distribution in mixed systems. - See [PR #345](https://github.com/ohAnd/EOS_connect/pull/345)
+
+---
+
 **Version 0.3.41.372** published on 2026-10-25
 
 - **NEW FEATURE: EVCC as Central Data Source**
