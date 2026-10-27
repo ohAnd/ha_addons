@@ -1,3 +1,17 @@
+**Version 0.3.41.378** published on 2026-10-27
+
+- **FIX: Discharge block at slot change with dynamic PV>Load override**
+  While the dynamic PV>Load override was active, the inverter could switch to avoid discharge at the start
+  of a new slot until the next optimization run. The override now applies from the first second of the slot.
+  Fixes [#347](https://github.com/ohAnd/EOS_connect/issues/347) - see [PR #351](https://github.com/ohAnd/EOS_connect/pull/351)
+
+- **FIX: Optimization pause of a full quarter hour**
+  In quarter-hourly mode, a run finishing a few seconds before a quarter boundary could leave a whole slot
+  without any optimization run. Runs now continue at the usual interval.
+  Fixes [#348](https://github.com/ohAnd/EOS_connect/issues/348) - see [PR #352](https://github.com/ohAnd/EOS_connect/pull/352)
+
+---
+
 **Version 0.3.41.376** published on 2026-10-26
 
 - **FIX: EOS device configuration shape compatibility** — EOS devices configuration can now be read in both old and new shapes,
