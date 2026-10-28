@@ -1,3 +1,17 @@
+**Version 0.3.41.380** published on 2026-10-28
+
+- **FIX: Fronius GEN24 login on firmware 1.41.11**
+  Inverter login failed on firmware 1.41.11 because each request opened a new connection. Login now works
+  and the inverter stays reachable.
+  Fixes [#356](https://github.com/ohAnd/EOS_connect/issues/356)
+
+- **FIX: PV forecast keeps running during OpenMeteo errors**
+  When OpenMeteo was unreachable or timed out, the PV forecast could stop updating. The last cached forecast
+  is now used instead and updates resume automatically.
+  Fixes [#354](https://github.com/ohAnd/EOS_connect/issues/354)
+
+---
+
 **Version 0.3.41.378** published on 2026-10-27
 
 - **FIX: Discharge block at slot change with dynamic PV>Load override**
