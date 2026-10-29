@@ -1,3 +1,12 @@
+**Version 0.3.41.381** published on 2026-10-29
+
+- **FIX: Fronius GEN24 login with a stale session token**
+  When the inverter rejected a request because its session token had expired, EOS Connect could keep
+  failing until a full re-login. It now retries with the fresh token straight away, and the log shows
+  fewer expected login warnings.
+
+---
+
 **Version 0.3.41.380** published on 2026-10-28
 
 - **FIX: Fronius GEN24 login on firmware 1.41.11**
