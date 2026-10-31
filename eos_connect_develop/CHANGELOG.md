@@ -1,3 +1,20 @@
+**Version 0.3.41.383** published on 2026-10-31
+
+- **FIX: Genetic algorithm horizon configuration**
+  The EOS optimization algorithm now reads its planning horizon from the correct configuration key,
+  ensuring the optimizer uses the intended time window for calculations.
+  Fixes [#357](https://github.com/ohAnd/EOS_connect/issues/357) - see [PR #359](https://github.com/ohAnd/EOS_connect/pull/359)
+
+- **FIX: 15-minute slot optimization clarity**
+  When EOS plans only 24 hours ahead (e.g., with certain price feeds), using 15-minute slots requires the
+  genetic algorithm. The log now clearly explains this constraint.
+
+- **FIX: Charge-rate write logging**
+  Charge-rate commands are now logged only when successfully written to the inverter, reducing log noise
+  from duplicate attempts.
+
+---
+
 **Version 0.3.41.381** published on 2026-10-29
 
 - **FIX: Fronius GEN24 login with a stale session token**
