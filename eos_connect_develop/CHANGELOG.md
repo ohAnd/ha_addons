@@ -1,3 +1,17 @@
+**Version 0.3.41.386** published on 2026-10-31
+
+- **NEW FEATURE: 15-minute slot planning on current EOS server**
+  EOS Connect can now use 15-minute optimization slots with a modern EOS server, providing finer-grained
+  control over energy management. The system automatically uses the genetic algorithm for 15-minute forecasting.
+  Fixes [#353](https://github.com/ohAnd/EOS_connect/issues/353) - see [PR #360](https://github.com/ohAnd/EOS_connect/pull/360)
+
+- **FIX: Forecast API reliability with timeouts and rejection**
+  Slow PV forecast providers (Forecast.Solar, Open-Meteo) are now retried with growing timeouts instead of
+  failing immediately. Invalid API keys are no longer retried, reducing unnecessary attempts.
+  Fixes [#358](https://github.com/ohAnd/EOS_connect/issues/358) - see [PR #361](https://github.com/ohAnd/EOS_connect/pull/361)
+
+---
+
 **Version 0.3.41.383** published on 2026-10-31
 
 - **FIX: Genetic algorithm horizon configuration**
