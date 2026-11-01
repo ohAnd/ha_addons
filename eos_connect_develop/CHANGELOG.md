@@ -1,3 +1,19 @@
+**Version 0.3.41.388** published on 2026-11-02
+
+- **NEW FEATURE: Web UI now available immediately on startup**
+  You can access the settings and configuration even while interfaces are initializing.
+  If a required interface fails, the system stays up in rescue mode so you can fix the
+  configuration without container restart. - See [Issue #349](https://github.com/ohAnd/EOS_connect/issues/349)
+
+- **NEW FEATURE: Restart button in web UI**
+  Restart EOS Connect directly from the web interface without logging into the host.
+  Essential when you change settings that require a restart. - See [Issue #336](https://github.com/ohAnd/EOS_connect/issues/336)
+
+- **FIX: Security — Sensitive data no longer exposed in logs**
+  Home Assistant tokens and Forecast.Solar API keys are now masked in logs and error
+  messages. Path injection vulnerabilities in asset handler and test-json route have
+  been fixed.
+
 **Version 0.3.41.386** published on 2026-10-31
 
 - **NEW FEATURE: 15-minute slot planning on current EOS server**
