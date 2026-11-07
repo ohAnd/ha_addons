@@ -1,3 +1,26 @@
+**Version 0.3.41.391** published on 2026-11-02
+
+- **NEW FEATURE: Standby threshold for managed loads**
+  Each managed load can now configure a standby power threshold. Power at or below this
+  threshold is treated as the appliance's permanent draw (e.g., circulation pumps) and stays
+  out of calibration and planning, while anything above is counted as the appliance running.
+  This prevents idling heat pumps from appearing permanently active. - See [PR #372](https://github.com/ohAnd/EOS_connect/pull/372)
+
+- **FIX: Managed loads now display correctly in charts**
+  Forecast-only managed loads (pushed or pulled profiles) now appear in the chart and are
+  correctly labeled, instead of being hidden inside the total load with no visibility.
+  Fixes [#362](https://github.com/ohAnd/EOS_connect/issues/362)
+
+- **FIX: Managed load planning and fallback improvements**
+  Contingent managed loads now use a single planner to prevent stale data issues. Loads
+  taken over by fallback can now be handed back to the solver. Standby terms no longer
+  outlive their thresholds. The fallback age is now correctly held against quarter-aligned
+  waits. - See [PR #365](https://github.com/ohAnd/EOS_connect/pull/365)
+
+- **FIX: EVCC loadpoint series no longer subtracted from base load**
+  EVCC groups loadpoints differently than household meters, causing incorrect subtraction
+  and false warnings. The base load calculation now handles EVCC loadpoint series correctly.
+
 **Version 0.3.41.388** published on 2026-11-02
 
 - **NEW FEATURE: Web UI now available immediately on startup**
