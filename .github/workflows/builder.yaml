@@ -11,6 +11,17 @@ on:
   pull_request:
     branches:
       - master
+  workflow_dispatch:
+    inputs:
+      addons:
+        description: 'Add-ons to build, as a JSON array (e.g. ["eos_connect"])'
+        required: true
+        default: '["eos_connect"]'
+      dry_run:
+        description: "Build only, do not push images to ghcr.io"
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   init:
@@ -25,6 +36,7 @@ jobs:
 
       - name: Get changed files
         id: changed_files
+        if: github.event_name != 'workflow_dispatch'
         uses: jitterbit/get-changed-files@v1
 
       - name: Find add-on directories
@@ -33,7 +45,16 @@ jobs:
 
       - name: Get changed add-ons
         id: changed_addons
+        env:
+          DISPATCH_ADDONS: ${{ github.event.inputs.addons }}
         run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "Manually requested add-ons: ${DISPATCH_ADDONS}";
+            echo "changed=true" >> $GITHUB_OUTPUT;
+            echo "addons=${DISPATCH_ADDONS}" >> $GITHUB_OUTPUT;
+            exit 0;
+          fi
+
           declare -a changed_addons
           for addon in ${{ steps.addons.outputs.addons }}; do
             if [[ "${{ steps.changed_files.outputs.all }}" =~ $addon ]]; then
@@ -93,6 +114,8 @@ jobs:
             echo "image=$(echo ${{ steps.info.outputs.image }} | cut -d'/' -f3)" >> $GITHUB_OUTPUT;
             if [[ -z "${{ github.head_ref }}" ]] && [[ "${{ github.event_name }}" == "push" ]]; then
                 echo "BUILD_ARGS=" >> $GITHUB_ENV;
+            elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]] && [[ "${{ github.event.inputs.dry_run }}" != "true" ]]; then
+                echo "BUILD_ARGS=" >> $GITHUB_ENV;
             fi
           else
             echo "${{ matrix.arch }} is not a valid arch for ${{ matrix.addon }}, skipping build";
@@ -109,7 +132,7 @@ jobs:
 
       - name: Build ${{ matrix.addon }} add-on
         if: steps.check.outputs.build_arch == 'true'
-        uses: home-assistant/builder@2025.11.0
+        uses: home-assistant/builder@master
         with:
           args: |
             ${{ env.BUILD_ARGS }} \
