@@ -1,3 +1,44 @@
+## **Version 0.3.41** published on 2026-11-08
+
+### Contributors
+
+Special thanks to all contributors for this release:
+- **@nanoBit93** for managed loads fixes and improvements (PRs #365, #372)
+- **@fstumpf** for EOS genetic algorithm horizon configuration (PR #359)
+- **@emmertsimon** for scheduler gap-fill fix (PR #352)
+
+### MAJOR FEATURES
+
+- **EVCC as Central Data Source**: EVCC is now a full data source with its own configuration section, offering native EVCC integration for wallbox and battery management. All EVCC sensors (charging, battery, PV, home, grid) are now available as unified data sources alongside non-EVCC sensors. See [PR #341](https://github.com/ohAnd/EOS_connect/pull/341) by @ohAnd
+
+- **Web UI Available Immediately on Startup**: Access settings and configuration even while interfaces are initializing. If a required interface fails, the system stays up in rescue mode so you can fix the configuration without container restart. See [Issue #349](https://github.com/ohAnd/EOS_connect/issues/349)
+
+- **Restart Button in Web UI**: Restart EOS Connect directly from the web interface without logging into the host. Essential when you change settings that require a restart. See [Issue #336](https://github.com/ohAnd/EOS_connect/issues/336) - Thanks to @ohAnd for [PR #364](https://github.com/ohAnd/EOS_connect/pull/364)
+
+- **Security Improvements**: Sensitive data (Home Assistant tokens, Forecast.Solar API keys) are now masked in logs and error messages. Path injection vulnerabilities in asset handler and test-json route have been fixed.
+
+### NEW FEATURES & IMPROVEMENTS
+
+- **15-Minute Slot Planning on EOS Server**: EOS Connect can now use 15-minute optimization slots with a modern EOS server, providing finer-grained control. The system automatically uses the genetic algorithm for 15-minute forecasting. See [PR #360](https://github.com/ohAnd/EOS_connect/pull/360) by @ohAnd addressing [Issue #353](https://github.com/ohAnd/EOS_connect/issues/353)
+- **Standby Threshold for Managed Loads**: Each managed load can configure a standby power threshold. Power at or below this threshold is treated as the appliance's permanent draw and stays out of calibration and planning. See [PR #372](https://github.com/ohAnd/EOS_connect/pull/372) by @nanoBit93
+- **EVCC Battery SoC Limits**: Battery state-of-charge limits are now read directly from EVCC when available, ensuring consistent behavior between EVCC and EOS Connect.
+- **EVCC History as Data Source**: EVCC history data can now be used as a data source, enabling you to leverage historical charging and energy data for analysis.
+- **Improved Load Sensor Support**: Non-EVCC load sensors can now be read through the second data source connection, expanding compatibility.
+- **Managed Loads Display in Charts**: Forecast-only managed loads now appear in the chart and are correctly labeled, instead of being hidden. See [Issue #362](https://github.com/ohAnd/EOS_connect/issues/362)
+
+### STABILITY & RELIABILITY FIXES
+
+- **Fronius GEN24 Login Improvements**: Fixed login issues with firmware 1.41.11 and stale session tokens. The inverter now retries with fresh tokens and reduces unnecessary login warnings.
+- **Forecast API Reliability**: Slow PV forecast providers (Forecast.Solar, Open-Meteo) are retried with growing timeouts. Invalid API keys are no longer retried. See [PR #361](https://github.com/ohAnd/EOS_connect/pull/361) by @ohAnd addressing [Issue #358](https://github.com/ohAnd/EOS_connect/issues/358)
+- **EVCC Loadpoint Handling**: EVCC groups loadpoints differently than household meters — the base load calculation now handles EVCC loadpoint series correctly, preventing incorrect subtraction and false warnings. See [PR #365](https://github.com/ohAnd/EOS_connect/pull/365) by @nanoBit93
+- **Managed Load Planning Improvements**: Contingent managed loads now use a single planner to prevent stale data issues. Loads taken over by fallback can be handed back to the solver.
+- **Discharge Block Fix**: While the dynamic PV>Load override is active, the inverter no longer switches to avoid discharge at the start of a new slot until the next optimization run. See [PR #351](https://github.com/ohAnd/EOS_connect/pull/351) by @ohAnd addressing [Issue #347](https://github.com/ohAnd/EOS_connect/issues/347)
+- **Optimization Pause Fix**: In quarter-hourly mode, runs finishing just before a quarter boundary no longer leave a whole slot without optimization. See [PR #352](https://github.com/ohAnd/EOS_connect/pull/352) by @emmertsimon addressing [Issue #348](https://github.com/ohAnd/EOS_connect/issues/348)
+- **Battery Charge Distribution**: Unplaced PV energy is no longer charged to batteries by default, preventing inefficient energy distribution. See [PR #345](https://github.com/ohAnd/EOS_connect/pull/345) by @ohAnd
+- **EOS Genetic Algorithm Horizon**: The EOS optimization algorithm now reads its planning horizon from the correct configuration key. See [PR #359](https://github.com/ohAnd/EOS_connect/pull/359) by @fstumpf addressing [Issue #357](https://github.com/ohAnd/EOS_connect/issues/357)
+
+---
+
 ## **Version 0.3.40** published on 2026-10-17
 
 ### MAJOR IMPROVEMENTS
