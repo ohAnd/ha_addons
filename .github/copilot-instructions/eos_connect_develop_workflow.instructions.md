@@ -324,11 +324,11 @@ Migration guide: <https://contributors.home-assistant.io/blog/2026/04/02/builder
   the add-on name and its two image names.
 - `modbus_tcp_smartmeter`, `trmnl_server`: migrated. `trmnl_server` had to drop armhf,
   armv7 and i386 to get there.
-- `batcontrol`: nothing to migrate. Its config.yaml declares no `image:`, so the legacy
-  workflow always skipped it and no image was ever published. Supervisor builds it locally
-  from `ARG BUILD_FROM`, which keeps working untouched. Leave it alone.
-- `builder.yaml` is now effectively unused, but keep it until batcontrol either gains an
-  `image:` or is removed.
+- `batcontrol`: removed from the repository. It declared no `image:`, so nothing was ever
+  published for it; Supervisor built it locally.
+- The shared `builder.yaml` is gone with it, and with it the last use of the deprecated
+  `home-assistant/builder@master`. Every add-on now owns a `builder-<addon>.yaml`. When a
+  new add-on arrives, copy one of those rather than reviving the shared workflow.
 
 ### Only amd64 and aarch64 can be built
 

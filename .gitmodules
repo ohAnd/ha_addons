@@ -1,6 +1,3 @@
-[submodule "batcontrol/src"]
-	path = batcontrol/src
-	url = https://github.com/ohAnd/batcontrol.git
 [submodule "trmnl_server/src"]
 	path = trmnl_server/src
 	url = https://github.com/ohAnd/trmnlServer.git

@@ -8,22 +8,6 @@
 This repository contains different addons.
 
 
-### [Batcontrol add-on](./batcontrol)
-
-*Fork from https://github.com/muexxl/batcontrol.*
-
-To use this addon you need a Fronius Inverter with a battery AND a dynamic priced electricity contract from Tibber.
-
-Futher details can be found here https://github.com/ohAnd/batcontrol (forked from here https://github.com/muexxl/batcontrol)
-
-The batcontrol addon builds locally during the install at Homeassistant.
-
-<!-- ![Supports aarch64 Architecture][aarch64-shield]
-![Supports amd64 Architecture][amd64-shield]
-![Supports armhf Architecture][armhf-shield]
-![Supports armv7 Architecture][armv7-shield]
-![Supports i386 Architecture][i386-shield] -->
-
 ### [EOS connect add-on](./eos_connect)
 
 EOS Connect is a tool designed to easily collect the needed data for optimize energy usage by interacting with the EOS system. It displays the results dynamically on a webpage. And is controlling your PV / Battery System. Futher details can be found here https://github.com/ohAnd/EOS_connect.
@@ -66,9 +50,9 @@ Futher details can be found here https://github.com/ohAnd/trmnlServer
 
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
-![Supports armhf Architecture][armhf-shield]
+<!-- ![Supports armhf Architecture][armhf-shield]
 ![Supports armv7 Architecture][armv7-shield]
-![Supports i386 Architecture][i386-shield]
+![Supports i386 Architecture][i386-shield] -->
 
 
 
