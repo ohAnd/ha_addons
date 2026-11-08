@@ -322,13 +322,22 @@ Migration guide: <https://contributors.home-assistant.io/blog/2026/04/02/builder
 - `eos_connect_develop`: migrated (`builder-eos_connect_develop.yaml`).
 - `eos_connect`: migrated (`builder-eos_connect.yaml`). Both files are identical apart from
   the add-on name and its two image names.
-- `batcontrol`, `trmnl_server`, `modbus_tcp_smartmeter`: NOT migrated. Still built by the
-  shared `.github/workflows/builder.yaml` through the deprecated
-  `home-assistant/builder@master`. Upstream has announced that the action will be removed,
-  which will break that workflow without warning -- a known liability. Mirror one of the
-  eos_connect workflows when migrating them; note that `prepare-multi-arch-matrix` only
-  supports amd64 and aarch64, so an add-on still listing 32-bit architectures needs them
-  dropped first.
+- `modbus_tcp_smartmeter`, `trmnl_server`: migrated. `trmnl_server` had to drop armhf,
+  armv7 and i386 to get there.
+- `batcontrol`: nothing to migrate. Its config.yaml declares no `image:`, so the legacy
+  workflow always skipped it and no image was ever published. Supervisor builds it locally
+  from `ARG BUILD_FROM`, which keeps working untouched. Leave it alone.
+- `builder.yaml` is now effectively unused, but keep it until batcontrol either gains an
+  `image:` or is removed.
+
+### Only amd64 and aarch64 can be built
+
+`build-image` passes no `platforms:` to `docker/build-push-action`; `arch` only becomes a
+`BUILD_ARCH` build-arg, a label and the cache scope. The image is therefore built natively
+on the runner, which is the whole point of the migration -- and the hard limit, because
+GitHub offers no 32-bit runners. An add-on still listing armhf, armv7 or i386 must drop
+them before it can migrate. Say so in its CHANGELOG as `ACTION REQUIRED`: existing 32-bit
+installations keep running on the last legacy build but receive no further updates.
 - `builder.yaml` skips every add-on that owns a workflow. When an add-on migrates, add it to
   that skip list, otherwise it gets built twice.
 - A wrapper-only release (build changes, no new upstream code) keeps the upstream version and

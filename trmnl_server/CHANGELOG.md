@@ -1,3 +1,12 @@
+**Version 0.0.8-fix3** published on 08.11.2026
+- Maintenance release, no functional changes
+- Rebuilt on Home Assistant's current build toolchain; the retired builder it used before
+  has been announced for removal, which would have stopped add-on builds without notice
+- ACTION REQUIRED for 32-bit installations: armhf, armv7 and i386 no longer receive
+  updates. The new toolchain builds natively and GitHub offers no 32-bit runners. Existing
+  installations keep running on 0.0.8-fix2; Home Assistant deprecated 32-bit installation
+  methods in 2025.6, so moving to a 64-bit OS is the path forward
+
 **Version 0.0.8-fix2** published on 01.01.2026
 - adapt to current TRMNL fw
 - Enhance image footer functionality by using absolute paths for fonts and adding compatibility flag

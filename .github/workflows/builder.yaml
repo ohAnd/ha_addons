@@ -58,7 +58,8 @@ jobs:
           declare -a changed_addons
           for addon in ${{ steps.addons.outputs.addons }}; do
             # Migrated to Docker BuildKit, each has its own builder-<addon>.yaml
-            if [[ "${addon}" == "eos_connect" || "${addon}" == "eos_connect_develop" ]]; then
+            if [[ "${addon}" == "eos_connect" || "${addon}" == "eos_connect_develop" \
+               || "${addon}" == "modbus_tcp_smartmeter" || "${addon}" == "trmnl_server" ]]; then
               continue;
             fi
             if [[ "${{ steps.changed_files.outputs.all }}" =~ $addon ]]; then

@@ -1,5 +1,13 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM ghcr.io/home-assistant/base:3.23
+
+# build-image only emits io.hass.arch and io.hass.version. The rest of the add-on
+# metadata came from the legacy builder and has to be declared here instead --
+# without io.hass.type the image inherits "base" from the base image.
+LABEL \
+    io.hass.type="addon" \
+    io.hass.name="Modbus TCP Smart Meter" \
+    io.hass.description="emulates a modbus tcp client to pretend to be an energy metering device" \
+    io.hass.url="https://github.com/ohAnd/ha_addons"
 
 # Installiere Python und pip
 RUN apk add --no-cache python3 py3-pip git

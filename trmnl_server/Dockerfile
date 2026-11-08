@@ -1,5 +1,13 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM ghcr.io/home-assistant/base:3.23
+
+# build-image only emits io.hass.arch and io.hass.version. The rest of the add-on
+# metadata came from the legacy builder and has to be declared here instead --
+# without io.hass.type the image inherits "base" from the base image.
+LABEL \
+    io.hass.type="addon" \
+    io.hass.name="TRMNL Server" \
+    io.hass.description="TRMNL local server to serve own BMP's directly" \
+    io.hass.url="https://github.com/ohAnd/trmnlServer"
 
 # Install system dependencies and python packages via apk
 # Using apk packages is preferred in HA add-ons for smaller image size and stability

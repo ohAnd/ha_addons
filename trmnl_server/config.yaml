@@ -1,14 +1,14 @@
 name: "TRMNL Server"
 description: "TRMNL local server to serve own BMP's directly"
-version: "0.0.8-fix2"
+version: "0.0.8-fix3"
 slug: "trmnl_server"
 url: "https://github.com/ohAnd/trmnlServer"
 arch:
-  - armhf
-  - armv7
   - aarch64
   - amd64
-  - i386
+  # - armhf # no native GitHub runner, so the BuildKit pipeline cannot build it - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
+  # - armv7 # no native GitHub runner, so the BuildKit pipeline cannot build it - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
+  # - i386 # no native GitHub runner, so the BuildKit pipeline cannot build it - deprecated - https://www.home-assistant.io/blog/2025/06/11/release-20256/#deprecating-installation-methods-and-32-bit-architectures
 
 panel_icon: mdi:tablet-dashboard
 panel_admin: false

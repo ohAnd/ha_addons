@@ -1,3 +1,9 @@
+**Version 1.0.4.1** published on 08.11.2026
+- Maintenance release, no functional changes
+- Rebuilt on Home Assistant's current build toolchain; the retired builder it used before
+  has been announced for removal, which would have stopped add-on builds without notice
+- Same base image and same packages as 1.0.4
+
 **Version 1.0.4** published on 31.01.2026
 - Refactor Modbus register calculations and update energy export handling
 - Updated `calculate_register` function to use big-endian format for floating-point values.
