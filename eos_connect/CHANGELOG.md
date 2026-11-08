@@ -1,3 +1,21 @@
+## **Version 0.3.41.1** published on 2026-11-08
+
+Maintenance release. No changes to EOS Connect itself -- the add-on version is
+unchanged at 0.3.41, only the way its container image is built has moved on.
+
+- **Rebuilt on Home Assistant's current build toolchain**
+  The build moved off the retired Home Assistant builder, which upstream has announced
+  will be removed. Had we waited, add-on builds would have stopped working without
+  notice. The image is otherwise identical: same base, same packages, same version of
+  EOS Connect.
+
+- **FIX: Builds no longer fail when GitHub's download servers hiccup**
+  One download during the amd64 build had no retry, so a transient server error was
+  enough to abandon a release halfway, leaving one architecture updated and the other
+  stuck on the previous version. It now retries.
+
+---
+
 ## **Version 0.3.41** published on 2026-11-08
 
 ### Contributors

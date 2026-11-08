@@ -1,5 +1,18 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM ghcr.io/home-assistant/base-python:3.13-alpine3.22
+
+# build-image only emits io.hass.arch and io.hass.version. The rest of the add-on
+# metadata came from the legacy builder and has to be declared here instead --
+# without io.hass.type the image inherits "base" from the base image.
+LABEL \
+    io.hass.type="addon" \
+    io.hass.name="EOS connect" \
+    io.hass.description="Advanced energy management system with built-in MILP optimizer, multi-source price integration, and real-time battery control. Configure via web UI with automatic Home Assistant integration." \
+    io.hass.url="https://github.com/ohAnd/EOS_connect" \
+    org.opencontainers.image.title="EOS Connect" \
+    org.opencontainers.image.description="EOS Connect Add-on" \
+    org.opencontainers.image.source="https://github.com/ohAnd/ha_addons" \
+    org.opencontainers.image.authors="ohAnd" \
+    org.opencontainers.image.licenses="MIT"
 
 # Timing: Start build with GitHub Actions visibility
 RUN echo "::group::Build Environment Setup" && \
@@ -65,7 +78,8 @@ RUN echo "::group::Installing Configuration & Utilities" && \
 # aarch64 needs nothing: pulp's bundled arm64 CBC is already static.
 RUN if [ "$(uname -m)" = "x86_64" ]; then \
       echo "::group::Installing static CBC solver" && \
-      curl -fsSL -o /tmp/cbc.tgz \
+      curl -fsSL --retry 6 --retry-delay 5 --retry-all-errors --retry-max-time 120 \
+        -o /tmp/cbc.tgz \
         "https://github.com/coin-or/Cbc/releases/download/releases%2F2.10.13/Cbc-releases.2.10.13-x86_64-ubuntu22-gcc1140-static.tar.gz" && \
       echo "86d52bb5634203826f213a09cba83394623a1c44eecc75caed2a553a9ac642fa  /tmp/cbc.tgz" | sha256sum -c - && \
       tar -xzf /tmp/cbc.tgz -C /usr/local ./bin/cbc && \

@@ -319,13 +319,21 @@ Migration guide: <https://contributors.home-assistant.io/blog/2026/04/02/builder
 
 ### Migration status
 
-- `eos_connect_develop`: migrated.
-- `eos_connect`: NOT migrated. Still built by the shared `.github/workflows/builder.yaml`
-  through the deprecated `home-assistant/builder@master`. Upstream has announced that the
-  action will be removed, which will break that workflow without warning -- treat it as a
-  known liability and mirror the develop setup once develop has proven itself.
+- `eos_connect_develop`: migrated (`builder-eos_connect_develop.yaml`).
+- `eos_connect`: migrated (`builder-eos_connect.yaml`). Both files are identical apart from
+  the add-on name and its two image names.
+- `batcontrol`, `trmnl_server`, `modbus_tcp_smartmeter`: NOT migrated. Still built by the
+  shared `.github/workflows/builder.yaml` through the deprecated
+  `home-assistant/builder@master`. Upstream has announced that the action will be removed,
+  which will break that workflow without warning -- a known liability. Mirror one of the
+  eos_connect workflows when migrating them; note that `prepare-multi-arch-matrix` only
+  supports amd64 and aarch64, so an add-on still listing 32-bit architectures needs them
+  dropped first.
 - `builder.yaml` skips every add-on that owns a workflow. When an add-on migrates, add it to
   that skip list, otherwise it gets built twice.
+- A wrapper-only release (build changes, no new upstream code) keeps the upstream version and
+  appends a patch marker, so the reason for the update stays visible in the CHANGELOG.
+  Existing history uses both `0.3.38-fix1` and `0.3.41.1`.
 
 ### Known fragility
 

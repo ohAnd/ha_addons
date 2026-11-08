@@ -1,0 +1,98 @@
+name: Builder eos_connect
+
+# Build via Docker BuildKit on native runners, following the reference workflow in
+# https://github.com/home-assistant/builder . The legacy home-assistant/builder action
+# is deprecated and scheduled for removal; builder.yaml skips this add-on.
+#
+# Deliberate deviation from the reference workflow: the published image names keep the
+# legacy "<name>_<arch>" scheme and config.yaml keeps the {arch} placeholder, so the
+# existing ghcr packages (and their download statistics) carry on uninterrupted.
+# prepare-multi-arch-matrix and publish-multi-arch-manifest hardcode an "<arch>-<name>"
+# scheme and are therefore not used; build-image takes the image name verbatim.
+# Supervisor still validates and resolves {arch} -- see _RE_IMAGE_PATH_COMPONENT in
+# supervisor/validate.py.
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "eos_connect/config.yaml"
+      - "eos_connect/Dockerfile"
+      - "eos_connect/rootfs/**"
+      - ".github/workflows/builder-eos_connect.yaml"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build only, do not push images to ghcr.io"
+        type: boolean
+        required: false
+        default: false
+
+env:
+  ADDON: eos_connect
+
+permissions:
+  contents: read
+
+jobs:
+  init:
+    name: Initialize build
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.info.outputs.version }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6.0.1
+
+      - name: Read add-on version
+        id: info
+        run: |
+          version=$(sed -nE 's/^version:[[:space:]]*"?([^"]+)"?[[:space:]]*$/\1/p' \
+            "${ADDON}/config.yaml" | head -1)
+          if [[ -z "${version}" ]]; then
+            echo "::error::Could not read version from ${ADDON}/config.yaml"
+            exit 1
+          fi
+          echo "Add-on version: ${version}"
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+
+  build:
+    name: Build ${{ matrix.arch }} image
+    needs: init
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read # To check out the code
+      id-token: write # Write needed for Cosign signing (issue OIDC token for signing)
+      packages: write # To push built images to GitHub Container Registry
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Image names must stay lowercase: github.repository_owner is "ohAnd" and
+          # build-image does not normalise case, unlike the legacy builder did.
+          - arch: amd64
+            os: ubuntu-24.04
+            image: ghcr.io/ohand/ha-addon-eos_connect_amd64
+          - arch: aarch64
+            os: ubuntu-24.04-arm
+            image: ghcr.io/ohand/ha-addon-eos_connect_aarch64
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6.0.1
+        with:
+          submodules: recursive # the add-on source lives in eos_connect/src
+
+      - name: Build image
+        uses: home-assistant/builder/actions/build-image@2026.09.0
+        with:
+          arch: ${{ matrix.arch }}
+          cache-gha-scope: ${{ env.ADDON }}-${{ matrix.arch }}
+          container-registry-password: ${{ secrets.GITHUB_TOKEN }}
+          context: ${{ env.ADDON }}
+          image: ${{ matrix.image }}
+          image-tags: |
+            ${{ needs.init.outputs.version }}
+            latest
+          push: ${{ github.event_name != 'workflow_dispatch' || inputs.dry_run == false }}
+          version: ${{ needs.init.outputs.version }}
