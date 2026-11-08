@@ -1,3 +1,10 @@
+**Version 0.3.42.394** published on 2026-11-08
+
+- **FIX: Managed loads no longer show false fallback warnings**
+  Idle loads with nothing to place no longer report a fallback to the base load, fixing
+  misleading UI messages. Contingent loads with no demand no longer wait for optimizer
+  schedules or log false staleness warnings after 600 seconds. - See [PR #370](https://github.com/ohAnd/EOS_connect/pull/370)
+
 **Version 0.3.42.393** published on 2026-11-08
 
 - **No functional changes**
