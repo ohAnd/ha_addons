@@ -329,6 +329,9 @@ Migration guide: <https://contributors.home-assistant.io/blog/2026/04/02/builder
 - The shared `builder.yaml` is gone with it, and with it the last use of the deprecated
   `home-assistant/builder@master`. Every add-on now owns a `builder-<addon>.yaml`. When a
   new add-on arrives, copy one of those rather than reviving the shared workflow.
+- A wrapper-only release (build changes, no new upstream code) keeps the upstream version and
+  appends a patch marker, so the reason for the update stays visible in the CHANGELOG.
+  Existing history uses both `0.3.38-fix1` and `0.3.41.1`.
 
 ### Only amd64 and aarch64 can be built
 
@@ -338,11 +341,6 @@ on the runner, which is the whole point of the migration -- and the hard limit, 
 GitHub offers no 32-bit runners. An add-on still listing armhf, armv7 or i386 must drop
 them before it can migrate. Say so in its CHANGELOG as `ACTION REQUIRED`: existing 32-bit
 installations keep running on the last legacy build but receive no further updates.
-- `builder.yaml` skips every add-on that owns a workflow. When an add-on migrates, add it to
-  that skip list, otherwise it gets built twice.
-- A wrapper-only release (build changes, no new upstream code) keeps the upstream version and
-  appends a patch marker, so the reason for the update stays visible in the CHANGELOG.
-  Existing history uses both `0.3.38-fix1` and `0.3.41.1`.
 
 ### Known fragility
 
