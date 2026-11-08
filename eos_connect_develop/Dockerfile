@@ -1,6 +1,13 @@
 FROM ghcr.io/home-assistant/base-python:3.13-alpine3.22
 
+# build-image only emits io.hass.arch and io.hass.version. The rest of the add-on
+# metadata came from the legacy builder and has to be declared here instead --
+# without io.hass.type the image inherits "base" from the base image.
 LABEL \
+    io.hass.type="addon" \
+    io.hass.name="EOS connect develop" \
+    io.hass.description="DEVELOP version: Advanced energy management system with built-in MILP optimizer, multi-source price integration, and real-time battery control. Configure via web UI with automatic Home Assistant integration." \
+    io.hass.url="https://github.com/ohAnd/EOS_connect" \
     org.opencontainers.image.title="EOS Connect Develop" \
     org.opencontainers.image.description="EOS Connect Development Add-on" \
     org.opencontainers.image.source="https://github.com/ohAnd/ha_addons" \

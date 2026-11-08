@@ -17,7 +17,7 @@ ingress: true
 ingress_port: 8081
 init: false
 
-image: "ghcr.io/ohand/ha-addon-eos_connect_develop"
+image: "ghcr.io/ohand/ha-addon-eos_connect_develop_{arch}"
 
 map:
   - type: app_config

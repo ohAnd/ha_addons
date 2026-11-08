@@ -173,9 +173,9 @@ This is the KEY difference between develop and productive flows.
 - Verify STRUCTURE first (see BUILD PIPELINE below). Both add-ons must use the same build
   mechanism before their package lists can be compared meaningfully:
   - Single multi-arch `FROM ghcr.io/home-assistant/base-python:<tag>`, no `ARG BUILD_FROM`
-  - `LABEL` block present (the OCI labels that used to live in build.yaml)
+  - `LABEL` block present, including the `io.hass.*` labels build-image does not emit
   - No `build.yaml` left in the add-on directory
-  - `image:` in config.yaml without the `{arch}` placeholder
+  - `image:` in config.yaml unchanged, still carrying the `{arch}` placeholder
 - Verify alignment on:
   - System packages (apk add): gcc, python3-dev, musl-dev for build tools
   - Build cleanup: `apk del --purge gcc python3-dev musl-dev` (production must not include build tools)
@@ -288,19 +288,32 @@ Migration guide: <https://contributors.home-assistant.io/blog/2026/04/02/builder
 ### Target state (what a migrated add-on looks like)
 
 - A dedicated workflow per add-on, e.g. `.github/workflows/builder-eos_connect_develop.yaml`,
-  using `prepare-multi-arch-matrix`, `build-image` and `publish-multi-arch-manifest`, each
-  pinned to a release tag -- never `@master`.
+  using `build-image` pinned to a release tag -- never `@master`.
 - `aarch64` builds on a native ARM runner (`ubuntu-24.04-arm`), no QEMU emulation.
+- KEEP the legacy `<name>_<arch>` image names and the `{arch}` placeholder in config.yaml.
+  Renaming would start fresh ghcr packages and reset their download statistics, and
+  downstream reporting hangs off those. Supervisor still validates and resolves `{arch}` --
+  see `_RE_IMAGE_PATH_COMPONENT` in `supervisor/validate.py`. Home Assistant dropped the
+  placeholder in its own add-ons, but that is style, not deprecation.
+- Therefore do NOT use `prepare-multi-arch-matrix` or `publish-multi-arch-manifest`: both
+  hardcode an `<arch>-<name>` scheme. Declare the matrix inline (`arch`, `os`, `image`)
+  instead. `build-image` takes `image` verbatim, so it imposes no scheme. Without the
+  manifest step there is no multi-arch index, which is exactly what `{arch}` replaces.
 - No `build.yaml`. Its content moves into the Dockerfile:
   - `build_from` map -> one multi-arch `FROM ghcr.io/home-assistant/base-python:<tag>`
   - `args` -> `ARG` with defaults
   - `labels` -> a `LABEL` block
   - `build-image` already adds `io.hass.arch`, `io.hass.version` and
     `org.opencontainers.image.created/source/version`. Do not duplicate those.
-- `config.yaml` `image:` points at the multi-arch manifest, so without `{arch}`.
-- `registry-prefix` MUST be set explicitly and lowercase (`ghcr.io/ohand`).
-  `github.repository_owner` is `ohAnd`, and none of the builder actions normalise case the
-  way the legacy builder did. A mixed-case prefix yields an invalid OCI image name.
+  - It adds NOTHING else from the `io.hass.*` set, unlike the legacy builder. Declare
+    `io.hass.type="addon"`, `io.hass.name`, `io.hass.description` and `io.hass.url` in the
+    Dockerfile yourself, matching config.yaml. Without `io.hass.type` the image silently
+    inherits `base` from the base image and claims to be a base image. These are the same
+    labels Supervisor sets when it builds a local add-on itself.
+- Image names MUST be written lowercase. `github.repository_owner` is `ohAnd`, and none of
+  the builder actions normalise case the way the legacy builder did -- a mixed-case name is
+  an invalid OCI reference. Spell the name out in the matrix rather than interpolating the
+  owner.
 - `strategy.fail-fast: false`, so a transient failure on one architecture does not cancel
   the other one mid-build.
 
