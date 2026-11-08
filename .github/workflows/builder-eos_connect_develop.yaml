@@ -1,0 +1,115 @@
+name: Builder eos_connect_develop
+
+# Build via Docker BuildKit on native runners, following the reference workflow in
+# https://github.com/home-assistant/builder . The legacy home-assistant/builder action
+# is deprecated and scheduled for removal; builder.yaml skips this add-on.
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "eos_connect_develop/config.yaml"
+      - "eos_connect_develop/Dockerfile"
+      - "eos_connect_develop/rootfs/**"
+      - ".github/workflows/builder-eos_connect_develop.yaml"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build only, do not push images to ghcr.io"
+        type: boolean
+        required: false
+        default: false
+
+env:
+  ADDON: eos_connect_develop
+  ARCHITECTURES: '["amd64", "aarch64"]'
+  IMAGE_NAME: ha-addon-eos_connect_develop
+  # Must be lowercase: github.repository_owner is "ohAnd" and none of the
+  # builder actions normalise it, but OCI repository names must be lowercase.
+  REGISTRY_PREFIX: ghcr.io/ohand
+
+permissions:
+  contents: read
+
+jobs:
+  init:
+    name: Initialize build
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+      version: ${{ steps.info.outputs.version }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6.0.1
+
+      - name: Read add-on version
+        id: info
+        run: |
+          version=$(sed -nE 's/^version:[[:space:]]*"?([^"]+)"?[[:space:]]*$/\1/p' \
+            "${ADDON}/config.yaml" | head -1)
+          if [[ -z "${version}" ]]; then
+            echo "::error::Could not read version from ${ADDON}/config.yaml"
+            exit 1
+          fi
+          echo "Add-on version: ${version}"
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+
+      - name: Get build matrix
+        id: matrix
+        uses: home-assistant/builder/actions/prepare-multi-arch-matrix@2026.09.0
+        with:
+          architectures: ${{ env.ARCHITECTURES }}
+          image-name: ${{ env.IMAGE_NAME }}
+          registry-prefix: ${{ env.REGISTRY_PREFIX }}
+
+  build:
+    name: Build ${{ matrix.arch }} image
+    needs: init
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read # To check out the code
+      id-token: write # Write needed for Cosign signing (issue OIDC token for signing)
+      packages: write # To push built images to GitHub Container Registry
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.init.outputs.matrix) }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6.0.1
+        with:
+          submodules: recursive # the add-on source lives in eos_connect_develop/src
+
+      - name: Build image
+        uses: home-assistant/builder/actions/build-image@2026.09.0
+        with:
+          arch: ${{ matrix.arch }}
+          cache-gha-scope: ${{ env.IMAGE_NAME }}-${{ matrix.arch }}
+          container-registry-password: ${{ secrets.GITHUB_TOKEN }}
+          context: ${{ env.ADDON }}
+          image: ${{ matrix.image }}
+          image-tags: |
+            ${{ needs.init.outputs.version }}
+            latest
+          push: ${{ github.event_name != 'workflow_dispatch' || inputs.dry_run == false }}
+          version: ${{ needs.init.outputs.version }}
+
+  manifest:
+    name: Publish multi-arch manifest
+    needs: [init, build]
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.dry_run == false }}
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Write needed for Cosign signing (issue OIDC token for signing)
+      packages: write # To push the manifest to GitHub Container Registry
+    steps:
+      - name: Publish multi-arch manifest
+        uses: home-assistant/builder/actions/publish-multi-arch-manifest@2026.09.0
+        with:
+          architectures: ${{ env.ARCHITECTURES }}
+          container-registry-password: ${{ secrets.GITHUB_TOKEN }}
+          image-name: ${{ env.IMAGE_NAME }}
+          image-tags: |
+            ${{ needs.init.outputs.version }}
+            latest
+          registry-prefix: ${{ env.REGISTRY_PREFIX }}

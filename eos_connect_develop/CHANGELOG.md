@@ -1,3 +1,9 @@
+**Version 0.3.42.393** published on 2026-11-08
+
+- **No functional changes**
+  This build only realigns the develop version line after the 0.3.41 release was merged
+  back from the main branch. Everything in it was already part of 0.3.41.391.
+
 **Version 0.3.41.391** published on 2026-11-02
 
 - **NEW FEATURE: Standby threshold for managed loads**

@@ -57,6 +57,10 @@ jobs:
 
           declare -a changed_addons
           for addon in ${{ steps.addons.outputs.addons }}; do
+            # Migrated to Docker BuildKit, see builder-eos_connect_develop.yaml
+            if [[ "${addon}" == "eos_connect_develop" ]]; then
+              continue;
+            fi
             if [[ "${{ steps.changed_files.outputs.all }}" =~ $addon ]]; then
               for file in ${{ env.MONITORED_FILES }}; do
                   if [[ "${{ steps.changed_files.outputs.all }}" =~ $addon/$file ]]; then

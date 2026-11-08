@@ -169,7 +169,13 @@ This is the KEY difference between develop and productive flows.
 
 **7a: Compare Wrapper Dockerfile with Develop**
 
-- Check `c:\projects\ha_addons\eos_connect\Dockerfile` vs. `eos_connect_develop\Dockerfile`
+- Check `eos_connect/Dockerfile` vs. `eos_connect_develop/Dockerfile`
+- Verify STRUCTURE first (see BUILD PIPELINE below). Both add-ons must use the same build
+  mechanism before their package lists can be compared meaningfully:
+  - Single multi-arch `FROM ghcr.io/home-assistant/base-python:<tag>`, no `ARG BUILD_FROM`
+  - `LABEL` block present (the OCI labels that used to live in build.yaml)
+  - No `build.yaml` left in the add-on directory
+  - `image:` in config.yaml without the `{arch}` placeholder
 - Verify alignment on:
   - System packages (apk add): gcc, python3-dev, musl-dev for build tools
   - Build cleanup: `apk del --purge gcc python3-dev musl-dev` (production must not include build tools)
@@ -270,6 +276,53 @@ Release focus:
 
 Status: [Production-ready/Testing phase]
 ```
+
+---
+
+## BUILD PIPELINE (both add-ons)
+
+Home Assistant retired the `home-assistant/builder` action in favour of Docker BuildKit and
+a set of composable actions. Reference workflow: <https://github.com/home-assistant/builder>.
+Migration guide: <https://contributors.home-assistant.io/blog/2026/04/02/builder-migration/>.
+
+### Target state (what a migrated add-on looks like)
+
+- A dedicated workflow per add-on, e.g. `.github/workflows/builder-eos_connect_develop.yaml`,
+  using `prepare-multi-arch-matrix`, `build-image` and `publish-multi-arch-manifest`, each
+  pinned to a release tag -- never `@master`.
+- `aarch64` builds on a native ARM runner (`ubuntu-24.04-arm`), no QEMU emulation.
+- No `build.yaml`. Its content moves into the Dockerfile:
+  - `build_from` map -> one multi-arch `FROM ghcr.io/home-assistant/base-python:<tag>`
+  - `args` -> `ARG` with defaults
+  - `labels` -> a `LABEL` block
+  - `build-image` already adds `io.hass.arch`, `io.hass.version` and
+    `org.opencontainers.image.created/source/version`. Do not duplicate those.
+- `config.yaml` `image:` points at the multi-arch manifest, so without `{arch}`.
+- `registry-prefix` MUST be set explicitly and lowercase (`ghcr.io/ohand`).
+  `github.repository_owner` is `ohAnd`, and none of the builder actions normalise case the
+  way the legacy builder did. A mixed-case prefix yields an invalid OCI image name.
+- `strategy.fail-fast: false`, so a transient failure on one architecture does not cancel
+  the other one mid-build.
+
+### Migration status
+
+- `eos_connect_develop`: migrated.
+- `eos_connect`: NOT migrated. Still built by the shared `.github/workflows/builder.yaml`
+  through the deprecated `home-assistant/builder@master`. Upstream has announced that the
+  action will be removed, which will break that workflow without warning -- treat it as a
+  known liability and mirror the develop setup once develop has proven itself.
+- `builder.yaml` skips every add-on that owns a workflow. When an add-on migrates, add it to
+  that skip list, otherwise it gets built twice.
+
+### Known fragility
+
+Two steps pull from GitHub's release-asset CDN, which intermittently answers HTTP 504:
+
+- the cosign install inside the builder actions (both architectures)
+- the static CBC solver in the Dockerfile (amd64 only, guarded by `uname -m`)
+
+Both retry now. A build failing with `curl: (22) The requested URL returned error: 504` is
+this and not the add-on -- re-run the failed job instead of changing anything.
 
 ---
 

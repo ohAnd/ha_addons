@@ -1,5 +1,11 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM ghcr.io/home-assistant/base-python:3.13-alpine3.22
+
+LABEL \
+    org.opencontainers.image.title="EOS Connect Develop" \
+    org.opencontainers.image.description="EOS Connect Development Add-on" \
+    org.opencontainers.image.source="https://github.com/ohAnd/ha_addons" \
+    org.opencontainers.image.authors="ohAnd" \
+    org.opencontainers.image.licenses="MIT"
 
 # Timing: Start build with GitHub Actions visibility
 RUN echo "::group::Build Environment Setup" && \
@@ -65,7 +71,8 @@ RUN echo "::group::Installing Configuration & Utilities" && \
 # aarch64 needs nothing: pulp's bundled arm64 CBC is already static.
 RUN if [ "$(uname -m)" = "x86_64" ]; then \
       echo "::group::Installing static CBC solver" && \
-      curl -fsSL -o /tmp/cbc.tgz \
+      curl -fsSL --retry 6 --retry-delay 5 --retry-all-errors --retry-max-time 120 \
+        -o /tmp/cbc.tgz \
         "https://github.com/coin-or/Cbc/releases/download/releases%2F2.10.13/Cbc-releases.2.10.13-x86_64-ubuntu22-gcc1140-static.tar.gz" && \
       echo "86d52bb5634203826f213a09cba83394623a1c44eecc75caed2a553a9ac642fa  /tmp/cbc.tgz" | sha256sum -c - && \
       tar -xzf /tmp/cbc.tgz -C /usr/local ./bin/cbc && \
