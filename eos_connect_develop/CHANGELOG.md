@@ -1,3 +1,17 @@
+**Version 0.3.42.396** published on 2026-11-14
+
+- **FIX: Open-Meteo PV forecast keeps its quarter-hour shape**
+  With the `openmeteo` PV source, sunrise and sunset ramps and passing clouds were smoothed
+  out and the curve ran a quarter of an hour early; each hour also came out about 1.7 % low.
+  The forecast now follows Open-Meteo's own 15-minute energy values, in quarter-hourly and
+  hourly planning alike. - See [PR #367](https://github.com/ohAnd/EOS_connect/pull/367)
+
+- **FIX: MQTT no longer stops right after a start**
+  With managed loads configured, some starts left MQTT dead: entities in Home Assistant
+  stopped updating and MQTT commands were ignored until the next restart. This no longer
+  happens, and entities no longer keep showing an older value after two quick updates.
+  - See [PR #369](https://github.com/ohAnd/EOS_connect/pull/369)
+
 **Version 0.3.42.394** published on 2026-11-08
 
 - **FIX: Managed loads no longer show false fallback warnings**
