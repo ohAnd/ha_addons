@@ -1,3 +1,12 @@
+**Version 0.3.42.399** published on 2026-11-15
+
+- **FIX: Charging curve no longer holds back the battery at load peaks**
+  With `battery.charging_curve_enabled` on, the reduced charge power near full was also
+  applied to discharging, so a nearly full battery could not cover a load peak. Discharging
+  is now never limited by the curve. With the built-in optimizer (`local_evopt`), the plan
+  now follows the curve slot by slot; EOS and EVopt plan with `battery.max_charge_power_w`.
+  Fixes [#355](https://github.com/ohAnd/EOS_connect/issues/355)
+
 **Version 0.3.42.396** published on 2026-11-14
 
 - **FIX: Open-Meteo PV forecast keeps its quarter-hour shape**
