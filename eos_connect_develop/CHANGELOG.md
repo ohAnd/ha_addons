@@ -1,3 +1,18 @@
+**Version 0.3.42.403** published on 2026-11-15
+
+- **FIX: Built-in optimizer no longer overruns the optimization interval**
+  On slow hardware such as a Raspberry Pi, one optimization with the built-in optimizer
+  (`local_evopt`) could take longer than the interval itself, and managed loads then showed
+  as unscheduled. The solver now finishes within the interval and keeps the best plan it
+  found. Fixes [#366](https://github.com/ohAnd/EOS_connect/issues/366)
+  - `eos.local_evopt_time_limit` now covers the whole optimization, and `0` no longer means
+    "no limit" but 80 % of `eos.timeout`; it never exceeds a quarter of `refresh_time`
+
+- **FIX: Schedule table lined up with the chart again**
+  The hourly schedule beside the chart was shifted by the quarter-hours already past in the
+  current hour, so a row could show the wrong half hour. Each row now covers exactly its
+  clock hour. Fixes [#374](https://github.com/ohAnd/EOS_connect/issues/374)
+
 **Version 0.3.42.401** published on 2026-11-15
 
 - **FIX: Partial grid charges with the EOS server on 15-minute slots**
