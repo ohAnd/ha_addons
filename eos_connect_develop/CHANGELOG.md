@@ -1,3 +1,18 @@
+**Version 0.3.42.401** published on 2026-11-15
+
+- **FIX: Partial grid charges with the EOS server on 15-minute slots**
+  With the Akkudoktor EOS server and quarter-hourly planning, planned grid charging was
+  shown at four times its size and partial charges ran at full power. Planned and actual
+  charging now match. Fixes [#371](https://github.com/ohAnd/EOS_connect/issues/371)
+
+- **FIX: History reads work again with a data source URL ending in "/"**
+  A trailing slash in the data source URL made every history read fail, while
+  the Test button in the configuration still reported the sensor as working. The log was
+  also flooded with repeated "failed after 5 attempts" messages. Both are fixed.
+  - Battery price calculation: the load sensor must be the whole household (wallbox and
+    managed loads included), and the price sensor the current grid import price
+  - Fixes [#340](https://github.com/ohAnd/EOS_connect/issues/340)
+
 **Version 0.3.42.399** published on 2026-11-15
 
 - **FIX: Charging curve no longer holds back the battery at load peaks**
