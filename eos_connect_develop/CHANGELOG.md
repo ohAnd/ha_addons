@@ -1,3 +1,16 @@
+**Version 0.3.42.404** published on 2026-11-16
+
+- **FIX: Akkudoktor EOS server: battery settings reach recent EOS builds again**
+  EOS builds from 2026-11-11 on describe batteries and inverters by profile and silently
+  dropped the capacity and power limits EOS Connect sent, leaving the battery without a
+  capacity. They now arrive. Settings made in EOSdash, such as the chosen battery profile,
+  are no longer reset on every start. Fixes [#385](https://github.com/ohAnd/EOS_connect/issues/385)
+  - On such a server the charge and discharge efficiencies come from the battery profile,
+    not from `battery.charge_efficiency` / `battery.discharge_efficiency`. If they do not
+    fit your battery, choose or create a matching profile in EOSdash
+  - Grid charging no longer overshoots when an optimization starts in the middle of a slot
+  - See [PR #386](https://github.com/ohAnd/EOS_connect/pull/386)
+
 **Version 0.3.42.403** published on 2026-11-15
 
 - **FIX: Built-in optimizer no longer overruns the optimization interval**
